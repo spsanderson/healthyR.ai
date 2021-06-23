@@ -4,6 +4,14 @@
 # healthyR.ai
 
 <!-- badges: start -->
+
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/healthyR.ai)](https://cran.r-project.org/package=healthyR.ai)
+![](https://cranlogs.r-pkg.org/badges/healthyR.ai)
+![](https://cranlogs.r-pkg.org/badges/grand-total/healthyR.ai)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![PRs
+Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 <!-- badges: end -->
 
 The goal of healthyR.ai is to …
