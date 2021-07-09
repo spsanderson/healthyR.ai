@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# healthyR.ai
+# healthyR.ai <img src="man/figures/test3.png" width="147" height="170" align="right" />
 
 <!-- badges: start -->
 
