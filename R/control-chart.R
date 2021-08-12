@@ -104,10 +104,10 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
 
     if (missing(.value_col)) {
         .value_col <- "x"
-        d$x <- seq_len(nrow(d))
-    } else if (!x %in% names(d)) {
+        d$x <- seq_len(nrow(.data))
+    } else if (!x %in% names(.data)) {
         stop("You provided x = \"", x,
-             "\" but that isn't the name of a column in ", match.call()[["d"]])
+             "\" but that isn't the name of a column in ", match.call()[[".data"]])
     }
 
     # Data ----
@@ -135,31 +135,29 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
         ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black"),
                            guide = FALSE) +
         ggplot2::labs(
-            title = title
-            , caption = catpion
+            title = .plt_title
+            , caption = .plt_catpion
         ) +
-        theme_gray(base_size = font_size) +
-        theme(panel.grid.major.y = element_blank(),
-              panel.grid.minor.y = element_blank())
+        tidyquant::theme_tq()
 
     # If grouping variables provided, facet by them
-    if (!missing(group1) && !missing(group2)) {
-        chart <-
-            chart +
-            facet_grid(stats::as.formula(paste(group2, "~", group1)))
-    } else if (!missing(group1)) {
-        chart <-
-            chart +
-            facet_wrap(as.formula(paste("~", group1)), nrow = 1)
-    } else if (!missing(group2)) {
-        chart <-
-            chart +
-            facet_wrap(as.formula(paste("~", group2)), ncol = 1)
+    if (!missing(.group1) && !missing(.group2)) {
+        chart <- chart +
+            ggplot2::facet_grid(stats::as.formula(paste(.group2, "~", .group1)))
+    } else if (!missing(.group1)) {
+        chart <- chart +
+            ggplot2::facet_wrap(stats::as.formula(paste("~", group1)), nrow = 1)
+    } else if (!missing(.group2)) {
+        chart <- chart +
+            ggplot2::facet_wrap(stats::as.formula(paste("~", group2)), ncol = 1)
     }
 
-    if (print)
+    if (print) {
         print(chart)
+    }
+
     return(invisible(chart))
+
 }
 
 #' Calculate lower, middle, and upper lines for control_chart
