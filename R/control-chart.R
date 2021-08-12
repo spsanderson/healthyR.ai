@@ -112,8 +112,8 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
     bounds <- calculate_bounds(data_tbl, .measure, .center_line, .std_dev)
 
     # Calculate central tendency and upper and lower limits
-    data_tbl$outside <- ifelse(data_tbl[[measure]] > bounds[["upper"]] |
-                            data_tbl[[measure]] < bounds[["lower"]], "out", "in")
+    data_tbl$outside <- ifelse(data_tbl[[.measure]] > bounds[["upper"]] |
+                            data_tbl[[.measure]] < bounds[["lower"]], "out", "in")
 
     # Make plot
     chart <- data_tbl %>%
@@ -121,7 +121,7 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
             data = data_tbl,
             ggplot2::aes(
                 x = {{value_var_expr}}
-                , y = measure
+                , y = .measure
             )
         ) +
         ggplot2::geom_hline(yintercept = bounds[["mid"]], color = "darkgray") +
