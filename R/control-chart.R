@@ -95,7 +95,7 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
 
     if (!missing(.group1) && !.group1 %in% names(.data))
         stop(.group1, " isn't the name of a column in ", match.call()[[".data"]])
-    if (!missing(group2) && !.group2 %in% names(.data))
+    if (!missing(.group2) && !.group2 %in% names(.data))
         stop(.group2, " isn't the name of a column in ", match.call()[[".data"]])
 
     if (rlang::quo_is_missing(value_var_expr)) {
