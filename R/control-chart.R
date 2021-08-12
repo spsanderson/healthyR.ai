@@ -118,7 +118,6 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
     # Make plot
     chart <- data_tbl %>%
         ggplot2::ggplot(
-            data = data_tbl,
             ggplot2::aes(
                 x = {{value_var_expr}}
                 , y = .measure
@@ -149,7 +148,7 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
             ggplot2::facet_wrap(stats::as.formula(paste("~", group2)), ncol = 1)
     }
 
-    if (print) {
+    if (.print_plot) {
         print(chart)
     }
 
