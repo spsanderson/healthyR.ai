@@ -27,7 +27,8 @@ Imports:
 Suggests: 
     rmarkdown,
     knitr,
-    roxygen2
+    roxygen2,
+    stats
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
