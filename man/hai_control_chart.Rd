@@ -6,10 +6,8 @@
 \usage{
 hai_control_chart(
   .data,
-  .measure,
+  .value_col,
   .x_col,
-  .group1,
-  .group2,
   .center_line = mean,
   .std_dev = 3,
   .plt_title = NULL,
@@ -21,14 +19,10 @@ hai_control_chart(
 \arguments{
 \item{.data}{data frame or a path to a csv file that will be read in}
 
-\item{.measure}{variable of interest mapped to y-axis (quoted, ie as a string)}
+\item{.value_col}{variable of interest mapped to y-axis (quoted, ie as a string)}
 
 \item{.x_col}{variable to go on the x-axis, often a time variable. If unspecified
 row indices will be used (quoted)}
-
-\item{.group1}{Optional grouping variable to be panelled horizontally (quoted)}
-
-\item{.group2}{Optional grouping variable to be panelled vertically (quoted)}
 
 \item{.center_line}{Function used to calculate central tendency. Defaults to
 mean}
@@ -46,6 +40,10 @@ to 3}
 \item{.print_plot}{Print the plot? Default = TRUE. Set to FALSE if you want to
 assign the plot to a variable for further modification, as in the last
 example.}
+
+\item{.group1}{Optional grouping variable to be panelled horizontally (quoted)}
+
+\item{.group2}{Optional grouping variable to be panelled vertically (quoted)}
 }
 \value{
 Generally called for the side effect of printing the control chart.
