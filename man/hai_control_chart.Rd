@@ -40,10 +40,6 @@ to 3}
 \item{.print_plot}{Print the plot? Default = TRUE. Set to FALSE if you want to
 assign the plot to a variable for further modification, as in the last
 example.}
-
-\item{.group1}{Optional grouping variable to be panelled horizontally (quoted)}
-
-\item{.group2}{Optional grouping variable to be panelled vertically (quoted)}
 }
 \value{
 Generally called for the side effect of printing the control chart.
@@ -66,29 +62,20 @@ any knowledge of the underlying process distributions. Distribution-free
 control charts are becoming increasingly popular.
 }
 \examples{
-data_tbl <-
-  tibble::tibble(
+data_tbl <- tibble::tibble(
     day = sample(c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
                  100, TRUE),
     person = sample(c("Tom", "Jane", "Alex"), 100, TRUE),
     count = rbinom(100, 20, ifelse(day == "Friday", .5, .2)),
     date = Sys.Date() - sample.int(100))
 
-# Minimal arguments are the data and the column to put on the y-axis.
-# If x is not provided, observations will be plotted in order of the rows
-
-hai_control_chart(data_tbl, "count")
-
-# Specify categorical variables for group1 and/or group2 to get a separate
-# panel for each category
-
-hai_control_chart(data_tbl, "count", .group1 = "day", .group2 = "person")
+hai_control_chart(.data = data_tbl, .value_col = count, .x_col = date)
 
 # In addition to printing or writing the plot to file, hai_control_chart
 # returns the plot as a ggplot2 object, which you can then further customize
 
 library(ggplot2)
-my_chart <- control_chart(data_tbl, "count", "date")
+my_chart <- hai_control_chart(data_tbl, count, date)
 my_chart +
   ylab("Number of Adverse Events") +
   scale_x_date(name = "Week of ... ", date_breaks = "week") +
