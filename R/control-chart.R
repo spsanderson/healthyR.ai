@@ -119,7 +119,7 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
     chart <- data_tbl %>%
         ggplot2::ggplot(
             ggplot2::aes(
-                x = {{value_var_expr}}
+                x = x
                 , y = .measure
             )
         ) +
@@ -127,9 +127,9 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
         ggplot2::geom_hline(yintercept = c(bounds[["upper"]], bounds[["lower"]]),
                    linetype = "dotted", color = "darkgray") +
         ggplot2::geom_line() +
-        ggplot2::geom_point(ggplot2::aes(color = outside), size = 2) +
-        ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black"),
-                           guide = FALSE) +
+        # ggplot2::geom_point(ggplot2::aes(color = outside), size = 2) +
+        # ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black"),
+        #                    guide = FALSE) +
         ggplot2::labs(
             title = .plt_title
             , caption = .plt_catpion
@@ -142,10 +142,10 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
             ggplot2::facet_grid(stats::as.formula(paste(.group2, "~", .group1)))
     } else if (!missing(.group1)) {
         chart <- chart +
-            ggplot2::facet_wrap(stats::as.formula(paste("~", group1)), nrow = 1)
+            ggplot2::facet_wrap(stats::as.formula(paste("~", .group1)), nrow = 1)
     } else if (!missing(.group2)) {
         chart <- chart +
-            ggplot2::facet_wrap(stats::as.formula(paste("~", group2)), ncol = 1)
+            ggplot2::facet_wrap(stats::as.formula(paste("~", .group2)), ncol = 1)
     }
 
     if (.print_plot) {
