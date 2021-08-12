@@ -22,13 +22,17 @@ Imports:
     rlang (>= 0.1.2),
     tibble,
     ggplot2,
-    tibble,
-    dplyr
+    dplyr,
+    utils
 Suggests: 
     rmarkdown,
     knitr,
     roxygen2,
-    stats
+    stats,
+    tidyquant,
+    cli,
+    crayon,
+    rstudioapi
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)

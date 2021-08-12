@@ -19,11 +19,9 @@
 #' control charts are becoming increasingly popular.
 #'
 #' @param .data data frame or a path to a csv file that will be read in
-#' @param .measure variable of interest mapped to y-axis (quoted, ie as a string)
+#' @param .value_col variable of interest mapped to y-axis (quoted, ie as a string)
 #' @param .x_col variable to go on the x-axis, often a time variable. If unspecified
 #'   row indices will be used (quoted)
-#' @param .group1 Optional grouping variable to be panelled horizontally (quoted)
-#' @param .group2 Optional grouping variable to be panelled vertically (quoted)
 #' @param .center_line Function used to calculate central tendency. Defaults to
 #'   mean
 #' @param .std_dev Number of standard deviations above and below the central
@@ -37,29 +35,20 @@
 #'   example.
 #'
 #' @examples
-#' data_tbl <-
-#'   tibble::tibble(
+#' data_tbl <- tibble::tibble(
 #'     day = sample(c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
 #'                  100, TRUE),
 #'     person = sample(c("Tom", "Jane", "Alex"), 100, TRUE),
 #'     count = rbinom(100, 20, ifelse(day == "Friday", .5, .2)),
 #'     date = Sys.Date() - sample.int(100))
 #'
-#' # Minimal arguments are the data and the column to put on the y-axis.
-#' # If x is not provided, observations will be plotted in order of the rows
-#'
-#' hai_control_chart(data_tbl, "count")
-#'
-#' # Specify categorical variables for group1 and/or group2 to get a separate
-#' # panel for each category
-#'
-#' hai_control_chart(data_tbl, "count", .group1 = "day", .group2 = "person")
+#' hai_control_chart(.data = data_tbl, .value_col = count, .x_col = date)
 #'
 #' # In addition to printing or writing the plot to file, hai_control_chart
 #' # returns the plot as a ggplot2 object, which you can then further customize
 #'
 #' library(ggplot2)
-#' my_chart <- control_chart(data_tbl, "count", "date")
+#' my_chart <- hai_control_chart(data_tbl, count, date)
 #' my_chart +
 #'   ylab("Number of Adverse Events") +
 #'   scale_x_date(name = "Week of ... ", date_breaks = "week") +
@@ -71,77 +60,91 @@
 #' @export hai_control_chart
 #'
 
-hai_control_chart <- function(.data, .measure, .x_col, .group1, .group2,
-                          .center_line = mean, .std_dev = 3,
-                          .plt_title = NULL, .plt_catpion = NULL,
-                          .plt_font_size = 11,
-                          .print_plot = TRUE) {
+hai_control_chart <- function(
+                            .data
+                            , .value_col
+                            , .x_col
+                            , .center_line = mean
+                            , .std_dev = 3
+                            , .plt_title = NULL
+                            , .plt_catpion = NULL
+                            , .plt_font_size = 11
+                            , .print_plot = TRUE) {
 
+    # Tidyeval ----
+    x_var_expr     <- rlang::enquo(.x_col)
+    value_var_expr <- rlang::enquo(.value_col)
+
+    # * Checks ----
     if (missing(.data) || !(is.data.frame(.data) || is.character(.data))) {
         stop("You have to provide a data frame or a file location.")
     } else if (is.character(.data)) {
         message("Attempting to read csv from ", .data)
-        .data <- read.csv(.data)
+        .data <- utils::read.csv(.data)
     }
 
-    if (missing(.measure)) {
+    if (missing(.value_col)) {
         stop("You have to provide a measure variable name.")
     }
 
-    # Tidyeval ----
-    group_a_var_expr <- rlang::enquo(.group1)
-    group_b_var_expr <- rlang::enquo(.group1)
-    x_var_expr   <- rlang::enquo(.x_col)
-
-    if (!missing(.group1) && !.group1 %in% names(.data))
-        stop(.group1, " isn't the name of a column in ", match.call()[[".data"]])
-    if (!missing(.group2) && !.group2 %in% names(.data))
-        stop(.group2, " isn't the name of a column in ", match.call()[[".data"]])
-
     if (rlang::quo_is_missing(x_var_expr)){
+        stop(call. = FALSE, "(.x_col) is missing, please supply.")
+    }
+
+    if (rlang::quo_is_missing(value_var_expr)){
         stop(call. = FALSE, "(.value_col) is missing, please supply.")
     }
 
     # Data ----
     data_tbl <- tibble::as_tibble(.data)
-    bounds <- calculate_bounds(data_tbl, .measure, .center_line, .std_dev)
 
     # Calculate central tendency and upper and lower limits
-    data_tbl$outside <- ifelse(data_tbl[[.measure]] > bounds[["upper"]] |
-                            data_tbl[[.measure]] < bounds[["lower"]], "out", "in")
+    bounds_data <- tibble::as_tibble(.data) %>%
+        dplyr::pull({{value_var_expr}})
+
+    mid <- .center_line(bounds_data)
+    sd <- .std_dev * stats::sd(bounds_data)
+    upper <- mid * sd
+    lower <- mid - sd
+
+    # Add bounding data as a column to data.frame
+    data_tbl <- data_tbl %>%
+        dplyr::mutate(
+            outside = dplyr::case_when(
+                {{value_var_expr}} > upper ~ "out",
+                {{value_var_expr}} < lower ~ "out",
+                TRUE ~ "in"
+            )
+        )
 
     # Make plot
     chart <- data_tbl %>%
         ggplot2::ggplot(
             ggplot2::aes(
                 x = {{ x_var_expr }}
-                , y = .measure
+                , y = {{ value_var_expr }}
             )
         ) +
-        ggplot2::geom_col() +
-        ggplot2::geom_hline(yintercept = bounds[["mid"]], color = "darkgray") +
-        ggplot2::geom_hline(yintercept = c(bounds[["upper"]], bounds[["lower"]]),
-                   linetype = "dotted", color = "darkgray") +
-        # ggplot2::geom_point(ggplot2::aes(color = outside), size = 2) +
-        # ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black"),
-        #                    guide = FALSE) +
+        ggplot2::geom_line() +
+        ggplot2::geom_hline(
+            yintercept = mid
+            , color    = "darkgray"
+            , size     = 0.5
+            ) +
+        ggplot2::geom_hline(
+            yintercept = c(upper, lower)
+            , linetype = "dotted"
+            , color    = "red"
+            , size     = 1
+            ) +
+        ggplot2::geom_point(ggplot2::aes(color = outside), size = 2) +
+        ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black")
+                                    , guide = "none") +
         ggplot2::labs(
             title = .plt_title
             , caption = .plt_catpion
         ) +
         tidyquant::theme_tq()
-
-    # If grouping variables provided, facet by them
-    if (!missing(.group1) && !missing(.group2)) {
-        chart <- chart +
-            ggplot2::facet_grid(stats::as.formula(paste(.group2, "~", .group1)))
-    } else if (!missing(.group1)) {
-        chart <- chart +
-            ggplot2::facet_wrap(stats::as.formula(paste("~", .group1)), nrow = 1)
-    } else if (!missing(.group2)) {
-        chart <- chart +
-            ggplot2::facet_wrap(stats::as.formula(paste("~", .group2)), ncol = 1)
-    }
 
     if (.print_plot) {
         print(chart)
@@ -149,15 +152,4 @@ hai_control_chart <- function(.data, .measure, .x_col, .group1, .group2,
 
     return(invisible(chart))
 
-}
-
-#' Calculate lower, middle, and upper lines for control_chart
-#' @return Named vector of three
-#' @noRd
-calculate_bounds <- function(.data, .measure, .center_line, .std_dev) {
-    mid <- .center_line(.data[[.measure]])
-    sd3 <- .std_dev * stats::sd(.data[[.measure]])
-    upper <- mid + sd3
-    lower <- mid - sd3
-    return(c(lower = lower, mid = mid, upper = upper))
 }

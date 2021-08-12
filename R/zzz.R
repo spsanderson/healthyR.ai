@@ -27,7 +27,7 @@
             cli::rule(left = "Welcome to healthyR.ai", col = bsu_rule_color, line = 2),
             bsu_main('\nIf you find this package useful, please leave a star: https://github.com/spsanderson/healthyR.ai'),
             bsu_main('\nIf you encounter a bug or want to request an enhancement please file an issue at:'),
-            bsu_main('\n   https://github.com/spsanderson/healthyR/issues'),
+            bsu_main('\n   https://github.com/spsanderson/healthyR.ai/issues'),
             bsu_main('\nThank you for using healthyR.ai!')
         )
 

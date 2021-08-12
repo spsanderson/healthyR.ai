@@ -6,10 +6,8 @@
 \usage{
 hai_control_chart(
   .data,
-  .measure,
+  .value_col,
   .x_col,
-  .group1,
-  .group2,
   .center_line = mean,
   .std_dev = 3,
   .plt_title = NULL,
@@ -21,14 +19,10 @@ hai_control_chart(
 \arguments{
 \item{.data}{data frame or a path to a csv file that will be read in}
 
-\item{.measure}{variable of interest mapped to y-axis (quoted, ie as a string)}
+\item{.value_col}{variable of interest mapped to y-axis (quoted, ie as a string)}
 
 \item{.x_col}{variable to go on the x-axis, often a time variable. If unspecified
 row indices will be used (quoted)}
-
-\item{.group1}{Optional grouping variable to be panelled horizontally (quoted)}
-
-\item{.group2}{Optional grouping variable to be panelled vertically (quoted)}
 
 \item{.center_line}{Function used to calculate central tendency. Defaults to
 mean}
@@ -68,29 +62,20 @@ any knowledge of the underlying process distributions. Distribution-free
 control charts are becoming increasingly popular.
 }
 \examples{
-data_tbl <-
-  tibble::tibble(
+data_tbl <- tibble::tibble(
     day = sample(c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
                  100, TRUE),
     person = sample(c("Tom", "Jane", "Alex"), 100, TRUE),
     count = rbinom(100, 20, ifelse(day == "Friday", .5, .2)),
     date = Sys.Date() - sample.int(100))
 
-# Minimal arguments are the data and the column to put on the y-axis.
-# If x is not provided, observations will be plotted in order of the rows
-
-hai_control_chart(data_tbl, "count")
-
-# Specify categorical variables for group1 and/or group2 to get a separate
-# panel for each category
-
-hai_control_chart(data_tbl, "count", .group1 = "day", .group2 = "person")
+hai_control_chart(.data = data_tbl, .value_col = count, .x_col = date)
 
 # In addition to printing or writing the plot to file, hai_control_chart
 # returns the plot as a ggplot2 object, which you can then further customize
 
 library(ggplot2)
-my_chart <- control_chart(data_tbl, "count", "date")
+my_chart <- hai_control_chart(data_tbl, count, date)
 my_chart +
   ylab("Number of Adverse Events") +
   scale_x_date(name = "Week of ... ", date_breaks = "week") +
