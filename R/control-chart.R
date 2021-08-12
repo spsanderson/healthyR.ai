@@ -162,7 +162,7 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
 #' @noRd
 calculate_bounds <- function(.data, .measure, .center_line, .std_dev) {
     mid <- .center_line(.data[[.measure]])
-    sd3 <- .std_dev * stats::sd(d[[.measure]])
+    sd3 <- .std_dev * stats::sd(.data[[.measure]])
     upper <- mid + sd3
     lower <- mid - sd3
     return(c(lower = lower, mid = mid, upper = upper))
