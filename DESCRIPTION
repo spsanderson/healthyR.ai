@@ -1,24 +1,33 @@
 Package: healthyR.ai
-Title: What the Package Does (One Line, Title Case)
+Title: The Machine Learning and AI Modeling Companion to 'healthyR'
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+    person("Steven","Sanderson", email = "spsanderson@gmail.com", role = c("aut","cre")),
+    person("Steven Sanderson", role = "cph"))
+Description: 
+    Hospital machine learning and ai data analysis workflow tools, modeling, and automations. 
+    This library provides many useful tools to review common administrative 
+    hospital data. Some of these include predicting length of stay, and readmits.
+    The aim is to provide a simple and consistent verb framework that takes the 
+    guesswork out of everything.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+URL: https://github.com/spsanderson/healthyR.ai
+BugReports: https://github.com/spsanderson/healthyR.ai/issues
 Imports: 
     magrittr,
     rlang (>= 0.1.2),
-    tibble
+    tibble,
+    ggplot2,
+    tibble,
+    dplyr
 Suggests: 
     rmarkdown,
     knitr,
     roxygen2
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
