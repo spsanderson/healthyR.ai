@@ -98,13 +98,10 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
     if (!missing(.group2) && !.group2 %in% names(.data))
         stop(.group2, " isn't the name of a column in ", match.call()[[".data"]])
 
-    if (rlang::quo_is_missing(value_var_expr)) {
-        stop(call. = FALSE, "(.value_col) is missing, please supply.")
-    }
-
     if (missing(.value_col)) {
         .value_col <- "x"
-        d$x <- seq_len(nrow(.data))
+        x <- .value_col
+        .data$x <- seq_len(nrow(.data))
     } else if (!x %in% names(.data)) {
         stop("You provided x = \"", x,
              "\" but that isn't the name of a column in ", match.call()[[".data"]])
@@ -164,8 +161,8 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
 #' @return Named vector of three
 #' @noRd
 calculate_bounds <- function(.data, .measure, .center_line, .std_dev) {
-    mid <- center_line(.data[[measure]])
-    sd3 <- sigmas * stats::sd(d[[measure]])
+    mid <- .center_line(.data[[.measure]])
+    sd3 <- .std_dev * stats::sd(d[[.measure]])
     upper <- mid + sd3
     lower <- mid - sd3
     return(c(lower = lower, mid = mid, upper = upper))
