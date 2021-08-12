@@ -7,7 +7,7 @@
 hai_control_chart(
   .data,
   .measure,
-  .value_col,
+  .x_col,
   .group1,
   .group2,
   .center_line = mean,
@@ -23,7 +23,7 @@ hai_control_chart(
 
 \item{.measure}{variable of interest mapped to y-axis (quoted, ie as a string)}
 
-\item{.value_col}{variable to go on the x-axis, often a time variable. If unspecified
+\item{.x_col}{variable to go on the x-axis, often a time variable. If unspecified
 row indices will be used (quoted)}
 
 \item{.group1}{Optional grouping variable to be panelled horizontally (quoted)}
