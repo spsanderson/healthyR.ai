@@ -20,7 +20,7 @@
 #'
 #' @param .data data frame or a path to a csv file that will be read in
 #' @param .measure variable of interest mapped to y-axis (quoted, ie as a string)
-#' @param .value_col variable to go on the x-axis, often a time variable. If unspecified
+#' @param .x_col variable to go on the x-axis, often a time variable. If unspecified
 #'   row indices will be used (quoted)
 #' @param .group1 Optional grouping variable to be panelled horizontally (quoted)
 #' @param .group2 Optional grouping variable to be panelled vertically (quoted)
@@ -71,7 +71,7 @@
 #' @export hai_control_chart
 #'
 
-hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
+hai_control_chart <- function(.data, .measure, .x_col, .group1, .group2,
                           .center_line = mean, .std_dev = 3,
                           .plt_title = NULL, .plt_catpion = NULL,
                           .plt_font_size = 11,
@@ -91,20 +91,15 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
     # Tidyeval ----
     group_a_var_expr <- rlang::enquo(.group1)
     group_b_var_expr <- rlang::enquo(.group1)
-    value_var_expr   <- rlang::enquo(.value_col)
+    x_var_expr   <- rlang::enquo(.x_col)
 
     if (!missing(.group1) && !.group1 %in% names(.data))
         stop(.group1, " isn't the name of a column in ", match.call()[[".data"]])
     if (!missing(.group2) && !.group2 %in% names(.data))
         stop(.group2, " isn't the name of a column in ", match.call()[[".data"]])
 
-    if (missing(.value_col)) {
-        .value_col <- "x"
-        x <- .value_col
-        .data$x <- seq_len(nrow(.data))
-    } else if (!x %in% names(.data)) {
-        stop("You provided x = \"", x,
-             "\" but that isn't the name of a column in ", match.call()[[".data"]])
+    if (rlang::quo_is_missing(x_var_expr)){
+        stop(call. = FALSE, "(.value_col) is missing, please supply.")
     }
 
     # Data ----
@@ -119,14 +114,14 @@ hai_control_chart <- function(.data, .measure, .value_col, .group1, .group2,
     chart <- data_tbl %>%
         ggplot2::ggplot(
             ggplot2::aes(
-                x = x
+                x = {{ x_var_expr }}
                 , y = .measure
             )
         ) +
+        ggplot2::geom_col() +
         ggplot2::geom_hline(yintercept = bounds[["mid"]], color = "darkgray") +
         ggplot2::geom_hline(yintercept = c(bounds[["upper"]], bounds[["lower"]]),
                    linetype = "dotted", color = "darkgray") +
-        ggplot2::geom_line() +
         # ggplot2::geom_point(ggplot2::aes(color = outside), size = 2) +
         # ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black"),
         #                    guide = FALSE) +
