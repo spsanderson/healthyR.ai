@@ -19,7 +19,7 @@
 #' control charts are becoming increasingly popular.
 #'
 #' @param .data data frame or a path to a csv file that will be read in
-#' @param .measure variable of interest mapped to y-axis (quoted, ie as a string)
+#' @param .value_col variable of interest mapped to y-axis (quoted, ie as a string)
 #' @param .x_col variable to go on the x-axis, often a time variable. If unspecified
 #'   row indices will be used (quoted)
 #' @param .group1 Optional grouping variable to be panelled horizontally (quoted)
@@ -71,7 +71,7 @@
 #' @export hai_control_chart
 #'
 
-hai_control_chart <- function(.data, .measure, .x_col, .group1, .group2,
+hai_control_chart <- function(.data, .value_col, .x_col, #.facet_vars = NULL,
                           .center_line = mean, .std_dev = 3,
                           .plt_title = NULL, .plt_catpion = NULL,
                           .plt_font_size = 11,
@@ -84,14 +84,14 @@ hai_control_chart <- function(.data, .measure, .x_col, .group1, .group2,
         .data <- read.csv(.data)
     }
 
-    if (missing(.measure)) {
+    if (missing(.value_col)) {
         stop("You have to provide a measure variable name.")
     }
 
     # Tidyeval ----
-    group_a_var_expr <- rlang::enquo(.group1)
-    group_b_var_expr <- rlang::enquo(.group1)
-    x_var_expr   <- rlang::enquo(.x_col)
+    x_var_expr     <- rlang::enquo(.x_col)
+    value_var_expr <- rlang::enquo(.value_col)
+
 
     if (!missing(.group1) && !.group1 %in% names(.data))
         stop(.group1, " isn't the name of a column in ", match.call()[[".data"]])
@@ -99,32 +99,36 @@ hai_control_chart <- function(.data, .measure, .x_col, .group1, .group2,
         stop(.group2, " isn't the name of a column in ", match.call()[[".data"]])
 
     if (rlang::quo_is_missing(x_var_expr)){
+        stop(call. = FALSE, "(.x_col) is missing, please supply.")
+    }
+
+    if (rlang::quo_is_missing(value_var_expr)){
         stop(call. = FALSE, "(.value_col) is missing, please supply.")
     }
 
     # Data ----
     data_tbl <- tibble::as_tibble(.data)
-    bounds <- calculate_bounds(data_tbl, .measure, .center_line, .std_dev)
+    bounds <- calculate_bounds(data_tbl, .value_col, .center_line, .std_dev)
 
     # Calculate central tendency and upper and lower limits
-    data_tbl$outside <- ifelse(data_tbl[[.measure]] > bounds[["upper"]] |
-                            data_tbl[[.measure]] < bounds[["lower"]], "out", "in")
+    data_tbl$outside <- ifelse(data_tbl[[.value_col]] > bounds[["upper"]] |
+                            data_tbl[[.value_col]] < bounds[["lower"]], "out", "in")
 
     # Make plot
     chart <- data_tbl %>%
         ggplot2::ggplot(
             ggplot2::aes(
                 x = {{ x_var_expr }}
-                , y = .measure
+                , y = {{ value_var_expr }}
             )
         ) +
         ggplot2::geom_col() +
         ggplot2::geom_hline(yintercept = bounds[["mid"]], color = "darkgray") +
         ggplot2::geom_hline(yintercept = c(bounds[["upper"]], bounds[["lower"]]),
                    linetype = "dotted", color = "darkgray") +
-        # ggplot2::geom_point(ggplot2::aes(color = outside), size = 2) +
-        # ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black"),
-        #                    guide = FALSE) +
+        ggplot2::geom_point(ggplot2::aes(color = outside), size = 2) +
+        ggplot2::scale_color_manual(values = c("out" = "firebrick", "in" = "black"),
+                        guide = FALSE) +
         ggplot2::labs(
             title = .plt_title
             , caption = .plt_catpion
@@ -151,12 +155,12 @@ hai_control_chart <- function(.data, .measure, .x_col, .group1, .group2,
 
 }
 
-#' Calculate lower, middle, and upper lines for control_chart
+#' Calculate lower, middle, and upper lines for hai_control_chart
 #' @return Named vector of three
 #' @noRd
-calculate_bounds <- function(.data, .measure, .center_line, .std_dev) {
-    mid <- .center_line(.data[[.measure]])
-    sd3 <- .std_dev * stats::sd(.data[[.measure]])
+calculate_bounds <- function(.data, .value_col, .center_line, .std_dev) {
+    mid <- .center_line(.data[[.value_col]])
+    sd3 <- .std_dev * stats::sd(.data[[.value_col]])
     upper <- mid + sd3
     lower <- mid - sd3
     return(c(lower = lower, mid = mid, upper = upper))
