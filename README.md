@@ -4,8 +4,8 @@
 # healthyR.ai <img src="man/figures/test3.png" width="147" height="170" align="right" />
 
 <!-- badges: start -->
+<!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/healthyR.ai)](https://cran.r-project.org/package=healthyR.ai) -->
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/healthyR.ai)](https://cran.r-project.org/package=healthyR.ai)
 ![](https://cranlogs.r-pkg.org/badges/healthyR.ai)
 ![](https://cranlogs.r-pkg.org/badges/grand-total/healthyR.ai)
 [![Lifecycle:
