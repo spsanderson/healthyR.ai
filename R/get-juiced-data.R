@@ -9,9 +9,9 @@
 #'
 #' @details
 #' Instead of typing out something like:
-#'   \code {recipe_object %>% prep() %>% juice() %>% glimpse()}
+#'   \code{recipe_object %>% prep() %>% juice() %>% glimpse()}
 #'
-#' @param
+#' @param .recipe_object The recipe you want to pass.
 #'
 #' @examples
 #'
@@ -20,3 +20,8 @@
 #' @export
 #'
 
+get_juiced_data <- function(.recipe_object) {
+
+    # * Checks ----
+
+}
