@@ -1,5 +1,7 @@
 #' Create a control chart
 #'
+#' @family Control Charts
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description

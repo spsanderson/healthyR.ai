@@ -20,14 +20,12 @@ BugReports: https://github.com/spsanderson/healthyR.ai/issues
 Imports: 
     magrittr,
     rlang (>= 0.1.2),
-    tibble,
-    ggplot2,
-    dplyr,
     utils,
     broom,
     ggrepel,
-    purrr,
-    tidyr
+    tibble,
+    dplyr,
+    ggplot2
 Suggests: 
     rmarkdown,
     knitr,
