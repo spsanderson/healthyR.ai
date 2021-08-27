@@ -105,12 +105,12 @@ hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_inpu
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
-#' Takes the output of the [kmeans_user_item_tbl()] function and applies the
+#' Takes the output of the [hai_kmeans_user_item_tbl()] function and applies the
 #' k-means algorithm to it using [stats::kmeans()]
 #'
 #' @details Uses the [stats::kmeans()] function and creates a wrapper around it.
 #'
-#' @param .data The data that gets passed from [kmeans_user_item_tbl()]
+#' @param .data The data that gets passed from [hai_kmeans_user_item_tbl()]
 #' @param .centers How many initial centers to start with
 #'
 #' @examples
@@ -276,7 +276,7 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
-#' @description Create a tibble that maps the [kmeans_obj()] using [purrr::map()]
+#' @description Create a tibble that maps the [hai_kmeans_obj()] using [purrr::map()]
 #' to create a nested data.frame/tibble that holds n centers. This tibble will be
 #' used to help create a scree plot.
 #'
@@ -284,7 +284,7 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
 #' \url{https://en.wikipedia.org/wiki/Scree_plot}
 #'
 #' @details Takes in a single parameter of .centers. This is used to create the tibble
-#' and map the [kmeans_obj()] function down the list creating a nested tibble.
+#' and map the [hai_kmeans_obj()] function down the list creating a nested tibble.
 #'
 #' @param .centers How many different centers do you want to try
 #' @param .data You must have a tibble in the working environment from the
