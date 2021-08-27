@@ -20,6 +20,10 @@ navbar:
       href: news/index.html
 
 reference:
+  -  title: Plotting Functions
+     desc: Functions for plotting
+     contents:
+     -  "hai_control_chart"
   -  title: Clustering Functions
      desc: Functions for Clustering and Analysis
   -  subtitle: K-Means
