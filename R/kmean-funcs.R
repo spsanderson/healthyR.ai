@@ -1,4 +1,4 @@
-#' K-Means Functions
+#' K-Means User Item Tibble
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -100,7 +100,7 @@ hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_inpu
 }
 
 
-#' K-Means Functions
+#' K-Means Object
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -169,7 +169,7 @@ hai_kmeans_obj <- function(.data, .centers = 5){
 
 }
 
-#' K-Means tidy Functions
+#' K-Means Object Tidy Functions
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -272,7 +272,7 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
 
 }
 
-#' K-Means Mapper
+#' K-Means Mapping Function
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
