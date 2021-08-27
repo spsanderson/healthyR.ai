@@ -18,3 +18,10 @@ navbar:
       href: reference/index.html
     - text: "News"
       href: news/index.html
+
+reference:
+  -  title: Clustering Functions
+     desc: Functions for Clustering and Analysis
+  -  subtitle: K-Means
+     contents:
+     -  contains("hai_kmeans")
