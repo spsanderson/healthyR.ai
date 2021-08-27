@@ -2,7 +2,7 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_mapped_tbl}
 \alias{hai_kmeans_mapped_tbl}
-\title{K-Means Mapper}
+\title{K-Means Mapping Function}
 \usage{
 hai_kmeans_mapped_tbl(.data, .centers = 15)
 }
