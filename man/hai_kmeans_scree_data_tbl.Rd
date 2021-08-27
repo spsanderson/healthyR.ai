@@ -46,6 +46,15 @@ kmm_tbl <- hai_kmeans_mapped_tbl(ui_tbl)
 hai_kmeans_scree_data_tbl(kmm_tbl)
 
 }
+\seealso{
+Other Clustering: 
+\code{\link{hai_kmeans_mapped_tbl}()},
+\code{\link{hai_kmeans_obj}()},
+\code{\link{hai_kmeans_scree_plt}()},
+\code{\link{hai_kmeans_tidy_tbl}()},
+\code{\link{hai_kmeans_user_item_tbl}()}
+}
 \author{
 Steven P. Sanderson II, MPH
 }
+\concept{Clustering}

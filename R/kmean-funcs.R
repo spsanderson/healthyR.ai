@@ -1,5 +1,7 @@
 #' K-Means User Item Tibble
 #'
+#' @family Clustering
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
@@ -102,6 +104,8 @@ hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_inpu
 
 #' K-Means Object
 #'
+#' @family Clustering
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
@@ -170,6 +174,8 @@ hai_kmeans_obj <- function(.data, .centers = 5){
 }
 
 #' K-Means Object Tidy Functions
+#'
+#' @family Clustering
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -274,6 +280,8 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
 
 #' K-Means Mapping Function
 #'
+#' @family Clustering
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description Create a tibble that maps the [hai_kmeans_obj()] using [purrr::map()]
@@ -353,6 +361,8 @@ hai_kmeans_mapped_tbl <- function(.data, .centers = 15){
 
 #' K-Means Scree Plot Data Table
 #'
+#' @family Clustering
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description Take data from the [hai_kmeans_mapped_tbl()] and unnest it into a
@@ -414,6 +424,8 @@ hai_kmeans_scree_data_tbl <- function(.data) {
 }
 
 #' K-Means Scree Plot
+#'
+#' @family Clustering
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
