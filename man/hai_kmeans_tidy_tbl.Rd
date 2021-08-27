@@ -2,7 +2,7 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_tidy_tbl}
 \alias{hai_kmeans_tidy_tbl}
-\title{K-Means tidy Functions}
+\title{K-Means Object Tidy Functions}
 \usage{
 hai_kmeans_tidy_tbl(.kmeans_obj, .data, .tidy_type = "tidy")
 }

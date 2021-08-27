@@ -2,7 +2,7 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_user_item_tbl}
 \alias{hai_kmeans_user_item_tbl}
-\title{K-Means Functions}
+\title{K-Means User Item Tibble}
 \usage{
 hai_kmeans_user_item_tbl(.data, .row_input, .col_input, .record_input)
 }
