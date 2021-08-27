@@ -14,7 +14,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 <!-- badges: end -->
 
-The goal of healthyR.ai is to …
+The goal of healthyR.ai is to create a verb framework that allows for
+easy exploration, transformation and modeling of data.
 
 ## Installation
 
