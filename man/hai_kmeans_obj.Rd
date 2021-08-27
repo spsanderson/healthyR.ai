@@ -2,7 +2,7 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_obj}
 \alias{hai_kmeans_obj}
-\title{K-Means Functions}
+\title{K-Means Object}
 \usage{
 hai_kmeans_obj(.data, .centers = 5)
 }
