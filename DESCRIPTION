@@ -25,7 +25,13 @@ Imports:
     ggrepel,
     tibble,
     dplyr,
-    ggplot2
+    ggplot2,
+    tidyr,
+    timetk,
+    recipes,
+    parsnip,
+    rsample,
+    purrr
 Suggests: 
     rmarkdown,
     knitr,
