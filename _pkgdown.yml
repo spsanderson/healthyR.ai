@@ -29,3 +29,7 @@ reference:
   -  subtitle: K-Means
      contents:
      -  contains("hai_kmeans")
+  -  title: Data Wrangling
+     subtitle: Data Wrangling Functions
+     contents:
+     -  "get_juiced_data"

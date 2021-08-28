@@ -7,10 +7,10 @@
 get_juiced_data(.recipe_object)
 }
 \arguments{
-\item{.recipe_object}{The recipe you want to pass.}
+\item{.recipe_object}{The recipe object you want to pass.}
 }
 \value{
-
+A tibble of the prepped and juiced data from the given recipe
 }
 \description{
 This is a simple function that will get the juiced data from a recipe.
@@ -20,6 +20,32 @@ Instead of typing out something like:
 \code{recipe_object \%>\% prep() \%>\% juice() \%>\% glimpse()}
 }
 \examples{
+suppressPackageStartupMessages(library(timetk))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(purrr))
+suppressPackageStartupMessages(library(healthyR.data))
+suppressPackageStartupMessages(library(rsample))
+suppressPackageStartupMessages(library(recipes))
+
+data_tbl <- healthyR_data \%>\%
+    select(visit_end_date_time) \%>\%
+    summarise_by_time(
+        .date_var = visit_end_date_time,
+        .by       = "month",
+        value     = n()
+    ) \%>\%
+    set_names("date_col","value") \%>\%
+    filter_by_time(
+        .date_var = date_col,
+        .start_date = "2013",
+        .end_date = "2020"
+    )
+
+splits <- initial_split(data = data_tbl, prop = 0.8)
+
+rec_obj <- recipe(value ~., training(splits))
+
+get_juiced_data(rec_obj)
 
 }
 \author{
