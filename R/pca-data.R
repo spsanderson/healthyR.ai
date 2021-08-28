@@ -87,6 +87,10 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
         stop(call. = FALSE, "(.scale) must be a logical value TRUE/FALSE.")
     }
 
+    if(!is.numeric(threshold_var) | (threshold_var < 0) | (threshold_var > 1)){
+        stop(call. = FALSE, "(.threshold) needs to be a number between 0 and 1.")
+    }
+
     # * Recipe steps ----
     pca_transform <- rec_obj %>%
         recipes::step_pca(
