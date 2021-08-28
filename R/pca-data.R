@@ -2,6 +2,7 @@
 #'
 #' @family Data Wrangling
 #' @family Data Recipes
+#' @family Dimension Reduction
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -56,4 +57,40 @@
 #'
 
 pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
-                            .scale = TRUE)
+                            .scale = TRUE){
+
+    # Variables ----
+    rec_obj      <- .recipe_object
+    rotation_var <- .rotation
+    center_var   <- .center
+    scale_var    <- .scale
+
+    # * Checks ----
+    # Is the .recipe_object in fact a class of recipe?
+    if (!class(rec_obj) == "recipe"){
+        stop(call. = FALSE, "You must supply an object of class recipe.")
+    }
+
+    if (!is.logical(rotation_var)){
+        stop(call. = FALSE, "(.rotation) must be a logical value TRUE/FALSE.")
+    }
+
+    if (!is.logical(center_var)){
+        stop(call. = FALSE, "(.center) must be a logical value TRUE/FALSE.")
+    }
+
+    if (!is.logical(scale_var)){
+        stop(call. = FALSE, "(.scale) must be a logical value TRUE/FALSE.")
+    }
+
+    # * Recipe steps ----
+    pca_transform <- rec_obj %>%
+        recipes::step_pca(
+            options = list(
+                retx   = rotation_var,
+                center = center_var,
+                scale  = scale_var
+            )
+        )
+
+}
