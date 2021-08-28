@@ -6,15 +6,20 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
-#' This is a simple function that will perform PCA analysis on a passed tibble.
+#' This is a simple function that will perform PCA analysis on a passed recipe.
 #'
 #' @details
 #' This is a simple wrapper around some recipes functions to perform a PCA on a
-#' given data set. This function will output a list and return it invisible.
+#' given recipe. This function will output a list and return it invisible.
 #' All of the components of the analysis will be returned in a list as their own
 #' object that can be selected individually. A scree plot is also included.
 #'
 #' @param .recipe_object The recipe object you want to pass.
+#' @param .rotation A boolean that defaults to TRUE, should the rotation be returned
+#' @param .center A boolean that defaults to TRUE, should the data be scaled, highly
+#' advisable.
+#' @param .scale A boolean that defaults to TRUE, should the data be scaled, highly
+#' advisable.
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(timetk))
@@ -42,10 +47,13 @@
 #'
 #' rec_obj <- recipe(value ~., training(splits))
 #'
-#' get_juiced_data(rec_obj)
+#' pca_your_recipe(rec_obj)
 #'
 #' @return
-#' A tibble of the prepped and juiced data from the given recipe
+#' A list object with several components
 #'
 #' @export
 #'
+
+pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
+                            .scale = TRUE)
