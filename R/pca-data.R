@@ -116,6 +116,7 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
     variable_loadings <- recipes::tidy(pca_transform, type = "coef")
     vraiable_variance <- recipes::tidy(pca_transform, type = "variance")
     pca_estimates     <- recipes::prep(pca_transform)
-    pca_data          <- recipes::bake(pca_estimates, data_tbl)
+    juiced_estimates  <- recipes::juice(pca_estimates)
+    pca_baked_data    <- recipes::bake(pca_estimates, data_tbl)
 
 }
