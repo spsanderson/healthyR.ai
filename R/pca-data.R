@@ -6,6 +6,8 @@
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_pca.html}
+#'
 #' @description
 #' This is a simple function that will perform PCA analysis on a passed recipe.
 #'
@@ -21,6 +23,8 @@
 #' advisable.
 #' @param .scale A boolean that defaults to TRUE, should the data be scaled, highly
 #' advisable.
+#' @param .threshold A number between 0 and 1. A fraction of the total variance
+#' that should be covered by the components.
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(timetk))
