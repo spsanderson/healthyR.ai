@@ -61,13 +61,14 @@
 #'
 
 pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
-                            .scale = TRUE){
+                            .scale = TRUE, .threshold = 0.75){
 
     # Variables ----
-    rec_obj      <- .recipe_object
-    rotation_var <- .rotation
-    center_var   <- .center
-    scale_var    <- .scale
+    rec_obj       <- .recipe_object
+    rotation_var  <- .rotation
+    center_var    <- .center
+    scale_var     <- .scale
+    threshold_var <- .threshold
 
     # * Checks ----
     # Is the .recipe_object in fact a class of recipe?
@@ -94,6 +95,7 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
     # * Recipe steps ----
     pca_transform <- rec_obj %>%
         recipes::step_pca(
+            threshold = threshold_var
             options = list(
                 retx   = rotation_var,
                 center = center_var,
