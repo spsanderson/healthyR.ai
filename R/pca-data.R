@@ -18,6 +18,8 @@
 #' object that can be selected individually. A scree plot is also included.
 #'
 #' @param .recipe_object The recipe object you want to pass.
+#' @param .data The full dataset that is used in the original recipe object passed
+#' into `.recipe_object` in order to obtain the baked data of the transform.
 #' @param .rotation A boolean that defaults to TRUE, should the rotation be returned
 #' @param .center A boolean that defaults to TRUE, should the data be scaled, highly
 #' advisable.
@@ -92,15 +94,27 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
         stop(call. = FALSE, "(.threshold) needs to be a number between 0 and 1.")
     }
 
+    if(!is.data.frame(.data)){
+        stop(call. = FALSE, "(.data) must be supplied from the original recipe.")
+    }
+
+    # * Data ----
+    data_tbl <- .data
+
     # * Recipe steps ----
     pca_transform <- rec_obj %>%
         recipes::step_pca(
-            threshold = threshold_var
+            threshold = threshold_var,
             options = list(
                 retx   = rotation_var,
                 center = center_var,
                 scale  = scale_var
             )
         )
+
+    variable_loadings <- recipes::tidy(pca_transform, type = "coef")
+    vraiable_variance <- recipes::tidy(pca_transform, type = "variance")
+    pca_estimates     <- recipes::prep(pca_transform)
+    pca_data          <- recipes::bake(pca_estimates, data_tbl)
 
 }
