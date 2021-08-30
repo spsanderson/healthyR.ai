@@ -4,23 +4,15 @@
 \alias{pca_your_recipe}
 \title{Perform PCA}
 \usage{
-pca_your_recipe(
-  .recipe_object,
-  .rotation = TRUE,
-  .center = TRUE,
-  .scale = TRUE
-)
+pca_your_recipe(.recipe_object, .data, .rotation = TRUE, .threshold = 0.75)
 }
 \arguments{
 \item{.recipe_object}{The recipe object you want to pass.}
 
+\item{.data}{The full dataset that is used in the original recipe object passed
+into \code{.recipe_object} in order to obtain the baked data of the transform.}
+
 \item{.rotation}{A boolean that defaults to TRUE, should the rotation be returned}
-
-\item{.center}{A boolean that defaults to TRUE, should the data be scaled, highly
-advisable.}
-
-\item{.scale}{A boolean that defaults to TRUE, should the data be scaled, highly
-advisable.}
 
 \item{.threshold}{A number between 0 and 1. A fraction of the total variance
 that should be covered by the components.}
@@ -63,7 +55,8 @@ splits <- initial_split(data = data_tbl, prop = 0.8)
 
 rec_obj <- recipe(value ~., training(splits))
 
-pca_your_recipe(rec_obj)
+output_list <- pca_your_recipe(rec_obj)
+output_list$pca_scree_
 
 }
 \seealso{
