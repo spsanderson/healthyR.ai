@@ -50,7 +50,7 @@
 #'
 #' rec_obj <- recipe(value ~., training(splits))
 #'
-#' output_list <- pca_your_recipe(rec_obj)
+#' output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
 #' output_list$pca_scree_
 #'
 #' @return
@@ -92,7 +92,7 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
     pca_transform <- rec_obj %>%
         recipes::step_center(recipes::all_numeric()) %>%
         recipes::step_scale(recipes::all_numeric()) %>%
-        recipes::step_nzv(all_numeric()) %>%
+        recipes::step_nzv(recipes::all_numeric()) %>%
         recipes::step_pca(
             recipes::all_numeric_predictors(),
             threshold = threshold_var,
