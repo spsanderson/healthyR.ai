@@ -136,13 +136,13 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
     output_list <- list(
         # variable_loadings = variable_loadings,
         # variable_variance = variable_variance,
-        pca_estimates     = pca_estimates,
-        juiced_estimates  = juiced_estimates,
-        pca_baked_data    = pca_baked_data,
-        pca_sdev          = pca_sdev,
-        variance_df       = var_df,
-        variance_plt      = var_plt,
-        pca_rotation_df   = pca_rotation_df
+        pca_estimates        = pca_estimates,
+        pca_juiced_estimates = juiced_estimates,
+        pca_baked_data       = pca_baked_data,
+        # pca_sdev          = pca_sdev,
+        pca_variance_df      = var_df,
+        pca_variance_plt     = var_plt,
+        pca_rotation_df      = pca_rotation_df
     )
 
     # * Return ----
