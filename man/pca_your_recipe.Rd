@@ -53,9 +53,11 @@ data_tbl <- healthyR_data \%>\%
 
 splits <- initial_split(data = data_tbl, prop = 0.8)
 
-rec_obj <- recipe(value ~., training(splits))
+rec_obj <- recipe(value ~ ., training(splits)) \%>\%
+    step_timeseries_signature(date_col) \%>\%
+    step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
 
-output_list <- pca_your_recipe(rec_obj)
+output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
 output_list$pca_scree_
 
 }
