@@ -31,6 +31,7 @@
 #' suppressPackageStartupMessages(library(healthyR.data))
 #' suppressPackageStartupMessages(library(rsample))
 #' suppressPackageStartupMessages(library(recipes))
+#' suppressPackageStartupMessages(library(ggplot2))
 #'
 #' data_tbl <- healthyR_data %>%
 #'     select(visit_end_date_time) %>%
@@ -118,23 +119,35 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
     percent_variation <- pca_sdev^2 / sum(pca_sdev^2)
     var_df <- data.frame(PC = paste0("PC", 1:length(pca_sdev)),
                          var_explained = percent_variation,
-                         stringsAsFactors = FALSE)
+                         stringsAsFactors = FALSE) %>%
+        dplyr::as_tibble() %>%
+        dplyr::mutate(var_pct_txt = round(var_explained, 4) %>%
+                          scales::percent(accuracy = 0.01)) %>%
+        dplyr::mutate(cum_var_pct = cumsum(var_explained)/sum(var_explained)) %>%
+        dplyr::mutate(cum_var_pct_txt = cum_var_pct %>%
+                          scales::percent(accuracy = 0.01)) %>%
+        dplyr::mutate(ou_threshold = ifelse(cum_var_pct <= threshold_var,"Under","Over") %>%
+                          forcats::as_factor())
     var_plt <- var_df %>%
         dplyr::mutate(PC = forcats::fct_inorder(PC)) %>%
         ggplot2::ggplot(
             ggplot2::aes(
-                x = PC
-                , y = var_explained
+                x      = PC
+                , y    = var_explained
+                , fill = ou_threshold
             )
         ) +
         ggplot2::geom_col() +
+        ggplot2::scale_y_continuous(labels = scales::percent) +
+        tidyquant::scale_fill_tq() +
+        tidyquant::theme_tq() +
         ggplot2::labs(
             title = "PCA Scree Plot"
+            , subtitle = "Typically the first red column is your last PC"
             , x = "Principal Component"
-            , y = "Variance Explained"
+            , y = "% Variance Explained"
+            , fill = "Threshold Indicator"
         )
-        tidyquant::theme_tq()
-
     # * Build List ----
     output_list <- list(
         variable_loadings      = variable_loadings,

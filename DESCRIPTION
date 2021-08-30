@@ -42,7 +42,8 @@ Suggests:
     cli,
     crayon,
     rstudioapi,
-    healthyR.data
+    healthyR.data,
+    scales
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
