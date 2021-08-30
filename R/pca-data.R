@@ -138,6 +138,7 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
             )
         ) +
         ggplot2::geom_col() +
+        ggplot2::scale_y_continuous(labels = scales::percent) +
         tidyquant::scale_fill_tq() +
         tidyquant::theme_tq() +
         ggplot2::labs(
