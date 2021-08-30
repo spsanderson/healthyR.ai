@@ -36,6 +36,7 @@ suppressPackageStartupMessages(library(purrr))
 suppressPackageStartupMessages(library(healthyR.data))
 suppressPackageStartupMessages(library(rsample))
 suppressPackageStartupMessages(library(recipes))
+suppressPackageStartupMessages(library(ggplot2))
 
 data_tbl <- healthyR_data \%>\%
     select(visit_end_date_time) \%>\%
