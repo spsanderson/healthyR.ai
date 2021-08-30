@@ -121,10 +121,13 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
                          var_explained = percent_variation,
                          stringsAsFactors = FALSE) %>%
         dplyr::as_tibble() %>%
+        dplyr::mutate(var_pct_txt = round(var_explained, 4) %>%
+                          scales::percent(accuracy = 0.01)) %>%
         dplyr::mutate(cum_var_pct = cumsum(var_explained)/sum(var_explained)) %>%
+        dplyr::mutate(cum_var_pct_txt = cum_var_pct %>%
+                          scales::percent(accuracy = 0.01)) %>%
         dplyr::mutate(ou_threshold = ifelse(cum_var_pct <= threshold_var,"Under","Over") %>%
                           forcats::as_factor())
-
     var_plt <- var_df %>%
         dplyr::mutate(PC = forcats::fct_inorder(PC)) %>%
         ggplot2::ggplot(
@@ -139,8 +142,9 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
         tidyquant::theme_tq() +
         ggplot2::labs(
             title = "PCA Scree Plot"
+            , subtitle = "Typically the first red column is your last PC"
             , x = "Principal Component"
-            , y = "Variance Explained"
+            , y = "% Variance Explained"
             , fill = "Threshold Indicator"
         )
     # * Build List ----
