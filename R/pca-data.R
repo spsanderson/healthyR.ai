@@ -150,12 +150,12 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
         )
     # * Build List ----
     output_list <- list(
+        pca_transform          = pca_transform,
         variable_loadings      = variable_loadings,
         variable_variance      = variable_variance,
         pca_estimates          = pca_estimates,
         pca_juiced_estimates   = juiced_estimates,
         pca_baked_data         = pca_baked_data,
-        # pca_sdev          = pca_sdev,
         pca_variance_df        = var_df,
         pca_variance_scree_plt = var_plt,
         pca_rotation_df        = pca_rotation_df
