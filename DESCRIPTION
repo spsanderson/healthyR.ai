@@ -27,6 +27,7 @@ Imports:
     dplyr,
     ggplot2,
     tidyr,
+    forcats,
     timetk,
     recipes,
     parsnip,

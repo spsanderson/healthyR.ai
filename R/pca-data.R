@@ -21,10 +21,6 @@
 #' @param .data The full dataset that is used in the original recipe object passed
 #' into `.recipe_object` in order to obtain the baked data of the transform.
 #' @param .rotation A boolean that defaults to TRUE, should the rotation be returned
-#' @param .center A boolean that defaults to TRUE, should the data be scaled, highly
-#' advisable.
-#' @param .scale A boolean that defaults to TRUE, should the data be scaled, highly
-#' advisable.
 #' @param .threshold A number between 0 and 1. A fraction of the total variance
 #' that should be covered by the components.
 #'
@@ -52,9 +48,12 @@
 #'
 #' splits <- initial_split(data = data_tbl, prop = 0.8)
 #'
-#' rec_obj <- recipe(value ~., training(splits))
+#' rec_obj <- recipe(value ~ ., training(splits)) %>%
+#'     step_timeseries_signature(date_col) %>%
+#'     step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
 #'
-#' pca_your_recipe(rec_obj)
+#' output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
+#' output_list$pca_scree_
 #'
 #' @return
 #' A list object with several components
@@ -62,14 +61,12 @@
 #' @export
 #'
 
-pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
-                            .scale = TRUE, .threshold = 0.75){
+pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
+                            , .threshold = 0.75){
 
     # Variables ----
     rec_obj       <- .recipe_object
     rotation_var  <- .rotation
-    center_var    <- .center
-    scale_var     <- .scale
     threshold_var <- .threshold
 
     # * Checks ----
@@ -80,14 +77,6 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
 
     if (!is.logical(rotation_var)){
         stop(call. = FALSE, "(.rotation) must be a logical value TRUE/FALSE.")
-    }
-
-    if (!is.logical(center_var)){
-        stop(call. = FALSE, "(.center) must be a logical value TRUE/FALSE.")
-    }
-
-    if (!is.logical(scale_var)){
-        stop(call. = FALSE, "(.scale) must be a logical value TRUE/FALSE.")
     }
 
     if(!is.numeric(threshold_var) | (threshold_var < 0) | (threshold_var > 1)){
@@ -103,18 +92,62 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
 
     # * Recipe steps ----
     pca_transform <- rec_obj %>%
+        recipes::step_center(recipes::all_numeric()) %>%
+        recipes::step_scale(recipes::all_numeric()) %>%
+        recipes::step_nzv(recipes::all_numeric()) %>%
         recipes::step_pca(
+            recipes::all_numeric_predictors(),
             threshold = threshold_var,
             options = list(
-                retx   = rotation_var,
-                center = center_var,
-                scale  = scale_var
+                retx   = rotation_var
             )
         )
 
-    variable_loadings <- recipes::tidy(pca_transform, type = "coef")
-    vraiable_variance <- recipes::tidy(pca_transform, type = "variance")
+    # * List items ----
+    pca_step_number   <- max(recipes::tidy(pca_transform)$number)
     pca_estimates     <- recipes::prep(pca_transform)
-    pca_data          <- recipes::bake(pca_estimates, data_tbl)
+    juiced_estimates  <- recipes::juice(pca_estimates)
+    variable_loadings <- recipes::tidy(pca_estimates, type = "coef", number = pca_step_number)
+    variable_variance <- recipes::tidy(pca_estimates, type = "variance", number = pca_step_number)
+    pca_baked_data    <- recipes::bake(pca_estimates, data_tbl)
+    pca_sdev          <- pca_estimates$steps[[pca_step_number]]$res$sdev
+    pca_rotation_df   <- pca_estimates$steps[[pca_step_number]]$res$rotation %>%
+        dplyr::as_tibble()
 
+    # * Scree Plot
+    percent_variation <- pca_sdev^2 / sum(pca_sdev^2)
+    var_df <- data.frame(PC = paste0("PC", 1:length(pca_sdev)),
+                         var_explained = percent_variation,
+                         stringsAsFactors = FALSE)
+    var_plt <- var_df %>%
+        dplyr::mutate(PC = forcats::fct_inorder(PC)) %>%
+        ggplot2::ggplot(
+            ggplot2::aes(
+                x = PC
+                , y = var_explained
+            )
+        ) +
+        ggplot2::geom_col() +
+        ggplot2::labs(
+            title = "PCA Scree Plot"
+            , x = "Principal Component"
+            , y = "Variance Explained"
+        )
+        tidyquant::theme_tq()
+
+    # * Build List ----
+    output_list <- list(
+        variable_loadings      = variable_loadings,
+        variable_variance      = variable_variance,
+        pca_estimates          = pca_estimates,
+        pca_juiced_estimates   = juiced_estimates,
+        pca_baked_data         = pca_baked_data,
+        # pca_sdev          = pca_sdev,
+        pca_variance_df        = var_df,
+        pca_variance_scree_plt = var_plt,
+        pca_rotation_df        = pca_rotation_df
+    )
+
+    # * Return ----
+    return(invisible(output_list))
 }

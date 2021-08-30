@@ -29,7 +29,10 @@ reference:
   -  subtitle: K-Means
      contents:
      -  contains("hai_kmeans")
+  -  title: Dimensionality Reduction
+     desc: Functions for dimension reduction
+     contents:
+     -  "pca_your_recipe"
   -  title: Data Wrangling
-     subtitle: Data Wrangling Functions
      contents:
      -  "get_juiced_data"

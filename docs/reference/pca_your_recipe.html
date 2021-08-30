@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the Juiced Data — get_juiced_data • healthyR.ai</title>
+<title>Perform PCA — pca_your_recipe • healthyR.ai</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get the Juiced Data — get_juiced_data" />
-<meta property="og:description" content="This is a simple function that will get the juiced data from a recipe." />
+<meta property="og:title" content="Perform PCA — pca_your_recipe" />
+<meta property="og:description" content="This is a simple function that will perform PCA analysis on a passed recipe." />
 
 
 
@@ -134,16 +134,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the Juiced Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/get-juiced-data.R'><code>R/get-juiced-data.R</code></a></small>
-    <div class="hidden name"><code>get_juiced_data.Rd</code></div>
+    <h1>Perform PCA</h1>
+    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/pca-data.R'><code>R/pca-data.R</code></a></small>
+    <div class="hidden name"><code>pca_your_recipe.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a simple function that will get the juiced data from a recipe.</p>
+    <p>This is a simple function that will perform PCA analysis on a passed recipe.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_juiced_data</span><span class='op'>(</span><span class='va'>.recipe_object</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pca_your_recipe</span><span class='op'>(</span><span class='va'>.recipe_object</span>, <span class='va'>.data</span>, .rotation <span class='op'>=</span> <span class='cn'>TRUE</span>, .threshold <span class='op'>=</span> <span class='fl'>0.75</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,19 +152,36 @@
       <th>.recipe_object</th>
       <td><p>The recipe object you want to pass.</p></td>
     </tr>
+    <tr>
+      <th>.data</th>
+      <td><p>The full dataset that is used in the original recipe object passed
+into <code>.recipe_object</code> in order to obtain the baked data of the transform.</p></td>
+    </tr>
+    <tr>
+      <th>.rotation</th>
+      <td><p>A boolean that defaults to TRUE, should the rotation be returned</p></td>
+    </tr>
+    <tr>
+      <th>.threshold</th>
+      <td><p>A number between 0 and 1. A fraction of the total variance
+that should be covered by the components.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of the prepped and juiced data from the given recipe</p>
+    <p>A list object with several components</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Instead of typing out something like:
-<code>recipe_object %&gt;% prep() %&gt;% juice() %&gt;% glimpse()</code></p>
+    <p>This is a simple wrapper around some recipes functions to perform a PCA on a
+given recipe. This function will output a list and return it invisible.
+All of the components of the analysis will be returned in a list as their own
+object that can be selected individually. A scree plot is also included.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Data Wrangling: 
-<code><a href='pca_your_recipe.html'>pca_your_recipe</a>()</code></p></div>
+    <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/step_pca.html'>https://recipes.tidymodels.org/reference/step_pca.html</a></p>
+<p>Other Data Wrangling: 
+<code><a href='get_juiced_data.html'>get_juiced_data</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Steven P. Sanderson II, MPH</p>
@@ -193,23 +210,13 @@
 
 <span class='va'>splits</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rsample.tidymodels.org/reference/initial_split.html'>initial_split</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data_tbl</span>, prop <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
 
-<span class='va'>rec_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span><span class='op'>(</span><span class='va'>value</span> <span class='op'>~</span><span class='va'>.</span>, <span class='fu'><a href='https://rsample.tidymodels.org/reference/initial_split.html'>training</a></span><span class='op'>(</span><span class='va'>splits</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>rec_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span><span class='op'>(</span><span class='va'>value</span> <span class='op'>~</span> <span class='va'>.</span>, <span class='fu'><a href='https://rsample.tidymodels.org/reference/initial_split.html'>training</a></span><span class='op'>(</span><span class='va'>splits</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/timetk/man/step_timeseries_signature.html'>step_timeseries_signature</a></span><span class='op'>(</span><span class='va'>date_col</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://recipes.tidymodels.org/reference/step_rm.html'>step_rm</a></span><span class='op'>(</span><span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>matches</a></span><span class='op'>(</span><span class='st'>"(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>get_juiced_data</span><span class='op'>(</span><span class='va'>rec_obj</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 76 x 2</span>
-#&gt;    date_col            value
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2016-09-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>511
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2014-11-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>464
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2019-04-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>443
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2018-03-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>618
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2016-11-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>513
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2015-07-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>751
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2018-08-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>609
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2019-01-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>631
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2018-09-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>1</span>343
-#&gt; <span style='color: #BCBCBC;'>10</span> 2013-05-01 <span style='color: #949494;'>00:00:00</span>  <span style='text-decoration: underline;'>2</span>028
-#&gt; <span style='color: #949494;'># ... with 66 more rows</span></div><div class='input'>
+<span class='va'>output_list</span> <span class='op'>&lt;-</span> <span class='fu'>pca_your_recipe</span><span class='op'>(</span><span class='va'>rec_obj</span>, .data <span class='op'>=</span> <span class='va'>data_tbl</span><span class='op'>)</span>
+<span class='va'>output_list</span><span class='op'>$</span><span class='va'>pca_scree_</span>
+</div><div class='output co'>#&gt; NULL</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
