@@ -89,9 +89,9 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
 
     # * Recipe steps ----
     pca_transform <- rec_obj %>%
-        recipes::step_center(recipes::all_numeric_predictors()) %>%
-        recipes::step_scale(recipes::all_numeric_predictors()) %>%
-        recipes::step_nzv(all_numeric_predictors()) %>%
+        recipes::step_center(recipes::all_numeric()) %>%
+        recipes::step_scale(recipes::all_numeric()) %>%
+        recipes::step_nzv(all_numeric()) %>%
         recipes::step_pca(
             recipes::all_numeric_predictors(),
             threshold = threshold_var,
@@ -101,19 +101,48 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
         )
 
     # * List items ----
-    variable_loadings <- recipes::tidy(pca_transform, type = "coef")
-    variable_variance <- recipes::tidy(pca_transform, type = "variance")
+    pca_step_number   <- max(recipes::tidy(pca_transform)$number)
+    # variable_loadings <- recipes::tidy(pca_transform, type = "coef", number = pca_step_number)
+    # variable_variance <- recipes::tidy(pca_transform, type = "variance", number = pca_step_number)
     pca_estimates     <- recipes::prep(pca_transform)
     juiced_estimates  <- recipes::juice(pca_estimates)
     pca_baked_data    <- recipes::bake(pca_estimates, data_tbl)
+    pca_sdev          <- pca_estimates$steps[[pca_step_number]]$res$sdev
+    pca_rotation_df   <- pca_estimates$steps[[pca_step_number]]$res$rotation %>%
+        dplyr::as_tibble()
+
+    # * Scree Plot
+    percent_variation <- pca_sdev^2 / sum(pca_sdev^2)
+    var_df <- data.frame(PC = paste0("PC", 1:length(pca_sdev)),
+                         var_explained = percent_variation,
+                         stringsAsFactors = FALSE)
+    var_plt <- var_df %>%
+        dplyr::mutate(PC = forcats::fct_inorder(PC)) %>%
+        ggplot2::ggplot(
+            ggplot2::aes(
+                x = PC
+                , y = var_explained
+            )
+        ) +
+        ggplot2::geom_col() +
+        ggplot2::labs(
+            title = "PCA Scree Plot"
+            , x = "Principal Component"
+            , y = "Variance Explained"
+        )
+        tidyquant::theme_tq()
 
     # * Build List ----
     output_list <- list(
-        variable_loadings = variable_loadings,
-        variable_variance = variable_variance,
+        # variable_loadings = variable_loadings,
+        # variable_variance = variable_variance,
         pca_estimates     = pca_estimates,
         juiced_estimates  = juiced_estimates,
-        pca_baked_data    = pca_baked_data
+        pca_baked_data    = pca_baked_data,
+        pca_sdev          = pca_sdev,
+        variance_df       = var_df,
+        variance_plt      = var_plt,
+        pca_rotation_df   = pca_rotation_df
     )
 
     # * Return ----
