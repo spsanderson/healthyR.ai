@@ -1,6 +1,5 @@
 ---
 title: "A simple PCA Example"
-subtitle: "A Quick Introduction"
 author: "Steven P. Sanderson II, MPH"
 date: "`r Sys.Date()`"
 output: 
