@@ -89,8 +89,9 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
 
     # * Recipe steps ----
     pca_transform <- rec_obj %>%
-        recipes::step_center(recipes::all_numeric()) %>%
-        recipes::step_scale(recipes::all_numeric()) %>%
+        recipes::step_center(recipes::all_numeric_predictors()) %>%
+        recipes::step_scale(recipes::all_numeric_predictors()) %>%
+        recipes::step_nzv(all_numeric_predictors()) %>%
         recipes::step_pca(
             recipes::all_numeric_predictors(),
             threshold = threshold_var,
