@@ -50,7 +50,8 @@
 #'
 #' rec_obj <- recipe(value ~., training(splits))
 #'
-#' pca_your_recipe(rec_obj)
+#' output_list <- pca_your_recipe(rec_obj)
+#' output_list$pca_scree_
 #'
 #' @return
 #' A list object with several components
@@ -102,10 +103,10 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
 
     # * List items ----
     pca_step_number   <- max(recipes::tidy(pca_transform)$number)
-    # variable_loadings <- recipes::tidy(pca_transform, type = "coef", number = pca_step_number)
-    # variable_variance <- recipes::tidy(pca_transform, type = "variance", number = pca_step_number)
     pca_estimates     <- recipes::prep(pca_transform)
     juiced_estimates  <- recipes::juice(pca_estimates)
+    variable_loadings <- recipes::tidy(pca_estimates, type = "coef", number = pca_step_number)
+    variable_variance <- recipes::tidy(pca_estimates, type = "variance", number = pca_step_number)
     pca_baked_data    <- recipes::bake(pca_estimates, data_tbl)
     pca_sdev          <- pca_estimates$steps[[pca_step_number]]$res$sdev
     pca_rotation_df   <- pca_estimates$steps[[pca_step_number]]$res$rotation %>%
@@ -134,15 +135,15 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
 
     # * Build List ----
     output_list <- list(
-        # variable_loadings = variable_loadings,
-        # variable_variance = variable_variance,
-        pca_estimates        = pca_estimates,
-        pca_juiced_estimates = juiced_estimates,
-        pca_baked_data       = pca_baked_data,
+        variable_loadings      = variable_loadings,
+        variable_variance      = variable_variance,
+        pca_estimates          = pca_estimates,
+        pca_juiced_estimates   = juiced_estimates,
+        pca_baked_data         = pca_baked_data,
         # pca_sdev          = pca_sdev,
-        pca_variance_df      = var_df,
-        pca_variance_plt     = var_plt,
-        pca_rotation_df      = pca_rotation_df
+        pca_variance_df        = var_df,
+        pca_variance_scree_plt = var_plt,
+        pca_rotation_df        = pca_rotation_df
     )
 
     # * Return ----
