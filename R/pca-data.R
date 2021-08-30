@@ -100,10 +100,22 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
             )
         )
 
+    # * List items ----
     variable_loadings <- recipes::tidy(pca_transform, type = "coef")
-    vraiable_variance <- recipes::tidy(pca_transform, type = "variance")
+    variable_variance <- recipes::tidy(pca_transform, type = "variance")
     pca_estimates     <- recipes::prep(pca_transform)
     juiced_estimates  <- recipes::juice(pca_estimates)
     pca_baked_data    <- recipes::bake(pca_estimates, data_tbl)
 
+    # * Build List ----
+    output_list <- list(
+        variable_loadings = variable_loadings,
+        variable_variance = variable_variance,
+        pca_estimates     = pca_estimates,
+        juiced_estimates  = juiced_estimates,
+        pca_baked_data    = pca_baked_data
+    )
+
+    # * Return ----
+    return(invisible(output_list))
 }
