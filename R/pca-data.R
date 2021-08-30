@@ -53,7 +53,7 @@
 #'     step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
 #'
 #' output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
-#' output_list$pca_scree_
+#' output_list$pca_variance_scree_plt
 #'
 #' @return
 #' A list object with several components
