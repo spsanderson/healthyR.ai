@@ -21,10 +21,6 @@
 #' @param .data The full dataset that is used in the original recipe object passed
 #' into `.recipe_object` in order to obtain the baked data of the transform.
 #' @param .rotation A boolean that defaults to TRUE, should the rotation be returned
-#' @param .center A boolean that defaults to TRUE, should the data be scaled, highly
-#' advisable.
-#' @param .scale A boolean that defaults to TRUE, should the data be scaled, highly
-#' advisable.
 #' @param .threshold A number between 0 and 1. A fraction of the total variance
 #' that should be covered by the components.
 #'
@@ -62,14 +58,11 @@
 #' @export
 #'
 
-pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
-                            .scale = TRUE, .threshold = 0.75){
+pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .threshold = 0.75){
 
     # Variables ----
     rec_obj       <- .recipe_object
     rotation_var  <- .rotation
-    center_var    <- .center
-    scale_var     <- .scale
     threshold_var <- .threshold
 
     # * Checks ----
@@ -80,14 +73,6 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
 
     if (!is.logical(rotation_var)){
         stop(call. = FALSE, "(.rotation) must be a logical value TRUE/FALSE.")
-    }
-
-    if (!is.logical(center_var)){
-        stop(call. = FALSE, "(.center) must be a logical value TRUE/FALSE.")
-    }
-
-    if (!is.logical(scale_var)){
-        stop(call. = FALSE, "(.scale) must be a logical value TRUE/FALSE.")
     }
 
     if(!is.numeric(threshold_var) | (threshold_var < 0) | (threshold_var > 1)){
@@ -103,13 +88,13 @@ pca_your_recipe <- function(.recipe_object, .rotation = TRUE, .center = TRUE,
 
     # * Recipe steps ----
     pca_transform <- rec_obj %>%
+        recipes::step_center(recipes::all_numeric()) %>%
+        recipes::step_scale(recipes::all_numeric()) %>%
         recipes::step_pca(
             recipes::all_numeric_predictors(),
             threshold = threshold_var,
             options = list(
-                retx   = rotation_var,
-                center = center_var,
-                scale  = scale_var
+                retx   = rotation_var
             )
         )
 
