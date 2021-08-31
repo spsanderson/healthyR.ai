@@ -174,8 +174,10 @@ pca_list$pca_rotation_df %>% glimpse()
 
 ## Variance and Scree Plot
 
-```{r var_scree}
+```{r var_df}
 pca_list$pca_variance_df %>% glimpse()
+```
 
+```{r scree_plt, fig.width=10, fig.height=10}
 pca_list$pca_variance_scree_plt
 ```
