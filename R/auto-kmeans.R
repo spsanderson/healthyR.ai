@@ -43,4 +43,7 @@
 #' @export
 #'
 
-hai_auto_kmeans <- function(.data)
+hai_auto_kmeans <- function(.data) {
+
+    print("Hi User!")
+}
