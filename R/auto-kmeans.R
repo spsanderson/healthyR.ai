@@ -48,9 +48,16 @@ hai_auto_kmeans <- function(.data, .split_ratio) {
     # * H2O Initialize ----
     h2o::h2o.init()
 
+    # * Tidyeval ----
+    split_ratio <- .split_ratio
+
     # * Checks ----
     if(!is.data.frame(.data)){
         stop(call. = FALSE, "(.data) must be a data.frame/tibble.")
+    }
+
+    if(!is.numeric(split_ratio) | (split_ratio > 1) | (split_ratio < 0)){
+        stop(call. = FALSE, "(.split_ratio) must be a number between 0 and 1")
     }
 
     # * Data ----
