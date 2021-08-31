@@ -79,7 +79,7 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
     }
 
     if(!class(predictors) == "character"){
-        stop(call. = FALSE, "(.predictors) must be a character list like: c('col1','col2')"
+        stop(call. = FALSE, "(.predictors) must be a character list like: c('col1','col2')")
     }
 
     # * Data ----
