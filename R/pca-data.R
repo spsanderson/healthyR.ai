@@ -71,8 +71,7 @@
 #' @export
 #'
 
-pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
-                            , .threshold = 0.75){
+pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75){
 
     # Variables ----
     rec_obj       <- .recipe_object
