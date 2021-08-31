@@ -20,6 +20,28 @@ knitr::opts_chunk$set(
 )
 ```
 
+First of all, thank you for using `healthyR.ai`. If you encounter issues or want
+to make a feature request, please visit https://github.com/spsanderson/healthyR.ai/issues
+
 ```{r setup}
 library(healthyR.ai)
+```
+
+In this should example we will showcase the `pca_your_recipe()` function. This
+function takes only a few arguments. The arguments are currently `.data` which
+is the full data set that gets passed internally to the `recipes::bake()` function,
+`.recipe_object` which is a recipe you have already made and want to pass to the 
+function in order to perform the pca, and finally `.threshold` which is the fraction
+of the variance that should be captured by the components.
+
+To start this walk through we will first load in a few libraries.
+
+```{r lib_load}
+suppressPackageStartupMessages(library(timetk))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(purrr))
+suppressPackageStartupMessages(library(healthyR.data))
+suppressPackageStartupMessages(library(rsample))
+suppressPackageStartupMessages(library(recipes))
+suppressPackageStartupMessages(library(ggplot2))
 ```
