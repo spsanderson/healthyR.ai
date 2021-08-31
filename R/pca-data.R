@@ -15,12 +15,21 @@
 #' This is a simple wrapper around some recipes functions to perform a PCA on a
 #' given recipe. This function will output a list and return it invisible.
 #' All of the components of the analysis will be returned in a list as their own
-#' object that can be selected individually. A scree plot is also included.
+#' object that can be selected individually. A scree plot is also included. The
+#' items that get returned are:
+#'   1. pca_transform - This is the pca recipe.
+#'   2. variable_loadings
+#'   3. variable_variance
+#'   4. pca_estimates
+#'   5. pca_juiced_data
+#'   6. pca_baked_data
+#'   7. pca_variance_df
+#'   8. pca_variance_scree_plt
+#'   9. pca_rotation_df
 #'
 #' @param .recipe_object The recipe object you want to pass.
-#' @param .data The full dataset that is used in the original recipe object passed
+#' @param .data The full data set that is used in the original recipe object passed
 #' into `.recipe_object` in order to obtain the baked data of the transform.
-#' @param .rotation A boolean that defaults to TRUE, should the rotation be returned
 #' @param .threshold A number between 0 and 1. A fraction of the total variance
 #' that should be covered by the components.
 #'
@@ -57,7 +66,7 @@
 #' output_list$pca_variance_scree_plt
 #'
 #' @return
-#' A list object with several components
+#' A list object with several components.
 #'
 #' @export
 #'
@@ -67,17 +76,12 @@ pca_your_recipe <- function(.recipe_object, .data, .rotation = TRUE
 
     # Variables ----
     rec_obj       <- .recipe_object
-    rotation_var  <- .rotation
     threshold_var <- .threshold
 
     # * Checks ----
     # Is the .recipe_object in fact a class of recipe?
     if (!class(rec_obj) == "recipe"){
         stop(call. = FALSE, "You must supply an object of class recipe.")
-    }
-
-    if (!is.logical(rotation_var)){
-        stop(call. = FALSE, "(.rotation) must be a logical value TRUE/FALSE.")
     }
 
     if(!is.numeric(threshold_var) | (threshold_var < 0) | (threshold_var > 1)){
