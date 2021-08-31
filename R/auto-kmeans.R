@@ -45,14 +45,22 @@
 
 hai_auto_kmeans <- function(.data, .split_ratio) {
 
+    # * H2O Initialize ----
+    h2o::h2o.init()
+
     # * Checks ----
     if(!is.data.frame(.data)){
         stop(call. = FALSE, "(.data) must be a data.frame/tibble.")
     }
 
     # * Data ----
-    s
+    data_tbl <- tibble::as_tibble(.data)
+    # Convert to h2o data frame
+    data_tbl <- h2o::as.h2o(x = data_tbl)
 
+
+    # * H2O Shutdown ----
+    h2o::h2o.shutdown()
 
     # * Return ----
 
