@@ -50,20 +50,36 @@ hai_auto_kmeans <- function(.data, .split_ratio) {
 
     # * Tidyeval ----
     split_ratio <- .split_ratio
+    seed <- as.integer(.seed)
 
     # * Checks ----
     if(!is.data.frame(.data)){
         stop(call. = FALSE, "(.data) must be a data.frame/tibble.")
     }
 
-    if(!is.numeric(split_ratio) | (split_ratio > 1) | (split_ratio < 0)){
+    if(!is.numeric(split_ratio) | (split_ratio > 1L) | (split_ratio < 0L)){
         stop(call. = FALSE, "(.split_ratio) must be a number between 0 and 1")
+    }
+
+    if(!is.integer(seed)){
+        stop(call. = FALSE, "(.seed) must be an integer.")
     }
 
     # * Data ----
     data_tbl <- tibble::as_tibble(.data)
     # Convert to h2o data frame
     data_tbl <- h2o::as.h2o(x = data_tbl)
+
+    training_frame <- h2o::h2o.splitFrame(
+        data_tbl,
+        ratios = split_ratio,
+        seed = seed
+    )
+
+    # * KMEANS ----
+    h2o::h2o.kmeans(
+
+    )
 
 
     # * H2O Shutdown ----
