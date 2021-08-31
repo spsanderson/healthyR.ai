@@ -48,6 +48,7 @@ hai_kmeans_scree_data_tbl(kmm_tbl)
 }
 \seealso{
 Other Clustering: 
+\code{\link{hai_auto_kmeans}()},
 \code{\link{hai_kmeans_mapped_tbl}()},
 \code{\link{hai_kmeans_obj}()},
 \code{\link{hai_kmeans_scree_plt}()},
@@ -55,6 +56,7 @@ Other Clustering:
 \code{\link{hai_kmeans_user_item_tbl}()}
 
 Other Kmeans: 
+\code{\link{hai_auto_kmeans}()},
 \code{\link{hai_kmeans_mapped_tbl}()},
 \code{\link{hai_kmeans_obj}()},
 \code{\link{hai_kmeans_scree_plt}()},
