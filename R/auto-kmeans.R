@@ -51,6 +51,9 @@ hai_auto_kmeans <- function(.data, .split_ratio) {
     # * Tidyeval ----
     split_ratio <- .split_ratio
     seed <- as.integer(.seed)
+    centers <- as.integer(.centers)
+    predictors <- .predictors
+    standardize_numerics <- .standardize
 
     # * Checks ----
     if(!is.data.frame(.data)){
@@ -65,20 +68,32 @@ hai_auto_kmeans <- function(.data, .split_ratio) {
         stop(call. = FALSE, "(.seed) must be an integer.")
     }
 
+    if(!is.integer(centers)){
+        stop(call. = FALSE, "(.centers) must be an integer")
+    }
+
     # * Data ----
     data_tbl <- tibble::as_tibble(.data)
     # Convert to h2o data frame
     data_tbl <- h2o::as.h2o(x = data_tbl)
 
-    training_frame <- h2o::h2o.splitFrame(
+    splits <- h2o::h2o.splitFrame(
         data_tbl,
         ratios = split_ratio,
-        seed = seed
+        seed   = seed
     )
+
+    training_frame <- splits[[1]]
+    validate_frame <- splits[[2]]
 
     # * KMEANS ----
     h2o::h2o.kmeans(
-
+        k                = centers,
+        seet             = seed,
+        x                = predictors,
+        standardize      = standardize_numerics
+        training_frame   = training_frame,
+        validation_frame = validate_frame
     )
 
 
