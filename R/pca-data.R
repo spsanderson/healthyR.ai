@@ -103,7 +103,7 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75){
             recipes::all_numeric_predictors(),
             threshold = threshold_var,
             options = list(
-                retx   = rotation_var
+                retx   = TRUE
             )
         )
 
