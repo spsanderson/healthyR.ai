@@ -21,7 +21,19 @@
 #' iterations
 #' @param .stardardize The default is set to TRUE. When TRUE all numeric columns
 #' will be set to zero mean and unit variance.
-#' @param .initialization_mode
+#' @param .categorical_encoding Can be one of the following:
+#'   + "auto"
+#'   + "enum"
+#'   + "one_hot_explicit"
+#'   + "binary"
+#'   + "eigen"
+#'   + "label_encoder"
+#'   + "sort_by_response"
+#'   + "enum_limited"
+#' @param .initialization_mode This can be one of the following:
+#'   + "Random"
+#'   + "Furthest (default)
+#'   + "PlusPlus"
 #' @param .predictors This must be in the form of c("column_1", "column_2", ... "column_n")
 #'
 #' @examples
