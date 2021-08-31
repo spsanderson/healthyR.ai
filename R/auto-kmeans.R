@@ -46,12 +46,15 @@
 hai_auto_kmeans <- function(.data, .split_ratio) {
 
     # * Checks ----
-
     if(!is.data.frame(.data)){
         stop(call. = FALSE, "(.data) must be a data.frame/tibble.")
     }
 
     # * Data ----
+    s
+
+
+    # * Return ----
 
     print("Hi User!")
 }
