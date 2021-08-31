@@ -98,3 +98,15 @@ rec_obj
 
 get_juiced_data(rec_obj) %>% glimpse()
 ```
+
+Now that we have out initial recipe we can use the `pca_your_recipe()` function.
+
+```{r pca_your_rec}
+pca_your_recipe(
+  .recipe_object = rec_obj,
+  .data          = data_tbl,
+  .threshold     = 0.8
+)
+```
+
+# Inspec PCA Output
