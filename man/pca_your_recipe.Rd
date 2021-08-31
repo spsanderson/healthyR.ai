@@ -32,7 +32,7 @@ items that get returned are:
 \item variable_loadings
 \item variable_variance
 \item pca_estimates
-\item pca_juiced_data
+\item pca_juiced_estimates
 \item pca_baked_data
 \item pca_variance_df
 \item pca_variance_scree_plt
