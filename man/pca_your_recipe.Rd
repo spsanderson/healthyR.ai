@@ -4,21 +4,19 @@
 \alias{pca_your_recipe}
 \title{Perform PCA}
 \usage{
-pca_your_recipe(.recipe_object, .data, .rotation = TRUE, .threshold = 0.75)
+pca_your_recipe(.recipe_object, .data, .threshold = 0.75)
 }
 \arguments{
 \item{.recipe_object}{The recipe object you want to pass.}
 
-\item{.data}{The full dataset that is used in the original recipe object passed
+\item{.data}{The full data set that is used in the original recipe object passed
 into \code{.recipe_object} in order to obtain the baked data of the transform.}
-
-\item{.rotation}{A boolean that defaults to TRUE, should the rotation be returned}
 
 \item{.threshold}{A number between 0 and 1. A fraction of the total variance
 that should be covered by the components.}
 }
 \value{
-A list object with several components
+A list object with several components.
 }
 \description{
 This is a simple function that will perform PCA analysis on a passed recipe.
@@ -27,7 +25,19 @@ This is a simple function that will perform PCA analysis on a passed recipe.
 This is a simple wrapper around some recipes functions to perform a PCA on a
 given recipe. This function will output a list and return it invisible.
 All of the components of the analysis will be returned in a list as their own
-object that can be selected individually. A scree plot is also included.
+object that can be selected individually. A scree plot is also included. The
+items that get returned are:
+\enumerate{
+\item pca_transform - This is the pca recipe.
+\item variable_loadings
+\item variable_variance
+\item pca_estimates
+\item pca_juiced_data
+\item pca_baked_data
+\item pca_variance_df
+\item pca_variance_scree_plt
+\item pca_rotation_df
+}
 }
 \examples{
 suppressPackageStartupMessages(library(timetk))

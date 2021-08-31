@@ -1,6 +1,5 @@
 ---
-title: "Getting Started with healthyR.ai"
-subtitle: "A Quick Introduction"
+title: "A simple PCA Example"
 author: "Steven P. Sanderson II, MPH"
 date: "`r Sys.Date()`"
 output: 
@@ -8,9 +7,10 @@ output:
     toc: true
     toc_depth: 2
 vignette: >
-  %\VignetteIndexEntry{Getting Started with healthyR}
+  %\VignetteIndexEntry{PCA Dimension Reduction}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+
 ---
 
 ```{r, include = FALSE}
