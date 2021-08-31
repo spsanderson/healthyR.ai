@@ -45,3 +45,36 @@ suppressPackageStartupMessages(library(rsample))
 suppressPackageStartupMessages(library(recipes))
 suppressPackageStartupMessages(library(ggplot2))
 ```
+
+Now that we have out libraries we can go ahead and get our data set ready.
+
+```{r data_set}
+data_tbl <- healthyR_data %>%
+    select(visit_end_date_time) %>%
+    summarise_by_time(
+        .date_var = visit_end_date_time,
+        .by       = "month",
+        value     = n()
+    ) %>%
+    set_names("date_col","value") %>%
+    filter_by_time(
+        .date_var = date_col,
+        .start_date = "2013",
+        .end_date = "2020"
+    )
+
+head(data_tbl)
+```
+
+The data set is simple and by itself would not be at all useful for a pca analysis
+since there is only one predictor, being time. In order to facilitate the use of 
+the function and this example, we will create a `splits` object and a `recipe` 
+object.
+
+```{r splits}
+splits <- initial_split(data = data_tbl, prop = 0.8)
+
+splits
+
+head(training(splits))
+```
