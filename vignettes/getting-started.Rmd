@@ -36,6 +36,8 @@ of the variance that should be captured by the components.
 
 To start this walk through we will first load in a few libraries.
 
+# Libraries
+
 ```{r lib_load}
 suppressPackageStartupMessages(library(timetk))
 suppressPackageStartupMessages(library(dplyr))
@@ -46,7 +48,11 @@ suppressPackageStartupMessages(library(recipes))
 suppressPackageStartupMessages(library(ggplot2))
 ```
 
+# Data
+
 Now that we have out libraries we can go ahead and get our data set ready.
+
+## Data Set
 
 ```{r data_set}
 data_tbl <- healthyR_data %>%
@@ -71,10 +77,24 @@ since there is only one predictor, being time. In order to facilitate the use of
 the function and this example, we will create a `splits` object and a `recipe` 
 object.
 
+## Splits
+
 ```{r splits}
 splits <- initial_split(data = data_tbl, prop = 0.8)
 
 splits
 
 head(training(splits))
+```
+
+## Initial Recipe
+
+```{r initial_rec_obj}
+rec_obj <- recipe(value ~ ., training(splits)) %>%
+    step_timeseries_signature(date_col) %>%
+    step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
+
+rec_obj
+
+get_juiced_data(rec_obj) %>% glimpse()
 ```
