@@ -161,6 +161,7 @@ pca_list$pca_estimates
 ## Jucied and Baked Data
 
 ```{r juice_bake}
-pca_list$pca_juiced_estimates
+pca_list$pca_juiced_estimates %>% glimpse()
 
-pca_list$pca_baked_data
+pca_list$pca_baked_data %>% glimpse()
+```
