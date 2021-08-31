@@ -102,6 +102,7 @@
 
     
     
+<p>First of all, thank you for using <code>healthyR.ai</code>. If you encounter issues or want to make a feature request, please visit <a href="https://github.com/spsanderson/healthyR.ai/issues" class="uri">https://github.com/spsanderson/healthyR.ai/issues</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.ai">healthyR.ai</a></span><span class="op">)</span>
 <span class="co">#&gt; == Welcome to healthyR.ai ======================================================</span>
@@ -109,11 +110,314 @@
 <span class="co">#&gt; If you encounter a bug or want to request an enhancement please file an issue at:</span>
 <span class="co">#&gt;    https://github.com/spsanderson/healthyR.ai/issues</span>
 <span class="co">#&gt; Thank you for using healthyR.ai!</span></code></pre></div>
+<p>In this should example we will showcase the <code><a href="../reference/pca_your_recipe.html">pca_your_recipe()</a></code> function. This function takes only a few arguments. The arguments are currently <code>.data</code> which is the full data set that gets passed internally to the <code><a href="https://recipes.tidymodels.org/reference/bake.html">recipes::bake()</a></code> function, <code>.recipe_object</code> which is a recipe you have already made and want to pass to the function in order to perform the pca, and finally <code>.threshold</code> which is the fraction of the variance that should be captured by the components.</p>
+<p>To start this walk through we will first load in a few libraries.</p>
+<div id="libraries" class="section level1">
+<h1 class="hasAnchor">
+<a href="#libraries" class="anchor"></a>Libraries</h1>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/business-science/timetk">timetk</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.data">healthyR.data</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org">rsample</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes">recipes</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#data" class="anchor"></a>Data</h1>
+<p>Now that we have out libraries we can go ahead and get our data set ready.</p>
+<div id="data-set" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-set" class="anchor"></a>Data Set</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="va">healthyR_data</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">visit_end_date_time</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/summarise_by_time.html">summarise_by_time</a></span><span class="op">(</span>
+        .date_var <span class="op">=</span> <span class="va">visit_end_date_time</span>,
+        .by       <span class="op">=</span> <span class="st">"month"</span>,
+        value     <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>
+    <span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="st">"date_col"</span>,<span class="st">"value"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/filter_by_time.html">filter_by_time</a></span><span class="op">(</span>
+        .date_var <span class="op">=</span> <span class="va">date_col</span>,
+        .start_date <span class="op">=</span> <span class="st">"2013"</span>,
+        .end_date <span class="op">=</span> <span class="st">"2020"</span>
+    <span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data_tbl</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt;   date_col            value</span>
+<span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;</span>
+<span class="co">#&gt; 1 2013-01-01 00:00:00  2082</span>
+<span class="co">#&gt; 2 2013-02-01 00:00:00  1719</span>
+<span class="co">#&gt; 3 2013-03-01 00:00:00  1796</span>
+<span class="co">#&gt; 4 2013-04-01 00:00:00  1865</span>
+<span class="co">#&gt; 5 2013-05-01 00:00:00  2028</span>
+<span class="co">#&gt; 6 2013-06-01 00:00:00  1813</span></code></pre></div>
+<p>The data set is simple and by itself would not be at all useful for a pca analysis since there is only one predictor, being time. In order to facilitate the use of the function and this example, we will create a <code>splits</code> object and a <code>recipe</code> object.</p>
+</div>
+<div id="splits" class="section level2">
+<h2 class="hasAnchor">
+<a href="#splits" class="anchor"></a>Splits</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">splits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">initial_split</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_tbl</span>, prop <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
+
+<span class="va">splits</span>
+<span class="co">#&gt; &lt;Analysis/Assess/Total&gt;</span>
+<span class="co">#&gt; &lt;76/19/95&gt;</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt;   date_col            value</span>
+<span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;</span>
+<span class="co">#&gt; 1 2014-05-01 00:00:00  1835</span>
+<span class="co">#&gt; 2 2019-06-01 00:00:00  1407</span>
+<span class="co">#&gt; 3 2017-02-01 00:00:00  1449</span>
+<span class="co">#&gt; 4 2019-01-01 00:00:00  1631</span>
+<span class="co">#&gt; 5 2015-07-01 00:00:00  1751</span>
+<span class="co">#&gt; 6 2014-07-01 00:00:00  1782</span></code></pre></div>
+</div>
+<div id="initial-recipe" class="section level2">
+<h2 class="hasAnchor">
+<a href="#initial-recipe" class="anchor"></a>Initial Recipe</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">.</span>, <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/step_timeseries_signature.html">step_timeseries_signature</a></span><span class="op">(</span><span class="va">date_col</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://recipes.tidymodels.org/reference/step_rm.html">step_rm</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">rec_obj</span>
+<span class="co">#&gt; Data Recipe</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Inputs:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       role #variables</span>
+<span class="co">#&gt;    outcome          1</span>
+<span class="co">#&gt;  predictor          1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Operations:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Timeseries signature features from date_col</span>
+<span class="co">#&gt; Delete terms matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)")</span>
+
+<span class="fu"><a href="../reference/get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 76</span>
+<span class="co">#&gt; Columns: 20</span>
+<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2014-05-01, 2019-06-01, 2017-02-01, 2019-01-01, 20~</span>
+<span class="co">#&gt; $ value              &lt;int&gt; 1835, 1407, 1449, 1631, 1751, 1782, 313, 1662, 1397~</span>
+<span class="co">#&gt; $ date_col_index.num &lt;dbl&gt; 1398902400, 1559347200, 1485907200, 1546300800, 143~</span>
+<span class="co">#&gt; $ date_col_year      &lt;int&gt; 2014, 2019, 2017, 2019, 2015, 2014, 2020, 2014, 201~</span>
+<span class="co">#&gt; $ date_col_half      &lt;int&gt; 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_quarter   &lt;int&gt; 2, 2, 1, 1, 3, 3, 4, 3, 4, 3, 1, 4, 1, 4, 2, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_month     &lt;int&gt; 5, 6, 2, 1, 7, 7, 11, 8, 12, 9, 2, 12, 1, 11, 5, 2,~</span>
+<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; May, June, February, January, July, July, November,~</span>
+<span class="co">#&gt; $ date_col_day       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_wday      &lt;int&gt; 5, 7, 4, 3, 4, 3, 1, 6, 7, 3, 7, 3, 2, 4, 6, 1, 7, ~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Thursday, Saturday, Wednesday, Tuesday, Wednesday, ~</span>
+<span class="co">#&gt; $ date_col_mday      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_qday      &lt;int&gt; 31, 62, 32, 1, 1, 1, 32, 32, 62, 63, 32, 62, 1, 32,~</span>
+<span class="co">#&gt; $ date_col_yday      &lt;int&gt; 121, 152, 32, 1, 182, 182, 306, 213, 335, 245, 32, ~</span>
+<span class="co">#&gt; $ date_col_mweek     &lt;int&gt; 5, 5, 5, 6, 5, 5, 5, 5, 5, 6, 5, 5, 6, 5, 5, 5, 5, ~</span>
+<span class="co">#&gt; $ date_col_week      &lt;int&gt; 18, 22, 5, 1, 26, 26, 44, 31, 48, 35, 5, 48, 1, 44,~</span>
+<span class="co">#&gt; $ date_col_week2     &lt;int&gt; 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_week3     &lt;int&gt; 0, 1, 2, 1, 2, 2, 2, 1, 0, 2, 2, 0, 1, 2, 0, 2, 2, ~</span>
+<span class="co">#&gt; $ date_col_week4     &lt;int&gt; 2, 2, 1, 1, 2, 2, 0, 3, 0, 3, 1, 0, 1, 0, 2, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_mday7     &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span></code></pre></div>
+<p>Now that we have out initial recipe we can use the <code><a href="../reference/pca_your_recipe.html">pca_your_recipe()</a></code> function.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_your_recipe.html">pca_your_recipe</a></span><span class="op">(</span>
+  .recipe_object <span class="op">=</span> <span class="va">rec_obj</span>,
+  .data          <span class="op">=</span> <span class="va">data_tbl</span>,
+  .threshold     <span class="op">=</span> <span class="fl">0.8</span>
+<span class="op">)</span>
+<span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span>
+<span class="co">#&gt;   method            from</span>
+<span class="co">#&gt;   as.zoo.data.frame zoo</span></code></pre></div>
+</div>
+</div>
+<div id="inspec-pca-output" class="section level1">
+<h1 class="hasAnchor">
+<a href="#inspec-pca-output" class="anchor"></a>Inspec PCA Output</h1>
+<p>The function returns a list object and does so <code>insvisible</code> so you must assign the output to a variable, you can then access the items of the list in the usual manner.</p>
+<p>The following items are included in the output of the function:</p>
+<ol style="list-style-type: decimal">
+<li>pca_transform - This is the pca recipe.</li>
+<li>variable_loadings</li>
+<li>variable_variance</li>
+<li>pca_estimates</li>
+<li>pca_juiced_estimates</li>
+<li>pca_baked_data</li>
+<li>pca_variance_df</li>
+<li>pca_variance_scree_plt</li>
+<li>pca_rotation_df</li>
+</ol>
+<p>Lets start going down the list of items.</p>
+<div id="pca-transform" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pca-transform" class="anchor"></a>PCA Transform</h2>
+<p>This is the portion you will want to output to a variable as this is the recipe object itself that you will use further down the line of your work.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_rec_obj</span> <span class="op">&lt;-</span> <span class="va">pca_list</span><span class="op">$</span><span class="va">pca_transform</span>
+
+<span class="va">pca_rec_obj</span>
+<span class="co">#&gt; Data Recipe</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Inputs:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       role #variables</span>
+<span class="co">#&gt;    outcome          1</span>
+<span class="co">#&gt;  predictor          1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Operations:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Timeseries signature features from date_col</span>
+<span class="co">#&gt; Delete terms matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)")</span>
+<span class="co">#&gt; Centering for recipes::all_numeric()</span>
+<span class="co">#&gt; Scaling for recipes::all_numeric()</span>
+<span class="co">#&gt; Sparse, unbalanced variable filter on recipes::all_numeric()</span>
+<span class="co">#&gt; No PCA components were extracted.</span></code></pre></div>
+</div>
+<div id="variable-loadings" class="section level2">
+<h2 class="hasAnchor">
+<a href="#variable-loadings" class="anchor"></a>Variable Loadings</h2>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">variable_loadings</span>
+<span class="co">#&gt; # A tibble: 169 x 4</span>
+<span class="co">#&gt;    terms                value component id       </span>
+<span class="co">#&gt;    &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 date_col_index.num  0.0860 PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  2 date_col_year       0.0330 PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  3 date_col_half       0.385  PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  4 date_col_quarter    0.431  PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  5 date_col_month      0.438  PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  6 date_col_wday      -0.0190 PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  7 date_col_qday       0.120  PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  8 date_col_yday       0.438  PC1       pca_q4bDJ</span>
+<span class="co">#&gt;  9 date_col_mweek     -0.0257 PC1       pca_q4bDJ</span>
+<span class="co">#&gt; 10 date_col_week       0.438  PC1       pca_q4bDJ</span>
+<span class="co">#&gt; # ... with 159 more rows</span></code></pre></div>
+</div>
+<div id="variable-variance" class="section level2">
+<h2 class="hasAnchor">
+<a href="#variable-variance" class="anchor"></a>Variable Variance</h2>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">variable_variance</span>
+<span class="co">#&gt; # A tibble: 52 x 4</span>
+<span class="co">#&gt;    terms       value component id       </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;     &lt;int&gt; &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 variance 5.16             1 pca_q4bDJ</span>
+<span class="co">#&gt;  2 variance 1.99             2 pca_q4bDJ</span>
+<span class="co">#&gt;  3 variance 1.56             3 pca_q4bDJ</span>
+<span class="co">#&gt;  4 variance 1.24             4 pca_q4bDJ</span>
+<span class="co">#&gt;  5 variance 1.16             5 pca_q4bDJ</span>
+<span class="co">#&gt;  6 variance 0.693            6 pca_q4bDJ</span>
+<span class="co">#&gt;  7 variance 0.646            7 pca_q4bDJ</span>
+<span class="co">#&gt;  8 variance 0.492            8 pca_q4bDJ</span>
+<span class="co">#&gt;  9 variance 0.0568           9 pca_q4bDJ</span>
+<span class="co">#&gt; 10 variance 0.000208        10 pca_q4bDJ</span>
+<span class="co">#&gt; # ... with 42 more rows</span></code></pre></div>
+</div>
+<div id="pca-estimates" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pca-estimates" class="anchor"></a>PCA Estimates</h2>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_estimates</span>
+<span class="co">#&gt; Data Recipe</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Inputs:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;       role #variables</span>
+<span class="co">#&gt;    outcome          1</span>
+<span class="co">#&gt;  predictor          1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Training data contained 76 data points and no missing data.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Operations:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Timeseries signature features from date_col [trained]</span>
+<span class="co">#&gt; Variables removed date_col_year.iso, date_col_month.xts, ... [trained]</span>
+<span class="co">#&gt; Centering for value, date_col_index.num, ... [trained]</span>
+<span class="co">#&gt; Scaling for value, date_col_index.num, ... [trained]</span>
+<span class="co">#&gt; Sparse, unbalanced variable filter removed date_col_day, ... [trained]</span>
+<span class="co">#&gt; PCA extraction with date_col_index.num, date_col_year, ... [trained]</span></code></pre></div>
+</div>
+<div id="jucied-and-baked-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#jucied-and-baked-data" class="anchor"></a>Jucied and Baked Data</h2>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_juiced_estimates</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 76</span>
+<span class="co">#&gt; Columns: 9</span>
+<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2014-05-01, 2019-06-01, 2017-02-01, 2019-01-01, 20~</span>
+<span class="co">#&gt; $ value              &lt;dbl&gt; 1.01672158, -0.46241074, -0.31726224, 0.31171459, 0~</span>
+<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; May, June, February, January, July, July, November,~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Thursday, Saturday, Wednesday, Tuesday, Wednesday, ~</span>
+<span class="co">#&gt; $ PC1                &lt;dbl&gt; -0.8638367, -0.1080849, -2.6363326, -3.1148924, 0.9~</span>
+<span class="co">#&gt; $ PC2                &lt;dbl&gt; -1.33574968, 1.65413684, 0.55980516, 1.49088984, -0~</span>
+<span class="co">#&gt; $ PC3                &lt;dbl&gt; -1.37099348, -1.31225994, 0.14249691, 1.13555829, 0~</span>
+<span class="co">#&gt; $ PC4                &lt;dbl&gt; 0.26274634, 0.88864493, -0.01770251, -1.56987468, -~</span>
+<span class="co">#&gt; $ PC5                &lt;dbl&gt; -0.11986699, -0.13471982, 0.50612519, -0.36016272, ~</span>
+
+<span class="va">pca_list</span><span class="op">$</span><span class="va">pca_baked_data</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 95</span>
+<span class="co">#&gt; Columns: 9</span>
+<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 20~</span>
+<span class="co">#&gt; $ value              &lt;dbl&gt; 1.8703330, 0.6158352, 0.8819408, 1.1203991, 1.68371~</span>
+<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; January, February, March, April, May, June, July, A~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Tuesday, Friday, Friday, Monday, Wednesday, Saturda~</span>
+<span class="co">#&gt; $ PC1                &lt;dbl&gt; -3.4113941, -2.8525556, -2.3905208, -1.9248390, -0.~</span>
+<span class="co">#&gt; $ PC2                &lt;dbl&gt; -1.9813790, -1.6672007, -1.7849251, -2.0711027, -1.~</span>
+<span class="co">#&gt; $ PC3                &lt;dbl&gt; 1.1440227, -0.1923392, -1.7485260, 1.3631847, -1.19~</span>
+<span class="co">#&gt; $ PC4                &lt;dbl&gt; -1.10814701, 0.73261429, 1.12302348, -1.28044656, 0~</span>
+<span class="co">#&gt; $ PC5                &lt;dbl&gt; -0.05026043, 1.18713140, -0.66582586, -0.29797401, ~</span></code></pre></div>
+</div>
+<div id="roatation-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#roatation-data" class="anchor"></a>Roatation Data</h2>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_rotation_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 13</span>
+<span class="co">#&gt; Columns: 13</span>
+<span class="co">#&gt; $ PC1  &lt;dbl&gt; 0.08601565, 0.03302563, 0.38484245, 0.43103599, 0.43784899, -0.01~</span>
+<span class="co">#&gt; $ PC2  &lt;dbl&gt; 0.689665062, 0.701137983, 0.008061024, -0.032199174, -0.036560906~</span>
+<span class="co">#&gt; $ PC3  &lt;dbl&gt; -0.0016191270, -0.0017706326, 0.2186374221, 0.0555533905, -0.0002~</span>
+<span class="co">#&gt; $ PC4  &lt;dbl&gt; -0.08933206, -0.09558664, 0.13555469, -0.05419679, 0.04392564, 0.~</span>
+<span class="co">#&gt; $ PC5  &lt;dbl&gt; -0.06437859, -0.05978054, 0.14967430, 0.11119246, -0.04401388, 0.~</span>
+<span class="co">#&gt; $ PC6  &lt;dbl&gt; 0.012632632, 0.014336840, -0.166482105, 0.009904397, -0.010539579~</span>
+<span class="co">#&gt; $ PC7  &lt;dbl&gt; -0.014521130, -0.015570541, 0.279606572, 0.135559633, 0.009519724~</span>
+<span class="co">#&gt; $ PC8  &lt;dbl&gt; -0.009171896, -0.004228773, -0.109507130, 0.010494096, -0.0369270~</span>
+<span class="co">#&gt; $ PC9  &lt;dbl&gt; -0.01415280, 0.01266451, 0.80333932, -0.27926888, -0.21644601, -0~</span>
+<span class="co">#&gt; $ PC10 &lt;dbl&gt; 0.012263393, -0.009643506, -0.000152451, 0.302024035, 0.378227430~</span>
+<span class="co">#&gt; $ PC11 &lt;dbl&gt; 0.0257520755, -0.0263175503, 0.0014799518, 0.0904210400, -0.68158~</span>
+<span class="co">#&gt; $ PC12 &lt;dbl&gt; -0.0022398562, 0.0016366447, -0.0027001860, -0.7731954179, 0.3834~</span>
+<span class="co">#&gt; $ PC13 &lt;dbl&gt; 7.094805e-01, -7.022725e-01, -1.078907e-04, -3.134602e-02, -1.007~</span></code></pre></div>
+</div>
+<div id="variance-and-scree-plot" class="section level2">
+<h2 class="hasAnchor">
+<a href="#variance-and-scree-plot" class="anchor"></a>Variance and Scree Plot</h2>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 13</span>
+<span class="co">#&gt; Columns: 6</span>
+<span class="co">#&gt; $ PC              &lt;chr&gt; "PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8"~</span>
+<span class="co">#&gt; $ var_explained   &lt;dbl&gt; 3.969085e-01, 1.531269e-01, 1.200790e-01, 9.512892e-02~</span>
+<span class="co">#&gt; $ var_pct_txt     &lt;chr&gt; "39.69%", "15.31%", "12.01%", "9.51%", "8.95%", "5.33%~</span>
+<span class="co">#&gt; $ cum_var_pct     &lt;dbl&gt; 0.3969085, 0.5500355, 0.6701145, 0.7652434, 0.8547559,~</span>
+<span class="co">#&gt; $ cum_var_pct_txt &lt;chr&gt; "39.69%", "55.00%", "67.01%", "76.52%", "85.48%", "90.~</span>
+<span class="co">#&gt; $ ou_threshold    &lt;fct&gt; Under, Under, Under, Under, Over, Over, Over, Over, Ov~</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_scree_plt</span></code></pre></div>
+<p><img src="getting-started_files/figure-html/scree_plt-1.png" width="768"></p>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
