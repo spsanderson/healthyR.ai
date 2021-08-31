@@ -86,11 +86,11 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
     }
 
     if(!class(initialization_mode) == "character"){
-        stop(call. = FALSE, "(.initialization_mode) must be a character list like: c('col1','col2')")
+        stop(call. = FALSE, "(.initialization_mode) must be a character.")
     }
 
     if(!class(categorical_encode) == "character"){
-        stop(call. = FALSE, "(.categorical_encoding) must be a character list like: c('col1','col2')")
+        stop(call. = FALSE, "(.categorical_encoding) must be a character.")
     }
 
     # * Data ----
@@ -109,12 +109,14 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
 
     # * KMEANS ----
     h2o::h2o.kmeans(
-        k                = centers,
-        seet             = seed,
-        x                = predictors,
-        standardize      = standardize_numerics
-        training_frame   = training_frame,
-        validation_frame = validate_frame
+        k                    = centers,
+        seet                 = seed,
+        x                    = predictors,
+        standardize          = standardize_numerics,
+        training_frame       = training_frame,
+        validation_frame     = validate_frame,
+        init                 = initialization_mode,
+        categorical_encoding = categorical_encode
     )
 
 
