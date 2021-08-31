@@ -178,6 +178,6 @@ pca_list$pca_rotation_df %>% glimpse()
 pca_list$pca_variance_df %>% glimpse()
 ```
 
-```{r scree_plt, fig.width=10, fig.height=10}
+```{r scree_plt, fig.width=8, fig.height=8}
 pca_list$pca_variance_scree_plt
 ```
