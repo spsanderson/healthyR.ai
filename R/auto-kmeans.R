@@ -43,16 +43,17 @@
 #' @export
 #'
 
-hai_auto_kmeans <- function(.data, .split_ratio) {
+hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
+                            .centers = 10, .standarize = TRUE) {
 
     # * H2O Initialize ----
     h2o::h2o.init()
 
     # * Tidyeval ----
-    split_ratio <- .split_ratio
-    seed <- as.integer(.seed)
-    centers <- as.integer(.centers)
-    predictors <- .predictors
+    split_ratio          <- as.numeric(.split_ratio)
+    seed                 <- as.integer(.seed)
+    centers              <- as.integer(.centers)
+    predictors           <- .predictors
     standardize_numerics <- .standardize
 
     # * Checks ----
@@ -61,7 +62,7 @@ hai_auto_kmeans <- function(.data, .split_ratio) {
     }
 
     if(!is.numeric(split_ratio) | (split_ratio > 1L) | (split_ratio < 0L)){
-        stop(call. = FALSE, "(.split_ratio) must be a number between 0 and 1")
+        stop(call. = FALSE, "(.split_ratio) must be a number between 0 and 1.")
     }
 
     if(!is.integer(seed)){
@@ -69,7 +70,11 @@ hai_auto_kmeans <- function(.data, .split_ratio) {
     }
 
     if(!is.integer(centers)){
-        stop(call. = FALSE, "(.centers) must be an integer")
+        stop(call. = FALSE, "(.centers) must be an integer.")
+    }
+
+    if(!is.logical(standardize_numerics)){
+        stop(call. = FALSE, "(.standardize) must be a logical, TRUE/FALSE.")
     }
 
     # * Data ----
