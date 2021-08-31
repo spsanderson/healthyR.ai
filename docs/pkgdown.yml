@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
-last_built: 2021-08-30T17:49Z
+  pca-your-recipe: pca-your-recipe.html
+last_built: 2021-08-31T12:47Z
 

@@ -143,7 +143,7 @@
     <p>This is a simple function that will perform PCA analysis on a passed recipe.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pca_your_recipe</span><span class='op'>(</span><span class='va'>.recipe_object</span>, <span class='va'>.data</span>, .rotation <span class='op'>=</span> <span class='cn'>TRUE</span>, .threshold <span class='op'>=</span> <span class='fl'>0.75</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pca_your_recipe</span><span class='op'>(</span><span class='va'>.recipe_object</span>, <span class='va'>.data</span>, .threshold <span class='op'>=</span> <span class='fl'>0.75</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,12 +154,8 @@
     </tr>
     <tr>
       <th>.data</th>
-      <td><p>The full dataset that is used in the original recipe object passed
+      <td><p>The full data set that is used in the original recipe object passed
 into <code>.recipe_object</code> in order to obtain the baked data of the transform.</p></td>
-    </tr>
-    <tr>
-      <th>.rotation</th>
-      <td><p>A boolean that defaults to TRUE, should the rotation be returned</p></td>
     </tr>
     <tr>
       <th>.threshold</th>
@@ -170,13 +166,25 @@ that should be covered by the components.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list object with several components</p>
+    <p>A list object with several components.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This is a simple wrapper around some recipes functions to perform a PCA on a
 given recipe. This function will output a list and return it invisible.
 All of the components of the analysis will be returned in a list as their own
-object that can be selected individually. A scree plot is also included.</p>
+object that can be selected individually. A scree plot is also included. The
+items that get returned are:</p><ol>
+<li><p>pca_transform - This is the pca recipe.</p></li>
+<li><p>variable_loadings</p></li>
+<li><p>variable_variance</p></li>
+<li><p>pca_estimates</p></li>
+<li><p>pca_juiced_data</p></li>
+<li><p>pca_baked_data</p></li>
+<li><p>pca_variance_df</p></li>
+<li><p>pca_variance_scree_plt</p></li>
+<li><p>pca_rotation_df</p></li>
+</ol>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/step_pca.html'>https://recipes.tidymodels.org/reference/step_pca.html</a></p>
