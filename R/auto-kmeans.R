@@ -45,7 +45,8 @@
 
 hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
                             .centers = 10, .standarize = TRUE,
-                            .predictors) {
+                            .predictors, .categorical_encoding,
+                            .initialization_mode) {
 
     # * H2O Initialize ----
     h2o::h2o.init()
@@ -56,6 +57,8 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
     centers              <- as.integer(.centers)
     predictors           <- .predictors
     standardize_numerics <- .standardize
+    initialization_mode  <- .initialization_mode
+    categorical_encode   <- .categorical_encoding
 
     # * Checks ----
     if(!is.data.frame(.data)){
@@ -80,6 +83,14 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
 
     if(!class(predictors) == "character"){
         stop(call. = FALSE, "(.predictors) must be a character list like: c('col1','col2')")
+    }
+
+    if(!class(initialization_mode) == "character"){
+        stop(call. = FALSE, "(.initialization_mode) must be a character list like: c('col1','col2')")
+    }
+
+    if(!class(categorical_encode) == "character"){
+        stop(call. = FALSE, "(.categorical_encoding) must be a character list like: c('col1','col2')")
     }
 
     # * Data ----
