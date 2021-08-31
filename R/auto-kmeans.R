@@ -6,10 +6,23 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
+#' This is a wrapper around the [h2o.kmeans()] function that will return a list
+#' object with a lot of useful and easy to use tidy style information.
 #'
 #' @details
 #'
-#' @param
+#' @param .data The data that is to be passed for clustering.
+#' @param .split_ratio The ratio for training and testing splits.
+#' @param .seed The default is 1234, but can be set to any integer.
+#' @param .centers The default is 1. Specify the number of clusters (groups of data)
+#' in a data set.
+#' @param .num_folds The number of folds for cross-validation
+#' @param .max_iterations The default is 100. This specifies the number of training
+#' iterations
+#' @param .stardardize The default is set to TRUE. When TRUE all numeric columns
+#' will be set to zero mean and unit variance.
+#' @param .initialization_mode
+#' @param .predictors This must be in the form of c("column_1", "column_2", ... "column_n")
 #'
 #' @examples
 #'
@@ -18,3 +31,4 @@
 #' @export
 #'
 
+hai_auto_kmeans <- function(.data)
