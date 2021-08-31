@@ -43,7 +43,15 @@
 #' @export
 #'
 
-hai_auto_kmeans <- function(.data) {
+hai_auto_kmeans <- function(.data, .split_ratio) {
+
+    # * Checks ----
+
+    if(!is.data.frame(.data)){
+        stop(call. = FALSE, "(.data) must be a data.frame/tibble.")
+    }
+
+    # * Data ----
 
     print("Hi User!")
 }
