@@ -102,7 +102,7 @@ get_juiced_data(rec_obj) %>% glimpse()
 Now that we have out initial recipe we can use the `pca_your_recipe()` function.
 
 ```{r pca_your_rec}
-pca_your_recipe(
+pca_list <- pca_your_recipe(
   .recipe_object = rec_obj,
   .data          = data_tbl,
   .threshold     = 0.8
@@ -110,3 +110,20 @@ pca_your_recipe(
 ```
 
 # Inspec PCA Output
+
+The function returns a list object and does so `insvisible` so you must assign
+the output to a variable, you can then access the items of the list in the usual
+manner. 
+
+The following items are included in the output of the function:
+  1. pca_transform - This is the pca recipe.
+  2. variable_loadings
+  3. variable_variance
+  4. pca_estimates
+  5. pca_juiced_data
+  6. pca_baked_data
+  7. pca_variance_df
+  8. pca_variance_scree_plt
+  9. pca_rotation_df
+
+See also
