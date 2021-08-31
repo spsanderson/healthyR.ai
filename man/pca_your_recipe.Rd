@@ -4,7 +4,7 @@
 \alias{pca_your_recipe}
 \title{Perform PCA}
 \usage{
-pca_your_recipe(.recipe_object, .data, .rotation = TRUE, .threshold = 0.75)
+pca_your_recipe(.recipe_object, .data, .threshold = 0.75)
 }
 \arguments{
 \item{.recipe_object}{The recipe object you want to pass.}
