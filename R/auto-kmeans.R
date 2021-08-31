@@ -44,7 +44,8 @@
 #'
 
 hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
-                            .centers = 10, .standarize = TRUE) {
+                            .centers = 10, .standarize = TRUE,
+                            .predictors) {
 
     # * H2O Initialize ----
     h2o::h2o.init()
@@ -75,6 +76,10 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
 
     if(!is.logical(standardize_numerics)){
         stop(call. = FALSE, "(.standardize) must be a logical, TRUE/FALSE.")
+    }
+
+    if(!class(predictors) == "character"){
+        stop(call. = FALSE, "(.predictors) must be a character list like: c('col1','col2')"
     }
 
     # * Data ----
