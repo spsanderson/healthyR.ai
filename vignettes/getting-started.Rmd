@@ -165,3 +165,17 @@ pca_list$pca_juiced_estimates %>% glimpse()
 
 pca_list$pca_baked_data %>% glimpse()
 ```
+
+## Roatation Data
+
+```{r rotation_df}
+pca_list$pca_rotation_df %>% glimpse()
+```
+
+## Variance and Scree Plot
+
+```{r var_scree}
+pca_list$pca_variance_df %>% glimpse()
+
+pca_list$pca_variance_scree_plt
+```
