@@ -21,7 +21,7 @@
 #'   2. variable_loadings
 #'   3. variable_variance
 #'   4. pca_estimates
-#'   5. pca_juiced_data
+#'   5. pca_juiced_estimates
 #'   6. pca_baked_data
 #'   7. pca_variance_df
 #'   8. pca_variance_scree_plt

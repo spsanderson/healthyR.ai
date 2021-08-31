@@ -20,6 +20,164 @@ knitr::opts_chunk$set(
 )
 ```
 
+First of all, thank you for using `healthyR.ai`. If you encounter issues or want
+to make a feature request, please visit https://github.com/spsanderson/healthyR.ai/issues
+
 ```{r setup}
 library(healthyR.ai)
+```
+
+In this should example we will showcase the `pca_your_recipe()` function. This
+function takes only a few arguments. The arguments are currently `.data` which
+is the full data set that gets passed internally to the `recipes::bake()` function,
+`.recipe_object` which is a recipe you have already made and want to pass to the 
+function in order to perform the pca, and finally `.threshold` which is the fraction
+of the variance that should be captured by the components.
+
+To start this walk through we will first load in a few libraries.
+
+# Libraries
+
+```{r lib_load}
+suppressPackageStartupMessages(library(timetk))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(purrr))
+suppressPackageStartupMessages(library(healthyR.data))
+suppressPackageStartupMessages(library(rsample))
+suppressPackageStartupMessages(library(recipes))
+suppressPackageStartupMessages(library(ggplot2))
+```
+
+# Data
+
+Now that we have out libraries we can go ahead and get our data set ready.
+
+## Data Set
+
+```{r data_set}
+data_tbl <- healthyR_data %>%
+    select(visit_end_date_time) %>%
+    summarise_by_time(
+        .date_var = visit_end_date_time,
+        .by       = "month",
+        value     = n()
+    ) %>%
+    set_names("date_col","value") %>%
+    filter_by_time(
+        .date_var = date_col,
+        .start_date = "2013",
+        .end_date = "2020"
+    )
+
+head(data_tbl)
+```
+
+The data set is simple and by itself would not be at all useful for a pca analysis
+since there is only one predictor, being time. In order to facilitate the use of 
+the function and this example, we will create a `splits` object and a `recipe` 
+object.
+
+## Splits
+
+```{r splits}
+splits <- initial_split(data = data_tbl, prop = 0.8)
+
+splits
+
+head(training(splits))
+```
+
+## Initial Recipe
+
+```{r initial_rec_obj}
+rec_obj <- recipe(value ~ ., training(splits)) %>%
+    step_timeseries_signature(date_col) %>%
+    step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
+
+rec_obj
+
+get_juiced_data(rec_obj) %>% glimpse()
+```
+
+Now that we have out initial recipe we can use the `pca_your_recipe()` function.
+
+```{r pca_your_rec}
+pca_list <- pca_your_recipe(
+  .recipe_object = rec_obj,
+  .data          = data_tbl,
+  .threshold     = 0.8
+)
+```
+
+# Inspec PCA Output
+
+The function returns a list object and does so `insvisible` so you must assign
+the output to a variable, you can then access the items of the list in the usual
+manner. 
+
+The following items are included in the output of the function:
+
+  1. pca_transform - This is the pca recipe.
+  2. variable_loadings
+  3. variable_variance
+  4. pca_estimates
+  5. pca_juiced_estimates
+  6. pca_baked_data
+  7. pca_variance_df
+  8. pca_variance_scree_plt
+  9. pca_rotation_df
+
+Lets start going down the list of items.
+
+## PCA Transform
+
+This is the portion you will want to output to a variable as this is the recipe 
+object itself that you will use further down the line of your work.
+
+```{r pca_transform}
+pca_rec_obj <- pca_list$pca_transform
+
+pca_rec_obj
+```
+
+## Variable Loadings
+
+```{r var_loadings}
+pca_list$variable_loadings
+```
+
+## Variable Variance
+
+```{r var_variance}
+pca_list$variable_variance
+```
+
+## PCA Estimates
+
+```{r pca_estimates}
+pca_list$pca_estimates
+```
+
+## Jucied and Baked Data
+
+```{r juice_bake}
+pca_list$pca_juiced_estimates %>% glimpse()
+
+pca_list$pca_baked_data %>% glimpse()
+```
+
+## Roatation Data
+
+```{r rotation_df}
+pca_list$pca_rotation_df %>% glimpse()
+```
+
+## Variance and Scree Plot
+
+```{r var_df}
+pca_list$pca_variance_df %>% glimpse()
+```
+
+```{r scree_plt, fig.width=8, fig.height=8}
+pca_list$pca_variance_scree_plt
 ```
