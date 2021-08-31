@@ -116,14 +116,51 @@ the output to a variable, you can then access the items of the list in the usual
 manner. 
 
 The following items are included in the output of the function:
+
   1. pca_transform - This is the pca recipe.
   2. variable_loadings
   3. variable_variance
   4. pca_estimates
-  5. pca_juiced_data
+  5. pca_juiced_estimates
   6. pca_baked_data
   7. pca_variance_df
   8. pca_variance_scree_plt
   9. pca_rotation_df
 
-See also
+Lets start going down the list of items.
+
+## PCA Transform
+
+This is the portion you will want to output to a variable as this is the recipe 
+object itself that you will use further down the line of your work.
+
+```{r pca_transform}
+pca_rec_obj <- pca_list$pca_transform
+
+pca_rec_obj
+```
+
+## Variable Loadings
+
+```{r var_loadings}
+pca_list$variable_loadings
+```
+
+## Variable Variance
+
+```{r var_variance}
+pca_list$variable_variance
+```
+
+## PCA Estimates
+
+```{r pca_estimates}
+pca_list$pca_estimates
+```
+
+## Jucied and Baked Data
+
+```{r juice_bake}
+pca_list$pca_juiced_estimates
+
+pca_list$pca_baked_data
