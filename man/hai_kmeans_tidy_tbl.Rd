@@ -68,6 +68,15 @@ hai_kmeans_tidy_tbl(
 }
 \seealso{
 Other Clustering: 
+\code{\link{hai_auto_kmeans}()},
+\code{\link{hai_kmeans_mapped_tbl}()},
+\code{\link{hai_kmeans_obj}()},
+\code{\link{hai_kmeans_scree_data_tbl}()},
+\code{\link{hai_kmeans_scree_plt}()},
+\code{\link{hai_kmeans_user_item_tbl}()}
+
+Other Kmeans: 
+\code{\link{hai_auto_kmeans}()},
 \code{\link{hai_kmeans_mapped_tbl}()},
 \code{\link{hai_kmeans_obj}()},
 \code{\link{hai_kmeans_scree_data_tbl}()},
@@ -78,3 +87,4 @@ Other Clustering:
 Steven P. Sanderson II, MPH
 }
 \concept{Clustering}
+\concept{Kmeans}

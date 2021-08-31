@@ -1,6 +1,7 @@
 #' K-Means User Item Tibble
 #'
 #' @family Clustering
+#' @family Kmeans
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -105,6 +106,7 @@ hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_inpu
 #' K-Means Object
 #'
 #' @family Clustering
+#' @family Kmeans
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -176,6 +178,7 @@ hai_kmeans_obj <- function(.data, .centers = 5){
 #' K-Means Object Tidy Functions
 #'
 #' @family Clustering
+#' @family Kmeans
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -281,6 +284,7 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
 #' K-Means Mapping Function
 #'
 #' @family Clustering
+#' @family Kmeans
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -362,6 +366,7 @@ hai_kmeans_mapped_tbl <- function(.data, .centers = 15){
 #' K-Means Scree Plot Data Table
 #'
 #' @family Clustering
+#' @family Kmeans
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -426,6 +431,7 @@ hai_kmeans_scree_data_tbl <- function(.data) {
 #' K-Means Scree Plot
 #'
 #' @family Clustering
+#' @family Kmeans
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
