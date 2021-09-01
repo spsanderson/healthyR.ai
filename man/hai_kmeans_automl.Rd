@@ -10,6 +10,7 @@ hai_kmeans_automl(
   .seed = 1234,
   .centers = 10,
   .standardize = TRUE,
+  .print_model_summary = TRUE,
   .predictors,
   .categorical_encoding = "auto",
   .initialization_mode = "Furthest",
@@ -28,6 +29,9 @@ in a data set.}
 
 \item{.standardize}{The default is set to TRUE. When TRUE all numeric columns
 will be set to zero mean and unit variance.}
+
+\item{.print_model_summary}{This is a boolean and controls if the model summary
+is printed to the console. The default is TRUE.}
 
 \item{.predictors}{This must be in the form of c("column_1", "column_2", ... "column_n")}
 
