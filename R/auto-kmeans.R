@@ -43,13 +43,10 @@
 #' @export
 #'
 
-hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
-                            .centers = 10, .standarize = TRUE,
-                            .predictors, .categorical_encoding,
-                            .initialization_mode) {
-
-    # * H2O Initialize ----
-    h2o::h2o.init()
+hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
+                            .centers = 10, .standardize = TRUE,
+                            .predictors, .categorical_encoding = "auto",
+                            .initialization_mode = "Furthest") {
 
     # * Tidyeval ----
     split_ratio          <- as.numeric(.split_ratio)
@@ -89,8 +86,21 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
         stop(call. = FALSE, "(.initialization_mode) must be a character.")
     }
 
+    if(!initialization_mode %in% c(
+        "Random","Furthest","PlusPlus"
+    )){
+        stop(call. = FALSE, "(.initialization_mode) invalid choice made.")
+    }
+
     if(!class(categorical_encode) == "character"){
         stop(call. = FALSE, "(.categorical_encoding) must be a character.")
+    }
+
+    if(!categorical_encode %in% c(
+        "auto","enum","one_hot_explicit","binary","eigen","label_encoder",
+        "sort_by_response","enum_limited"
+    )){
+        stop(call. = FALSE, "(.categorical_encoding) invalid choice made.")
     }
 
     # * Data ----
@@ -108,22 +118,63 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
     validate_frame <- splits[[2]]
 
     # * KMEANS ----
-    h2o::h2o.kmeans(
+    auto_kmeans_obj <- h2o::h2o.kmeans(
         k                    = centers,
-        seet                 = seed,
+        estimate_k           = TRUE,
+        seed                 = seed,
         x                    = predictors,
         standardize          = standardize_numerics,
         training_frame       = training_frame,
         validation_frame     = validate_frame,
         init                 = initialization_mode,
-        categorical_encoding = categorical_encode
+        categorical_encoding = categorical_encode,
+        nfolds               = 5
     )
 
+    # * Tidy things up ----
+    training_tbl <- tibble::as_tibble(training_frame)
+    validate_tbl <- tibble::as_tibble(validate_frame)
 
-    # * H2O Shutdown ----
-    h2o::h2o.shutdown()
+    scree_data_tbl <- auto_kmeans_obj@model[["scoring_history"]] %>%
+        tibble::as_tibble() %>%
+        dplyr::filter(iterations > 0) %>%
+        dplyr::select(number_of_clusters, within_cluster_sum_of_squares) %>%
+        dplyr::group_by(number_of_clusters) %>%
+        dplyr::summarize(wss = mean(within_cluster_sum_of_squares, na.rm = TRUE)) %>%
+        purrr::set_names("centers","wss")
+
+    scree_plt <- scree_data_tbl %>%
+        ggplot2::ggplot(ggplot2::aes(x = centers, y = wss)) +
+        ggplot2::geom_point(size = 3) +
+        ggplot2::geom_line() +
+        ggplot2::theme_bw() +
+        ggplot2::labs(
+            title = "Auto K-Means Scree Plot",
+            x = "Centers",
+            y = "Cluster WSS"
+        )
+
+    # * List ----
+    message("Hi User! K-Means all done. Have a happy day :)")
+
+    output <- list(
+        data = list(
+            splits = list(
+                training_tbl = training_tbl,
+                validate_tbl = validate_tbl
+            ),
+            scree_data_tbl      = scree_data_tbl,
+            scoring_history_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
+                tibble::as_tibble(),
+            model_summary_tbl   = auto_kmeans_obj@model[["model_summary"]] %>%
+                tibble::as_tibble() %>%
+                tidyr::pivot_longer(cols = dplyr::everything())
+        ),
+        auto_kmeans_obj   = auto_kmeans_obj,
+        model_id          = auto_kmeans_obj@model_id,
+        scree_plt         = scree_plt
+    )
 
     # * Return ----
-
-    print("Hi User!")
+    return(invisible(output))
 }
