@@ -147,7 +147,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     print("Hi User! K-Means all done.")
 
     output <- list(
-        data_tbl = list(
+        data = list(
             splits = list(
                 training_tbl = training_tbl,
                 validate_tbl = validate_tbl
