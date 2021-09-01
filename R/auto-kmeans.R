@@ -44,12 +44,9 @@
 #'
 
 hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
-                            .centers = 10, .standarize = TRUE,
+                            .centers = 10, .standardize = TRUE,
                             .predictors, .categorical_encoding = "auto",
                             .initialization_mode = "Furthest") {
-
-    # * H2O Initialize ----
-    h2o::h2o.init()
 
     # * Tidyeval ----
     split_ratio          <- as.numeric(.split_ratio)
@@ -123,7 +120,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     # * KMEANS ----
     auto_kmeans_obj <- h2o::h2o.kmeans(
         k                    = centers,
-        seet                 = seed,
+        seed                 = seed,
         x                    = predictors,
         standardize          = standardize_numerics,
         training_frame       = training_frame,
@@ -131,10 +128,6 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         init                 = initialization_mode,
         categorical_encoding = categorical_encode
     )
-
-
-    # * H2O Shutdown ----
-    h2o::h2o.shutdown()
 
     # * Tidy things up ----
     training_tbl <- tibble::as_tibble(training_frame)
@@ -150,4 +143,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         ),
         auto_kmeans_obj  = auto_kmeans_obj
     )
+
+    # * Return ----
+    return(invisible(output))
 }
