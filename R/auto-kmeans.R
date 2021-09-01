@@ -143,8 +143,19 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         dplyr::summarize(wss = mean(within_cluster_sum_of_squares, na.rm = TRUE)) %>%
         purrr::set_names("centers","wss")
 
-    # * Return ----
-    print("Hi User! K-Means all done.")
+    scree_plt <- scree_data_tbl %>%
+        ggplot2::ggplot(ggplot2::aes(x = centers, y = wss)) +
+        ggplot2::geom_point(size = 3) +
+        ggplot2::geom_line() +
+        ggplot2::theme_bw() +
+        ggplot2::labs(
+            title = "Auto K-Means Scree Plot",
+            x = "Centers",
+            y = "Cluster WSS"
+        )
+
+    # * List ----
+    message("Hi User! K-Means all done. Have a happy day :)")
 
     output <- list(
         data = list(
@@ -152,12 +163,13 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                 training_tbl = training_tbl,
                 validate_tbl = validate_tbl
             ),
-            scree_data_tbl = scree_data_tbl
+            scree_data_tbl = scree_data_tbl,
+            model_summary_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
+                tibble::as_tibble()
         ),
         auto_kmeans_obj   = auto_kmeans_obj,
         model_id          = auto_kmeans_obj@model_id,
-        model_summary_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
-            tibble::as_tibble()
+        scree_plt         = scree_plt
     )
 
     # * Return ----
