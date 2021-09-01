@@ -163,9 +163,12 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                 training_tbl = training_tbl,
                 validate_tbl = validate_tbl
             ),
-            scree_data_tbl = scree_data_tbl,
-            model_summary_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
-                tibble::as_tibble()
+            scree_data_tbl      = scree_data_tbl,
+            scoring_history_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
+                tibble::as_tibble(),
+            model_summary_tbl   = auto_kmeans_obj@model[["model_summary"]] %>%
+                tibble::as_tibble() %>%
+                tidyr::pivot_longer(cols = dplyr::everything())
         ),
         auto_kmeans_obj   = auto_kmeans_obj,
         model_id          = auto_kmeans_obj@model_id,
