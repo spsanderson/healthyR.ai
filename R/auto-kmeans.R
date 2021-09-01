@@ -1,6 +1,5 @@
 #' Automatic K-Means H2O
 #'
-#' @family Clustering
 #' @family Kmeans
 #'
 #' @author Steven P. Sanderson II, MPH
@@ -168,7 +167,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         )
 
     # * List ----
-    message("Hi User! K-Means all done. Have a happy day :)")
+    #message("Hi User! K-Means all done. Have a happy day :)")
 
     output <- list(
         data = list(
