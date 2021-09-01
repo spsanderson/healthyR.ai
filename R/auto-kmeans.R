@@ -120,29 +120,44 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     # * KMEANS ----
     auto_kmeans_obj <- h2o::h2o.kmeans(
         k                    = centers,
+        estimate_k           = TRUE,
         seed                 = seed,
         x                    = predictors,
         standardize          = standardize_numerics,
         training_frame       = training_frame,
         validation_frame     = validate_frame,
         init                 = initialization_mode,
-        categorical_encoding = categorical_encode
+        categorical_encoding = categorical_encode,
+        nfolds               = 5
     )
 
     # * Tidy things up ----
     training_tbl <- tibble::as_tibble(training_frame)
     validate_tbl <- tibble::as_tibble(validate_frame)
 
+    scree_data_tbl <- auto_kmeans_obj@model[["scoring_history"]] %>%
+        tibble::as_tibble() %>%
+        dplyr::filter(iterations > 0) %>%
+        dplyr::select(number_of_clusters, within_cluster_sum_of_squares) %>%
+        dplyr::group_by(number_of_clusters) %>%
+        dplyr::summarize(wss = mean(within_cluster_sum_of_squares, na.rm = TRUE)) %>%
+        purrr::set_names("centers","wss")
+
     # * Return ----
     print("Hi User! K-Means all done.")
 
     output <- list(
-        splits = list(
-            training_tbl = training_tbl,
-            validate_tbl = validate_tbl
+        data_tbl = list(
+            splits = list(
+                training_tbl = training_tbl,
+                validate_tbl = validate_tbl
+            ),
+            scree_data_tbl = scree_data_tbl
         ),
-        auto_kmeans_obj  = auto_kmeans_obj,
-        model_id         = auto_kmeans_obj@model_id
+        auto_kmeans_obj   = auto_kmeans_obj,
+        model_id          = auto_kmeans_obj@model_id,
+        model_summary_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
+            tibble::as_tibble()
     )
 
     # * Return ----
