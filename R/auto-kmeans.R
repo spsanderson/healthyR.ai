@@ -45,8 +45,8 @@
 
 hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                             .centers = 10, .standarize = TRUE,
-                            .predictors, .categorical_encoding,
-                            .initialization_mode) {
+                            .predictors, .categorical_encoding = "auto",
+                            .initialization_mode = "Furthest") {
 
     # * H2O Initialize ----
     h2o::h2o.init()
