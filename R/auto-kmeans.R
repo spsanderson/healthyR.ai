@@ -43,7 +43,87 @@
 #' @export
 #'
 
-hai_auto_kmeans <- function(.data) {
+hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
+                            .centers = 10, .standarize = TRUE,
+                            .predictors, .categorical_encoding,
+                            .initialization_mode) {
+
+    # * H2O Initialize ----
+    h2o::h2o.init()
+
+    # * Tidyeval ----
+    split_ratio          <- as.numeric(.split_ratio)
+    seed                 <- as.integer(.seed)
+    centers              <- as.integer(.centers)
+    predictors           <- .predictors
+    standardize_numerics <- .standardize
+    initialization_mode  <- .initialization_mode
+    categorical_encode   <- .categorical_encoding
+
+    # * Checks ----
+    if(!is.data.frame(.data)){
+        stop(call. = FALSE, "(.data) must be a data.frame/tibble.")
+    }
+
+    if(!is.numeric(split_ratio) | (split_ratio > 1L) | (split_ratio < 0L)){
+        stop(call. = FALSE, "(.split_ratio) must be a number between 0 and 1.")
+    }
+
+    if(!is.integer(seed)){
+        stop(call. = FALSE, "(.seed) must be an integer.")
+    }
+
+    if(!is.integer(centers)){
+        stop(call. = FALSE, "(.centers) must be an integer.")
+    }
+
+    if(!is.logical(standardize_numerics)){
+        stop(call. = FALSE, "(.standardize) must be a logical, TRUE/FALSE.")
+    }
+
+    if(!class(predictors) == "character"){
+        stop(call. = FALSE, "(.predictors) must be a character list like: c('col1','col2')")
+    }
+
+    if(!class(initialization_mode) == "character"){
+        stop(call. = FALSE, "(.initialization_mode) must be a character.")
+    }
+
+    if(!class(categorical_encode) == "character"){
+        stop(call. = FALSE, "(.categorical_encoding) must be a character.")
+    }
+
+    # * Data ----
+    data_tbl <- tibble::as_tibble(.data)
+    # Convert to h2o data frame
+    data_tbl <- h2o::as.h2o(x = data_tbl)
+
+    splits <- h2o::h2o.splitFrame(
+        data_tbl,
+        ratios = split_ratio,
+        seed   = seed
+    )
+
+    training_frame <- splits[[1]]
+    validate_frame <- splits[[2]]
+
+    # * KMEANS ----
+    h2o::h2o.kmeans(
+        k                    = centers,
+        seet                 = seed,
+        x                    = predictors,
+        standardize          = standardize_numerics,
+        training_frame       = training_frame,
+        validation_frame     = validate_frame,
+        init                 = initialization_mode,
+        categorical_encoding = categorical_encode
+    )
+
+
+    # * H2O Shutdown ----
+    h2o::h2o.shutdown()
+
+    # * Return ----
 
     print("Hi User!")
 }
