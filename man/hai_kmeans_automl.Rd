@@ -55,7 +55,7 @@ iterations}
 will be set to zero mean and unit variance.}
 }
 \value{
-
+A list object
 }
 \description{
 This is a wrapper around the \code{\link[=h2o.kmeans]{h2o.kmeans()}} function that will return a list
@@ -65,6 +65,15 @@ object with a lot of useful and easy to use tidy style information.
 
 }
 \examples{
+\notrun{
+h2o.init()
+output <- hai_kmeans_automl(
+    .data = iris,
+    .predictors = c("Sepal.Width","Sepal.Length","Petal.Width","Petal.Length"),
+    .standardize = FALSE
+)
+h2o.shutdown()
+}
 
 }
 \seealso{
