@@ -32,7 +32,8 @@ Imports:
     recipes,
     parsnip,
     rsample,
-    purrr
+    purrr,
+    h2o
 Suggests: 
     rmarkdown,
     knitr,

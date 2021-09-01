@@ -9,8 +9,6 @@
 #' This is a wrapper around the [h2o.kmeans()] function that will return a list
 #' object with a lot of useful and easy to use tidy style information.
 #'
-#' @details
-#'
 #' @param .data The data that is to be passed for clustering.
 #' @param .split_ratio The ratio for training and testing splits.
 #' @param .seed The default is 1234, but can be set to any integer.
@@ -19,7 +17,7 @@
 #' @param .num_folds The number of folds for cross-validation
 #' @param .max_iterations The default is 100. This specifies the number of training
 #' iterations
-#' @param .stardardize The default is set to TRUE. When TRUE all numeric columns
+#' @param .standardize The default is set to TRUE. When TRUE all numeric columns
 #' will be set to zero mean and unit variance.
 #' @param .categorical_encoding Can be one of the following:
 #'   + "auto"
@@ -37,8 +35,17 @@
 #' @param .predictors This must be in the form of c("column_1", "column_2", ... "column_n")
 #'
 #' @examples
+#' \dontrun{
+#' h2o.init()
+#' output <- hai_kmeans_automl(
+#'     .data = iris,
+#'     .predictors = c("Sepal.Width","Sepal.Length","Petal.Width","Petal.Length"),
+#'     .standardize = FALSE
+#' )
+#' h2o.shutdown()
+#' }
 #'
-#' @return
+#' @return A list object
 #'
 #' @export
 #'
@@ -46,7 +53,8 @@
 hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                             .centers = 10, .standardize = TRUE,
                             .predictors, .categorical_encoding = "auto",
-                            .initialization_mode = "Furthest") {
+                            .initialization_mode = "Furthest",
+                            .max_iterations = 100) {
 
     # * Tidyeval ----
     split_ratio          <- as.numeric(.split_ratio)
@@ -56,6 +64,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     standardize_numerics <- .standardize
     initialization_mode  <- .initialization_mode
     categorical_encode   <- .categorical_encoding
+    max_iters            <- as.integer(.max_iterations)
 
     # * Checks ----
     if(!is.data.frame(.data)){
@@ -72,6 +81,10 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
 
     if(!is.integer(centers)){
         stop(call. = FALSE, "(.centers) must be an integer.")
+    }
+
+    if(!is.integer(max_iters)){
+        stop(call. = FALSE, "(.max_iterations) must be an integer.")
     }
 
     if(!is.logical(standardize_numerics)){
@@ -128,7 +141,8 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         validation_frame     = validate_frame,
         init                 = initialization_mode,
         categorical_encoding = categorical_encode,
-        nfolds               = 5
+        nfolds               = 5,
+        max_iterations       = max_iters
     )
 
     # * Tidy things up ----

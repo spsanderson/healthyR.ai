@@ -12,7 +12,8 @@ hai_kmeans_automl(
   .standardize = TRUE,
   .predictors,
   .categorical_encoding = "auto",
-  .initialization_mode = "Furthest"
+  .initialization_mode = "Furthest",
+  .max_iterations = 100
 )
 }
 \arguments{
@@ -24,6 +25,9 @@ hai_kmeans_automl(
 
 \item{.centers}{The default is 1. Specify the number of clusters (groups of data)
 in a data set.}
+
+\item{.standardize}{The default is set to TRUE. When TRUE all numeric columns
+will be set to zero mean and unit variance.}
 
 \item{.predictors}{This must be in the form of c("column_1", "column_2", ... "column_n")}
 
@@ -46,25 +50,28 @@ in a data set.}
 \item "PlusPlus"
 }}
 
-\item{.num_folds}{The number of folds for cross-validation}
-
 \item{.max_iterations}{The default is 100. This specifies the number of training
 iterations}
 
-\item{.stardardize}{The default is set to TRUE. When TRUE all numeric columns
-will be set to zero mean and unit variance.}
+\item{.num_folds}{The number of folds for cross-validation}
 }
 \value{
-
+A list object
 }
 \description{
 This is a wrapper around the \code{\link[=h2o.kmeans]{h2o.kmeans()}} function that will return a list
 object with a lot of useful and easy to use tidy style information.
 }
-\details{
-
-}
 \examples{
+\dontrun{
+h2o.init()
+output <- hai_kmeans_automl(
+    .data = iris,
+    .predictors = c("Sepal.Width","Sepal.Length","Petal.Width","Petal.Length"),
+    .standardize = FALSE
+)
+h2o.shutdown()
+}
 
 }
 \seealso{
