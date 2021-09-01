@@ -121,7 +121,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     validate_frame <- splits[[2]]
 
     # * KMEANS ----
-    h2o::h2o.kmeans(
+    auto_kmeans_obj <- h2o::h2o.kmeans(
         k                    = centers,
         seet                 = seed,
         x                    = predictors,
@@ -136,7 +136,18 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     # * H2O Shutdown ----
     h2o::h2o.shutdown()
 
-    # * Return ----
+    # * Tidy things up ----
+    training_tbl <- tibble::as_tibble(training_frame)
+    validate_tbl <- tibble::as_tibble(validate_frame)
 
-    print("Hi User!")
+    # * Return ----
+    print("Hi User! K-Means all done.")
+
+    output <- list(
+        splits = list(
+            training_tbl = training_tbl,
+            validate_tbl = validate_tbl
+        ),
+        auto_kmeans_obj  = auto_kmeans_obj
+    )
 }
