@@ -141,7 +141,8 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
             training_tbl = training_tbl,
             validate_tbl = validate_tbl
         ),
-        auto_kmeans_obj  = auto_kmeans_obj
+        auto_kmeans_obj  = auto_kmeans_obj,
+        model_id         = auto_kmeans_obj@model_id
     )
 
     # * Return ----
