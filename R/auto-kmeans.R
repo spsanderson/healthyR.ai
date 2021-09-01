@@ -31,6 +31,8 @@
 #'   + "Furthest (default)
 #'   + "PlusPlus"
 #' @param .predictors This must be in the form of c("column_1", "column_2", ... "column_n")
+#' @param .print_model_summary This is a boolean and controls if the model summary
+#' is printed to the console. The default is TRUE.
 #'
 #' @examples
 #' \dontrun{
@@ -50,6 +52,7 @@
 
 hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                             .centers = 10, .standardize = TRUE,
+                            .print_model_summary = TRUE,
                             .predictors, .categorical_encoding = "auto",
                             .initialization_mode = "Furthest",
                             .max_iterations = 100) {
@@ -63,6 +66,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     initialization_mode  <- .initialization_mode
     categorical_encode   <- .categorical_encoding
     max_iters            <- as.integer(.max_iterations)
+    print_mod_sum        <- .print_model_summary
 
     # * Checks ----
     if(!is.data.frame(.data)){
@@ -87,6 +91,10 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
 
     if(!is.logical(standardize_numerics)){
         stop(call. = FALSE, "(.standardize) must be a logical, TRUE/FALSE.")
+    }
+
+    if(!is.logical(print_mod_sum)){
+        stop(call. = FALSE, "(.print_model_summary) must be a logical, TRUE/FALSE.")
     }
 
     if(!class(predictors) == "character"){
@@ -175,6 +183,16 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                 training_tbl = training_tbl,
                 validate_tbl = validate_tbl
             ),
+            metrics = list(
+                training_metrics = auto_kmeans_obj@model[["training_metrics"]]@metrics$centroid_stats %>%
+                    tibble::as_tibble(),
+                validation_metrics = auto_kmeans_obj@model[["validation_metrics"]]@metrics$centroid_stats %>%
+                    tibble::as_tibble(),
+                cv_metric_summary = auto_kmeans_obj@model[["cross_validation_metrics_summary"]] %>%
+                    as.data.frame() %>%
+                    tibble::as_tibble(rownames = "metric_name")
+            ),
+            original_data       = data_tbl,
             scree_data_tbl      = scree_data_tbl,
             scoring_history_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
                 tibble::as_tibble(),
@@ -188,5 +206,8 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     )
 
     # * Return ----
+    if(print_mod_sum){
+        summary(auto_kmeans_obj)
+    }
     return(invisible(output))
 }
