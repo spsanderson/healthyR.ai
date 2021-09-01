@@ -14,7 +14,6 @@
 #' @param .seed The default is 1234, but can be set to any integer.
 #' @param .centers The default is 1. Specify the number of clusters (groups of data)
 #' in a data set.
-#' @param .num_folds The number of folds for cross-validation
 #' @param .max_iterations The default is 100. This specifies the number of training
 #' iterations
 #' @param .standardize The default is set to TRUE. When TRUE all numeric columns
