@@ -51,14 +51,6 @@ hai_kmeans_user_item_tbl(
 
 }
 \seealso{
-Other Clustering: 
-\code{\link{hai_kmeans_automl}()},
-\code{\link{hai_kmeans_mapped_tbl}()},
-\code{\link{hai_kmeans_obj}()},
-\code{\link{hai_kmeans_scree_data_tbl}()},
-\code{\link{hai_kmeans_scree_plt}()},
-\code{\link{hai_kmeans_tidy_tbl}()}
-
 Other Kmeans: 
 \code{\link{hai_kmeans_automl}()},
 \code{\link{hai_kmeans_mapped_tbl}()},
@@ -70,5 +62,4 @@ Other Kmeans:
 \author{
 Steven P. Sanderson II, MPH
 }
-\concept{Clustering}
 \concept{Kmeans}
