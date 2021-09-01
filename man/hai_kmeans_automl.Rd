@@ -52,8 +52,6 @@ will be set to zero mean and unit variance.}
 
 \item{.max_iterations}{The default is 100. This specifies the number of training
 iterations}
-
-\item{.num_folds}{The number of folds for cross-validation}
 }
 \value{
 A list object
