@@ -43,7 +43,7 @@
 #' @export
 #'
 
-hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
+hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                             .centers = 10, .standarize = TRUE,
                             .predictors, .categorical_encoding,
                             .initialization_mode) {
@@ -89,8 +89,21 @@ hai_auto_kmeans <- function(.data, .split_ratio = 0.80, .seed = 1234,
         stop(call. = FALSE, "(.initialization_mode) must be a character.")
     }
 
+    if(!initialization_mode %in% c(
+        "Random","Furthest","PlusPlus"
+    )){
+        stop(call. = FALSE, "(.initialization_mode) invalid choice made.")
+    }
+
     if(!class(categorical_encode) == "character"){
         stop(call. = FALSE, "(.categorical_encoding) must be a character.")
+    }
+
+    if(!categorical_encode %in% c(
+        "auto","enum","one_hot_explicit","binary","eigen","label_encoder",
+        "sort_by_response","enum_limited"
+    )){
+        stop(call. = FALSE, "(.categorical_encoding) invalid choice made.")
     }
 
     # * Data ----
