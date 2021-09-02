@@ -11,7 +11,13 @@
 #' @details
 #' This function will internally take in the output assigned from the
 #' [healthyR.ai::hai_kmeans_automl()] function only and return a list of useful
-#' information.
+#' information. The items that are returned are as follows:
+#'   1. prediction - The h2o dataframe of predictions
+#'   2. prediction_tbl - The h2o predictions in tibble format
+#'   3. valid_tbl - The validation data in tibble format
+#'   4. pred_full_tbl - The entire validation set with the predictions attached using
+#'      [base::cbind()]. The predictions are in a column called `predicted_cluster` and
+#'      are in the formate of a factor using [forcats::as_factor()]
 #'
 #' @param .input This is the output of the [healthyR.ai::hai_kmeans_automl()] function.
 #'
@@ -24,6 +30,7 @@
 #'     .predictors = c("Sepal.Width","Sepal.Length","Petal.Width","Petal.Length"),
 #'     .standardize = FALSE
 #' )
+#'
 #' pred <- hai_kmeans_automl_predict(output)
 #'
 #' h2o.shutdown()
@@ -55,7 +62,8 @@ hai_kmeans_automl_predict <- function(.input){
     valid_tbl <- newdata %>% tibble::as_tibble()
 
     final_pred_tbl <- cbind(valid_tbl, pred_tbl) %>%
-        dplyr::rename("predicted_cluster" = predict)
+        dplyr::rename("predicted_cluster" = predict) %>%
+        dplyr::mutate(predicted_cluster = forcats::as_factor(predicted_cluster))
 
     # Return ----
     output <- list(
