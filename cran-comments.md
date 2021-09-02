@@ -9,5 +9,4 @@
 
 * This is a new release.
 
-Added "cph" to roles and dropped the second line as indicated.
-Added the return value to `tidyeval` as indicated.
+Update package to 0.0.2
