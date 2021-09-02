@@ -63,7 +63,6 @@ hai_kmeans_automl_predict <- function(.input){
     valid_tbl <- newdata %>% tibble::as_tibble()
 
     final_pred_tbl <- cbind(valid_tbl, pred_tbl) %>%
-        # dplyr::rename("predicted_cluster" = predict) %>%
         dplyr::mutate(predicted_cluster = forcats::as_factor(predicted_cluster))
 
     # Return ----
