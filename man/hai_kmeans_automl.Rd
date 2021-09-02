@@ -61,7 +61,7 @@ iterations}
 A list object
 }
 \description{
-This is a wrapper around the \code{\link[=h2o.kmeans]{h2o.kmeans()}} function that will return a list
+This is a wrapper around the \code{\link[h2o:h2o.kmeans]{h2o::h2o.kmeans()}} function that will return a list
 object with a lot of useful and easy to use tidy style information.
 }
 \examples{
@@ -78,6 +78,7 @@ h2o.shutdown()
 }
 \seealso{
 Other Kmeans: 
+\code{\link{hai_kmeans_automl_predict}()},
 \code{\link{hai_kmeans_mapped_tbl}()},
 \code{\link{hai_kmeans_obj}()},
 \code{\link{hai_kmeans_scree_data_tbl}()},

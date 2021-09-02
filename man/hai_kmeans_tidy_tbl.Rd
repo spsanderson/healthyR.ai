@@ -68,6 +68,7 @@ hai_kmeans_tidy_tbl(
 }
 \seealso{
 Other Kmeans: 
+\code{\link{hai_kmeans_automl_predict}()},
 \code{\link{hai_kmeans_automl}()},
 \code{\link{hai_kmeans_mapped_tbl}()},
 \code{\link{hai_kmeans_obj}()},
