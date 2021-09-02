@@ -13,6 +13,7 @@ None
   +  `hai_kmeans_user_item_tbl()`
 2. Fix #29 - Add function `pca_your_recipe()`
 3. Fix #32 - Add function `hai_kmeans_automl()`
+4. Fix #49 - Add function `hai_kmeans_automl_predict()`
 
 ## Minor Fixes and Improvements
 None
