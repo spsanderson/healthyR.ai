@@ -36,6 +36,35 @@
 
 hai_kmeans_automl_predict <- function(.input){
 
+    input <- .input
 
+    if (!class(output) == "list"){
+        stop(call. = FALSE, "(.input) should be a list object from the hai_kmeans_automl function.")
+    }
+
+    # Get validation data from input ----
+    kmeans_obj <- input$auto_kmeans_obj
+
+    newdata <- input$data$splits$validate_tbl
+    newdata <- h2o::as.h2o(newdata)
+
+    # Make prediction ----
+    prediction <- h2o::h2o.predict(kmeans_obj, newdata = newdata)
+    pred_tbl   <- tibble::as_tibble(prediction)
+
+    valid_tbl <- newdata %>% tibble::as_tibble()
+
+    final_pred_tbl <- cbind(valid_tbl, pred_tbl) %>%
+        dplyr::rename("predicted_cluster" = predict)
+
+    # Return ----
+    output <- list(
+        prediction     = prediction,
+        prediction_tbl = pred_tbl,
+        valid_tbl      = valid_tbl,
+        pred_full_tbl  = final_pred_tbl
+    )
+
+    return(output)
 
 }
