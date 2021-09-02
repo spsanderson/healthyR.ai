@@ -8,6 +8,11 @@
 #' This is a wrapper around the [h2o::h2o.predict()] function that will return a list
 #' object with a lot of useful and easy to use tidy style information.
 #'
+#' @details
+#' This function will internally take in the output assigned from the
+#' [healthyR.ai::hai_kmeans_automl()] function only and return a list of useful
+#' information.
+#'
 #' @param .input This is the output of the [healthyR.ai::hai_kmeans_automl()] function.
 #'
 #' @examples
@@ -28,3 +33,9 @@
 #'
 #' @export
 #'
+
+hai_kmeans_automl_predict <- function(.input){
+
+
+
+}
