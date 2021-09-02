@@ -5,7 +5,7 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
-#' This is a wrapper around the [h2o.kmeans()] function that will return a list
+#' This is a wrapper around the [h2o::h2o.kmeans()] function that will return a list
 #' object with a lot of useful and easy to use tidy style information.
 #'
 #' @param .data The data that is to be passed for clustering.
