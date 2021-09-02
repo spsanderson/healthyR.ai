@@ -13,11 +13,14 @@
 #' @examples
 #' \dontrun{
 #' h2o.init()
+#'
 #' output <- hai_kmeans_automl(
 #'     .data = iris,
 #'     .predictors = c("Sepal.Width","Sepal.Length","Petal.Width","Petal.Length"),
 #'     .standardize = FALSE
 #' )
+#' pred <- hai_kmeans_automl_predict(output)
+#'
 #' h2o.shutdown()
 #' }
 #'
