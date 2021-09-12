@@ -53,7 +53,7 @@ preprocess_your_data <- function(.data){
         dplyr::select_if(is.factor)
 
     data_dttm_tbl <- data_tbl %>%
-        dplyr::select_if(is.Date)
+        dplyr::select_if(timetk::is_date_class)
 
     # * Return ----
     return(data_tbl)
