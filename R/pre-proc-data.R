@@ -45,6 +45,16 @@ preprocess_your_data <- function(.data){
     # * Manipulation ----
     data_tbl <- tibble::as_tibble(.data)
 
+    # ** Data Splits ----
+    data_numeric_tbl <- data_tbl %>%
+        dplyr::select_if(is.numberic)
+
+    data_fct_tbl <- data_tbl %>%
+        dplyr::select_if(is.factor)
+
+    data_dttm_tbl <- data_tbl %>%
+        dplyr::select_if(is.Date)
+
     # * Return ----
     return(data_tbl)
 }
