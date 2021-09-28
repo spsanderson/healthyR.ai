@@ -27,13 +27,15 @@
 #'    mutate(record = 1) %>%
 #'    as_tibble()
 #'
+#' hai_data_preprocessor()
+#'
 #' @return
 #' A processed data.frame/tibble.
 #'
 #' @export
 #'
 
-preprocess_your_data <- function(.data){
+hai_data_preprocessor <- function(.data){
 
     # * Tidyeval ----
 
