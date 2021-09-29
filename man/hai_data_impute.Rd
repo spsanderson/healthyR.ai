@@ -24,7 +24,17 @@ it will be removed from the latter and not used to impute itself.}
 \item{.number_of_trees}{This is used for the \code{\link[recipes:step_impute_bag]{recipes::step_impute_bag()}} trees
 parameter. This should be an integer.}
 
-\item{.type_of_imputation}{This is a quoted argument like, "mean" or "bagged".}
+\item{.type_of_imputation}{This is a quoted argument and can be one of the following:
+\itemize{
+\item "bagged"
+\item "knn"
+\item "linear"
+\item "lower"
+\item "mean"
+\item "median"
+\item "mode"
+\item "roll"
+}}
 }
 \value{
 A processed data.frame/tibble.
