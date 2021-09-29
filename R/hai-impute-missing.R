@@ -17,10 +17,17 @@
 #' This function will get your data ready for processing with many types of ml/ai
 #' models.
 #'
-#' This is intended to be used inside of the [healthyR.ai::hai_data_preprocessor()]
+#' This is intended to be used inside of the [healthyR.ai::hai_data_preprocessor()] and
+#' therefore is an internal function. This documentation exists to explain the process
+#' and help the user understand the parameters that can be set in the preprocessor function.
 #'
+#' The first function used is [recipes::step_impute_bag()]
+#'
+#' Main Recipes Imputation Section:
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 #'
+#' step_impute_bag
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
 #' @param .data The data that you want to process
 #'
 #' @examples
