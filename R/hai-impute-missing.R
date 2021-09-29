@@ -1,6 +1,8 @@
 #' Data Preprocessor
 #'
 #' @family Imputation
+#' @family Data Recipes
+#' @family Preprocessor
 #'
 #' @keywords internal
 #'
@@ -41,4 +43,4 @@
 #' @export hai_data_impute
 #'
 
-hai_data_impute <-
+hai_data_impute <- function(.)
