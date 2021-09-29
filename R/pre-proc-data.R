@@ -1,6 +1,7 @@
 #' Data Preprocessor
 #'
 #' @family Data Wrangling
+#' @family Preprocessor
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
