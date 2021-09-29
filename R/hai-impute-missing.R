@@ -30,7 +30,16 @@
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
 #'
 #' @param .recipe_object The data that you want to process
+#' @param ... One or more selector functions to choose variables to be imputed.
+#' When used with imp_vars, these dots indicate which variables are used to
+#' predict the missing data in each variable. See selections() for more details
+#' @param .impute_vars_with A call to imp_vars to specify which variables are
+#' used to impute the variables that can include specific variable names
+#' separated by commas or different selectors (see selections()). If a column is
+#' included in both lists to be imputed and to be an imputation predictor,
+#' it will be removed from the latter and not used to impute itself.
 #' @param .type_of_imputation This is a quoted argument like, "mean" or "bagged".
+#'
 #'
 #' @examples
 #' library(healthyR.data)
