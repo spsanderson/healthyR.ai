@@ -1,4 +1,4 @@
-#' Data Preprocessor
+#' Data Preprocessor - Imputation
 #'
 #' @family Imputation
 #' @family Data Recipes
@@ -23,12 +23,14 @@
 #'
 #' The first function used is [recipes::step_impute_bag()]
 #'
-#' Main Recipes Imputation Section:
+#' __Main Recipes Imputation Section:__
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 #'
 #' step_impute_bag
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
+#'
 #' @param .recipe_object The data that you want to process
+#' @param .type_of_imputation This is a quoted argument like, "mean" or "bagged".
 #'
 #' @examples
 #' library(healthyR.data)
