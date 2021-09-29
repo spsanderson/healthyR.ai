@@ -38,6 +38,9 @@
 #' separated by commas or different selectors (see selections()). If a column is
 #' included in both lists to be imputed and to be an imputation predictor,
 #' it will be removed from the latter and not used to impute itself.
+#' @param .seed_value To make results reproducible, set the seed.
+#' @param .number_of_trees This is used for the [recipes::step_impute_bag()] trees
+#' parameter. This should be an integer.
 #' @param .type_of_imputation This is a quoted argument like, "mean" or "bagged".
 #'
 #'
