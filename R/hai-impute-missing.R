@@ -82,7 +82,7 @@
 #'
 
 hai_data_impute <- function(.recipe_object, ..., .impute_vars_with = imp_vars(all_predictors()),
-                            .seed_value = 123, .type_of_imputation,
+                            .seed_value = 123, .type_of_imputation = "mean",
                             .number_of_trees = 25, .neighbors = 5, .mean_trim = 0,
                             .roll_statistic = median, .roll_window = 5){
 
@@ -92,6 +92,12 @@ hai_data_impute <- function(.recipe_object, ..., .impute_vars_with = imp_vars(al
     terms       <- rlang::enquos(...)
     impute_with <- .impute_vars_with
     seed_value  <- as.integer(.seed_value)
+    impute_type <- as.character(.type_of_imputation)
+    trees       <- as.integer(.number_of_trees)
+    neighbors   <- as.integer(.neighbors)
+    mean_trim   <- as.numeric(.mean_trim) # 1 >= trim >= 0
+    roll_stat   <- substitute(.roll_statistic)
+    roll_window <- as.integer(.roll_window)
 
     # * Checks ----
     if (is.null(impute_with)) {
