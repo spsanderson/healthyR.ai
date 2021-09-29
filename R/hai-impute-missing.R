@@ -29,6 +29,9 @@
 #' step_impute_bag
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
 #'
+#' step_impute_knn
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_knn.html}
+#'
 #' @param .recipe_object The data that you want to process
 #' @param ... One or more selector functions to choose variables to be imputed.
 #' When used with imp_vars, these dots indicate which variables are used to
@@ -50,8 +53,15 @@
 #' -  "median"
 #' -  "mode"
 #' -  "roll"
-#'
-#'
+#' @param .neighbors This should be filled in with an integer value if `.type_of_imputation`
+#' selected is "knn".
+#' @param .mean_trim This should be filled in with a fraction if `.type_of_imputation`
+#' selected is "mean".
+#' @param .roll_statistic This should be filled in with a single unquoted function
+#' that takes with it a single argument such as mean. This should be filled in
+#' if `.type_of_imputation` selected is "roll".
+#' @param .roll_window This should be filled in with an integer value if `.type_of_imputation`
+#' selected is "roll".
 #'
 #' @examples
 #' library(healthyR.data)
@@ -65,7 +75,7 @@
 #'    mutate(record = 1) %>%
 #'    as_tibble()
 #'
-#' hai_data_preprocessor()
+#' hai_data_impute()
 #'
 #' @return
 #' A processed data.frame/tibble.
@@ -80,6 +90,7 @@ hai_data_impute <- function(.recipe_object){
     if (!class(rec_obj) == "recipe"){
         stop(call. = FALSE, "You must supply an object of class recipe.")
     }
+
 
     # * Return ---
     return(rec_obj)
