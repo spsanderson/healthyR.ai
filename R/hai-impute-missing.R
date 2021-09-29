@@ -28,7 +28,7 @@
 #'
 #' step_impute_bag
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
-#' @param .data The data that you want to process
+#' @param .recipe_object The data that you want to process
 #'
 #' @examples
 #' library(healthyR.data)
@@ -50,4 +50,16 @@
 #' @export hai_data_impute
 #'
 
-hai_data_impute <- function(.)
+hai_data_impute <- function(.recipe_object){
+
+    rec_obj <- .recipe_object
+
+    # * Checks ----
+    # Is the .recipe_object in fact a class of recipe?
+    if (!class(rec_obj) == "recipe"){
+        stop(call. = FALSE, "You must supply an object of class recipe.")
+    }
+
+    # * Return ---
+    return(rec_obj)
+}
