@@ -41,7 +41,16 @@
 #' @param .seed_value To make results reproducible, set the seed.
 #' @param .number_of_trees This is used for the [recipes::step_impute_bag()] trees
 #' parameter. This should be an integer.
-#' @param .type_of_imputation This is a quoted argument like, "mean" or "bagged".
+#' @param .type_of_imputation This is a quoted argument and can be one of the following:
+#' -  "bagged"
+#' -  "knn"
+#' -  "linear"
+#' -  "lower"
+#' -  "mean"
+#' -  "median"
+#' -  "mode"
+#' -  "roll"
+#'
 #'
 #'
 #' @examples
