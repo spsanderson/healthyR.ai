@@ -89,8 +89,9 @@ hai_data_impute <- function(.recipe_object, ..., .impute_vars_with = imp_vars(al
     rec_obj <- .recipe_object
 
     # * Parameters ----
-    terms <- rlang::enquos(...)
+    terms       <- rlang::enquos(...)
     impute_with <- .impute_vars_with
+    seed_value  <- as.integer(.seed_value)
 
     # * Checks ----
     if (is.null(impute_with)) {
