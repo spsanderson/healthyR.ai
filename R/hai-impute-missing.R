@@ -11,7 +11,7 @@
 #' @description
 #' Takes in a recipe and will impute missing values using a selected recipe.
 #' To call the recipe use a quoted argument like "median" or "bagged". This function
-#' is not exported but may be called via [healthyR.ai:::hai_data_impute()]
+#' is not exported but may be called via the ::: method.
 #'
 #' @details
 #' This function will get your data ready for processing with many types of ml/ai
