@@ -47,8 +47,6 @@
 #' @return
 #' A processed data.frame/tibble.
 #'
-#' @export hai_data_impute
-#'
 
 hai_data_impute <- function(.recipe_object){
 
