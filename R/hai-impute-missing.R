@@ -81,9 +81,21 @@
 #' A processed data.frame/tibble.
 #'
 
-hai_data_impute <- function(.recipe_object){
+hai_data_impute <- function(.recipe_object, ..., .impute_vars_with = imp_vars(all_predictors()),
+                            .seed_value = 123, .type_of_imputation,
+                            .number_of_trees = 25, .neighbors = 5, .mean_trim = 0,
+                            .roll_statistic = median, .roll_window = 5){
 
     rec_obj <- .recipe_object
+
+    # * Parameters ----
+    terms <- rlang::enquos(...)
+    impute_with <- .impute_vars_with
+
+    # * Checks ----
+    if (is.null(impute_with)) {
+        rlang::abort("`impute_with` Needs some variables please.")
+    }
 
     # * Checks ----
     # Is the .recipe_object in fact a class of recipe?
