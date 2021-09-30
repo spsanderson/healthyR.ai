@@ -119,6 +119,14 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
              parameter, i.e. mean or median.")
     }
 
+    if(!tolower(impute_type) %in% c(
+        "bagged","knn","linear","lower","mean","median","mode","roll"
+        )
+    ){
+        stop(call. = FALSE, "(.type_of_imputattion) is not implemented. Please choose
+             from 'bagged','knn','linear','lower','mean','median','mode','roll'")
+    }
+
     if(!is.integer(trees) | !is.integer(neighbors) | !is.integer(roll_window)){
         stop(call. = FALSE, "The parameters of (.trees), (.neighbors), and (.roll_window) must
              be integers.")
@@ -128,12 +136,12 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
         stop(call. = FALSE, "(.mean_trim) must be a fraction between 0 and 1, such as 0.25")
     }
 
-    # * Checks ----
     # Is the .recipe_object in fact a class of recipe?
     if (!class(rec_obj) == "recipe"){
         stop(call. = FALSE, "You must supply an object of class recipe.")
     }
 
+    # * if statement to run the desired type of imputation
 
     # * Return ---
     return(rec_obj)
