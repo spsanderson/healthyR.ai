@@ -47,32 +47,11 @@
 #' @param ... One or more selector functions to choose variables to be imputed.
 #' When used with imp_vars, these dots indicate which variables are used to
 #' predict the missing data in each variable. See selections() for more details
-#' @param .impute_vars_with A call to imp_vars to specify which variables are
-#' used to impute the variables that can include specific variable names
-#' separated by commas or different selectors (see selections()). If a column is
-#' included in both lists to be imputed and to be an imputation predictor,
-#' it will be removed from the latter and not used to impute itself.
-#' @param .seed_value To make results reproducible, set the seed.
-#' @param .number_of_trees This is used for the [recipes::step_impute_bag()] trees
-#' parameter. This should be an integer.
-#' @param .type_of_imputation This is a quoted argument and can be one of the following:
-#' -  "bagged"
-#' -  "knn"
-#' -  "linear"
-#' -  "lower"
-#' -  "mean"
-#' -  "median"
-#' -  "mode"
-#' -  "roll"
-#' @param .neighbors This should be filled in with an integer value if `.type_of_imputation`
-#' selected is "knn".
-#' @param .mean_trim This should be filled in with a fraction if `.type_of_imputation`
-#' selected is "mean".
-#' @param .roll_statistic This should be filled in with a single unquoted function
-#' that takes with it a single argument such as mean. This should be filled in
-#' if `.type_of_imputation` selected is "roll".
-#' @param .roll_window This should be filled in with an integer value if `.type_of_imputation`
-#' selected is "roll".
+#' @param .type_of_scale This is a quoted argument and can be one of the following:
+#' -  "center"
+#' -  "normalize"
+#' -  "range"
+#' -  "scale"
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
