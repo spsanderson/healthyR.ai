@@ -142,6 +142,15 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
     }
 
     # * if statement to run the desired type of imputation
+    if(impute_type == "bagged"){
+        imp_obj <- recipes::step_impute_bag(
+            recipe      = rec_obj,
+            terms,
+            impute_with = impute_with,
+            trees       = trees,
+            seed_val    = seed_value
+        )
+    }
 
     # * Return ---
     return(rec_obj)
