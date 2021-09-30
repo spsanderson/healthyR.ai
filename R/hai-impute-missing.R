@@ -24,6 +24,7 @@
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 #'
 #' step_impute_bag
+#'
 #' [recipes::step_impute_bag()]
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
 #'
