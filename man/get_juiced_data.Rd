@@ -50,6 +50,7 @@ get_juiced_data(rec_obj)
 }
 \seealso{
 Other Data Wrangling: 
+\code{\link{hai_data_preprocessor}()},
 \code{\link{pca_your_recipe}()}
 }
 \author{

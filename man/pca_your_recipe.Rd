@@ -76,7 +76,11 @@ output_list$pca_variance_scree_plt
 \url{https://recipes.tidymodels.org/reference/step_pca.html}
 
 Other Data Wrangling: 
-\code{\link{get_juiced_data}()}
+\code{\link{get_juiced_data}()},
+\code{\link{hai_data_preprocessor}()}
+
+Other Data Recipes: 
+\code{\link{hai_data_impute}()}
 }
 \author{
 Steven P. Sanderson II, MPH
