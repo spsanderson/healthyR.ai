@@ -159,12 +159,28 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
         )
     } else if(impute_type == "linear"){
         imp_obj <- recipes::step_impute_linear(
-            recipe = rec_obj,
+            recipe      = rec_obj,
             !!! terms,
             impute_with = impute_with
         )
     } else if(impute_type == "lower"){
         imp_obj <- recipes::step_impute_lower(
+            recipe = rec_obj,
+            !!! terms
+        )
+    } else if(impute_type == "mean"){
+        imp_obj <- recipes::step_impute_mean(
+            recipe = rec_obj,
+            !!! terms,
+            trim   = mean_trim
+        )
+    } else if(impute_type == "median"){
+        imp_obj <- recipes::step_impute_median(
+            recipe = rec_obj,
+            !!! terms
+        )
+    } else if(impute_type == "mode"){
+        imp_obj <- recipes::step_impute_mode(
             recipe = rec_obj,
             !!! terms
         )
