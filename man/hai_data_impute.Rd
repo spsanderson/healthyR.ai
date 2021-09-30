@@ -105,12 +105,44 @@ hai_data_impute(
 \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 
 step_impute_bag
+\code{\link[recipes:step_impute_bag]{recipes::step_impute_bag()}}
 
 \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
 
 step_impute_knn
+\code{\link[recipes:step_impute_knn]{recipes::step_impute_knn()}}
 
 \url{https://recipes.tidymodels.org/reference/step_impute_knn.html}
+
+step_impute_linear
+\code{\link[recipes:step_impute_linear]{recipes::step_impute_linear()}}
+
+\url{https://recipes.tidymodels.org/reference/step_impute_linear.html}
+
+step_impute_lower
+\code{\link[recipes:step_impute_lower]{recipes::step_impute_lower()}}
+
+\url{https://recipes.tidymodels.org/reference/step_impute_lower.html}
+
+step_impute_mean
+\code{\link[recipes:step_impute_mean]{recipes::step_impute_mean()}}
+
+\url{https://recipes.tidymodels.org/reference/step_impute_mean.html}
+
+step_impute_median
+\code{\link[recipes:step_impute_median]{recipes::step_impute_median()}}
+
+\url{https://recipes.tidymodels.org/reference/step_impute_median.html}
+
+step_impute_mode
+\code{\link[recipes:step_impute_mode]{recipes::step_impute_mode()}}
+
+\url{https://recipes.tidymodels.org/reference/step_impute_mode.html}
+
+step_impute_roll
+\code{\link[recipes:step_impute_roll]{recipes::step_impute_roll()}}
+
+\url{https://recipes.tidymodels.org/reference/step_impute_roll.html}
 
 Other Data Recipes: 
 \code{\link{pca_your_recipe}()}
