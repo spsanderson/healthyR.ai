@@ -124,6 +124,10 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
              be integers.")
     }
 
+    if(!is.numeric(mean_trim) | (mean_trim > 1) | (mean_trim < 0)){
+        stop(call. = FALSE, "(.mean_trim) must be a fraction between 0 and 1, such as 0.25")
+    }
+
     # * Checks ----
     # Is the .recipe_object in fact a class of recipe?
     if (!class(rec_obj) == "recipe"){
