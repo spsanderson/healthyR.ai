@@ -163,7 +163,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
             !!! terms,
             impute_with = impute_with
         )
-    } else if(impute_tye == "lower"){
+    } else if(impute_type == "lower"){
         imp_obj <- recipes::step_impute_lower(
             recipe = rec_obj,
             !!! terms,
