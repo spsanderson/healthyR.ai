@@ -102,7 +102,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
     trees       <- as.integer(.number_of_trees)
     neighbors   <- as.integer(.neighbors)
     mean_trim   <- as.numeric(.mean_trim) # 1 >= trim >= 0
-    roll_stat   <- substitute(.roll_statistic)
+    roll_stat   <- .roll_statistic
     roll_window <- as.integer(.roll_window)
 
     # * Checks ----
@@ -183,6 +183,13 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
         imp_obj <- recipes::step_impute_mode(
             recipe = rec_obj,
             !!! terms
+        )
+    } else if(impute_type == "roll"){
+        imp_obj <- recipes::step_impute_roll(
+            recipe    = rec_obj,
+            !!! terms,
+            statistic = roll_stat,
+            window    = roll_window
         )
     }
 
