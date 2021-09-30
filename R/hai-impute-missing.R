@@ -27,10 +27,36 @@
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 #'
 #' step_impute_bag
+#' [recipes::step_impute_bag()]
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
 #'
 #' step_impute_knn
+#' [recipes::step_impute_knn()]
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_knn.html}
+#'
+#' step_impute_linear
+#' [recipes::step_impute_linear()]
+#' @seealso  \url{https://recipes.tidymodels.org/reference/step_impute_linear.html}
+#'
+#' step_impute_lower
+#' [recipes::step_impute_lower()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_lower.html}
+#'
+#' step_impute_mean
+#' [recipes::step_impute_mean()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_mean.html}
+#'
+#' step_impute_median
+#' [recipes::step_impute_median()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_median.html}
+#'
+#' step_impute_mode
+#' [recipes::step_impute_mode()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_mode.html}
+#'
+#' step_impute_roll
+#' [recipes::step_impute_roll()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_roll.html}
 #'
 #' @param .recipe_object The data that you want to process
 #' @param ... One or more selector functions to choose variables to be imputed.
