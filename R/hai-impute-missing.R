@@ -110,7 +110,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
         rlang::abort("`impute_with` Needs some variables please.")
     }
 
-    if(!is.null(seed_value) | !is.integer(seed_value)){
+    if((!is.null(seed_value) & !is.numeric(seed_value))){
         stop(call. = FALSE, "(.seed_value) must either be NULL or an integer.")
     }
 
@@ -127,7 +127,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
              from 'bagged','knn','linear','lower','mean','median','mode','roll'")
     }
 
-    if(!is.integer(trees) | !is.integer(neighbors) | !is.integer(roll_window)){
+    if(!is.numeric(trees) | !is.numeric(neighbors) | !is.numeric(roll_window)){
         stop(call. = FALSE, "The parameters of (.trees), (.neighbors), and (.roll_window) must
              be integers.")
     }
@@ -145,7 +145,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
     if(impute_type == "bagged"){
         imp_obj <- recipes::step_impute_bag(
             recipe      = rec_obj,
-            terms,
+            !!! terms,
             impute_with = impute_with,
             trees       = trees,
             seed_val    = seed_value
@@ -153,5 +153,5 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
     }
 
     # * Return ---
-    return(rec_obj)
+    return(imp_obj)
 }
