@@ -75,10 +75,6 @@ models.
 This is intended to be used inside of the \code{\link[=hai_data_preprocessor]{hai_data_preprocessor()}} and
 therefore is an internal function. This documentation exists to explain the process
 and help the user understand the parameters that can be set in the preprocessor function.
-
-The first function used is \code{\link[recipes:step_impute_bag]{recipes::step_impute_bag()}}
-
-\strong{Main Recipes Imputation Section:}
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
