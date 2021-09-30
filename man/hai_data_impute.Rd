@@ -101,6 +101,7 @@ hai_data_impute(
 \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 
 step_impute_bag
+
 \code{\link[recipes:step_impute_bag]{recipes::step_impute_bag()}}
 
 \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
