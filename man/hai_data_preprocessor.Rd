@@ -20,16 +20,17 @@ This function will get your data ready for processing with many types of ml/ai
 models. This is an R translation from the PyCaret pre-processor.
 }
 \examples{
-library(healthyR.data)
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(recipes))
 
-data_tbl <- healthyR_data\%>\%
-   filter(ip_op_flag == "I") \%>\%
-   filter(payer_grouping != "Medicare B") \%>\%
-   filter(payer_grouping != "?") \%>\%
-   select(service_line, payer_grouping) \%>\%
-   mutate(record = 1) \%>\%
-   as_tibble()
+date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
+val_seq  <- rep(c(rnorm(9), NA), times = 10)
+df_tbl   <- tibble(
+    date_col = date_seq,
+    value    = val_seq
+)
+
+rec_obj <- recipe(value ~., df_tbl)
 
 hai_data_preprocessor()
 
