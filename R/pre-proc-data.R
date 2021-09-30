@@ -10,9 +10,7 @@
 #'
 #' @details
 #' This function will get your data ready for processing with many types of ml/ai
-#' models. This is an R translation from the PyCaret pre-processor.
-#'
-#' @seealso \url{https://pycaret.org/preprocessing/}
+#' models. This function works with a recipe object.
 #'
 #' @param .data The data that you want to process
 #'
