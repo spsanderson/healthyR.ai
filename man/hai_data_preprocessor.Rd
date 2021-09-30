@@ -17,7 +17,7 @@ Takes in a data.frame/tibble and transforms it into a processed data.frame/tibbl
 }
 \details{
 This function will get your data ready for processing with many types of ml/ai
-models. This is an R translation from the PyCaret pre-processor.
+models. This function works with a recipe object.
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
@@ -36,8 +36,6 @@ hai_data_preprocessor()
 
 }
 \seealso{
-\url{https://pycaret.org/preprocessing/}
-
 Other Data Wrangling: 
 \code{\link{get_juiced_data}()},
 \code{\link{pca_your_recipe}()}
