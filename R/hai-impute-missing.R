@@ -199,6 +199,12 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
         )
     }
 
-    # * Return ---
-    return(imp_obj)
+    # * Recipe List ---
+    output <- list(
+        rec_base       = rec_obj,
+        impute_rec_obj = imp_obj
+    )
+
+    # * Return ----
+    return(output)
 }
