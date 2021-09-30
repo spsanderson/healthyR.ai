@@ -21,9 +21,6 @@
 #' therefore is an internal function. This documentation exists to explain the process
 #' and help the user understand the parameters that can be set in the preprocessor function.
 #'
-#' The first function used is [recipes::step_impute_bag()]
-#'
-#' __Main Recipes Imputation Section:__
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 #'
 #' step_impute_bag
