@@ -4,7 +4,18 @@
 \alias{hai_data_impute}
 \title{Data Preprocessor - Imputation}
 \usage{
-hai_data_impute(.recipe_object)
+hai_data_impute(
+  .recipe_object = NULL,
+  ...,
+  .impute_vars_with = imp_vars(all_predictors()),
+  .seed_value = 123,
+  .type_of_imputation = "mean",
+  .number_of_trees = 25,
+  .neighbors = 5,
+  .mean_trim = 0,
+  .roll_statistic = median,
+  .roll_window = 5
+)
 }
 \arguments{
 \item{.recipe_object}{The data that you want to process}
@@ -21,9 +32,6 @@ it will be removed from the latter and not used to impute itself.}
 
 \item{.seed_value}{To make results reproducible, set the seed.}
 
-\item{.number_of_trees}{This is used for the \code{\link[recipes:step_impute_bag]{recipes::step_impute_bag()}} trees
-parameter. This should be an integer.}
-
 \item{.type_of_imputation}{This is a quoted argument and can be one of the following:
 \itemize{
 \item "bagged"
@@ -35,9 +43,25 @@ parameter. This should be an integer.}
 \item "mode"
 \item "roll"
 }}
+
+\item{.number_of_trees}{This is used for the \code{\link[recipes:step_impute_bag]{recipes::step_impute_bag()}} trees
+parameter. This should be an integer.}
+
+\item{.neighbors}{This should be filled in with an integer value if \code{.type_of_imputation}
+selected is "knn".}
+
+\item{.mean_trim}{This should be filled in with a fraction if \code{.type_of_imputation}
+selected is "mean".}
+
+\item{.roll_statistic}{This should be filled in with a single unquoted function
+that takes with it a single argument such as mean. This should be filled in
+if \code{.type_of_imputation} selected is "roll".}
+
+\item{.roll_window}{This should be filled in with an integer value if \code{.type_of_imputation}
+selected is "roll".}
 }
 \value{
-A processed data.frame/tibble.
+A list object
 }
 \description{
 Takes in a recipe and will impute missing values using a selected recipe.
@@ -57,18 +81,24 @@ The first function used is \code{\link[recipes:step_impute_bag]{recipes::step_im
 \strong{Main Recipes Imputation Section:}
 }
 \examples{
-library(healthyR.data)
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(recipes))
 
-data_tbl <- healthyR_data\%>\%
-   filter(ip_op_flag == "I") \%>\%
-   filter(payer_grouping != "Medicare B") \%>\%
-   filter(payer_grouping != "?") \%>\%
-   select(service_line, payer_grouping) \%>\%
-   mutate(record = 1) \%>\%
-   as_tibble()
+date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
+val_seq  <- rep(c(rnorm(9), NA), times = 10)
+df_tbl   <- tibble(
+    date_col = date_seq,
+    value    = val_seq
+)
 
-hai_data_preprocessor()
+rec_obj <- recipe(value ~., df_tbl)
+
+hai_data_impute(
+    .recipe_object = rec_obj,
+    value,
+    .type_of_imputation = "roll"
+) \%>\%
+    get_juiced_data()
 
 }
 \seealso{
@@ -77,6 +107,10 @@ hai_data_preprocessor()
 step_impute_bag
 
 \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
+
+step_impute_knn
+
+\url{https://recipes.tidymodels.org/reference/step_impute_knn.html}
 
 Other Data Recipes: 
 \code{\link{pca_your_recipe}()}
