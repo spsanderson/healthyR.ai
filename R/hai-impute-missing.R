@@ -81,16 +81,18 @@
 #' A processed data.frame/tibble.
 #'
 
-hai_data_impute <- function(.recipe_object = NULL, ..., .impute_vars_with = imp_vars(all_predictors()),
+hai_data_impute <- function(.recipe_object = NULL, ...,
+                            .impute_vars_with = imp_vars(all_predictors()),
                             .seed_value = 123, .type_of_imputation = "mean",
                             .number_of_trees = 25, .neighbors = 5, .mean_trim = 0,
                             .roll_statistic = median, .roll_window = 5){
 
-    # Make sure a recipie was passed
+    # Make sure a recipe was passed
     if(is.null(.recipe_object)){
         rlang::abort("`.recipe_object` must be passed, please add.")
+    } else {
+        rec_obj <- .recipe_object
     }
-    rec_obj <- .recipe_object
 
     # * Parameters ----
     terms       <- rlang::enquos(...)
@@ -106,6 +108,20 @@ hai_data_impute <- function(.recipe_object = NULL, ..., .impute_vars_with = imp_
     # * Checks ----
     if (is.null(impute_with)) {
         rlang::abort("`impute_with` Needs some variables please.")
+    }
+
+    if(!is.null(seed_value) | !is.integer(seed_value)){
+        stop(call. = FALSE, "(.seed_value) must either be NULL or an integer.")
+    }
+
+    if(!is.character(impute_type)){
+        stop(call. = FALSE, "(.type_of_imputation) must be a quoted function that takes a single
+             parameter, i.e. mean or median.")
+    }
+
+    if(!is.integer(trees) | !is.integer(neighbors) | !is.integer(roll_window)){
+        stop(call. = FALSE, "The parameters of (.trees), (.neighbors), and (.roll_window) must
+             be integers.")
     }
 
     # * Checks ----
