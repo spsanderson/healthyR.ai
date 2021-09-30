@@ -150,6 +150,25 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
             trees       = trees,
             seed_val    = seed_value
         )
+    } else if(impute_type == "knn"){
+        imp_obj <- recipes::step_impute_knn(
+            recipe      = rec_obj,
+            !!! terms,
+            impute_with = impute_with,
+            neighbors   = neighbors
+        )
+    } else if(impute_type = "linear"){
+        imp_obj <- recipes::step_impute_linear(
+            recipe = rec_obj,
+            !!! terms,
+            impute_with = impute_with
+        )
+    } else if(impute_tye = "lower"){
+        imp_obj <- recipes::step_impute_lower(
+            recipe = rec_obj,
+            !!! terms,
+            impute_with = impute_with
+        )
     }
 
     # * Return ---
