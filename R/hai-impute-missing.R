@@ -64,21 +64,27 @@
 #' selected is "roll".
 #'
 #' @examples
-#' library(healthyR.data)
-#' library(dplyr)
+#' suppressPackageStartupMessages(library(dplyr))
+#' suppressPackageStartupMessages(library(recipes))
 #'
-#' data_tbl <- healthyR_data%>%
-#'    filter(ip_op_flag == "I") %>%
-#'    filter(payer_grouping != "Medicare B") %>%
-#'    filter(payer_grouping != "?") %>%
-#'    select(service_line, payer_grouping) %>%
-#'    mutate(record = 1) %>%
-#'    as_tibble()
+#' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
+#' val_seq  <- rep(c(rnorm(9), NA), times = 10)
+#' df_tbl   <- tibble(
+#'     date_col = date_seq,
+#'     value    = val_seq
+#' )
 #'
-#' hai_data_impute()
+#' rec_obj <- recipe(value ~., df_tbl)
+#'
+#' hai_data_impute(
+#'     .recipe_object = rec_obj,
+#'     value,
+#'     .type_of_imputation = "roll"
+#' ) %>%
+#'     get_juiced_data()
 #'
 #' @return
-#' A processed data.frame/tibble.
+#' A list object
 #'
 
 hai_data_impute <- function(.recipe_object = NULL, ...,
