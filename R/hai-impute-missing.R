@@ -19,7 +19,7 @@
 #'
 #' This is intended to be used inside of the [healthyR.ai::hai_data_preprocessor()] and
 #' therefore is an internal function. This documentation exists to explain the process
-#' and help the user understand the parameters that can be set in the preprocessor function.
+#' and help the user understand the parameters that can be set in the pre-processor function.
 #'
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 #'
