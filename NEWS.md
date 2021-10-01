@@ -1,5 +1,15 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+None
+
+## New Features
+1. Fix #61 - Add internal function `hai_data_scale()`
+2. Fix #63 - Add internal function `hai_data_impute()`
+
+## Minor Fixes and Improvments
+None
+
 # healthyR.ai 0.0.2
 
 ## Breaking Changes
