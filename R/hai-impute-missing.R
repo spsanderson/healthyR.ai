@@ -110,7 +110,7 @@
 #'     .recipe_object = rec_obj,
 #'     value,
 #'     .type_of_imputation = "roll"
-#' ) %>%
+#' )$impute_rec_obj %>%
 #'     get_juiced_data()
 #'
 #' @return
