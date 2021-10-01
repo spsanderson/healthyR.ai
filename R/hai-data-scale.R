@@ -9,8 +9,8 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
-#' Takes in a recipe and will impute missing values using a selected recipe.
-#' To call the recipe use a quoted argument like "median" or "bagged". This function
+#' Takes in a recipe and will scale values using a selected recipe. To call the
+#' recipe use a quoted argument like "scale" or "normalize". This function
 #' is not exported but may be called via the ::: method.
 #'
 #' @details
@@ -19,7 +19,7 @@
 #'
 #' This is intended to be used inside of the [healthyR.ai::hai_data_preprocessor()] and
 #' therefore is an internal function. This documentation exists to explain the process
-#' and help the user understand the parameters that can be set in the preprocessor function.
+#' and help the user understand the parameters that can be set in the pre-processor function.
 #'
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-normalization}
 #'
