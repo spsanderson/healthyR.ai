@@ -41,7 +41,8 @@ Other Data Wrangling:
 \code{\link{pca_your_recipe}()}
 
 Other Preprocessor: 
-\code{\link{hai_data_impute}()}
+\code{\link{hai_data_impute}()},
+\code{\link{hai_data_scale}()}
 }
 \author{
 Steven P. Sanderson II, MPH
