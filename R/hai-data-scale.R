@@ -57,7 +57,9 @@
 #' -  "range"
 #' -  "scale"
 #' @param .range_min A single numeric value for the smallest value in the range.
+#' This defaults to 0.
 #' @param .range_max A single numeric value for the largeest value in the range.
+#' This defaults to 1.
 #' @param .scale_factor A numeric value of either 1 or 2 that scales the numeric
 #' inputs by one or two standard deviations. By dividing by two standard
 #' deviations, the coefficients attached to continuous predictors can be
@@ -88,8 +90,8 @@
 #'
 
 hai_data_scale <-  function(.recipe_object = NULL, ...,
-                            .type_of_imputation = "mean", .range_min, .range_max,
-                            .scale_factor){
+                            .type_of_imputation = "mean", .range_min = 0,
+                            .range_max = 1, .scale_factor = 1){
 
     # Make sure a recipe was passed
     if(is.null(.recipe_object)){
@@ -104,6 +106,26 @@ hai_data_scale <-  function(.recipe_object = NULL, ...,
     range_min    <- as.numeric(.range_min)
     range_max    <- as.numeric(.range_max)
     scale_factor <- as.numeric(.scale_factor)
+
+    # * Checks ----
+    if(!is.null(range_min) & !is.numeric(range_min)){
+        stop(call. = FALSE, "(.range_min) must be numeric.")
+    }
+
+    if(!is.null(range_max) & !is.numeric(range_max)){
+        stop(call. = FALSE, "(.range_max) must be numeric.")
+    }
+    if(!is.null(scale_factor) & !is.numeric(scale_factor)){
+        stop(call. = FALSe, "(.scale_factor) must be numeric.")
+    }
+
+    if(!tolower(impute_type) %in% c(
+        "center","normalize","range","scale"
+    )
+    ){
+        stop(call. = FALSE, "(.type_of_imputattion) is not implemented. Please choose
+             from 'center','normalize','range','scale'")
+    }
 
     # * Recipe List ---
     output <- list(
