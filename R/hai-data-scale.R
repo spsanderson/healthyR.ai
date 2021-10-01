@@ -1,6 +1,5 @@
 #' Data Preprocessor - Scale/Normalize
 #'
-#' @family Scale Normalize
 #' @family Data Recipes
 #' @family Preprocessor
 #'
@@ -90,7 +89,7 @@
 #'
 
 hai_data_scale <-  function(.recipe_object = NULL, ...,
-                            .type_of_imputation = "mean", .range_min = 0,
+                            .type_of_scale = "mean", .range_min = 0,
                             .range_max = 1, .scale_factor = 1){
 
     # Make sure a recipe was passed
@@ -103,6 +102,7 @@ hai_data_scale <-  function(.recipe_object = NULL, ...,
     # * Parameters ----
     terms        <- rlang::enquos(...)
     impute_with  <- .impute_vars_with
+    scale_type   <- as.character(.type_of_scale)
     range_min    <- as.numeric(.range_min)
     range_max    <- as.numeric(.range_max)
     scale_factor <- as.numeric(.scale_factor)
@@ -119,18 +119,44 @@ hai_data_scale <-  function(.recipe_object = NULL, ...,
         stop(call. = FALSe, "(.scale_factor) must be numeric.")
     }
 
-    if(!tolower(impute_type) %in% c(
+    if(!tolower(scale_type) %in% c(
         "center","normalize","range","scale"
     )
     ){
-        stop(call. = FALSE, "(.type_of_imputattion) is not implemented. Please choose
+        stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
              from 'center','normalize','range','scale'")
+    }
+
+    # If Statment to get the recipe desired ----
+    if(scale_type == "center"){
+        scale_obj <- recipes::step_center(
+            recipe = rec_obj,
+            !!! terms
+        )
+    } else if(scale_tye == "normalize"){
+        scale_obj <- recipes::step_normalize(
+            recipe = rec_obj,
+            !!! terms
+        )
+    } else if(scale_type == "range"){
+        scale_obj <- recipes::step_range(
+            recipe = rec_obj,
+            !!! terms,
+            min = range_min,
+            max = range_max
+        )
+    } else if(scale_type == "scale"){
+        scale_obj <- recipes::step_scale(
+            recipe = rec_obj,
+            !!! terms,
+            factor = scale_factor
+        )
     }
 
     # * Recipe List ---
     output <- list(
-        rec_base       = rec_obj
-        #impute_rec_obj = imp_obj
+        rec_base      = rec_obj,
+        scale_rec_obj = scale_obj
     )
 
     # * Return ----
