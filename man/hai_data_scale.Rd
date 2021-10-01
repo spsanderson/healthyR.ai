@@ -71,7 +71,7 @@ rec_obj <- recipe(value ~., df_tbl)
 healthyR.ai:::hai_data_scale(
     .recipe_object = rec_obj,
     value,
-    .type_of_imputation = "center"
+    .type_of_scale = "center"
 )$scale_rec_obj \%>\%
     get_juiced_data()
 
