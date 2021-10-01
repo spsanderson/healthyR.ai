@@ -77,11 +77,11 @@
 #'
 #' rec_obj <- recipe(value ~., df_tbl)
 #'
-#' hai_data_impute(
+#' hai_data_scale(
 #'     .recipe_object = rec_obj,
 #'     value,
 #'     .type_of_imputation = "roll"
-#' ) %>%
+#' )$scale_rec_obj %>%
 #'     get_juiced_data()
 #'
 #' @return
@@ -101,7 +101,6 @@ hai_data_scale <-  function(.recipe_object = NULL, ...,
 
     # * Parameters ----
     terms        <- rlang::enquos(...)
-    impute_with  <- .impute_vars_with
     scale_type   <- as.character(.type_of_scale)
     range_min    <- as.numeric(.range_min)
     range_max    <- as.numeric(.range_max)
@@ -133,7 +132,7 @@ hai_data_scale <-  function(.recipe_object = NULL, ...,
             recipe = rec_obj,
             !!! terms
         )
-    } else if(scale_tye == "normalize"){
+    } else if(scale_type == "normalize"){
         scale_obj <- recipes::step_normalize(
             recipe = rec_obj,
             !!! terms
