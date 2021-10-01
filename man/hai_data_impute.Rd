@@ -7,7 +7,6 @@
 hai_data_impute(
   .recipe_object = NULL,
   ...,
-  .impute_vars_with,
   .seed_value = 123,
   .type_of_imputation = "mean",
   .number_of_trees = 25,
@@ -23,12 +22,6 @@ hai_data_impute(
 \item{...}{One or more selector functions to choose variables to be imputed.
 When used with imp_vars, these dots indicate which variables are used to
 predict the missing data in each variable. See selections() for more details}
-
-\item{.impute_vars_with}{A call to imp_vars to specify which variables are
-used to impute the variables that can include specific variable names
-separated by commas or different selectors (see selections()). If a column is
-included in both lists to be imputed and to be an imputation predictor,
-it will be removed from the latter and not used to impute itself.}
 
 \item{.seed_value}{To make results reproducible, set the seed.}
 
