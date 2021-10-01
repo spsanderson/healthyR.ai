@@ -7,13 +7,12 @@
 hai_data_impute(
   .recipe_object = NULL,
   ...,
-  .impute_vars_with = imp_vars(all_predictors()),
   .seed_value = 123,
   .type_of_imputation = "mean",
   .number_of_trees = 25,
   .neighbors = 5,
   .mean_trim = 0,
-  .roll_statistic = median,
+  .roll_statistic,
   .roll_window = 5
 )
 }
@@ -23,12 +22,6 @@ hai_data_impute(
 \item{...}{One or more selector functions to choose variables to be imputed.
 When used with imp_vars, these dots indicate which variables are used to
 predict the missing data in each variable. See selections() for more details}
-
-\item{.impute_vars_with}{A call to imp_vars to specify which variables are
-used to impute the variables that can include specific variable names
-separated by commas or different selectors (see selections()). If a column is
-included in both lists to be imputed and to be an imputation predictor,
-it will be removed from the latter and not used to impute itself.}
 
 \item{.seed_value}{To make results reproducible, set the seed.}
 
@@ -74,7 +67,7 @@ models.
 
 This is intended to be used inside of the \code{\link[=hai_data_preprocessor]{hai_data_preprocessor()}} and
 therefore is an internal function. This documentation exists to explain the process
-and help the user understand the parameters that can be set in the preprocessor function.
+and help the user understand the parameters that can be set in the pre-processor function.
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
@@ -89,11 +82,12 @@ df_tbl   <- tibble(
 
 rec_obj <- recipe(value ~., df_tbl)
 
-hai_data_impute(
+healthyR.ai:::hai_data_impute(
     .recipe_object = rec_obj,
     value,
-    .type_of_imputation = "roll"
-) \%>\%
+    .type_of_imputation = "roll",
+.roll_statistic = median
+)$impute_rec_obj \%>\%
     get_juiced_data()
 
 }
@@ -149,15 +143,16 @@ step_impute_roll
 \url{https://recipes.tidymodels.org/reference/step_impute_roll.html}
 
 Other Data Recipes: 
+\code{\link{hai_data_scale}()},
 \code{\link{pca_your_recipe}()}
 
 Other Preprocessor: 
-\code{\link{hai_data_preprocessor}()}
+\code{\link{hai_data_preprocessor}()},
+\code{\link{hai_data_scale}()}
 }
 \author{
 Steven P. Sanderson II, MPH
 }
 \concept{Data Recipes}
-\concept{Imputation}
 \concept{Preprocessor}
 \keyword{internal}

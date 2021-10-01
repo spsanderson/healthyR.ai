@@ -1,6 +1,5 @@
 #' Data Preprocessor - Imputation
 #'
-#' @family Imputation
 #' @family Data Recipes
 #' @family Preprocessor
 #'
@@ -19,7 +18,7 @@
 #'
 #' This is intended to be used inside of the [healthyR.ai::hai_data_preprocessor()] and
 #' therefore is an internal function. This documentation exists to explain the process
-#' and help the user understand the parameters that can be set in the preprocessor function.
+#' and help the user understand the parameters that can be set in the pre-processor function.
 #'
 #' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
 #'
@@ -36,7 +35,7 @@
 #' step_impute_linear
 #'
 #' [recipes::step_impute_linear()]
-#' @seealso  \url{https://recipes.tidymodels.org/reference/step_impute_linear.html}
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_linear.html}
 #'
 #' step_impute_lower
 #'
@@ -67,11 +66,6 @@
 #' @param ... One or more selector functions to choose variables to be imputed.
 #' When used with imp_vars, these dots indicate which variables are used to
 #' predict the missing data in each variable. See selections() for more details
-#' @param .impute_vars_with A call to imp_vars to specify which variables are
-#' used to impute the variables that can include specific variable names
-#' separated by commas or different selectors (see selections()). If a column is
-#' included in both lists to be imputed and to be an imputation predictor,
-#' it will be removed from the latter and not used to impute itself.
 #' @param .seed_value To make results reproducible, set the seed.
 #' @param .number_of_trees This is used for the [recipes::step_impute_bag()] trees
 #' parameter. This should be an integer.
@@ -107,11 +101,12 @@
 #'
 #' rec_obj <- recipe(value ~., df_tbl)
 #'
-#' hai_data_impute(
+#' healthyR.ai:::hai_data_impute(
 #'     .recipe_object = rec_obj,
 #'     value,
-#'     .type_of_imputation = "roll"
-#' ) %>%
+#'     .type_of_imputation = "roll",
+#' .roll_statistic = median
+#' )$impute_rec_obj %>%
 #'     get_juiced_data()
 #'
 #' @return
@@ -119,10 +114,9 @@
 #'
 
 hai_data_impute <- function(.recipe_object = NULL, ...,
-                            .impute_vars_with = imp_vars(all_predictors()),
                             .seed_value = 123, .type_of_imputation = "mean",
                             .number_of_trees = 25, .neighbors = 5, .mean_trim = 0,
-                            .roll_statistic = median, .roll_window = 5){
+                            .roll_statistic, .roll_window = 5){
 
     # Make sure a recipe was passed
     if(is.null(.recipe_object)){
@@ -133,7 +127,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
 
     # * Parameters ----
     terms       <- rlang::enquos(...)
-    impute_with <- .impute_vars_with
+    #impute_with <- .impute_vars_with
     seed_value  <- as.integer(.seed_value)
     impute_type <- as.character(.type_of_imputation)
     trees       <- as.integer(.number_of_trees)
@@ -143,9 +137,9 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
     roll_window <- as.integer(.roll_window)
 
     # * Checks ----
-    if (is.null(impute_with)) {
-        rlang::abort("`impute_with` Needs some variables please.")
-    }
+    # if (is.null(impute_with)) {
+    #     rlang::abort("`impute_with` Needs some variables please.")
+    # }
 
     if((!is.null(seed_value) & !is.numeric(seed_value))){
         stop(call. = FALSE, "(.seed_value) must either be NULL or an integer.")
@@ -183,7 +177,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
         imp_obj <- recipes::step_impute_bag(
             recipe      = rec_obj,
             !!! terms,
-            impute_with = impute_with,
+            #impute_with = impute_with,
             trees       = trees,
             seed_val    = seed_value
         )
@@ -191,14 +185,14 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
         imp_obj <- recipes::step_impute_knn(
             recipe      = rec_obj,
             !!! terms,
-            impute_with = impute_with,
+            #impute_with = impute_with,
             neighbors   = neighbors
         )
     } else if(impute_type == "linear"){
         imp_obj <- recipes::step_impute_linear(
             recipe      = rec_obj,
             !!! terms,
-            impute_with = impute_with
+            #impute_with = impute_with
         )
     } else if(impute_type == "lower"){
         imp_obj <- recipes::step_impute_lower(

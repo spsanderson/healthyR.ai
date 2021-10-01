@@ -80,7 +80,8 @@ Other Data Wrangling:
 \code{\link{hai_data_preprocessor}()}
 
 Other Data Recipes: 
-\code{\link{hai_data_impute}()}
+\code{\link{hai_data_impute}()},
+\code{\link{hai_data_scale}()}
 }
 \author{
 Steven P. Sanderson II, MPH

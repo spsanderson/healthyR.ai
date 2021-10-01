@@ -49,7 +49,7 @@ hai_data_preprocessor <- function(.data){
 
     # ** Data Splits ----
     data_numeric_tbl <- data_tbl %>%
-        dplyr::select_if(is.numberic)
+        dplyr::select_if(is.numeric)
 
     data_fct_tbl <- data_tbl %>%
         dplyr::select_if(is.factor)
