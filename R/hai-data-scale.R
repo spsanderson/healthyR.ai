@@ -21,27 +21,27 @@
 #' therefore is an internal function. This documentation exists to explain the process
 #' and help the user understand the parameters that can be set in the preprocessor function.
 #'
-#' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-imputation/}
+#' @seealso \url{https://recipes.tidymodels.org/reference/index.html#section-step-functions-normalization}
 #'
-#' step_impute_bag
+#' step_center
 #'
-#' [recipes::step_impute_bag()]
-#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_bag.html}
+#' [recipes::step_center()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_center.html}
 #'
-#' step_impute_knn
+#' step_normalize
 #'
-#' [recipes::step_impute_knn()]
-#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_knn.html}
+#' [recipes::step_normalize()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_normalize.html}
 #'
-#' step_impute_linear
+#' step_range
 #'
-#' [recipes::step_impute_linear()]
-#' @seealso  \url{https://recipes.tidymodels.org/reference/step_impute_linear.html}
+#' [recipes::step_range()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_range.html}
 #'
-#' step_impute_lower
+#' step_scale
 #'
-#' [recipes::step_impute_lower()]
-#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_lower.html}
+#' [recipes::step_scale()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_scale.html}
 #'
 #' @param .recipe_object The data that you want to process
 #' @param ... One or more selector functions to choose variables to be imputed.
@@ -52,6 +52,8 @@
 #' -  "normalize"
 #' -  "range"
 #' -  "scale"
+#' @param .range_min A single numeric value for the smallest value in the range.
+#' @param .range_max A single numeric value for the largeest value in the range.
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
