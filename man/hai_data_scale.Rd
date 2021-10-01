@@ -7,10 +7,10 @@
 hai_data_scale(
   .recipe_object = NULL,
   ...,
-  .type_of_imputation = "mean",
-  .range_min,
-  .range_max,
-  .scale_factor
+  .type_of_scale = "mean",
+  .range_min = 0,
+  .range_max = 1,
+  .scale_factor = 1
 )
 }
 \arguments{
@@ -20,15 +20,6 @@ hai_data_scale(
 When used with imp_vars, these dots indicate which variables are used to
 predict the missing data in each variable. See selections() for more details}
 
-\item{.range_min}{A single numeric value for the smallest value in the range.}
-
-\item{.range_max}{A single numeric value for the largeest value in the range.}
-
-\item{.scale_factor}{A numeric value of either 1 or 2 that scales the numeric
-inputs by one or two standard deviations. By dividing by two standard
-deviations, the coefficients attached to continuous predictors can be
-interpreted the same way as with binary inputs. Defaults to 1. More in reference below.}
-
 \item{.type_of_scale}{This is a quoted argument and can be one of the following:
 \itemize{
 \item "center"
@@ -36,13 +27,24 @@ interpreted the same way as with binary inputs. Defaults to 1. More in reference
 \item "range"
 \item "scale"
 }}
+
+\item{.range_min}{A single numeric value for the smallest value in the range.
+This defaults to 0.}
+
+\item{.range_max}{A single numeric value for the largeest value in the range.
+This defaults to 1.}
+
+\item{.scale_factor}{A numeric value of either 1 or 2 that scales the numeric
+inputs by one or two standard deviations. By dividing by two standard
+deviations, the coefficients attached to continuous predictors can be
+interpreted the same way as with binary inputs. Defaults to 1. More in reference below.}
 }
 \value{
 A list object
 }
 \description{
-Takes in a recipe and will impute missing values using a selected recipe.
-To call the recipe use a quoted argument like "median" or "bagged". This function
+Takes in a recipe and will scale values using a selected recipe. To call the
+recipe use a quoted argument like "scale" or "normalize". This function
 is not exported but may be called via the ::: method.
 }
 \details{
@@ -51,7 +53,7 @@ models.
 
 This is intended to be used inside of the \code{\link[=hai_data_preprocessor]{hai_data_preprocessor()}} and
 therefore is an internal function. This documentation exists to explain the process
-and help the user understand the parameters that can be set in the preprocessor function.
+and help the user understand the parameters that can be set in the pre-processor function.
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
@@ -66,11 +68,11 @@ df_tbl   <- tibble(
 
 rec_obj <- recipe(value ~., df_tbl)
 
-hai_data_impute(
+hai_data_scale(
     .recipe_object = rec_obj,
     value,
     .type_of_imputation = "roll"
-) \%>\%
+)$scale_rec_obj \%>\%
     get_juiced_data()
 
 }
@@ -119,5 +121,4 @@ Steven P. Sanderson II, MPH
 }
 \concept{Data Recipes}
 \concept{Preprocessor}
-\concept{Scale Normalize}
 \keyword{internal}
