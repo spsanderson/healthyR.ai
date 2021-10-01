@@ -36,7 +36,7 @@
 #' step_impute_linear
 #'
 #' [recipes::step_impute_linear()]
-#' @seealso  \url{https://recipes.tidymodels.org/reference/step_impute_linear.html}
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_impute_linear.html}
 #'
 #' step_impute_lower
 #'
