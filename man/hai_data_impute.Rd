@@ -7,13 +7,13 @@
 hai_data_impute(
   .recipe_object = NULL,
   ...,
-  .impute_vars_with = imp_vars(all_predictors()),
+  .impute_vars_with,
   .seed_value = 123,
   .type_of_imputation = "mean",
   .number_of_trees = 25,
   .neighbors = 5,
   .mean_trim = 0,
-  .roll_statistic = median,
+  .roll_statistic,
   .roll_window = 5
 )
 }
