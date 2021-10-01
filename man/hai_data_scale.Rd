@@ -7,7 +7,7 @@
 hai_data_scale(
   .recipe_object = NULL,
   ...,
-  .type_of_scale = "mean",
+  .type_of_scale = "center",
   .range_min = 0,
   .range_max = 1,
   .scale_factor = 1

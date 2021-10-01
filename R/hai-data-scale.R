@@ -89,7 +89,7 @@
 #'
 
 hai_data_scale <-  function(.recipe_object = NULL, ...,
-                            .type_of_scale = "mean", .range_min = 0,
+                            .type_of_scale = "center", .range_min = 0,
                             .range_max = 1, .scale_factor = 1){
 
     # Make sure a recipe was passed
