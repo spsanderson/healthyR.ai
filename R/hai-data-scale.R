@@ -68,7 +68,7 @@
 #' suppressPackageStartupMessages(library(recipes))
 #'
 #' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
-#' val_seq  <- rep(c(rnorm(9), NA), times = 10)
+#' val_seq  <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
 #' df_tbl   <- tibble(
 #'     date_col = date_seq,
 #'     value    = val_seq
@@ -86,3 +86,9 @@
 #' @return
 #' A list object
 #'
+
+hai_data_scale <-  function(.recipe_object = NULL, ...,
+                            .type_of_imputation = "mean", .range_min, .range_max,
+                            .scale_factor){
+
+}
