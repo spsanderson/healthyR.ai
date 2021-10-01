@@ -80,7 +80,7 @@
 #' healthyR.ai:::hai_data_scale(
 #'     .recipe_object = rec_obj,
 #'     value,
-#'     .type_of_imputation = "roll"
+#'     .type_of_scale = "center"
 #' )$scale_rec_obj %>%
 #'     get_juiced_data()
 #'
@@ -89,7 +89,7 @@
 #'
 
 hai_data_scale <-  function(.recipe_object = NULL, ...,
-                            .type_of_scale = "mean", .range_min = 0,
+                            .type_of_scale = "center", .range_min = 0,
                             .range_max = 1, .scale_factor = 1){
 
     # Make sure a recipe was passed
