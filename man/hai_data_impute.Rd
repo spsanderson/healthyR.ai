@@ -92,7 +92,8 @@ rec_obj <- recipe(value ~., df_tbl)
 hai_data_impute(
     .recipe_object = rec_obj,
     value,
-    .type_of_imputation = "roll"
+    .type_of_imputation = "roll",
+.roll_statistic = median
 )$impute_rec_obj \%>\%
     get_juiced_data()
 
