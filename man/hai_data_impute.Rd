@@ -74,7 +74,7 @@ models.
 
 This is intended to be used inside of the \code{\link[=hai_data_preprocessor]{hai_data_preprocessor()}} and
 therefore is an internal function. This documentation exists to explain the process
-and help the user understand the parameters that can be set in the preprocessor function.
+and help the user understand the parameters that can be set in the pre-processor function.
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
@@ -93,7 +93,7 @@ hai_data_impute(
     .recipe_object = rec_obj,
     value,
     .type_of_imputation = "roll"
-) \%>\%
+)$impute_rec_obj \%>\%
     get_juiced_data()
 
 }
@@ -160,6 +160,5 @@ Other Preprocessor:
 Steven P. Sanderson II, MPH
 }
 \concept{Data Recipes}
-\concept{Imputation}
 \concept{Preprocessor}
 \keyword{internal}
