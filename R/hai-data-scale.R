@@ -43,6 +43,10 @@
 #' [recipes::step_scale()]
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_scale.html}
 #'
+#' @references Gelman, A. (2007) "Scaling regression inputs by
+#'  dividing by two standard deviations." Unpublished. Source:
+#'  \url{http://www.stat.columbia.edu/~gelman/research/unpublished/standardizing.pdf}.
+#'
 #' @param .recipe_object The data that you want to process
 #' @param ... One or more selector functions to choose variables to be imputed.
 #' When used with imp_vars, these dots indicate which variables are used to
@@ -54,6 +58,10 @@
 #' -  "scale"
 #' @param .range_min A single numeric value for the smallest value in the range.
 #' @param .range_max A single numeric value for the largeest value in the range.
+#' @param .scale_factor A numeric value of either 1 or 2 that scales the numeric
+#' inputs by one or two standard deviations. By dividing by two standard
+#' deviations, the coefficients attached to continuous predictors can be
+#' interpreted the same way as with binary inputs. Defaults to 1. More in reference below.
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
