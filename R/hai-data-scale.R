@@ -77,7 +77,7 @@
 #'
 #' rec_obj <- recipe(value ~., df_tbl)
 #'
-#' hai_data_scale(
+#' healthyR.ai:::hai_data_scale(
 #'     .recipe_object = rec_obj,
 #'     value,
 #'     .type_of_imputation = "roll"
