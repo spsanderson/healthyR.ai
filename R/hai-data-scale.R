@@ -91,4 +91,27 @@ hai_data_scale <-  function(.recipe_object = NULL, ...,
                             .type_of_imputation = "mean", .range_min, .range_max,
                             .scale_factor){
 
+    # Make sure a recipe was passed
+    if(is.null(.recipe_object)){
+        rlang::abort("`.recipe_object` must be passed, please add.")
+    } else {
+        rec_obj <- .recipe_object
+    }
+
+    # * Parameters ----
+    terms        <- rlang::enquos(...)
+    impute_with  <- .impute_vars_with
+    range_min    <- as.numeric(.range_min)
+    range_max    <- as.numeric(.range_max)
+    scale_factor <- as.numeric(.scale_factor)
+
+    # * Recipe List ---
+    output <- list(
+        rec_base       = rec_obj
+        #impute_rec_obj = imp_obj
+    )
+
+    # * Return ----
+    return(output)
+
 }
