@@ -115,7 +115,7 @@ hai_data_scale <-  function(.recipe_object = NULL, ...,
         stop(call. = FALSE, "(.range_max) must be numeric.")
     }
     if(!is.null(scale_factor) & !is.numeric(scale_factor)){
-        stop(call. = FALSe, "(.scale_factor) must be numeric.")
+        stop(call. = FALSE, "(.scale_factor) must be numeric.")
     }
 
     if(!tolower(scale_type) %in% c(
