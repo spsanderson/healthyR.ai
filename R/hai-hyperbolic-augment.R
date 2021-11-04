@@ -19,8 +19,12 @@
 #' This function is intended to be used on its own in order to add columns to a
 #' tibble.
 #'
-#' @param .x A numeric vector
-#' @param .scale_type A character of one of the following: "sin","cos","tan"
+#' @param .data The data being passed that will be augmented by the function.
+#' @param .value This is passed [rlang::enquo()] to capture the vectors you want
+#' to augment.
+#' @param .names The default is "auto"
+#' @param .scale_type A character of one of the following: "sin","cos","tan" All
+#' can be passed by setting the param equal to c("sin","cos","tan")
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
