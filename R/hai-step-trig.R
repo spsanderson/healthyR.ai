@@ -1,4 +1,4 @@
-#' Data Preprocessor - Step Trigonometry
+#' Data Preprocessor - Trigonometric Functions
 #'
 #' @family Data Recipes
 #' @family Preprocessor
@@ -8,7 +8,8 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
-#' Takes in a recipe and will add sin, cos and tan transformed values. This function
+#' Takes in a recipe and will scale values using a selected recipe. To call the
+#' recipe use a quoted argument like "sin", "cos" or "tan". This function
 #' is not exported but may be called via the ::: method.
 #'
 #' @details
@@ -19,131 +20,110 @@
 #' therefore is an internal function. This documentation exists to explain the process
 #' and help the user understand the parameters that can be set in the pre-processor function.
 #'
+#' [recipes::step_hyperbolic()]
+#' @seealso \url{https://recipes.tidymodels.org/reference/step_hyperbolic.html}
+#'
+#' @param .recipe_object The data that you want to process
+#' @param ... One or more selector functions to choose variables to be imputed.
+#' When used with imp_vars, these dots indicate which variables are used to
+#' predict the missing data in each variable. See selections() for more details
+#' @param .type_of_scale This is a quoted argument and can be one of the following:
+#' -  "sin"
+#' -  "cos"
+#' -  "tan"
+#' -  "all"
+#'
+#' @examples
+#' suppressPackageStartupMessages(library(dplyr))
+#' suppressPackageStartupMessages(library(recipes))
+#'
+#' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
+#' val_seq  <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
+#' df_tbl   <- tibble(
+#'     date_col = date_seq,
+#'     value    = val_seq
+#' )
+#'
+#' rec_obj <- recipe(value ~., df_tbl)
+#'
+#' healthyR.ai:::hai_step_trig
+#'     .recipe_object = rec_obj,
+#'     value,
+#'     .type_of_scale = "sin"
+#' )$scale_rec_obj %>%
+#'     get_juiced_data()
+#'
 #' @return
-#' A recipe object
+#' A list object
 #'
-#' @export
-#'
-hai_step_trig <- function(
-    recipe,
-    ...,
-    role = NA,
-    trained = FALSE,
-    skip = FALSE,
-    id = rand_id("trigonometry")
-) {
 
-    terms <- recipes::ellipse_check(...)
+hai_step_trig <-  function(.recipe_object = NULL, ...,
+                           .type_of_scale = "sin"){
 
-    recipes::add_step(
-        recipe,
-        hai_step_trig_new(
-            terms    = terms,
-            trained  = trained,
-            role     = role,
-            options  = options,
-            skip     = skip,
-            id       = id
-        )
-    )
-}
-
-hai_step_trig_new <-
-    function(terms, role, trained, options, skip, id) {
-        recipes::step(
-            subclass   = "trig_values",
-            terms      = terms,
-            role       = role,
-            trained    = trained,
-            options    = options,
-            skip       = skip,
-            id         = id
-        )
-    }
-
-#' @export
-prep.hai_step_trig <- function(x, training, info = NULL, ...) {
-
-    col_names <- terms_select(x$terms, info = info)
-    recipes::check_type(training[, col_names])
-
-    # Lambda Calculation
-    if (is.null(x$lambda[1])) {
-        lambda_values <- rep(NA, length(col_names))
-        names(lambda_values) <- col_names
-    } else if (x$lambda[1] == "auto") {
-        lambda_values <- training[, col_names] %>%
-            purrr::map(auto_lambda)
+    # Make sure a recipe was passed
+    if(is.null(.recipe_object)){
+        rlang::abort("`.recipe_object` must be passed, please add.")
     } else {
-        lambda_values <- rep(x$lambda[1], length(col_names))
-        names(lambda_values) <- col_names
+        rec_obj <- .recipe_object
     }
 
-    hai_step_trig_new(
-        terms           = x$terms,
-        role            = x$role,
-        trained         = TRUE,
-        period          = x$period,
-        skip            = x$skip,
-        id              = x$id
+    # * Parameters ----
+    terms        <- rlang::enquos(...)
+    scale_type   <- as.character(.type_of_scale)
+
+    # * Checks ----
+    if(!tolower(scale_type) %in% c(
+        "sin","cos","tan","all"
+      )
+    ){
+        stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
+             from 'sin','cos','tan','all'")
+    }
+
+    # If Statment to get the recipe desired ----
+    if(scale_type == "sin"){
+        scale_obj <- recipes::step_hyperbolic(
+            recipe = rec_obj,
+            func   = scale_type,
+            !!! terms
+        )
+    } else if(scale_type == "cos"){
+        scale_obj <- recipes::step_hyperbolic(
+            recipe = rec_obj,
+            func   = scale_type,
+            !!! terms
+        )
+    } else if(scale_type == "tan"){
+        scale_obj <- recipes::step_hyperbolic(
+            recipe = rec_obj,
+            func   = scale_type,
+            !!! terms
+        )
+    } else if(scale_type == "all"){
+        scale_obj <- recipes::step_hyperbolic(
+            recipe = rec_obj,
+            func   = "sin",
+            !!! terms
+        ) %>%
+            recipes::step_hyperbolic(
+                recipe = rec_obj,
+                func   = "cos",
+                !!! terms
+            ) %>%
+            recipes::step_hyperbolic(
+                recipe = rec_obj,
+                func   = "tan",
+                !!! terms
+            )
+    }
+
+    # * Recipe List ---
+    output <- list(
+        rec_base      = rec_obj,
+        scale_rec_obj = scale_obj
     )
-}
 
-#' @export
-bake.step_ts_clean <- function(object, new_data, ...) {
+    # * Return ----
+    return(output)
 
-    col_names <- names(object$lambdas_trained)
-
-    for (i in seq_along(object$lambdas_trained)) {
-
-        # Handle "non-numeric" naming issue
-        val_i <- object$lambdas_trained[i]
-        if (!is.na(val_i)) {
-            val_i <- as.numeric(val_i)
-        }
-
-        new_data[, col_names[i]] <- ts_clean_vec(
-            x      = new_data %>% purrr::pluck(col_names[i]),
-            period = object$period[1],
-            lambda = val_i
-        )
-    }
-
-    tibble::as_tibble(new_data)
-}
-
-#' @export
-print.step_ts_clean <- function(x, width = max(20, options()$width - 35), ...) {
-    cat("Time Series Outlier Cleaning on ", sep = "")
-    printer(names(x$lambdas_trained), x$terms, x$trained, width = width)
-    invisible(x)
-}
-
-
-
-
-#' @rdname step_ts_clean
-#' @param x A `step_ts_clean` object.
-#' @export
-tidy.step_ts_clean <- function(x, ...) {
-    if (is_trained(x)) {
-        res <- tibble::tibble(
-            terms  = names(x$lambdas_trained),
-            lambda = as.numeric(x$lambdas_trained)
-        )
-    } else {
-        term_names <- recipes::sel2char(x$terms)
-        res <- tibble::tibble(
-            terms  = term_names,
-            lambda = rlang::na_dbl
-        )
-    }
-    res$id <- x$id
-    res
-}
-
-#' @rdname required_pkgs.timetk
-#' @export
-required_pkgs.step_ts_clean <- function(x, ...) {
-    c("timetk")
 }
