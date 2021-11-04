@@ -16,8 +16,8 @@
 #' -  "cos"
 #' -  "tan"
 #'
-#' This fucntion can be used on it's own. It is also the basis for the function
-#' [healthyR.ai::hai_hyperbolic_augment()].
+#' This function is intended to be used on its own in order to add columns to a
+#' tibble.
 #'
 #' @param .x A numeric vector
 #' @param .scale_type A character of one of the following: "sin","cos","tan"
