@@ -6,6 +6,7 @@ None
 ## New Features
 1. Fix #61 - Add internal function `hai_data_scale()`
 2. Fix #63 - Add internal function `hai_data_impute()`
+3. Fix #57 - Add internal function `hai_step_trig()`
 
 ## Minor Fixes and Improvments
 None
