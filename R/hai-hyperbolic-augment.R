@@ -1,4 +1,4 @@
-#' Vector Function Hyperbolic
+#' Augment Function Hyperbolic
 #'
 #' @family Vector Function
 #'
@@ -35,10 +35,11 @@
 #'   b    = runif(len_out)
 #' )
 #'
-#' hai_hyperbolic_vec(data_tbl$a, .scale_type = "sin")
+#' hai_hyperbolic_augment(a, b, .scale_type = "sin")
+#' hai_hyperbolic_augment(a, b, .scale_type = c("sin","cos","tan"))
 #'
 #' @return
-#' A numeric vector
+#' A augmented tibble
 #'
 #' @export
 #
