@@ -1,4 +1,4 @@
-#' Vector Fuction Hyperbolic
+#' Vector Function Hyperbolic
 #'
 #' @family Vector Function
 #'

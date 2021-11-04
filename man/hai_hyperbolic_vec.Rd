@@ -2,7 +2,7 @@
 % Please edit documentation in R/hai-hyperbolic-vec.R
 \name{hai_hyperbolic_vec}
 \alias{hai_hyperbolic_vec}
-\title{Vector Fuction Hyperbolic}
+\title{Vector Function Hyperbolic}
 \usage{
 hai_hyperbolic_vec(x, .scale_type = c("sin", "cos", "tan"))
 }
