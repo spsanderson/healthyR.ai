@@ -75,11 +75,11 @@ hai_step_trig <-  function(.recipe_object = NULL, ...,
 
     # * Checks ----
     if(!tolower(scale_type) %in% c(
-        "sin","cos","tan","all"
+        "sin","cos","tan"
       )
     ){
         stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
-             from 'sin','cos','tan','all'")
+             from 'sin','cos','tan'")
     }
 
     # If Statement to get the recipe desired ----
@@ -104,25 +104,6 @@ hai_step_trig <-  function(.recipe_object = NULL, ...,
             inverse = inverse_bool,
             !!! terms
         )
-    } else if(scale_type == "all"){
-        scale_obj <- recipes::step_hyperbolic(
-            recipe  = rec_obj,
-            inverse = inverse_bool,
-            func    = "sin",
-            !!! terms
-        ) %>%
-            recipes::step_hyperbolic(
-                recipe  = rec_obj,
-                inverse = inverse_bool,
-                func    = "cos",
-                !!! terms
-            ) %>%
-            recipes::step_hyperbolic(
-                recipe  = rec_obj,
-                inverse = inverse_bool,
-                func    = "tan",
-                !!! terms
-            )
     }
 
     # * Recipe List ---
