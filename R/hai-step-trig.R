@@ -32,6 +32,7 @@
 #' -  "cos"
 #' -  "tan"
 #' -  "all"
+#' @param .inverse A logical: should the inverse function be used? Default is FALSE
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -58,7 +59,7 @@
 #'
 
 hai_step_trig <-  function(.recipe_object = NULL, ...,
-                           .type_of_scale = "sin"){
+                           .type_of_scale = "sin", .inverse = FALSE){
 
     # Make sure a recipe was passed
     if(is.null(.recipe_object)){
@@ -70,6 +71,7 @@ hai_step_trig <-  function(.recipe_object = NULL, ...,
     # * Parameters ----
     terms        <- rlang::enquos(...)
     scale_type   <- as.character(.type_of_scale)
+    inverse_bool <- as.logical(.inverse)
 
     # * Checks ----
     if(!tolower(scale_type) %in% c(
@@ -80,39 +82,45 @@ hai_step_trig <-  function(.recipe_object = NULL, ...,
              from 'sin','cos','tan','all'")
     }
 
-    # If Statment to get the recipe desired ----
+    # If Statement to get the recipe desired ----
     if(scale_type == "sin"){
         scale_obj <- recipes::step_hyperbolic(
-            recipe = rec_obj,
-            func   = scale_type,
+            recipe  = rec_obj,
+            func    = scale_type,
+            inverse = inverse_bool,
             !!! terms
         )
     } else if(scale_type == "cos"){
         scale_obj <- recipes::step_hyperbolic(
-            recipe = rec_obj,
-            func   = scale_type,
+            recipe  = rec_obj,
+            func    = scale_type,
+            inverse = inverse_bool,
             !!! terms
         )
     } else if(scale_type == "tan"){
         scale_obj <- recipes::step_hyperbolic(
-            recipe = rec_obj,
-            func   = scale_type,
+            recipe  = rec_obj,
+            func    = scale_type,
+            inverse = inverse_bool,
             !!! terms
         )
     } else if(scale_type == "all"){
         scale_obj <- recipes::step_hyperbolic(
-            recipe = rec_obj,
-            func   = "sin",
+            recipe  = rec_obj,
+            inverse = inverse_bool,
+            func    = "sin",
             !!! terms
         ) %>%
             recipes::step_hyperbolic(
-                recipe = rec_obj,
-                func   = "cos",
+                recipe  = rec_obj,
+                inverse = inverse_bool,
+                func    = "cos",
                 !!! terms
             ) %>%
             recipes::step_hyperbolic(
-                recipe = rec_obj,
-                func   = "tan",
+                recipe  = rec_obj,
+                inverse = inverse_bool,
+                func    = "tan",
                 !!! terms
             )
     }
