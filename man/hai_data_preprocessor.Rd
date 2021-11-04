@@ -42,7 +42,8 @@ Other Data Wrangling:
 
 Other Preprocessor: 
 \code{\link{hai_data_impute}()},
-\code{\link{hai_data_scale}()}
+\code{\link{hai_data_scale}()},
+\code{\link{hai_step_trig}()}
 }
 \author{
 Steven P. Sanderson II, MPH
