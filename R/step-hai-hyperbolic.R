@@ -159,7 +159,7 @@ bake.step_hai_hyperbolic <- function(object, new_data, ...){
             "hai_hyperbolic_vec",
             x              = rlang::sym(col)
             ,  .scale_type = scale_type
-            , .ns = "healthyR.ai"
+            , .ns          = "healthyR.ai"
         )
     }
 
