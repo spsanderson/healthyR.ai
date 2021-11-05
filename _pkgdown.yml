@@ -36,3 +36,13 @@ reference:
   -  title: Data Wrangling
      contents:
      -  "get_juiced_data"
+  -  title: Recipe Steps
+     desc: Functions to add recipe steps
+     contents:
+     -  "step_hai_hyperbolic"
+  -  title: Vectorized Functions
+     contents:
+     -  "hai_hyperbolic_vec"
+  -  title: Augmenting Functions
+     contents:
+     -  "hai_hyperbolic_augment"

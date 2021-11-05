@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Automatic K-Means H2O — hai_kmeans_automl • healthyR.ai</title>
+<title>Data Preprocessor - Trigonometric Functions — hai_step_trig • healthyR.ai</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="Automatic K-Means H2O — hai_kmeans_automl" />
-<meta property="og:description" content="This is a wrapper around the h2o::h2o.kmeans() function that will return a list
-object with a lot of useful and easy to use tidy style information." />
+<meta property="og:title" content="Data Preprocessor - Trigonometric Functions — hai_step_trig" />
+<meta property="og:description" content="Takes in a recipe and will scale values using a selected recipe. To call the
+recipe use a quoted argument like &quot;sin&quot;, &quot;cos&quot; or &quot;tan&quot;. This function
+is not exported but may be called via the ::: method." />
 
 
 
@@ -135,120 +136,80 @@ object with a lot of useful and easy to use tidy style information." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Automatic K-Means H2O</h1>
-    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/auto-kmeans.R'><code>R/auto-kmeans.R</code></a></small>
-    <div class="hidden name"><code>hai_kmeans_automl.Rd</code></div>
+    <h1>Data Preprocessor - Trigonometric Functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-step-trig.R'><code>R/hai-step-trig.R</code></a></small>
+    <div class="hidden name"><code>hai_step_trig.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a wrapper around the <code><a href='https://rdrr.io/pkg/h2o/man/h2o.kmeans.html'>h2o::h2o.kmeans()</a></code> function that will return a list
-object with a lot of useful and easy to use tidy style information.</p>
+    <p>Takes in a recipe and will scale values using a selected recipe. To call the
+recipe use a quoted argument like "sin", "cos" or "tan". This function
+is not exported but may be called via the ::: method.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hai_kmeans_automl</span><span class='op'>(</span>
-  <span class='va'>.data</span>,
-  .split_ratio <span class='op'>=</span> <span class='fl'>0.8</span>,
-  .seed <span class='op'>=</span> <span class='fl'>1234</span>,
-  .centers <span class='op'>=</span> <span class='fl'>10</span>,
-  .standardize <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  .print_model_summary <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  <span class='va'>.predictors</span>,
-  .categorical_encoding <span class='op'>=</span> <span class='st'>"auto"</span>,
-  .initialization_mode <span class='op'>=</span> <span class='st'>"Furthest"</span>,
-  .max_iterations <span class='op'>=</span> <span class='fl'>100</span>
+    <pre class="usage"><span class='fu'>hai_step_trig</span><span class='op'>(</span>
+  .recipe_object <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  .type_of_scale <span class='op'>=</span> <span class='st'>"sin"</span>,
+  .inverse <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>The data that is to be passed for clustering.</p></td>
+      <th>.recipe_object</th>
+      <td><p>The data that you want to process</p></td>
     </tr>
     <tr>
-      <th>.split_ratio</th>
-      <td><p>The ratio for training and testing splits.</p></td>
+      <th>...</th>
+      <td><p>One or more selector functions to choose variables to be imputed.
+When used with imp_vars, these dots indicate which variables are used to
+predict the missing data in each variable. See selections() for more details</p></td>
     </tr>
     <tr>
-      <th>.seed</th>
-      <td><p>The default is 1234, but can be set to any integer.</p></td>
-    </tr>
-    <tr>
-      <th>.centers</th>
-      <td><p>The default is 1. Specify the number of clusters (groups of data)
-in a data set.</p></td>
-    </tr>
-    <tr>
-      <th>.standardize</th>
-      <td><p>The default is set to TRUE. When TRUE all numeric columns
-will be set to zero mean and unit variance.</p></td>
-    </tr>
-    <tr>
-      <th>.print_model_summary</th>
-      <td><p>This is a boolean and controls if the model summary
-is printed to the console. The default is TRUE.</p></td>
-    </tr>
-    <tr>
-      <th>.predictors</th>
-      <td><p>This must be in the form of c("column_1", "column_2", ... "column_n")</p></td>
-    </tr>
-    <tr>
-      <th>.categorical_encoding</th>
-      <td><p>Can be one of the following:</p><ul>
-<li><p>"auto"</p></li>
-<li><p>"enum"</p></li>
-<li><p>"one_hot_explicit"</p></li>
-<li><p>"binary"</p></li>
-<li><p>"eigen"</p></li>
-<li><p>"label_encoder"</p></li>
-<li><p>"sort_by_response"</p></li>
-<li><p>"enum_limited"</p></li>
+      <th>.type_of_scale</th>
+      <td><p>This is a quoted argument and can be one of the following:</p><ul>
+<li><p>"sin"</p></li>
+<li><p>"cos"</p></li>
+<li><p>"tan"</p></li>
+<li><p>"all"</p></li>
 </ul></td>
     </tr>
     <tr>
-      <th>.initialization_mode</th>
-      <td><p>This can be one of the following:</p><ul>
-<li><p>"Random"</p></li>
-<li><p>"Furthest (default)</p></li>
-<li><p>"PlusPlus"</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>.max_iterations</th>
-      <td><p>The default is 100. This specifies the number of training
-iterations</p></td>
+      <th>.inverse</th>
+      <td><p>A logical: should the inverse function be used? Default is FALSE</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list object</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function will get your data ready for processing with many types of ml/ai
+models.</p>
+<p>This is intended to be used inside of the <code><a href='hai_data_preprocessor.html'>hai_data_preprocessor()</a></code> and
+therefore is an internal function. This documentation exists to explain the process
+and help the user understand the parameters that can be set in the pre-processor function.</p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_hyperbolic.html'>recipes::step_hyperbolic()</a></code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Kmeans: 
-<code><a href='hai_kmeans_automl_predict.html'>hai_kmeans_automl_predict</a>()</code>,
-<code><a href='hai_kmeans_mapped_tbl.html'>hai_kmeans_mapped_tbl</a>()</code>,
-<code><a href='hai_kmeans_obj.html'>hai_kmeans_obj</a>()</code>,
-<code><a href='hai_kmeans_scree_data_tbl.html'>hai_kmeans_scree_data_tbl</a>()</code>,
-<code><a href='hai_kmeans_scree_plt.html'>hai_kmeans_scree_plt</a>()</code>,
-<code><a href='hai_kmeans_tidy_tbl.html'>hai_kmeans_tidy_tbl</a>()</code>,
-<code><a href='hai_kmeans_user_item_tbl.html'>hai_kmeans_user_item_tbl</a>()</code></p></div>
+    <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/step_hyperbolic.html'>https://recipes.tidymodels.org/reference/step_hyperbolic.html</a></p>
+<p>Other Data Recipes: 
+<code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
+<code><a href='hai_data_scale.html'>hai_data_scale</a>()</code>,
+<code><a href='pca_your_recipe.html'>pca_your_recipe</a>()</code></p>
+<p>Other Preprocessor: 
+<code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
+<code><a href='hai_data_preprocessor.html'>hai_data_preprocessor</a>()</code>,
+<code><a href='hai_data_scale.html'>hai_data_scale</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Steven P. Sanderson II, MPH</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'><span class='fu'>h2o.init</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>output</span> <span class='op'>&lt;-</span> <span class='fu'>hai_kmeans_automl</span><span class='op'>(</span></span>
-<span class='r-in'>    .data <span class='op'>=</span> <span class='va'>iris</span>,</span>
-<span class='r-in'>    .predictors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal.Width"</span>,<span class='st'>"Sepal.Length"</span>,<span class='st'>"Petal.Width"</span>,<span class='st'>"Petal.Length"</span><span class='op'>)</span>,</span>
-<span class='r-in'>    .standardize <span class='op'>=</span> <span class='cn'>FALSE</span></span>
-<span class='r-in'><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'>h2o.shutdown</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-<span class='r-in'></span>
-</pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

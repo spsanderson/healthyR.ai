@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Automatic K-Means H2O — hai_kmeans_automl • healthyR.ai</title>
+<title>Augment Function Hyperbolic — hai_hyperbolic_augment • healthyR.ai</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,14 @@
 
 
 
-<meta property="og:title" content="Automatic K-Means H2O — hai_kmeans_automl" />
-<meta property="og:description" content="This is a wrapper around the h2o::h2o.kmeans() function that will return a list
-object with a lot of useful and easy to use tidy style information." />
+<meta property="og:title" content="Augment Function Hyperbolic — hai_hyperbolic_augment" />
+<meta property="og:description" content="Takes a numeric vector(s) and will return a tibble of one of the following:
+&quot;sin&quot;
+&quot;cos&quot;
+&quot;tan&quot;
+c(&quot;sin&quot;,&quot;cos&quot;,&quot;tan&quot;)
+
+" />
 
 
 
@@ -135,27 +140,26 @@ object with a lot of useful and easy to use tidy style information." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Automatic K-Means H2O</h1>
-    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/auto-kmeans.R'><code>R/auto-kmeans.R</code></a></small>
-    <div class="hidden name"><code>hai_kmeans_automl.Rd</code></div>
+    <h1>Augment Function Hyperbolic</h1>
+    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-hyperbolic-augment.R'><code>R/hai-hyperbolic-augment.R</code></a></small>
+    <div class="hidden name"><code>hai_hyperbolic_augment.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a wrapper around the <code><a href='https://rdrr.io/pkg/h2o/man/h2o.kmeans.html'>h2o::h2o.kmeans()</a></code> function that will return a list
-object with a lot of useful and easy to use tidy style information.</p>
+    <p>Takes a numeric vector(s) and will return a tibble of one of the following:</p><ul>
+<li><p>"sin"</p></li>
+<li><p>"cos"</p></li>
+<li><p>"tan"</p></li>
+<li><p>c("sin","cos","tan")</p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>hai_kmeans_automl</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>hai_hyperbolic_augment</span><span class='op'>(</span>
   <span class='va'>.data</span>,
-  .split_ratio <span class='op'>=</span> <span class='fl'>0.8</span>,
-  .seed <span class='op'>=</span> <span class='fl'>1234</span>,
-  .centers <span class='op'>=</span> <span class='fl'>10</span>,
-  .standardize <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  .print_model_summary <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  <span class='va'>.predictors</span>,
-  .categorical_encoding <span class='op'>=</span> <span class='st'>"auto"</span>,
-  .initialization_mode <span class='op'>=</span> <span class='st'>"Furthest"</span>,
-  .max_iterations <span class='op'>=</span> <span class='fl'>100</span>
+  <span class='va'>.value</span>,
+  .names <span class='op'>=</span> <span class='st'>"auto"</span>,
+  .scale_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sin"</span>, <span class='st'>"cos"</span>, <span class='st'>"tan"</span>, <span class='st'>"all"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -163,90 +167,59 @@ object with a lot of useful and easy to use tidy style information.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>The data that is to be passed for clustering.</p></td>
+      <td><p>The data being passed that will be augmented by the function.</p></td>
     </tr>
     <tr>
-      <th>.split_ratio</th>
-      <td><p>The ratio for training and testing splits.</p></td>
+      <th>.value</th>
+      <td><p>This is passed <code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>rlang::enquo()</a></code> to capture the vectors you want
+to augment.</p></td>
     </tr>
     <tr>
-      <th>.seed</th>
-      <td><p>The default is 1234, but can be set to any integer.</p></td>
+      <th>.names</th>
+      <td><p>The default is "auto"</p></td>
     </tr>
     <tr>
-      <th>.centers</th>
-      <td><p>The default is 1. Specify the number of clusters (groups of data)
-in a data set.</p></td>
-    </tr>
-    <tr>
-      <th>.standardize</th>
-      <td><p>The default is set to TRUE. When TRUE all numeric columns
-will be set to zero mean and unit variance.</p></td>
-    </tr>
-    <tr>
-      <th>.print_model_summary</th>
-      <td><p>This is a boolean and controls if the model summary
-is printed to the console. The default is TRUE.</p></td>
-    </tr>
-    <tr>
-      <th>.predictors</th>
-      <td><p>This must be in the form of c("column_1", "column_2", ... "column_n")</p></td>
-    </tr>
-    <tr>
-      <th>.categorical_encoding</th>
-      <td><p>Can be one of the following:</p><ul>
-<li><p>"auto"</p></li>
-<li><p>"enum"</p></li>
-<li><p>"one_hot_explicit"</p></li>
-<li><p>"binary"</p></li>
-<li><p>"eigen"</p></li>
-<li><p>"label_encoder"</p></li>
-<li><p>"sort_by_response"</p></li>
-<li><p>"enum_limited"</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>.initialization_mode</th>
-      <td><p>This can be one of the following:</p><ul>
-<li><p>"Random"</p></li>
-<li><p>"Furthest (default)</p></li>
-<li><p>"PlusPlus"</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>.max_iterations</th>
-      <td><p>The default is 100. This specifies the number of training
-iterations</p></td>
+      <th>.scale_type</th>
+      <td><p>A character of one of the following: "sin","cos","tan" All
+can be passed by setting the param equal to c("sin","cos","tan")</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list object</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>A augmented tibble</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class='dont-index'><p>Other Kmeans: 
-<code><a href='hai_kmeans_automl_predict.html'>hai_kmeans_automl_predict</a>()</code>,
-<code><a href='hai_kmeans_mapped_tbl.html'>hai_kmeans_mapped_tbl</a>()</code>,
-<code><a href='hai_kmeans_obj.html'>hai_kmeans_obj</a>()</code>,
-<code><a href='hai_kmeans_scree_data_tbl.html'>hai_kmeans_scree_data_tbl</a>()</code>,
-<code><a href='hai_kmeans_scree_plt.html'>hai_kmeans_scree_plt</a>()</code>,
-<code><a href='hai_kmeans_tidy_tbl.html'>hai_kmeans_tidy_tbl</a>()</code>,
-<code><a href='hai_kmeans_user_item_tbl.html'>hai_kmeans_user_item_tbl</a>()</code></p></div>
+    <p>Takes a numeric vector and will return a vector of one of the following:</p><ul>
+<li><p>"sin"</p></li>
+<li><p>"cos"</p></li>
+<li><p>"tan"</p></li>
+<li><p>c("sin","cos","tan")</p></li>
+</ul>
+
+<p>This function is intended to be used on its own in order to add columns to a
+tibble.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Steven P. Sanderson II, MPH</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'><span class='fu'>h2o.init</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>output</span> <span class='op'>&lt;-</span> <span class='fu'>hai_kmeans_automl</span><span class='op'>(</span></span>
-<span class='r-in'>    .data <span class='op'>=</span> <span class='va'>iris</span>,</span>
-<span class='r-in'>    .predictors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal.Width"</span>,<span class='st'>"Sepal.Length"</span>,<span class='st'>"Petal.Width"</span>,<span class='st'>"Petal.Length"</span><span class='op'>)</span>,</span>
-<span class='r-in'>    .standardize <span class='op'>=</span> <span class='cn'>FALSE</span></span>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>len_out</span>    <span class='op'>=</span> <span class='fl'>10</span></span>
+<span class='r-in'><span class='va'>by_unit</span>    <span class='op'>=</span> <span class='st'>"month"</span></span>
+<span class='r-in'><span class='va'>start_date</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2021-01-01"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>data_tbl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span></span>
+<span class='r-in'>  date_col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.Date.html'>seq.Date</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='va'>start_date</span>, length.out <span class='op'>=</span> <span class='va'>len_out</span>, by <span class='op'>=</span> <span class='va'>by_unit</span><span class='op'>)</span>,</span>
+<span class='r-in'>  a    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>len_out</span><span class='op'>)</span>,</span>
+<span class='r-in'>  b    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='va'>len_out</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'>h2o.shutdown</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>hai_hyperbolic_augment</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, .scale_type <span class='op'>=</span> <span class='st'>"sin"</span><span class='op'>)</span></span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in eval_select_impl(data, names(data), as_quosure(expr, env), include = include,     exclude = exclude, strict = strict, name_spec = name_spec,     allow_rename = allow_rename):</span> object 'a' not found</span>
+<span class='r-in'><span class='fu'>hai_hyperbolic_augment</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, .scale_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sin"</span>,<span class='st'>"cos"</span>,<span class='st'>"tan"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in eval_select_impl(data, names(data), as_quosure(expr, env), include = include,     exclude = exclude, strict = strict, name_spec = name_spec,     allow_rename = allow_rename):</span> object 'a' not found</span>
 <span class='r-in'></span>
 </pre>
   </div>
