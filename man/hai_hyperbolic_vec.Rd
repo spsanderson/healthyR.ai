@@ -2,7 +2,7 @@
 % Please edit documentation in R/hai-hyperbolic-vec.R
 \name{hai_hyperbolic_vec}
 \alias{hai_hyperbolic_vec}
-\title{Vector Fuction Hyperbolic}
+\title{Vector Function Hyperbolic}
 \usage{
 hai_hyperbolic_vec(x, .scale_type = c("sin", "cos", "tan"))
 }
@@ -30,7 +30,7 @@ Takes a numeric vector and will return a vector of one of the following:
 \item "tan"
 }
 
-This fucntion can be used on it's own. It is also the basis for the function
+This function can be used on it's own. It is also the basis for the function
 \code{\link[=hai_hyperbolic_augment]{hai_hyperbolic_augment()}}.
 }
 \examples{

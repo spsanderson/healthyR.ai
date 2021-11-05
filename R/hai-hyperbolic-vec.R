@@ -1,4 +1,4 @@
-#' Vector Fuction Hyperbolic
+#' Vector Function Hyperbolic
 #'
 #' @family Vector Function
 #'
@@ -16,7 +16,7 @@
 #' -  "cos"
 #' -  "tan"
 #'
-#' This fucntion can be used on it's own. It is also the basis for the function
+#' This function can be used on it's own. It is also the basis for the function
 #' [healthyR.ai::hai_hyperbolic_augment()].
 #'
 #' @param .x A numeric vector
