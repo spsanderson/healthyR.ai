@@ -4,10 +4,10 @@
 \alias{hai_hyperbolic_vec}
 \title{Vector Function Hyperbolic}
 \usage{
-hai_hyperbolic_vec(x, .scale_type = c("sin", "cos", "tan"))
+hai_hyperbolic_vec(x, .scale_type = c("sin", "cos", "tan", "sincos"))
 }
 \arguments{
-\item{.scale_type}{A character of one of the following: "sin","cos","tan"}
+\item{.scale_type}{A character of one of the following: "sin","cos","tan","sincos"}
 
 \item{.x}{A numeric vector}
 }
@@ -20,6 +20,7 @@ Takes a numeric vector and will return a vector of one of the following:
 \item "sin"
 \item "cos"
 \item "tan"
+\item "sincos" This will do value = sin(x) * cos(x)
 }
 }
 \details{
@@ -28,6 +29,7 @@ Takes a numeric vector and will return a vector of one of the following:
 \item "sin"
 \item "cos"
 \item "tan"
+\item "sincos"
 }
 
 This function can be used on it's own. It is also the basis for the function
@@ -36,7 +38,7 @@ This function can be used on it's own. It is also the basis for the function
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 
-len_out    = 10
+len_out    = 25
 by_unit    = "month"
 start_date = as.Date("2021-01-01")
 
@@ -46,7 +48,14 @@ data_tbl <- tibble(
   b    = runif(len_out)
 )
 
-hai_hyperbolic_vec(data_tbl$a, .scale_type = "sin")
+vec_1 <- hai_hyperbolic_vec(data_tbl$b, .scale_type = "sin")
+vec_2 <- hai_hyperbolic_vec(data_tbl$b, .scale_type = "cos")
+vec_3 <- hai_hyperbolic_vec(data_tbl$b, .scale_type = "sincos")
+
+plot(data_tbl$b)
+lines(vec_1, col = "blue")
+lines(vec_2, col = "red")
+lines(vec_3, col = "green")
 
 }
 \author{

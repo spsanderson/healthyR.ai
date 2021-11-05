@@ -9,14 +9,16 @@
 #' -  "sin"
 #' -  "cos"
 #' -  "tan"
-#' -  c("sin","cos","tan")
+#' -  "sincos"
+#' -  c("sin","cos","tan", "sincos")
 #'
 #' @details
 #' Takes a numeric vector and will return a vector of one of the following:
 #' -  "sin"
 #' -  "cos"
 #' -  "tan"
-#' -  c("sin","cos","tan")
+#' -  "sincos"
+#' -  c("sin","cos","tan", "sincos")
 #'
 #' This function is intended to be used on its own in order to add columns to a
 #' tibble.
@@ -25,8 +27,8 @@
 #' @param .value This is passed [rlang::enquo()] to capture the vectors you want
 #' to augment.
 #' @param .names The default is "auto"
-#' @param .scale_type A character of one of the following: "sin","cos","tan" All
-#' can be passed by setting the param equal to c("sin","cos","tan")
+#' @param .scale_type A character of one of the following: "sin","cos","tan", "sincos" All
+#' can be passed by setting the param equal to c("sin","cos","tan","sincos")
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -41,8 +43,8 @@
 #'   b    = runif(len_out)
 #' )
 #'
-#' hai_hyperbolic_augment(a, b, .scale_type = "sin")
-#' hai_hyperbolic_augment(a, b, .scale_type = c("sin","cos","tan"))
+#' hai_hyperbolic_augment(data_tbl, c(a, b), .scale_type = c("sin", "sincos"))
+#' hai_hyperbolic_augment(data_tbl, c(a, b), .scale_type = c("sin","cos","tan"))
 #'
 #' @return
 #' A augmented tibble
@@ -53,7 +55,7 @@
 hai_hyperbolic_augment <- function(.data
                                    , .value
                                    , .names = "auto"
-                                   , .scale_type = c("sin","cos","tan","all")
+                                   , .scale_type = c("sin","cos","tan","sincos")
 ){
 
     column_expr <- rlang::enquo(.value)
@@ -67,7 +69,7 @@ hai_hyperbolic_augment <- function(.data
             "hai_hyperbolic_vec",
             x             = rlang::sym(col)
             , .scale_type = scale_type
-            #, .ns = "healthyR.ai"
+            , .ns         = "healthyR.ai"
         )
     }
 
