@@ -9,14 +9,16 @@
 #' -  "sin"
 #' -  "cos"
 #' -  "tan"
-#' -  c("sin","cos","tan")
+#' -  "sincos"
+#' -  c("sin","cos","tan", "sincos")
 #'
 #' @details
 #' Takes a numeric vector and will return a vector of one of the following:
 #' -  "sin"
 #' -  "cos"
 #' -  "tan"
-#' -  c("sin","cos","tan")
+#' -  "sincos"
+#' -  c("sin","cos","tan", "sincos")
 #'
 #' This function is intended to be used on its own in order to add columns to a
 #' tibble.

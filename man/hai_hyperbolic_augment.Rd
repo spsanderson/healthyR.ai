@@ -31,7 +31,8 @@ Takes a numeric vector(s) and will return a tibble of one of the following:
 \item "sin"
 \item "cos"
 \item "tan"
-\item c("sin","cos","tan")
+\item "sincos"
+\item c("sin","cos","tan", "sincos")
 }
 }
 \details{
@@ -40,7 +41,8 @@ Takes a numeric vector and will return a vector of one of the following:
 \item "sin"
 \item "cos"
 \item "tan"
-\item c("sin","cos","tan")
+\item "sincos"
+\item c("sin","cos","tan", "sincos")
 }
 
 This function is intended to be used on its own in order to add columns to a
