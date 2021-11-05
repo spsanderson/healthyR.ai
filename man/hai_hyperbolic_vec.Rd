@@ -30,7 +30,7 @@ Takes a numeric vector and will return a vector of one of the following:
 \item "tan"
 }
 
-This fucntion can be used on it's own. It is also the basis for the function
+This function can be used on it's own. It is also the basis for the function
 \code{\link[=hai_hyperbolic_augment]{hai_hyperbolic_augment()}}.
 }
 \examples{
