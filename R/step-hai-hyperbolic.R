@@ -125,6 +125,33 @@ step_hai_hyperbolic_new <-
     }
 
 #' @export
+# setGeneric("prep", "c('step_hai_hyperbolic', 'step')", function(x, training, info = NULL, ...) {
+#     prep.step_hai_hyperbolic <- function(x, training, info = NULL, ...) {
+#
+#         #col_names <- recipes::recipes_eval_select(x$terms, training, info = info)
+#         col_names <- recipes::recipes_eval_select(x$terms, training, info)
+#
+#         value_data <- info[info$variable %in% col_names, ]
+#
+#         if(any(value_data$type != "numeric")){
+#             rlang::abort(
+#                 paste0("All variables for `step_hai_hyperbolic` must be `numeric`",
+#                        "`integer` `double` classes.")
+#             )
+#         }
+#
+#         step_hai_hyperbolic_new(
+#             terms      = x$terms,
+#             role       = x$role,
+#             trained    = TRUE,
+#             columns    = col_names,
+#             scale_type = x$scale_type,
+#             skip       = x$skip,
+#             id         = x$id
+#         )
+#
+#     }
+# })
 prep.step_hai_hyperbolic <- function(x, training, info = NULL, ...) {
 
     #col_names <- recipes::recipes_eval_select(x$terms, training, info = info)
@@ -197,6 +224,10 @@ print.step_hai_hyperbolic <-
     }
 
 #' @rdname required_pkgs.healthyR.ai
+#' @keywords internal
+#' @return A character vector
+#' @param x A recipe step
+#' @noRd
 #' @export
 required_pkgs.step_hai_hyperbolic <- function(x, ...) {
     c("healthyR.ai")

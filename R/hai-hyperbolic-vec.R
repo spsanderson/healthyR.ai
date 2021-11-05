@@ -9,18 +9,20 @@
 #' -  "sin"
 #' -  "cos"
 #' -  "tan"
+#' -  "sincos" This will do value = sin(x) * cos(x)
 #'
 #' @details
 #' Takes a numeric vector and will return a vector of one of the following:
 #' -  "sin"
 #' -  "cos"
 #' -  "tan"
+#' -  "sincos"
 #'
 #' This function can be used on it's own. It is also the basis for the function
 #' [healthyR.ai::hai_hyperbolic_augment()].
 #'
 #' @param .x A numeric vector
-#' @param .scale_type A character of one of the following: "sin","cos","tan"
+#' @param .scale_type A character of one of the following: "sin","cos","tan","sincos"
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -35,7 +37,12 @@
 #'   b    = runif(len_out)
 #' )
 #'
-#' hai_hyperbolic_vec(data_tbl$a, .scale_type = "sin")
+#' vec_1 <- hai_hyperbolic_vec(data_tbl$b, .scale_type = "sin")
+#' vec_2 <- hai_hyperbolic_bec(data_tbl$b, .scale_type = "sincos")
+#'
+#' plot(data_tbl$b)
+#' lines(vec_1, col = "blue")
+#' lines(vec_2, col = "red")
 #'
 #' @return
 #' A numeric vector
@@ -43,7 +50,7 @@
 #' @export
 #'
 
-hai_hyperbolic_vec <- function(x, .scale_type = c("sin","cos","tan")){
+hai_hyperbolic_vec <- function(x, .scale_type = c("sin","cos","tan","sincos")){
 
     scale_type = base::as.character(.scale_type)
     term       = x
@@ -54,6 +61,8 @@ hai_hyperbolic_vec <- function(x, .scale_type = c("sin","cos","tan")){
         ret <- base::cos(term)
     } else if (scale_type == "tan") {
         ret <- base::tan(term)
+    } else if (scale_type == "sincos") {
+        ret <- base::sin(term) * base::cos(term)
     }
 
     return(ret)
