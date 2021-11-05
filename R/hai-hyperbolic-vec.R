@@ -27,7 +27,7 @@
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
 #'
-#' len_out    = 10
+#' len_out    = 25
 #' by_unit    = "month"
 #' start_date = as.Date("2021-01-01")
 #'
@@ -38,11 +38,13 @@
 #' )
 #'
 #' vec_1 <- hai_hyperbolic_vec(data_tbl$b, .scale_type = "sin")
-#' vec_2 <- hai_hyperbolic_bec(data_tbl$b, .scale_type = "sincos")
+#' vec_2 <- hai_hyperbolic_vec(data_tbl$b, .scale_type = "cos")
+#' vec_3 <- hai_hyperbolic_vec(data_tbl$b, .scale_type = "sincos")
 #'
 #' plot(data_tbl$b)
 #' lines(vec_1, col = "blue")
 #' lines(vec_2, col = "red")
+#' lines(vec_3, col = "green")
 #'
 #' @return
 #' A numeric vector
