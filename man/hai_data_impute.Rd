@@ -148,7 +148,6 @@ Other Data Recipes:
 \code{\link{pca_your_recipe}()}
 
 Other Preprocessor: 
-\code{\link{hai_data_preprocessor}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_step_trig}()}
 }
