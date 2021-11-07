@@ -76,7 +76,7 @@
 #'
 #' @export
 #'
-#' @importFrom recipes prep bake
+#' @importFrom recipes prep bake rand_id
 
 step_hai_hyperbolic <- function(recipe,
                                 ...,
