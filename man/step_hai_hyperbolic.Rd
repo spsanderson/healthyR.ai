@@ -69,6 +69,7 @@ used for this purpose.
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(recipes))
 
 len_out    = 10
 by_unit    = "month"
