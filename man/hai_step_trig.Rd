@@ -77,7 +77,6 @@ Other Data Recipes:
 
 Other Preprocessor: 
 \code{\link{hai_data_impute}()},
-\code{\link{hai_data_preprocessor}()},
 \code{\link{hai_data_scale}()}
 }
 \author{

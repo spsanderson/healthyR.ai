@@ -2,6 +2,7 @@
 #'
 #' @family Recipes
 #'
+#' @description
 #' `step_hai_hyperbolic` creates a a *specification* of a recipe
 #'  step that will convert numeric data into either a 'sin', 'cos', or 'tan'
 #'  feature that can aid in machine learning.
@@ -28,11 +29,8 @@
 #'  using skip = TRUE as it may affect the computations for subsequent operations.
 #' @param id A character string that is unique to this step to identify it.
 #'
-#' @return For `step_timeseries_signature`, an updated version of recipe with
+#' @return For `step_hai_hyperbolic`, an updated version of recipe with
 #'  the new step added to the sequence of existing steps (if any).
-#'  For the `tidy` method, a tibble with columns `terms`
-#'  (the selectors or variables selected), `value` (the feature
-#'  names).
 #'
 #'  Main Recipe Functions:
 #'  - `recipes::recipe()`
@@ -78,6 +76,7 @@
 #'
 #' @export
 #'
+#' @importFrom recipes prep bake
 
 step_hai_hyperbolic <- function(recipe,
                                 ...,

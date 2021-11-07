@@ -76,8 +76,7 @@ output_list$pca_variance_scree_plt
 \url{https://recipes.tidymodels.org/reference/step_pca.html}
 
 Other Data Wrangling: 
-\code{\link{get_juiced_data}()},
-\code{\link{hai_data_preprocessor}()}
+\code{\link{get_juiced_data}()}
 
 Other Data Recipes: 
 \code{\link{hai_data_impute}()},

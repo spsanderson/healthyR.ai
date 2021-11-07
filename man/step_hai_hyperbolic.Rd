@@ -46,11 +46,8 @@ using skip = TRUE as it may affect the computations for subsequent operations.}
 \item{id}{A character string that is unique to this step to identify it.}
 }
 \value{
-For \code{step_timeseries_signature}, an updated version of recipe with
+For \code{step_hai_hyperbolic}, an updated version of recipe with
 the new step added to the sequence of existing steps (if any).
-For the \code{tidy} method, a tibble with columns \code{terms}
-(the selectors or variables selected), \code{value} (the feature
-names).
 
 Main Recipe Functions:
 \itemize{
@@ -60,7 +57,9 @@ Main Recipe Functions:
 }
 }
 \description{
-Recipes Step Hyperbolic Generator
+\code{step_hai_hyperbolic} creates a a \emph{specification} of a recipe
+step that will convert numeric data into either a 'sin', 'cos', or 'tan'
+feature that can aid in machine learning.
 }
 \details{
 \strong{Numeric Variables}
@@ -98,8 +97,4 @@ bake(prep(rec_obj), data_tbl)
 rec_obj \%>\% get_juiced_data()
 
 }
-\concept{Recipes
-
-\code{step_hai_hyperbolic} creates a a \emph{specification} of a recipe
-step that will convert numeric data into either a 'sin', 'cos', or 'tan'
-feature that can aid in machine learning.}
+\concept{Recipes}
