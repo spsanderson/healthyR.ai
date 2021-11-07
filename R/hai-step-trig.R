@@ -46,7 +46,7 @@
 #'
 #' rec_obj <- recipe(value ~., df_tbl)
 #'
-#' healthyR.ai:::hai_step_trig
+#' healthyR.ai:::hai_step_trig(
 #'     .recipe_object = rec_obj,
 #'     value,
 #'     .type_of_scale = "sin"
