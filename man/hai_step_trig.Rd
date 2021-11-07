@@ -23,7 +23,6 @@ predict the missing data in each variable. See selections() for more details}
 \item "sin"
 \item "cos"
 \item "tan"
-\item "all"
 }}
 
 \item{.inverse}{A logical: should the inverse function be used? Default is FALSE}
@@ -40,7 +39,7 @@ is not exported but may be called via the ::: method.
 This function will get your data ready for processing with many types of ml/ai
 models.
 
-This is intended to be used inside of the \code{\link[=hai_data_preprocessor]{hai_data_preprocessor()}} and
+This is intended to be used inside of the data processor and
 therefore is an internal function. This documentation exists to explain the process
 and help the user understand the parameters that can be set in the pre-processor function.
 
