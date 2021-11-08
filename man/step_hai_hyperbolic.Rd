@@ -10,7 +10,7 @@ step_hai_hyperbolic(
   role = "predictor",
   trained = FALSE,
   columns = NULL,
-  scale_type = c("sin", "cos", "tan"),
+  scale_type = c("sin", "cos", "tan", "sincos"),
   skip = FALSE,
   id = rand_id("hai_hyperbolic")
 )
@@ -97,5 +97,9 @@ bake(prep(rec_obj), data_tbl)
 
 rec_obj \%>\% get_juiced_data()
 
+}
+\seealso{
+Other Recipes: 
+\code{\link{step_hai_fourier}()}
 }
 \concept{Recipes}
