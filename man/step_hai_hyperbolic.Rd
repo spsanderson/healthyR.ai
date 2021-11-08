@@ -35,7 +35,7 @@ preprocessing have been estimated.}
 used as inputs. This field is a placeholder and will be
 populated once \code{recipes::prep()} is used.}
 
-\item{scale_type}{A character string of a scaling type, one of "sin", "cos", or "tan"}
+\item{scale_type}{A character string of a scaling type, one of "sin","cos","tan" or "sincos"}
 
 \item{skip}{A logical. Should the step be skipped when the recipe is
 baked by bake.recipe()? While all operations are baked when prep.recipe()
