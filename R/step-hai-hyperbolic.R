@@ -21,7 +21,7 @@
 #' @param columns A character string of variables that will be
 #'  used as inputs. This field is a placeholder and will be
 #'  populated once `recipes::prep()` is used.
-#' @param scale_type A character string of a scaling type, one of "sin", "cos", or "tan"
+#' @param scale_type A character string of a scaling type, one of "sin","cos","tan" or "sincos"
 #' @param skip A logical. Should the step be skipped when the recipe is
 #'  baked by bake.recipe()? While all operations are baked when prep.recipe()
 #'  is run, some operations may not be able to be conducted on new data
@@ -47,6 +47,7 @@
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
+#' suppressPackageStartupMessages(library(recipes))
 #'
 #' len_out    = 10
 #' by_unit    = "month"
@@ -76,7 +77,7 @@
 #'
 #' @export
 #'
-#' @importFrom recipes prep bake
+#' @importFrom recipes prep bake rand_id
 
 step_hai_hyperbolic <- function(recipe,
                                 ...,
@@ -124,36 +125,8 @@ step_hai_hyperbolic_new <-
     }
 
 #' @export
-# setGeneric("prep", "c('step_hai_hyperbolic', 'step')", function(x, training, info = NULL, ...) {
-#     prep.step_hai_hyperbolic <- function(x, training, info = NULL, ...) {
-#
-#         #col_names <- recipes::recipes_eval_select(x$terms, training, info = info)
-#         col_names <- recipes::recipes_eval_select(x$terms, training, info)
-#
-#         value_data <- info[info$variable %in% col_names, ]
-#
-#         if(any(value_data$type != "numeric")){
-#             rlang::abort(
-#                 paste0("All variables for `step_hai_hyperbolic` must be `numeric`",
-#                        "`integer` `double` classes.")
-#             )
-#         }
-#
-#         step_hai_hyperbolic_new(
-#             terms      = x$terms,
-#             role       = x$role,
-#             trained    = TRUE,
-#             columns    = col_names,
-#             scale_type = x$scale_type,
-#             skip       = x$skip,
-#             id         = x$id
-#         )
-#
-#     }
-# })
 prep.step_hai_hyperbolic <- function(x, training, info = NULL, ...) {
 
-    #col_names <- recipes::recipes_eval_select(x$terms, training, info = info)
     col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
     value_data <- info[info$variable %in% col_names, ]
@@ -183,9 +156,9 @@ bake.step_hai_hyperbolic <- function(object, new_data, ...){
     make_call <- function(col, scale_type){
         rlang::call2(
             "hai_hyperbolic_vec",
-            x              = rlang::sym(col)
-            ,  .scale_type = scale_type
-            , .ns          = "healthyR.ai"
+            .x            = rlang::sym(col)
+            , .scale_type = scale_type
+            , .ns         = "healthyR.ai"
         )
     }
 

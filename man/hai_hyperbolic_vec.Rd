@@ -4,12 +4,12 @@
 \alias{hai_hyperbolic_vec}
 \title{Vector Function Hyperbolic}
 \usage{
-hai_hyperbolic_vec(x, .scale_type = c("sin", "cos", "tan", "sincos"))
+hai_hyperbolic_vec(.x, .scale_type = c("sin", "cos", "tan", "sincos"))
 }
 \arguments{
-\item{.scale_type}{A character of one of the following: "sin","cos","tan","sincos"}
-
 \item{.x}{A numeric vector}
+
+\item{.scale_type}{A character of one of the following: "sin","cos","tan","sincos"}
 }
 \value{
 A numeric vector

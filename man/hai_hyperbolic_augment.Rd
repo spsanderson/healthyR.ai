@@ -61,8 +61,8 @@ data_tbl <- tibble(
   b    = runif(len_out)
 )
 
-hai_hyperbolic_augment(data_tbl, c(a, b), .scale_type = c("sin", "sincos"))
-hai_hyperbolic_augment(data_tbl, c(a, b), .scale_type = c("sin","cos","tan"))
+hai_hyperbolic_augment(data_tbl, b, .scale_type = "sin")
+hai_hyperbolic_augment(data_tbl, b, .scale_type = "tan")
 
 }
 \author{

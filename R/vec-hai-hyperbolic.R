@@ -52,10 +52,10 @@
 #' @export
 #'
 
-hai_hyperbolic_vec <- function(x, .scale_type = c("sin","cos","tan","sincos")){
+hai_hyperbolic_vec <- function(.x, .scale_type = c("sin","cos","tan","sincos")){
 
     scale_type = base::as.character(.scale_type)
-    term       = x
+    term       = .x
 
     if (scale_type == "sin"){
         ret <- base::sin(term)
