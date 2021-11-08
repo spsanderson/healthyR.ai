@@ -26,6 +26,8 @@
 #' @param .data The data being passed that will be augmented by the function.
 #' @param .value This is passed [rlang::enquo()] to capture the vectors you want
 #' to augment.
+#' @param .period The number of observations that complete a cycle
+#' @param .order The fourier term order
 #' @param .names The default is "auto"
 #' @param .scale_type A character of one of the following: "sin","cos","tan", "sincos" All
 #' can be passed by setting the param equal to c("sin","cos","tan","sincos")
