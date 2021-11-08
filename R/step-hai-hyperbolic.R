@@ -21,7 +21,7 @@
 #' @param columns A character string of variables that will be
 #'  used as inputs. This field is a placeholder and will be
 #'  populated once `recipes::prep()` is used.
-#' @param scale_type A character string of a scaling type, one of "sin", "cos", or "tan"
+#' @param scale_type A character string of a scaling type, one of "sin","cos","tan" or "sincos"
 #' @param skip A logical. Should the step be skipped when the recipe is
 #'  baked by bake.recipe()? While all operations are baked when prep.recipe()
 #'  is run, some operations may not be able to be conducted on new data
