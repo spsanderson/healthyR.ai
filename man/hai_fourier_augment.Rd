@@ -2,7 +2,7 @@
 % Please edit documentation in R/augment-hai-fourier.R
 \name{hai_fourier_augment}
 \alias{hai_fourier_augment}
-\title{Augment Function Hyperbolic}
+\title{Augment Function Fourier}
 \usage{
 hai_fourier_augment(
   .data,
@@ -19,10 +19,14 @@ hai_fourier_augment(
 \item{.value}{This is passed \code{\link[rlang:nse-defuse]{rlang::enquo()}} to capture the vectors you want
 to augment.}
 
+\item{.period}{The number of observations that complete a cycle}
+
+\item{.order}{The fourier term order}
+
 \item{.names}{The default is "auto"}
 
-\item{.scale_type}{A character of one of the following: "sin","cos","tan", "sincos" All
-can be passed by setting the param equal to c("sin","cos","tan","sincos")}
+\item{.scale_type}{A character of one of the following: "sin","cos", or sincos" All
+can be passed by setting the param equal to c("sin","cos","sincos")}
 }
 \value{
 A augmented tibble
@@ -32,9 +36,8 @@ Takes a numeric vector(s) and will return a tibble of one of the following:
 \itemize{
 \item "sin"
 \item "cos"
-\item "tan"
 \item "sincos"
-\item c("sin","cos","tan", "sincos")
+\item c("sin","cos","sincos")
 }
 }
 \details{
@@ -42,9 +45,8 @@ Takes a numeric vector and will return a vector of one of the following:
 \itemize{
 \item "sin"
 \item "cos"
-\item "tan"
 \item "sincos"
-\item c("sin","cos","tan", "sincos")
+\item c("sin","cos","sincos")
 }
 
 This function is intended to be used on its own in order to add columns to a
@@ -63,8 +65,8 @@ data_tbl <- tibble(
   b    = runif(len_out)
 )
 
-hai_hyperbolic_augment(data_tbl, b, .scale_type = "sin")
-hai_hyperbolic_augment(data_tbl, b, .scale_type = "tan")
+hai_fourier_augment(data_tbl, b, .period = 12, .order = 1, .scale_type = "sin")
+hai_fourier_augment(data_tbl, b, .period = 12, .order = 1, .scale_type = "cos")
 
 }
 \seealso{

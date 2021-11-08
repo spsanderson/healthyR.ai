@@ -7,13 +7,13 @@
 hai_fourier_vec(x, .period, .order, .scale_type = c("sin", "cos", "sincos"))
 }
 \arguments{
+\item{x}{A numeric vector}
+
 \item{.period}{The number of observations that complete a cycle}
 
 \item{.order}{The fourier term order}
 
 \item{.scale_type}{A character of one of the following: "sin","cos","sincos"}
-
-\item{.x}{A numeric vector}
 }
 \value{
 A numeric vector
@@ -57,9 +57,9 @@ data_tbl <- tibble(
   b    = runif(len_out)
 )
 
-vec_1 <- hai_fourier_vec(data_tbl$b, .scale_type = "sin")
-vec_2 <- hai_fourier_vec(data_tbl$b, .scale_type = "cos")
-vec_3 <- hai_fourier_vec(data_tbl$b, .scale_type = "sincos")
+vec_1 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "sin")
+vec_2 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "cos")
+vec_3 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "sincos")
 
 plot(data_tbl$b)
 lines(vec_1, col = "blue")
