@@ -25,7 +25,7 @@
 #' This function can be used on it's own. It is also the basis for the function
 #' [healthyR.ai::hai_fourier_augment()].
 #'
-#' @param .x A numeric vector
+#' @param x A numeric vector
 #' @param .period The number of observations that complete a cycle
 #' @param .order The fourier term order
 #' @param .scale_type A character of one of the following: "sin","cos","sincos"
@@ -43,9 +43,9 @@
 #'   b    = runif(len_out)
 #' )
 #'
-#' vec_1 <- hai_fourier_vec(data_tbl$b, .scale_type = "sin")
-#' vec_2 <- hai_fourier_vec(data_tbl$b, .scale_type = "cos")
-#' vec_3 <- hai_fourier_vec(data_tbl$b, .scale_type = "sincos")
+#' vec_1 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "sin")
+#' vec_2 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "cos")
+#' vec_3 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "sincos")
 #'
 #' plot(data_tbl$b)
 #' lines(vec_1, col = "blue")
