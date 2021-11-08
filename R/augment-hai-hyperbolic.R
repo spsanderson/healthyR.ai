@@ -68,7 +68,7 @@ hai_hyperbolic_augment <- function(.data
         rlang::call2(
             "hai_hyperbolic_vec",
             .x            = rlang::sym(col)
-            , .scale_type = .scale_type
+            , .scale_type = scale_type
             , .ns         = "healthyR.ai"
         )
     }
