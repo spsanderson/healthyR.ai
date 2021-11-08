@@ -173,7 +173,6 @@ predict the missing data in each variable. See selections() for more details</p>
 <li><p>"sin"</p></li>
 <li><p>"cos"</p></li>
 <li><p>"tan"</p></li>
-<li><p>"all"</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -189,7 +188,7 @@ predict the missing data in each variable. See selections() for more details</p>
 
     <p>This function will get your data ready for processing with many types of ml/ai
 models.</p>
-<p>This is intended to be used inside of the <code><a href='hai_data_preprocessor.html'>hai_data_preprocessor()</a></code> and
+<p>This is intended to be used inside of the data processor and
 therefore is an internal function. This documentation exists to explain the process
 and help the user understand the parameters that can be set in the pre-processor function.</p>
 <p><code><a href='https://recipes.tidymodels.org/reference/step_hyperbolic.html'>recipes::step_hyperbolic()</a></code></p>
@@ -202,14 +201,46 @@ and help the user understand the parameters that can be set in the pre-processor
 <code><a href='pca_your_recipe.html'>pca_your_recipe</a>()</code></p>
 <p>Other Preprocessor: 
 <code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
-<code><a href='hai_data_preprocessor.html'>hai_data_preprocessor</a>()</code>,
 <code><a href='hai_data_scale.html'>hai_data_scale</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Steven P. Sanderson II, MPH</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/recipes'>recipes</a></span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>date_seq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.Date.html'>seq.Date</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2013-01-01"</span><span class='op'>)</span>, length.out <span class='op'>=</span> <span class='fl'>100</span>, by <span class='op'>=</span> <span class='st'>"month"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>val_seq</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, mean <span class='op'>=</span> <span class='fl'>6</span>, sd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>, times <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df_tbl</span>   <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span></span>
+<span class='r-in'>    date_col <span class='op'>=</span> <span class='va'>date_seq</span>,</span>
+<span class='r-in'>    value    <span class='op'>=</span> <span class='va'>val_seq</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>rec_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span><span class='op'>(</span><span class='va'>value</span> <span class='op'>~</span><span class='va'>.</span>, <span class='va'>df_tbl</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>healthyR.ai</span><span class='fu'>:::</span><span class='fu'>hai_step_trig</span><span class='op'>(</span></span>
+<span class='r-in'>    .recipe_object <span class='op'>=</span> <span class='va'>rec_obj</span>,</span>
+<span class='r-in'>    <span class='va'>value</span>,</span>
+<span class='r-in'>    .type_of_scale <span class='op'>=</span> <span class='st'>"sin"</span></span>
+<span class='r-in'><span class='op'>)</span><span class='op'>$</span><span class='va'>scale_rec_obj</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>    <span class='fu'><a href='get_juiced_data.html'>get_juiced_data</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 100 x 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col     value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2013-01-01 -<span style='color: #BB0000;'>0.940</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2013-02-01  0.753 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2013-03-01  0.779 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2013-04-01 -<span style='color: #BB0000;'>0.353</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2013-05-01 -<span style='color: #BB0000;'>0.330</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2013-06-01  0.352 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2013-07-01  0.816 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2013-08-01 -<span style='color: #BB0000;'>0.172</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2013-09-01 -<span style='color: #BB0000;'>0.087</span><span style='color: #BB0000; text-decoration: underline;'>4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2013-10-01 -<span style='color: #BB0000;'>0.886</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 90 more rows</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
