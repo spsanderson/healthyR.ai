@@ -19,6 +19,10 @@ hai_fourier_augment(
 \item{.value}{This is passed \code{\link[rlang:nse-defuse]{rlang::enquo()}} to capture the vectors you want
 to augment.}
 
+\item{.period}{The number of observations that complete a cycle}
+
+\item{.order}{The fourier term order}
+
 \item{.names}{The default is "auto"}
 
 \item{.scale_type}{A character of one of the following: "sin","cos","tan", "sincos" All
