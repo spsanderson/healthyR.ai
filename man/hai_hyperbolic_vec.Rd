@@ -58,6 +58,10 @@ lines(vec_2, col = "red")
 lines(vec_3, col = "green")
 
 }
+\seealso{
+Other Vector Function: 
+\code{\link{hai_fourier_vec}()}
+}
 \author{
 Steven P. Sanderson II, MPH
 }
