@@ -216,6 +216,6 @@ print.step_hai_fourier <-
 #' @param x A recipe step
 #' @noRd
 #' @export
-required_pkgs.step_hai_hyperbolic <- function(x, ...) {
+required_pkgs.step_hai_fourier <- function(x, ...) {
     c("healthyR.ai")
 }

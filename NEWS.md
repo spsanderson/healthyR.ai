@@ -10,7 +10,7 @@ None
 and associated recipes functions prep. bake. and print.
 4. Fix #68 - Add `hai_hyperbolic_vec()` function.
 5. Fix #70 - Add `hai_hyperbolic_augment()` function.
-6. Fix #65 - Add `hai_fourier_vec()`,`hai_fourier_augment()`,`step_hai_fourier()`
+6. Fix #75 - Add `hai_fourier_vec()`,`hai_fourier_augment()`,`step_hai_fourier()`
 
 ## Minor Fixes and Improvments
 None

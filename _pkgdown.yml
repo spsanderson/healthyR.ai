@@ -40,9 +40,12 @@ reference:
      desc: Functions to add recipe steps
      contents:
      -  "step_hai_hyperbolic"
+     -  "step_hai_fourier"
   -  title: Vectorized Functions
      contents:
      -  "hai_hyperbolic_vec"
+     -  "hai_fourier_vec"
   -  title: Augmenting Functions
      contents:
      -  "hai_hyperbolic_augment"
+     -  "hai_fourier_augment"

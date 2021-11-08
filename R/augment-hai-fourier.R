@@ -1,4 +1,4 @@
-#' Augment Function Hyperbolic
+#' Augment Function Fourier
 #'
 #' @family Augment Function
 #'
@@ -8,17 +8,15 @@
 #' Takes a numeric vector(s) and will return a tibble of one of the following:
 #' -  "sin"
 #' -  "cos"
-#' -  "tan"
 #' -  "sincos"
-#' -  c("sin","cos","tan", "sincos")
+#' -  c("sin","cos","sincos")
 #'
 #' @details
 #' Takes a numeric vector and will return a vector of one of the following:
 #' -  "sin"
 #' -  "cos"
-#' -  "tan"
 #' -  "sincos"
-#' -  c("sin","cos","tan", "sincos")
+#' -  c("sin","cos","sincos")
 #'
 #' This function is intended to be used on its own in order to add columns to a
 #' tibble.
@@ -29,8 +27,8 @@
 #' @param .period The number of observations that complete a cycle
 #' @param .order The fourier term order
 #' @param .names The default is "auto"
-#' @param .scale_type A character of one of the following: "sin","cos","tan", "sincos" All
-#' can be passed by setting the param equal to c("sin","cos","tan","sincos")
+#' @param .scale_type A character of one of the following: "sin","cos", or sincos" All
+#' can be passed by setting the param equal to c("sin","cos","sincos")
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -45,8 +43,8 @@
 #'   b    = runif(len_out)
 #' )
 #'
-#' hai_hyperbolic_augment(data_tbl, b, .scale_type = "sin")
-#' hai_hyperbolic_augment(data_tbl, b, .scale_type = "tan")
+#' hai_fourier_augment(data_tbl, b, .period = 12, .order = 1, .scale_type = "sin")
+#' hai_fourier_augment(data_tbl, b, .period = 12, .order = 1, .scale_type = "cos")
 #'
 #' @return
 #' A augmented tibble
