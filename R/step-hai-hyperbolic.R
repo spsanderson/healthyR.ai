@@ -84,15 +84,15 @@ step_hai_hyperbolic <- function(recipe,
                                 role       = "predictor",
                                 trained    = FALSE,
                                 columns    = NULL,
-                                scale_type = c("sin","cos","tan"),
+                                scale_type = c("sin","cos","tan", "sincos"),
                                 skip       = FALSE,
                                 id         = rand_id("hai_hyperbolic")
 ){
 
     terms <- recipes::ellipse_check(...)
-    funcs <- c("sin", "cos", "tan")
+    funcs <- c("sin", "cos", "tan", "sincos")
     if (!(scale_type %in% funcs))
-        rlang::abort("`func` should be either `sin`, `cos`, or `tan`")
+        rlang::abort("`func` should be either `sin`, `cos`, `sincos` or `tan`")
 
     recipes::add_step(
         recipe,
