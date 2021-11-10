@@ -6,8 +6,7 @@ None
 ## New Features
 1. Fix #61 - Add internal function `hai_data_scale()`
 2. Fix #63 - Add internal function `hai_data_impute()`
-3. Fix #58 - Add internal function `hai_step_trig()`, Add `step_hai_hyperblic()`
-and associated recipes functions prep. bake. and print.
+3. Fix #58 - Add internal function `hai_step_trig()`, `step_hai_hyperblic()`
 4. Fix #68 - Add `hai_hyperbolic_vec()` function.
 5. Fix #70 - Add `hai_hyperbolic_augment()` function.
 6. Fix #75 - Add `hai_fourier_vec()`,`hai_fourier_augment()`,`step_hai_fourier()`
