@@ -13,7 +13,7 @@ and associated recipes functions prep. bake. and print.
 6. Fix #75 - Add `hai_fourier_vec()`,`hai_fourier_augment()`,`step_hai_fourier()`
 
 ## Minor Fixes and Improvments
-None
+1. Fix #81 - Add process to register s3 methods to work with `tune` objects.
 
 # healthyR.ai 0.0.2
 
