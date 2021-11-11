@@ -6,10 +6,10 @@ None
 ## New Features
 1. Fix #61 - Add internal function `hai_data_scale()`
 2. Fix #63 - Add internal function `hai_data_impute()`
-3. Fix #58 - Add internal function `hai_step_trig()`, `step_hai_hyperblic()`
+3. Fix #58 - Add internal function `hai_step_trig()`, Exported Func `step_hai_hyperblic()`
 4. Fix #68 - Add `hai_hyperbolic_vec()` function.
 5. Fix #70 - Add `hai_hyperbolic_augment()` function.
-6. Fix #75 - Add `hai_fourier_vec()`,`hai_fourier_augment()`,`step_hai_fourier()`
+6. Fix #75 - Add `hai_fourier_vec()`,`hai_fourier_augment()`,`step_hai_fourier()` functions.
 
 ## Minor Fixes and Improvments
 1. Fix #81 - Add process to register s3 methods to work with `tune` objects.
