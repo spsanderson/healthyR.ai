@@ -4,10 +4,10 @@
 \alias{hai_fourier_vec}
 \title{Vector Function Fourier}
 \usage{
-hai_fourier_vec(x, .period, .order, .scale_type = c("sin", "cos", "sincos"))
+hai_fourier_vec(.x, .period, .order, .scale_type = c("sin", "cos", "sincos"))
 }
 \arguments{
-\item{x}{A numeric vector}
+\item{.x}{A numeric vector}
 
 \item{.period}{The number of observations that complete a cycle}
 
@@ -34,7 +34,7 @@ Takes a numeric vector and will return a vector of one of the following:
 \item "sincos"
 }
 
-The internal caluclationis straightforward:
+The internal caluclation is straightforward:
 \itemize{
 \item \code{sin = sin(2 * pi * h * x)}, where \code{h = .order/.period}
 \item \code{cos = cos(2 * pi * h * x)}, where \code{h = .order/.period}
@@ -59,7 +59,7 @@ data_tbl <- tibble(
 
 vec_1 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "sin")
 vec_2 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "cos")
-vec_3 <- hai_fourier_vec(data_tbl$b, .period = 12, .order = 1, .scale_type = "sincos")
+vec_3 <- hai_fourier_vec(data_tbl$date_col, .period = 12, .order = 1, .scale_type = "sincos")
 
 plot(data_tbl$b)
 lines(vec_1, col = "blue")
