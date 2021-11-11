@@ -54,8 +54,16 @@
 
 hai_hyperbolic_vec <- function(.x, .scale_type = c("sin","cos","tan","sincos")){
 
+    if(class(.x) == "Date"){
+        x_term <- as.numeric(.x) %>% as.integer()
+    } else if(class(.x) == "POSIXct") {
+        x_term <- as.numeric(.x) %>% as.integer()
+    } else {
+        x_term <- .x
+    }
+
     scale_type = base::as.character(.scale_type)
-    term       = .x
+    term       = x_term
 
     if (scale_type == "sin"){
         ret <- base::sin(term)
