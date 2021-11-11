@@ -70,7 +70,7 @@ hai_fourier_augment <- function(.data
     make_call <- function(col, period, order, scale_type){
         rlang::call2(
             "hai_fourier_vec",
-            x             = rlang::sym(col)
+            .x            = rlang::sym(col)
             , .period     = period
             , .order      = order
             , .scale_type = scale_type
