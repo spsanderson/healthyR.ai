@@ -186,7 +186,7 @@ bake.step_hai_fourier <- function(object, new_data, ...){
     calls <- purrr::pmap(.l = list(grid$col, grid$period, grid$order, grid$scale_type), make_call)
 
     # Column Names
-    newname <- paste0(grid$col, "_", grid$scale_type)
+    newname <- paste0("fourier_", grid$col, "_", grid$scale_type)
     calls   <- recipes::check_name(calls, new_data, object, newname, TRUE)
 
     tibble::as_tibble(dplyr::mutate(new_data, !!!calls))

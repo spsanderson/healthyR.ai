@@ -5,14 +5,14 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
-#' Takes a numeric vector(s) and will return a tibble of one of the following:
+#' Takes a numeric vector(s) or date and will return a tibble of one of the following:
 #' -  "sin"
 #' -  "cos"
 #' -  "sincos"
 #' -  c("sin","cos","sincos")
 #'
 #' @details
-#' Takes a numeric vector and will return a vector of one of the following:
+#' Takes a numeric vector or date and will return a vector of one of the following:
 #' -  "sin"
 #' -  "cos"
 #' -  "sincos"
@@ -89,7 +89,7 @@ hai_fourier_augment <- function(.data
     calls <- purrr::pmap(.l = list(grid$col, grid$period, grid$order, grid$scale_type), make_call)
 
     if(any(.names == "auto")) {
-        newname <- paste0(grid$col, "_", grid$scale_type)
+        newname <- paste0("fourier_", grid$col, "_", grid$scale_type)
     } else {
         newname <- as.list(.names)
     }

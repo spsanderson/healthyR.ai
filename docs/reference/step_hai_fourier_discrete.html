@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Recipes Step Fourier Generator — step_hai_fourier • healthyR.ai</title>
+<title>Recipes Step Fourier Discrete Generator — step_hai_fourier_discrete • healthyR.ai</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Recipes Step Fourier Generator — step_hai_fourier" />
-<meta property="og:description" content="step_hai_fourier creates a a specification of a recipe
+<meta property="og:title" content="Recipes Step Fourier Discrete Generator — step_hai_fourier_discrete" />
+<meta property="og:description" content="step_hai_fourier_discrete creates a a specification of a recipe
 step that will convert numeric data into either a 'sin', 'cos', or 'sincos'
 feature that can aid in machine learning." />
 
@@ -136,18 +136,18 @@ feature that can aid in machine learning." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Recipes Step Fourier Generator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/step-hai-fourier.R'><code>R/step-hai-fourier.R</code></a></small>
-    <div class="hidden name"><code>step_hai_fourier.Rd</code></div>
+    <h1>Recipes Step Fourier Discrete Generator</h1>
+    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/step-hai-fourier-discrete.R'><code>R/step-hai-fourier-discrete.R</code></a></small>
+    <div class="hidden name"><code>step_hai_fourier_discrete.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>step_hai_fourier</code> creates a a <em>specification</em> of a recipe
+    <p><code>step_hai_fourier_discrete</code> creates a a <em>specification</em> of a recipe
 step that will convert numeric data into either a 'sin', 'cos', or 'sincos'
 feature that can aid in machine learning.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>step_hai_fourier</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>step_hai_fourier_discrete</span><span class='op'>(</span>
   <span class='va'>recipe</span>,
   <span class='va'>...</span>,
   role <span class='op'>=</span> <span class='st'>"predictor"</span>,
@@ -157,7 +157,7 @@ feature that can aid in machine learning.</p>
   period <span class='op'>=</span> <span class='fl'>1</span>,
   order <span class='op'>=</span> <span class='fl'>1</span>,
   skip <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  id <span class='op'>=</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/rand_id.html'>rand_id</a></span><span class='op'>(</span><span class='st'>"hai_fourier"</span><span class='op'>)</span>
+  id <span class='op'>=</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/rand_id.html'>rand_id</a></span><span class='op'>(</span><span class='st'>"hai_fourier_discrete"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -172,7 +172,7 @@ sequence of operations for this recipe.</p></td>
       <th>...</th>
       <td><p>One or more selector functions to choose which
 variables that will be used to create the new variables. The
-selected variables should have class <code>numeric</code></p></td>
+selected variables should have class <code>numeric</code> or <code>date</code>,<code>POSIXct</code></p></td>
     </tr>
     <tr>
       <th>role</th>
@@ -220,7 +220,7 @@ using skip = TRUE as it may affect the computations for subsequent operations.</
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>For <code>step_hai_fourier</code>, an updated version of recipe with
+    <p>For <code>step_hai_fourier_discrete</code>, an updated version of recipe with
 the new step added to the sequence of existing steps (if any).</p>
 <p>Main Recipe Functions:</p><ul>
 <li><p><code><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipes::recipe()</a></code></p></li>
@@ -231,13 +231,13 @@ the new step added to the sequence of existing steps (if any).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><strong>Numeric Variables</strong>
-Unlike other steps, <code>step_hai_fourier</code> does <em>not</em>
+Unlike other steps, <code>step_hai_fourier_discrete</code> does <em>not</em>
 remove the original numeric variables. <code><a href='https://recipes.tidymodels.org/reference/step_rm.html'>recipes::step_rm()</a></code> can be
 used for this purpose.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other Recipes: 
-<code><a href='step_hai_fourier_discrete.html'>step_hai_fourier_discrete</a>()</code>,
+<code><a href='step_hai_fourier.html'>step_hai_fourier</a>()</code>,
 <code><a href='step_hai_hyperbolic.html'>step_hai_hyperbolic</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -256,9 +256,9 @@ used for this purpose.</p>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># Create a recipe object</span></span>
 <span class='r-in'><span class='va'>rec_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span><span class='op'>(</span><span class='va'>a</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>data_tbl</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
-<span class='r-in'>  <span class='fu'>step_hai_fourier</span><span class='op'>(</span><span class='va'>b</span>, scale_type <span class='op'>=</span> <span class='st'>"sin"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
-<span class='r-in'>  <span class='fu'>step_hai_fourier</span><span class='op'>(</span><span class='va'>b</span>, scale_type <span class='op'>=</span> <span class='st'>"cos"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
-<span class='r-in'>  <span class='fu'>step_hai_fourier</span><span class='op'>(</span><span class='va'>b</span>, scale_type <span class='op'>=</span> <span class='st'>"sincos"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='fu'>step_hai_fourier_discrete</span><span class='op'>(</span><span class='va'>b</span>, scale_type <span class='op'>=</span> <span class='st'>"sin"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>step_hai_fourier_discrete</span><span class='op'>(</span><span class='va'>b</span>, scale_type <span class='op'>=</span> <span class='st'>"cos"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>step_hai_fourier_discrete</span><span class='op'>(</span><span class='va'>b</span>, scale_type <span class='op'>=</span> <span class='st'>"sincos"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># View the recipe object</span></span>
 <span class='r-in'><span class='va'>rec_obj</span></span>
@@ -272,9 +272,9 @@ used for this purpose.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Operations:</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier transformation on b</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier transformation on b</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier transformation on b</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier Discrete transformation on b</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier Discrete transformation on b</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier Discrete transformation on b</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># Prepare the recipe object</span></span>
 <span class='r-in'><span class='fu'><a href='https://recipes.tidymodels.org/reference/prep.html'>prep</a></span><span class='op'>(</span><span class='va'>rec_obj</span><span class='op'>)</span></span>
@@ -290,40 +290,40 @@ used for this purpose.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Operations:</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier transformation on b [trained]</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier transformation on b [trained]</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier transformation on b [trained]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier Discrete transformation on b [trained]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier Discrete transformation on b [trained]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Fourier Discrete transformation on b [trained]</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># Bake the recipe object - Adds the Time Series Signature</span></span>
 <span class='r-in'><span class='fu'><a href='https://recipes.tidymodels.org/reference/bake.html'>bake</a></span><span class='op'>(</span><span class='fu'><a href='https://recipes.tidymodels.org/reference/prep.html'>prep</a></span><span class='op'>(</span><span class='va'>rec_obj</span><span class='op'>)</span>, <span class='va'>data_tbl</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col       b       a fourier_b_sin fourier_b_cos fourier_b_sincos</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2021-01-01 0.341  0.386         0.843         -<span style='color: #BB0000;'>0.539</span>          -<span style='color: #BB0000;'>0.454</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2021-02-01 0.383  0.713         0.670         -<span style='color: #BB0000;'>0.742</span>          -<span style='color: #BB0000;'>0.497</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2021-03-01 0.477  0.530         0.145         -<span style='color: #BB0000;'>0.989</span>          -<span style='color: #BB0000;'>0.143</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2021-04-01 0.424 -<span style='color: #BB0000;'>0.734</span>         0.461         -<span style='color: #BB0000;'>0.887</span>          -<span style='color: #BB0000;'>0.409</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2021-05-01 0.865 -<span style='color: #BB0000;'>0.686</span>        -<span style='color: #BB0000;'>0.748</span>          0.663          -<span style='color: #BB0000;'>0.496</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2021-06-01 0.121 -<span style='color: #BB0000;'>0.129</span>         0.688          0.725           0.499 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2021-07-01 0.721 -<span style='color: #BB0000;'>0.160</span>        -<span style='color: #BB0000;'>0.983</span>         -<span style='color: #BB0000;'>0.183</span>           0.180 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2021-08-01 0.495  1.28          0.030<span style='text-decoration: underline;'>7</span>        -<span style='color: #BB0000;'>1.00</span>           -<span style='color: #BB0000;'>0.030</span><span style='color: #BB0000; text-decoration: underline;'>7</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2021-09-01 0.635 -<span style='color: #BB0000;'>0.159</span>        -<span style='color: #BB0000;'>0.752</span>         -<span style='color: #BB0000;'>0.659</span>           0.496 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2021-10-01 0.337 -<span style='color: #BB0000;'>0.010</span><span style='color: #BB0000; text-decoration: underline;'>3</span>        0.853         -<span style='color: #BB0000;'>0.522</span>          -<span style='color: #BB0000;'>0.445</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col        b       a fourier_discrete~ fourier_discret~ fourier_discret~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2021-01-01 0.968  -<span style='color: #BB0000;'>0.101</span>                  0                1                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2021-02-01 0.440   0.230                  1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2021-03-01 0.368  -<span style='color: #BB0000;'>0.279</span>                  1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2021-04-01 0.373   1.66                   1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2021-05-01 0.634   2.27                   0                0                1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2021-06-01 0.729  -<span style='color: #BB0000;'>0.076</span><span style='color: #BB0000; text-decoration: underline;'>1</span>                 0                0                1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2021-07-01 0.605   0.826                  0                0                1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2021-08-01 0.299  -<span style='color: #BB0000;'>0.150</span>                  1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2021-09-01 0.315  -<span style='color: #BB0000;'>1.63</span>                   1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2021-10-01 0.020<span style='text-decoration: underline;'>4</span>  0.058<span style='text-decoration: underline;'>8</span>                 1                1                1</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>rec_obj</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span> <span class='fu'><a href='get_juiced_data.html'>get_juiced_data</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 10 x 6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col       b       a fourier_b_sin fourier_b_cos fourier_b_sincos</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2021-01-01 0.341  0.386         0.843         -<span style='color: #BB0000;'>0.539</span>          -<span style='color: #BB0000;'>0.454</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2021-02-01 0.383  0.713         0.670         -<span style='color: #BB0000;'>0.742</span>          -<span style='color: #BB0000;'>0.497</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2021-03-01 0.477  0.530         0.145         -<span style='color: #BB0000;'>0.989</span>          -<span style='color: #BB0000;'>0.143</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2021-04-01 0.424 -<span style='color: #BB0000;'>0.734</span>         0.461         -<span style='color: #BB0000;'>0.887</span>          -<span style='color: #BB0000;'>0.409</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2021-05-01 0.865 -<span style='color: #BB0000;'>0.686</span>        -<span style='color: #BB0000;'>0.748</span>          0.663          -<span style='color: #BB0000;'>0.496</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2021-06-01 0.121 -<span style='color: #BB0000;'>0.129</span>         0.688          0.725           0.499 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2021-07-01 0.721 -<span style='color: #BB0000;'>0.160</span>        -<span style='color: #BB0000;'>0.983</span>         -<span style='color: #BB0000;'>0.183</span>           0.180 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2021-08-01 0.495  1.28          0.030<span style='text-decoration: underline;'>7</span>        -<span style='color: #BB0000;'>1.00</span>           -<span style='color: #BB0000;'>0.030</span><span style='color: #BB0000; text-decoration: underline;'>7</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2021-09-01 0.635 -<span style='color: #BB0000;'>0.159</span>        -<span style='color: #BB0000;'>0.752</span>         -<span style='color: #BB0000;'>0.659</span>           0.496 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2021-10-01 0.337 -<span style='color: #BB0000;'>0.010</span><span style='color: #BB0000; text-decoration: underline;'>3</span>        0.853         -<span style='color: #BB0000;'>0.522</span>          -<span style='color: #BB0000;'>0.445</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col        b       a fourier_discrete~ fourier_discret~ fourier_discret~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2021-01-01 0.968  -<span style='color: #BB0000;'>0.101</span>                  0                1                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2021-02-01 0.440   0.230                  1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2021-03-01 0.368  -<span style='color: #BB0000;'>0.279</span>                  1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2021-04-01 0.373   1.66                   1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2021-05-01 0.634   2.27                   0                0                1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2021-06-01 0.729  -<span style='color: #BB0000;'>0.076</span><span style='color: #BB0000; text-decoration: underline;'>1</span>                 0                0                1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2021-07-01 0.605   0.826                  0                0                1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2021-08-01 0.299  -<span style='color: #BB0000;'>0.150</span>                  1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2021-09-01 0.315  -<span style='color: #BB0000;'>1.63</span>                   1                0                0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2021-10-01 0.020<span style='text-decoration: underline;'>4</span>  0.058<span style='text-decoration: underline;'>8</span>                 1                1                1</span>
 <span class='r-in'></span>
 </pre>
   </div>
