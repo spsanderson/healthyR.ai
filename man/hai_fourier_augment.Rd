@@ -32,7 +32,7 @@ can be passed by setting the param equal to c("sin","cos","sincos")}
 A augmented tibble
 }
 \description{
-Takes a numeric vector(s) and will return a tibble of one of the following:
+Takes a numeric vector(s) or date and will return a tibble of one of the following:
 \itemize{
 \item "sin"
 \item "cos"
@@ -41,7 +41,7 @@ Takes a numeric vector(s) and will return a tibble of one of the following:
 }
 }
 \details{
-Takes a numeric vector and will return a vector of one of the following:
+Takes a numeric vector or date and will return a vector of one of the following:
 \itemize{
 \item "sin"
 \item "cos"
@@ -71,6 +71,7 @@ hai_fourier_augment(data_tbl, b, .period = 12, .order = 1, .scale_type = "cos")
 }
 \seealso{
 Other Augment Function: 
+\code{\link{hai_fourier_discrete_augment}()},
 \code{\link{hai_hyperbolic_augment}()}
 }
 \author{
