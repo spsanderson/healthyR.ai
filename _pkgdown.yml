@@ -41,11 +41,14 @@ reference:
      contents:
      -  "step_hai_hyperbolic"
      -  "step_hai_fourier"
+     -  "step_hai_fourier_discrete"
   -  title: Vectorized Functions
      contents:
      -  "hai_hyperbolic_vec"
      -  "hai_fourier_vec"
+     -  "hai_fourier_discrete_vec"
   -  title: Augmenting Functions
      contents:
      -  "hai_hyperbolic_augment"
      -  "hai_fourier_augment"
+     -  "hai_fourier_discrete"
