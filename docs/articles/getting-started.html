@@ -175,12 +175,12 @@
 <span class="co">#&gt; # A tibble: 6 x 2</span>
 <span class="co">#&gt;   date_col            value</span>
 <span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;</span>
-<span class="co">#&gt; 1 2015-08-01 00:00:00  1609</span>
-<span class="co">#&gt; 2 2013-11-01 00:00:00  1669</span>
-<span class="co">#&gt; 3 2018-06-01 00:00:00  1742</span>
-<span class="co">#&gt; 4 2013-09-01 00:00:00  1753</span>
-<span class="co">#&gt; 5 2019-12-01 00:00:00  1381</span>
-<span class="co">#&gt; 6 2020-01-01 00:00:00  1440</span></code></pre></div>
+<span class="co">#&gt; 1 2016-02-01 00:00:00  1474</span>
+<span class="co">#&gt; 2 2016-11-01 00:00:00  1513</span>
+<span class="co">#&gt; 3 2020-07-01 00:00:00  1056</span>
+<span class="co">#&gt; 4 2017-04-01 00:00:00  1493</span>
+<span class="co">#&gt; 5 2016-06-01 00:00:00  1544</span>
+<span class="co">#&gt; 6 2018-05-01 00:00:00  1677</span></code></pre></div>
 </div>
 <div id="initial-recipe" class="section level2">
 <h2 class="hasAnchor">
@@ -207,25 +207,25 @@
 <span class="fu"><a href="../reference/get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 76</span>
 <span class="co">#&gt; Columns: 20</span>
-<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2015-08-01, 2013-11-01, 2018-06-01, 2013-09-01, 20~</span>
-<span class="co">#&gt; $ value              &lt;int&gt; 1609, 1669, 1742, 1753, 1381, 1440, 648, 1164, 1692~</span>
-<span class="co">#&gt; $ date_col_index.num &lt;dbl&gt; 1438387200, 1383264000, 1527811200, 1377993600, 157~</span>
-<span class="co">#&gt; $ date_col_year      &lt;int&gt; 2015, 2013, 2018, 2013, 2019, 2020, 2020, 2020, 201~</span>
-<span class="co">#&gt; $ date_col_half      &lt;int&gt; 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_quarter   &lt;int&gt; 3, 4, 2, 3, 4, 1, 2, 4, 1, 2, 3, 1, 1, 1, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_month     &lt;int&gt; 8, 11, 6, 9, 12, 1, 4, 10, 1, 6, 8, 3, 2, 1, 3, 3, ~</span>
-<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; August, November, June, September, December, Januar~</span>
+<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2016-02-01, 2016-11-01, 2020-07-01, 2017-04-01, 20~</span>
+<span class="co">#&gt; $ value              &lt;int&gt; 1474, 1513, 1056, 1493, 1544, 1677, 1381, 1140, 178~</span>
+<span class="co">#&gt; $ date_col_index.num &lt;dbl&gt; 1454284800, 1477958400, 1593561600, 1491004800, 146~</span>
+<span class="co">#&gt; $ date_col_year      &lt;int&gt; 2016, 2016, 2020, 2017, 2016, 2018, 2019, 2020, 201~</span>
+<span class="co">#&gt; $ date_col_half      &lt;int&gt; 1, 2, 2, 1, 1, 1, 2, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_quarter   &lt;int&gt; 1, 4, 3, 2, 2, 2, 4, 3, 3, 1, 3, 2, 4, 1, 3, 2, 2, ~</span>
+<span class="co">#&gt; $ date_col_month     &lt;int&gt; 2, 11, 7, 4, 6, 5, 12, 8, 7, 3, 8, 5, 10, 1, 7, 4, ~</span>
+<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; February, November, July, April, June, May, Decembe~</span>
 <span class="co">#&gt; $ date_col_day       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_wday      &lt;int&gt; 7, 6, 6, 1, 1, 4, 4, 5, 5, 2, 7, 5, 6, 6, 6, 7, 1, ~</span>
-<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Saturday, Friday, Friday, Sunday, Sunday, Wednesday~</span>
+<span class="co">#&gt; $ date_col_wday      &lt;int&gt; 2, 3, 4, 7, 4, 3, 1, 7, 3, 7, 7, 1, 3, 1, 4, 6, 1, ~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Monday, Tuesday, Wednesday, Saturday, Wednesday, Tu~</span>
 <span class="co">#&gt; $ date_col_mday      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_qday      &lt;int&gt; 32, 32, 62, 63, 62, 1, 1, 1, 1, 62, 32, 60, 32, 1, ~</span>
-<span class="co">#&gt; $ date_col_yday      &lt;int&gt; 213, 305, 152, 244, 335, 1, 92, 275, 1, 153, 214, 6~</span>
-<span class="co">#&gt; $ date_col_mweek     &lt;int&gt; 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 5, 5, 5, 5, ~</span>
-<span class="co">#&gt; $ date_col_week      &lt;int&gt; 31, 44, 22, 35, 48, 1, 14, 40, 1, 22, 31, 9, 5, 1, ~</span>
-<span class="co">#&gt; $ date_col_week2     &lt;int&gt; 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_week3     &lt;int&gt; 1, 2, 1, 2, 0, 1, 2, 1, 1, 1, 1, 0, 2, 1, 0, 0, 2, ~</span>
-<span class="co">#&gt; $ date_col_week4     &lt;int&gt; 3, 0, 2, 3, 0, 1, 2, 0, 1, 2, 3, 1, 1, 1, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_qday      &lt;int&gt; 32, 32, 1, 1, 62, 31, 62, 32, 1, 60, 32, 31, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_yday      &lt;int&gt; 32, 306, 183, 91, 153, 121, 335, 214, 182, 60, 213,~</span>
+<span class="co">#&gt; $ date_col_mweek     &lt;int&gt; 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, ~</span>
+<span class="co">#&gt; $ date_col_week      &lt;int&gt; 5, 44, 27, 13, 22, 18, 48, 31, 26, 9, 31, 18, 40, 1~</span>
+<span class="co">#&gt; $ date_col_week2     &lt;int&gt; 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, ~</span>
+<span class="co">#&gt; $ date_col_week3     &lt;int&gt; 2, 2, 0, 1, 1, 0, 0, 1, 2, 0, 1, 0, 1, 1, 2, 2, 1, ~</span>
+<span class="co">#&gt; $ date_col_week4     &lt;int&gt; 1, 0, 3, 1, 2, 2, 0, 3, 2, 1, 3, 2, 0, 1, 2, 2, 1, ~</span>
 <span class="co">#&gt; $ date_col_mday7     &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span></code></pre></div>
 <p>Now that we have out initial recipe we can use the <code><a href="../reference/pca_your_recipe.html">pca_your_recipe()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -289,16 +289,16 @@
 <span class="co">#&gt; # A tibble: 169 x 4</span>
 <span class="co">#&gt;    terms                 value component id       </span>
 <span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 date_col_index.num  0.0198  PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  2 date_col_year      -0.0347  PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  3 date_col_half       0.382   PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  4 date_col_quarter    0.430   PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  5 date_col_month      0.435   PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  6 date_col_wday      -0.00614 PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  7 date_col_qday       0.0980  PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  8 date_col_yday       0.435   PC1       pca_fC6Ve</span>
-<span class="co">#&gt;  9 date_col_mweek     -0.0484  PC1       pca_fC6Ve</span>
-<span class="co">#&gt; 10 date_col_week       0.436   PC1       pca_fC6Ve</span>
+<span class="co">#&gt;  1 date_col_index.num  0.0979  PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  2 date_col_year       0.0469  PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  3 date_col_half       0.389   PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  4 date_col_quarter    0.435   PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  5 date_col_month      0.438   PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  6 date_col_wday       0.0290  PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  7 date_col_qday       0.0407  PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  8 date_col_yday       0.438   PC1       pca_q7tNQ</span>
+<span class="co">#&gt;  9 date_col_mweek     -0.00315 PC1       pca_q7tNQ</span>
+<span class="co">#&gt; 10 date_col_week       0.438   PC1       pca_q7tNQ</span>
 <span class="co">#&gt; # ... with 159 more rows</span></code></pre></div>
 </div>
 <div id="variable-variance" class="section level2">
@@ -309,16 +309,16 @@
 <span class="co">#&gt; # A tibble: 52 x 4</span>
 <span class="co">#&gt;    terms       value component id       </span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;     &lt;int&gt; &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 variance 5.21             1 pca_fC6Ve</span>
-<span class="co">#&gt;  2 variance 2.01             2 pca_fC6Ve</span>
-<span class="co">#&gt;  3 variance 1.51             3 pca_fC6Ve</span>
-<span class="co">#&gt;  4 variance 1.29             4 pca_fC6Ve</span>
-<span class="co">#&gt;  5 variance 1.20             5 pca_fC6Ve</span>
-<span class="co">#&gt;  6 variance 0.672            6 pca_fC6Ve</span>
-<span class="co">#&gt;  7 variance 0.562            7 pca_fC6Ve</span>
-<span class="co">#&gt;  8 variance 0.489            8 pca_fC6Ve</span>
-<span class="co">#&gt;  9 variance 0.0575           9 pca_fC6Ve</span>
-<span class="co">#&gt; 10 variance 0.000223        10 pca_fC6Ve</span>
+<span class="co">#&gt;  1 variance 5.10             1 pca_q7tNQ</span>
+<span class="co">#&gt;  2 variance 1.98             2 pca_q7tNQ</span>
+<span class="co">#&gt;  3 variance 1.56             3 pca_q7tNQ</span>
+<span class="co">#&gt;  4 variance 1.40             4 pca_q7tNQ</span>
+<span class="co">#&gt;  5 variance 0.987            5 pca_q7tNQ</span>
+<span class="co">#&gt;  6 variance 0.729            6 pca_q7tNQ</span>
+<span class="co">#&gt;  7 variance 0.624            7 pca_q7tNQ</span>
+<span class="co">#&gt;  8 variance 0.557            8 pca_q7tNQ</span>
+<span class="co">#&gt;  9 variance 0.0593           9 pca_q7tNQ</span>
+<span class="co">#&gt; 10 variance 0.000260        10 pca_q7tNQ</span>
 <span class="co">#&gt; # ... with 42 more rows</span></code></pre></div>
 </div>
 <div id="pca-estimates" class="section level2">
@@ -352,28 +352,28 @@
 <code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_juiced_estimates</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 76</span>
 <span class="co">#&gt; Columns: 9</span>
-<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2015-08-01, 2013-11-01, 2018-06-01, 2013-09-01, 20~</span>
-<span class="co">#&gt; $ value              &lt;dbl&gt; 0.24422260, 0.45438585, 0.71008447, 0.74861440, -0.~</span>
-<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; August, November, June, September, December, Januar~</span>
-<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Saturday, Friday, Friday, Sunday, Sunday, Wednesday~</span>
-<span class="co">#&gt; $ PC1                &lt;dbl&gt; 0.6985903, 3.0886819, -0.4417909, 1.2407601, 3.4910~</span>
-<span class="co">#&gt; $ PC2                &lt;dbl&gt; 0.8089816, 1.8794085, -0.6480920, 1.8580426, -1.627~</span>
-<span class="co">#&gt; $ PC3                &lt;dbl&gt; 0.7914199, 0.1468304, 1.5256190, -1.1863952, 0.6055~</span>
-<span class="co">#&gt; $ PC4                &lt;dbl&gt; 2.41440169, -0.01375129, 0.19809541, 1.91218715, -1~</span>
-<span class="co">#&gt; $ PC5                &lt;dbl&gt; -0.2244243, -1.5118530, 0.6313643, 0.9124519, 1.537~</span>
+<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2016-02-01, 2016-11-01, 2020-07-01, 2017-04-01, 20~</span>
+<span class="co">#&gt; $ value              &lt;dbl&gt; -0.260516549, -0.123969944, -1.724016060, -0.193993~</span>
+<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; February, November, July, April, June, May, Decembe~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Monday, Tuesday, Wednesday, Saturday, Wednesday, Tu~</span>
+<span class="co">#&gt; $ PC1                &lt;dbl&gt; -2.8437632, 3.2575122, 0.5915559, -1.7294169, -0.49~</span>
+<span class="co">#&gt; $ PC2                &lt;dbl&gt; 0.34437555, 0.61943116, -2.05577244, -0.35883530, 0~</span>
+<span class="co">#&gt; $ PC3                &lt;dbl&gt; 2.02326300, 1.29006291, 0.24676891, -0.74033166, -1~</span>
+<span class="co">#&gt; $ PC4                &lt;dbl&gt; -0.35031198, -1.14551044, 0.93255830, -0.59570491, ~</span>
+<span class="co">#&gt; $ PC5                &lt;dbl&gt; -0.40116187, -0.76338194, 0.78484167, 1.56380808, -~</span>
 
 <span class="va">pca_list</span><span class="op">$</span><span class="va">pca_baked_data</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 95</span>
 <span class="co">#&gt; Columns: 9</span>
 <span class="co">#&gt; $ date_col           &lt;dttm&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 20~</span>
-<span class="co">#&gt; $ value              &lt;dbl&gt; 1.9010095, 0.6295219, 0.8992314, 1.1409191, 1.71186~</span>
+<span class="co">#&gt; $ value              &lt;dbl&gt; 1.8682100, 0.5972762, 0.8668682, 1.1084507, 1.67914~</span>
 <span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; January, February, March, April, May, June, July, A~</span>
 <span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Tuesday, Friday, Friday, Monday, Wednesday, Saturda~</span>
-<span class="co">#&gt; $ PC1                &lt;dbl&gt; -3.3910295, -2.7734758, -2.3646755, -1.9344192, -0.~</span>
-<span class="co">#&gt; $ PC2                &lt;dbl&gt; 1.9598530, 2.1967039, 2.3811060, 1.8288612, 2.23881~</span>
-<span class="co">#&gt; $ PC3                &lt;dbl&gt; -1.83031823, 0.31778965, 1.71674466, -2.14244734, 0~</span>
-<span class="co">#&gt; $ PC4                &lt;dbl&gt; -0.65104379, 0.51804259, -0.10859060, -0.70396716, ~</span>
-<span class="co">#&gt; $ PC5                &lt;dbl&gt; -0.19682152, -1.19740767, 0.85566318, 0.03176747, 0~</span></code></pre></div>
+<span class="co">#&gt; $ PC1                &lt;dbl&gt; -3.6047758, -2.9673602, -2.8340306, -2.0543832, -1.~</span>
+<span class="co">#&gt; $ PC2                &lt;dbl&gt; 2.0558382, 2.0353252, 1.6813644, 2.1015882, 1.73555~</span>
+<span class="co">#&gt; $ PC3                &lt;dbl&gt; 1.3479497, -0.5000995, -1.9821603, 1.5098697, -1.49~</span>
+<span class="co">#&gt; $ PC4                &lt;dbl&gt; -1.03693863, -0.13052723, 0.69492543, -0.99288831, ~</span>
+<span class="co">#&gt; $ PC5                &lt;dbl&gt; -0.294195218, 1.162427886, -0.640400321, -0.7463253~</span></code></pre></div>
 </div>
 <div id="roatation-data" class="section level2">
 <h2 class="hasAnchor">
@@ -382,19 +382,19 @@
 <code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_rotation_df</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 13</span>
 <span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ PC1  &lt;dbl&gt; 0.019804622, -0.034663826, 0.382425690, 0.429702422, 0.435430675,~</span>
-<span class="co">#&gt; $ PC2  &lt;dbl&gt; -0.700678999, -0.699376472, -0.042718675, -0.024160366, -0.002803~</span>
-<span class="co">#&gt; $ PC3  &lt;dbl&gt; 0.082801341, 0.082207497, -0.121890482, -0.064029848, 0.005200180~</span>
-<span class="co">#&gt; $ PC4  &lt;dbl&gt; -0.004175014, -0.010091274, 0.283653550, 0.020868692, 0.046825680~</span>
-<span class="co">#&gt; $ PC5  &lt;dbl&gt; 0.03866907, 0.03063115, -0.09561371, -0.09456731, 0.06531896, -0.~</span>
-<span class="co">#&gt; $ PC6  &lt;dbl&gt; -0.033201425, -0.033534547, 0.211038729, 0.145832874, 0.006293596~</span>
-<span class="co">#&gt; $ PC7  &lt;dbl&gt; 0.0243236971, 0.0281027201, -0.2250717855, 0.0001788331, -0.02760~</span>
-<span class="co">#&gt; $ PC8  &lt;dbl&gt; -0.005391114, -0.007614959, 0.047356077, 0.001266594, 0.016640322~</span>
-<span class="co">#&gt; $ PC9  &lt;dbl&gt; -0.01221326, 0.01611969, 0.80619193, -0.27752918, -0.22629139, -0~</span>
-<span class="co">#&gt; $ PC10 &lt;dbl&gt; 0.0131715686, -0.0120660071, 0.0086486017, 0.3035240796, 0.368143~</span>
-<span class="co">#&gt; $ PC11 &lt;dbl&gt; 0.0253506736, -0.0263049385, 0.0015596194, 0.0688093415, -0.67567~</span>
-<span class="co">#&gt; $ PC12 &lt;dbl&gt; -3.866374e-05, 6.872794e-04, 2.675676e-03, 7.779999e-01, -3.99413~</span>
-<span class="co">#&gt; $ PC13 &lt;dbl&gt; 7.054074e-01, -7.062596e-01, -1.447103e-04, -2.927445e-02, -4.079~</span></code></pre></div>
+<span class="co">#&gt; $ PC1  &lt;dbl&gt; 0.097928412, 0.046878028, 0.389050658, 0.435089591, 0.437817451, ~</span>
+<span class="co">#&gt; $ PC2  &lt;dbl&gt; -0.68685802, -0.69969195, 0.07806789, 0.04962828, 0.03599720, 0.0~</span>
+<span class="co">#&gt; $ PC3  &lt;dbl&gt; 0.08114044, 0.08671092, 0.17258890, 0.02767470, -0.03984066, -0.4~</span>
+<span class="co">#&gt; $ PC4  &lt;dbl&gt; 0.022093177, 0.014161808, 0.111955753, -0.073491113, 0.069187969,~</span>
+<span class="co">#&gt; $ PC5  &lt;dbl&gt; 0.07028555, 0.08024773, 0.20316088, 0.03724736, -0.07782616, 0.61~</span>
+<span class="co">#&gt; $ PC6  &lt;dbl&gt; 0.01013779, 0.01207983, -0.27108459, -0.14147686, -0.01788647, 0.~</span>
+<span class="co">#&gt; $ PC7  &lt;dbl&gt; 0.0268020009, 0.0271022045, -0.1441562147, 0.0158039545, 0.001595~</span>
+<span class="co">#&gt; $ PC8  &lt;dbl&gt; -0.017931680, -0.011735077, -0.098180868, 0.009370223, -0.0496771~</span>
+<span class="co">#&gt; $ PC9  &lt;dbl&gt; -0.01281875, 0.01180788, 0.80933808, -0.26475536, -0.20352837, 0.~</span>
+<span class="co">#&gt; $ PC10 &lt;dbl&gt; 0.012899204, -0.011081161, -0.001638230, 0.302899053, 0.381504603~</span>
+<span class="co">#&gt; $ PC11 &lt;dbl&gt; 0.0250128201, -0.0258133662, 0.0013861050, -0.0486663262, -0.6040~</span>
+<span class="co">#&gt; $ PC12 &lt;dbl&gt; -1.301413e-02, 1.267656e-02, -3.087844e-03, -7.840176e-01, 4.8978~</span>
+<span class="co">#&gt; $ PC13 &lt;dbl&gt; 7.101801e-01, -7.014037e-01, -8.719307e-05, -3.783292e-02, 3.1347~</span></code></pre></div>
 </div>
 <div id="variance-and-scree-plot" class="section level2">
 <h2 class="hasAnchor">
@@ -404,10 +404,10 @@
 <span class="co">#&gt; Rows: 13</span>
 <span class="co">#&gt; Columns: 6</span>
 <span class="co">#&gt; $ PC              &lt;chr&gt; "PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8"~</span>
-<span class="co">#&gt; $ var_explained   &lt;dbl&gt; 4.010168e-01, 1.542808e-01, 1.162853e-01, 9.909096e-02~</span>
-<span class="co">#&gt; $ var_pct_txt     &lt;chr&gt; "40.10%", "15.43%", "11.63%", "9.91%", "9.24%", "5.17%~</span>
-<span class="co">#&gt; $ cum_var_pct     &lt;dbl&gt; 0.4010168, 0.5552977, 0.6715830, 0.7706739, 0.8630798,~</span>
-<span class="co">#&gt; $ cum_var_pct_txt &lt;chr&gt; "40.10%", "55.53%", "67.16%", "77.07%", "86.31%", "91.~</span>
+<span class="co">#&gt; $ var_explained   &lt;dbl&gt; 3.925418e-01, 1.523737e-01, 1.200375e-01, 1.076004e-01~</span>
+<span class="co">#&gt; $ var_pct_txt     &lt;chr&gt; "39.25%", "15.24%", "12.00%", "10.76%", "7.59%", "5.61~</span>
+<span class="co">#&gt; $ cum_var_pct     &lt;dbl&gt; 0.3925418, 0.5449154, 0.6649529, 0.7725533, 0.8484814,~</span>
+<span class="co">#&gt; $ cum_var_pct_txt &lt;chr&gt; "39.25%", "54.49%", "66.50%", "77.26%", "84.85%", "90.~</span>
 <span class="co">#&gt; $ ou_threshold    &lt;fct&gt; Under, Under, Under, Under, Over, Over, Over, Over, Ov~</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_scree_plt</span></code></pre></div>
