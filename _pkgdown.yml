@@ -51,4 +51,4 @@ reference:
      contents:
      -  "hai_hyperbolic_augment"
      -  "hai_fourier_augment"
-     -  "hai_fourier_discrete"
+     -  "hai_fourier_discrete_augment"
