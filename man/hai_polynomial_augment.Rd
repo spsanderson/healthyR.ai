@@ -46,6 +46,10 @@ Under the hood this function will create a \code{\link[stats:poly]{stats::poly()
 \item .formula = A ~ .^2
 \item OR .degree = 2, .pred_col = A
 }
+
+There is also a parameter \code{.new_col_prefix} which will add a character string
+to the column names so that they are easily identified further down the line.
+The default is 'nt_'
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
