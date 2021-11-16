@@ -30,6 +30,7 @@
 #' set this to whatever you like, as long as it is a quoted string.
 #'
 #' @examples
+#' suppressPackageStartupMessages(library(dplyr))
 #' data_tbl <- data.frame(
 #'   A = c(0,2,4),
 #'   B = c(1,3,5),
@@ -77,7 +78,7 @@ hai_polynomial_augment <- function(.data, .formula = NULL, .pred_col = NULL
                 d,
                 ')'
             )
-            , response = y
+            , response = rlang::as_name(pred_col_var_expr)
         )
     } else {
         stop(

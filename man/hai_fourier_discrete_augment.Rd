@@ -73,7 +73,8 @@ hai_fourier_discrete_augment(data_tbl, b, .period = 2*12, .order = 1, .scale_typ
 \seealso{
 Other Augment Function: 
 \code{\link{hai_fourier_augment}()},
-\code{\link{hai_hyperbolic_augment}()}
+\code{\link{hai_hyperbolic_augment}()},
+\code{\link{hai_polynomial_augment}()}
 }
 \author{
 Steven P. Sanderson II, MPH
