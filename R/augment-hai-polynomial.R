@@ -19,6 +19,10 @@
 #' -  .formula = A ~ .^2
 #' -  OR .degree = 2, .pred_col = A
 #'
+#' There is also a parameter `.new_col_prefix` which will add a character string
+#' to the column names so that they are easily identified further down the line.
+#' The default is 'nt_'
+#'
 #' @param .data The data being passed that will be augmented by the function.
 #' @param .pred_col This is passed [rlang::enquo()] to capture the vector that you
 #' designate as the 'y' column.
