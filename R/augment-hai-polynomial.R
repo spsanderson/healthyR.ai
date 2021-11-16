@@ -15,7 +15,9 @@
 #' function will stop and error out.
 #'
 #' Under the hood this function will create a [stats::poly()] function if the
-#' `.formula` is left as `NULL`.
+#' `.formula` is left as `NULL`. For example:
+#' -  .formula = A ~ .^2
+#' -  OR .degree = 2, .pred_col = A
 #'
 #' @param .data The data being passed that will be augmented by the function.
 #' @param .pred_col This is passed [rlang::enquo()] to capture the vector that you
