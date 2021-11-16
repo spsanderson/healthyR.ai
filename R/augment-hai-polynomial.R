@@ -7,9 +7,15 @@
 #' @description
 #' This function takes in a data table and a predictor column. A user can either create
 #' their own formula using the `.formula` parameter or, if they leave the default of
-#' `NULL` then the user must enter a `degree` and `y` column
+#' `NULL` then the user must enter a `.degree` __AND__ `.pred_col` column.
 #'
 #' @details
+#' A valid data.frame/tibble must be passed to this function. It is required that
+#' a user either enter a `.formula` or a `.degree` __AND__ `.pred_col` otherwise this
+#' function will stop and error out.
+#'
+#' Under the hood this function will create a [stats::poly()] function if the
+#' `.formula` is left as `NULL`.
 #'
 #' @param .data The data being passed that will be augmented by the function.
 #' @param .pred_col This is passed [rlang::enquo()] to capture the vector that you
