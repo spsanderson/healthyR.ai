@@ -68,7 +68,8 @@ hai_hyperbolic_augment(data_tbl, b, .scale_type = "tan")
 \seealso{
 Other Augment Function: 
 \code{\link{hai_fourier_augment}()},
-\code{\link{hai_fourier_discrete_augment}()}
+\code{\link{hai_fourier_discrete_augment}()},
+\code{\link{hai_polynomial_augment}()}
 }
 \author{
 Steven P. Sanderson II, MPH
