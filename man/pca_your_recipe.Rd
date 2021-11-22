@@ -81,7 +81,8 @@ Other Data Wrangling:
 Other Data Recipes: 
 \code{\link{hai_data_impute}()},
 \code{\link{hai_data_scale}()},
-\code{\link{hai_step_trig}()}
+\code{\link{hai_data_transform}()},
+\code{\link{hai_data_trig}()}
 }
 \author{
 Steven P. Sanderson II, MPH

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Preprocessor - Trigonometric Functions — hai_step_trig • healthyR.ai</title>
+<title>Data Preprocessor - Transformation Functions — hai_data_transform • healthyR.ai</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="Data Preprocessor - Trigonometric Functions — hai_step_trig" />
-<meta property="og:description" content="Takes in a recipe and will scale values using a selected recipe. To call the
-recipe use a quoted argument like &quot;sin&quot;, &quot;cos&quot; or &quot;tan&quot;. This function
+<meta property="og:title" content="Data Preprocessor - Transformation Functions — hai_data_transform" />
+<meta property="og:description" content="Takes in a recipe and will perform the desired transformation on the selected
+varialbe(s) using a selected recipe. To call the desired transformation
+recipe use a quoted argument like &quot;boxcos&quot;, &quot;bs&quot; etc. This function
 is not exported but may be called via the ::: method." />
 
 
@@ -136,22 +137,35 @@ is not exported but may be called via the ::: method." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Preprocessor - Trigonometric Functions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-step-trig.R'><code>R/hai-step-trig.R</code></a></small>
-    <div class="hidden name"><code>hai_step_trig.Rd</code></div>
+    <h1>Data Preprocessor - Transformation Functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-step-transform.R'><code>R/hai-step-transform.R</code></a></small>
+    <div class="hidden name"><code>hai_data_transform.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Takes in a recipe and will scale values using a selected recipe. To call the
-recipe use a quoted argument like "sin", "cos" or "tan". This function
+    <p>Takes in a recipe and will perform the desired transformation on the selected
+varialbe(s) using a selected recipe. To call the desired transformation
+recipe use a quoted argument like "boxcos", "bs" etc. This function
 is not exported but may be called via the ::: method.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hai_step_trig</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>hai_data_transform</span><span class='op'>(</span>
   .recipe_object <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>,
-  .type_of_scale <span class='op'>=</span> <span class='st'>"sin"</span>,
-  .inverse <span class='op'>=</span> <span class='cn'>FALSE</span>
+  .type_of_scale <span class='op'>=</span> <span class='st'>"log"</span>,
+  .bc_limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span>,
+  .bc_num_unique <span class='op'>=</span> <span class='fl'>5</span>,
+  .bs_deg_free <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .bs_degree <span class='op'>=</span> <span class='fl'>3</span>,
+  .log_base <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>,
+  .log_offset <span class='op'>=</span> <span class='fl'>0</span>,
+  .logit_offset <span class='op'>=</span> <span class='fl'>0</span>,
+  .ns_deg_free <span class='op'>=</span> <span class='fl'>2</span>,
+  .rel_shift <span class='op'>=</span> <span class='fl'>0</span>,
+  .rel_reverse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .rel_smooth <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .yj_limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span>,
+  .yj_num_unique <span class='op'>=</span> <span class='fl'>5</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -170,14 +184,80 @@ predict the missing data in each variable. See selections() for more details</p>
     <tr>
       <th>.type_of_scale</th>
       <td><p>This is a quoted argument and can be one of the following:</p><ul>
-<li><p>"sin"</p></li>
-<li><p>"cos"</p></li>
-<li><p>"tan"</p></li>
+<li><p>"boxcox"</p></li>
+<li><p>"bs"</p></li>
+<li><p>"log"</p></li>
+<li><p>"logit"</p></li>
+<li><p>"ns"</p></li>
+<li><p>"relu"</p></li>
+<li><p>"sqrt"</p></li>
+<li><p>"yeojohnson</p></li>
 </ul></td>
     </tr>
     <tr>
-      <th>.inverse</th>
-      <td><p>A logical: should the inverse function be used? Default is FALSE</p></td>
+      <th>.bc_limits</th>
+      <td><p>A length 2 numeric vector defining the range to compute the
+transformation parameter lambda.</p></td>
+    </tr>
+    <tr>
+      <th>.bc_num_unique</th>
+      <td><p>An integer to specify minimum required unique values to
+evaluate for a transformation</p></td>
+    </tr>
+    <tr>
+      <th>.bs_deg_free</th>
+      <td><p>The degrees of freedom for the spline. As the degrees of
+freedom for a spline increase, more flexible and complex curves can be
+generated. When a single degree of freedom is used, the result is a rescaled
+version of the original data.</p></td>
+    </tr>
+    <tr>
+      <th>.bs_degree</th>
+      <td><p>Degree of polynomial spline (integer).</p></td>
+    </tr>
+    <tr>
+      <th>.log_base</th>
+      <td><p>A numberic value for the base.</p></td>
+    </tr>
+    <tr>
+      <th>.log_offset</th>
+      <td><p>An optional value to add to the data prior to logging (to avoid log(0))</p></td>
+    </tr>
+    <tr>
+      <th>.logit_offset</th>
+      <td><p>A numberic value to modify values ofthe columns that are
+either one or zero. They are modifed to be <code>x - offset</code> or <code>offset</code> respectively.</p></td>
+    </tr>
+    <tr>
+      <th>.ns_deg_free</th>
+      <td><p>The degrees of freedom for the natural spline. As the
+degrees of freedom for a natural spline increase, more flexible and complex
+curves can be generated. When a single degree of freedom is used, the result
+is a rescaled version of the original data.</p></td>
+    </tr>
+    <tr>
+      <th>.rel_shift</th>
+      <td><p>A numeric value dictating a translation to apply to the data.</p></td>
+    </tr>
+    <tr>
+      <th>.rel_reverse</th>
+      <td><p>A logical to indicate if theleft hinge should be used as
+opposed to the right hinge.</p></td>
+    </tr>
+    <tr>
+      <th>.rel_smooth</th>
+      <td><p>A logical indicating if hte softplus function, a smooth
+approximation to the rectified linear transformation, should be used.</p></td>
+    </tr>
+    <tr>
+      <th>.yj_limits</th>
+      <td><p>A length 2 numeric vector defining the range to compute the
+transformation parameter lambda.</p></td>
+    </tr>
+    <tr>
+      <th>.yj_num_unique</th>
+      <td><p>An integer where data that have less possible values
+will not be evaluated for a transformation.</p></td>
     </tr>
     </table>
 
@@ -191,19 +271,33 @@ models.</p>
 <p>This is intended to be used inside of the data processor and
 therefore is an internal function. This documentation exists to explain the process
 and help the user understand the parameters that can be set in the pre-processor function.</p>
-<p><code><a href='https://recipes.tidymodels.org/reference/step_hyperbolic.html'>recipes::step_hyperbolic()</a></code></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_BoxCox.html'>recipes::step_BoxCox()</a></code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/step_hyperbolic.html'>https://recipes.tidymodels.org/reference/step_hyperbolic.html</a></p>
+    <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/step_BoxCox.html'>https://recipes.tidymodels.org/reference/step_BoxCox.html</a></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_bs.html'>recipes::step_bs()</a></code></p>
+<p><a href='https://recipes.tidymodels.org/reference/step_bs.html'>https://recipes.tidymodels.org/reference/step_bs.html</a></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_log.html'>recipes::step_log()</a></code></p>
+<p><a href='https://recipes.tidymodels.org/reference/step_log.html'>https://recipes.tidymodels.org/reference/step_log.html</a></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_logit.html'>recipes::step_logit()</a></code></p>
+<p><a href='https://recipes.tidymodels.org/reference/step_logit.html'>https://recipes.tidymodels.org/reference/step_logit.html</a></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_ns.html'>recipes::step_ns()</a></code></p>
+<p><a href='https://recipes.tidymodels.org/reference/step_ns.html'>https://recipes.tidymodels.org/reference/step_ns.html</a></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_relu.html'>recipes::step_relu()</a></code></p>
+<p><a href='https://recipes.tidymodels.org/reference/step_relu.html'>https://recipes.tidymodels.org/reference/step_relu.html</a></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_sqrt.html'>recipes::step_sqrt()</a></code></p>
+<p><a href='https://recipes.tidymodels.org/reference/step_sqrt.html'>https://recipes.tidymodels.org/reference/step_sqrt.html</a></p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_YeoJohnson.html'>recipes::step_YeoJohnson()</a></code></p>
+<p><a href='https://recipes.tidymodels.org/reference/step_YeoJohnson.html'>https://recipes.tidymodels.org/reference/step_YeoJohnson.html</a></p>
 <p>Other Data Recipes: 
 <code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
 <code><a href='hai_data_scale.html'>hai_data_scale</a>()</code>,
-<code><a href='hai_step_transform.html'>hai_step_transform</a>()</code>,
+<code><a href='hai_data_trig.html'>hai_data_trig</a>()</code>,
 <code><a href='pca_your_recipe.html'>pca_your_recipe</a>()</code></p>
 <p>Other Preprocessor: 
 <code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
 <code><a href='hai_data_scale.html'>hai_data_scale</a>()</code>,
-<code><a href='hai_step_transform.html'>hai_step_transform</a>()</code></p></div>
+<code><a href='hai_data_trig.html'>hai_data_trig</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Steven P. Sanderson II, MPH</p>
@@ -221,25 +315,25 @@ and help the user understand the parameters that can be set in the pre-processor
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>rec_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span><span class='op'>(</span><span class='va'>value</span> <span class='op'>~</span><span class='va'>.</span>, <span class='va'>df_tbl</span><span class='op'>)</span></span>
 <span class='r-in'></span>
-<span class='r-in'><span class='fu'>healthyR.ai</span><span class='fu'>:::</span><span class='fu'>hai_step_trig</span><span class='op'>(</span></span>
+<span class='r-in'><span class='fu'>healthyR.ai</span><span class='fu'>:::</span><span class='fu'>hai_data_transform</span><span class='op'>(</span></span>
 <span class='r-in'>    .recipe_object <span class='op'>=</span> <span class='va'>rec_obj</span>,</span>
 <span class='r-in'>    <span class='va'>value</span>,</span>
-<span class='r-in'>    .type_of_scale <span class='op'>=</span> <span class='st'>"sin"</span></span>
+<span class='r-in'>    .type_of_scale <span class='op'>=</span> <span class='st'>"log"</span></span>
 <span class='r-in'><span class='op'>)</span><span class='op'>$</span><span class='va'>scale_rec_obj</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
 <span class='r-in'>    <span class='fu'><a href='get_juiced_data.html'>get_juiced_data</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 100 x 2</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col    value</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2013-01-01  0.983</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2013-02-01  0.973</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2013-03-01 -<span style='color: #BB0000;'>0.999</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2013-04-01 -<span style='color: #BB0000;'>0.583</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2013-05-01  0.427</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2013-06-01  0.458</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2013-07-01  0.979</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2013-08-01  0.505</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2013-09-01  0.917</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2013-10-01 -<span style='color: #BB0000;'>0.919</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col   value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2013-01-01  2.04</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2013-02-01  2.03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2013-03-01  1.87</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2013-04-01  2.18</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2013-05-01  1.74</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2013-06-01  2.01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2013-07-01  1.82</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2013-08-01  1.80</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2013-09-01  1.53</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2013-10-01  2.22</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 90 more rows</span></span>
 <span class='r-in'></span>
 </pre>

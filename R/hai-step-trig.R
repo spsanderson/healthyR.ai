@@ -46,7 +46,7 @@
 #'
 #' rec_obj <- recipe(value ~., df_tbl)
 #'
-#' healthyR.ai:::hai_step_trig(
+#' healthyR.ai:::hai_data_trig(
 #'     .recipe_object = rec_obj,
 #'     value,
 #'     .type_of_scale = "sin"
@@ -57,7 +57,7 @@
 #' A list object
 #'
 
-hai_step_trig <-  function(.recipe_object = NULL, ...,
+hai_data_trig <-  function(.recipe_object = NULL, ...,
                            .type_of_scale = "sin", .inverse = FALSE){
 
     # Make sure a recipe was passed
