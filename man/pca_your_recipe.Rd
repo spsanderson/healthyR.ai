@@ -80,6 +80,7 @@ Other Data Wrangling:
 
 Other Data Recipes: 
 \code{\link{hai_data_impute}()},
+\code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_transform}()},
 \code{\link{hai_data_trig}()}

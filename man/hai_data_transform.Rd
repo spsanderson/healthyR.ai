@@ -154,12 +154,14 @@ healthyR.ai:::hai_data_transform(
 
 Other Data Recipes: 
 \code{\link{hai_data_impute}()},
+\code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_trig}()},
 \code{\link{pca_your_recipe}()}
 
 Other Preprocessor: 
 \code{\link{hai_data_impute}()},
+\code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_trig}()}
 }

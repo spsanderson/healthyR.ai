@@ -137,7 +137,7 @@ is not exported but may be called via the ::: method." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Data Preprocessor - Trigonometric Functions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-step-trig.R'><code>R/hai-step-trig.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-data-trig.R'><code>R/hai-data-trig.R</code></a></small>
     <div class="hidden name"><code>hai_data_trig.Rd</code></div>
     </div>
 
@@ -197,11 +197,13 @@ and help the user understand the parameters that can be set in the pre-processor
     <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/step_hyperbolic.html'>https://recipes.tidymodels.org/reference/step_hyperbolic.html</a></p>
 <p>Other Data Recipes: 
 <code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
+<code><a href='hai_data_poly.html'>hai_data_poly</a>()</code>,
 <code><a href='hai_data_scale.html'>hai_data_scale</a>()</code>,
 <code><a href='hai_data_transform.html'>hai_data_transform</a>()</code>,
 <code><a href='pca_your_recipe.html'>pca_your_recipe</a>()</code></p>
 <p>Other Preprocessor: 
 <code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
+<code><a href='hai_data_poly.html'>hai_data_poly</a>()</code>,
 <code><a href='hai_data_scale.html'>hai_data_scale</a>()</code>,
 <code><a href='hai_data_transform.html'>hai_data_transform</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
@@ -228,18 +230,18 @@ and help the user understand the parameters that can be set in the pre-processor
 <span class='r-in'><span class='op'>)</span><span class='op'>$</span><span class='va'>scale_rec_obj</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
 <span class='r-in'>    <span class='fu'><a href='get_juiced_data.html'>get_juiced_data</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 100 x 2</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col     value</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2013-01-01 -<span style='color: #BB0000;'>0.072</span><span style='color: #BB0000; text-decoration: underline;'>6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2013-02-01 -<span style='color: #BB0000;'>0.543</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2013-03-01  0.015<span style='text-decoration: underline;'>6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2013-04-01 -<span style='color: #BB0000;'>0.429</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2013-05-01 -<span style='color: #BB0000;'>0.916</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2013-06-01 -<span style='color: #BB0000;'>0.498</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2013-07-01  0.961 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2013-08-01 -<span style='color: #BB0000;'>0.992</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2013-09-01 -<span style='color: #BB0000;'>0.543</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2013-10-01  0.696 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col    value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2013-01-01 -<span style='color: #BB0000;'>0.868</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2013-02-01 -<span style='color: #BB0000;'>0.227</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2013-03-01 -<span style='color: #BB0000;'>0.983</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2013-04-01 -<span style='color: #BB0000;'>0.903</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2013-05-01 -<span style='color: #BB0000;'>0.825</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2013-06-01  0.963</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2013-07-01  0.974</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2013-08-01 -<span style='color: #BB0000;'>0.181</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2013-09-01 -<span style='color: #BB0000;'>0.474</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2013-10-01  0.994</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 90 more rows</span></span>
 <span class='r-in'></span>
 </pre>

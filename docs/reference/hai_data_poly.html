@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Preprocessor - Scale/Normalize — hai_data_scale • healthyR.ai</title>
+<title>Data Preprocessor - Polynomial Function — hai_data_poly • healthyR.ai</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Data Preprocessor - Scale/Normalize — hai_data_scale" />
-<meta property="og:description" content="Takes in a recipe and will scale values using a selected recipe. To call the
-recipe use a quoted argument like &quot;scale&quot; or &quot;normalize&quot;. This function
+<meta property="og:title" content="Data Preprocessor - Polynomial Function — hai_data_poly" />
+<meta property="og:description" content="Takes in a recipe and will scale values using a selected recipe. This function
 is not exported but may be called via the ::: method." />
 
 
@@ -136,25 +135,17 @@ is not exported but may be called via the ::: method." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Preprocessor - Scale/Normalize</h1>
-    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-data-scale.R'><code>R/hai-data-scale.R</code></a></small>
-    <div class="hidden name"><code>hai_data_scale.Rd</code></div>
+    <h1>Data Preprocessor - Polynomial Function</h1>
+    <small class="dont-index">Source: <a href='https://github.com/spsanderson/healthyR.ai/blob/master/R/hai-data-poly.R'><code>R/hai-data-poly.R</code></a></small>
+    <div class="hidden name"><code>hai_data_poly.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Takes in a recipe and will scale values using a selected recipe. To call the
-recipe use a quoted argument like "scale" or "normalize". This function
+    <p>Takes in a recipe and will scale values using a selected recipe. This function
 is not exported but may be called via the ::: method.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hai_data_scale</span><span class='op'>(</span>
-  .recipe_object <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>...</span>,
-  .type_of_scale <span class='op'>=</span> <span class='st'>"center"</span>,
-  .range_min <span class='op'>=</span> <span class='fl'>0</span>,
-  .range_max <span class='op'>=</span> <span class='fl'>1</span>,
-  .scale_factor <span class='op'>=</span> <span class='fl'>1</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>hai_data_poly</span><span class='op'>(</span>.recipe_object <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span>, .p_degree <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,30 +161,8 @@ When used with imp_vars, these dots indicate which variables are used to
 predict the missing data in each variable. See selections() for more details</p></td>
     </tr>
     <tr>
-      <th>.type_of_scale</th>
-      <td><p>This is a quoted argument and can be one of the following:</p><ul>
-<li><p>"center"</p></li>
-<li><p>"normalize"</p></li>
-<li><p>"range"</p></li>
-<li><p>"scale"</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>.range_min</th>
-      <td><p>A single numeric value for the smallest value in the range.
-This defaults to 0.</p></td>
-    </tr>
-    <tr>
-      <th>.range_max</th>
-      <td><p>A single numeric value for the largeest value in the range.
-This defaults to 1.</p></td>
-    </tr>
-    <tr>
-      <th>.scale_factor</th>
-      <td><p>A numeric value of either 1 or 2 that scales the numeric
-inputs by one or two standard deviations. By dividing by two standard
-deviations, the coefficients attached to continuous predictors can be
-interpreted the same way as with binary inputs. Defaults to 1. More in reference below.</p></td>
+      <th>.p_degree</th>
+      <td><p>The polynomial degree, an integer.</p></td>
     </tr>
     </table>
 
@@ -207,35 +176,19 @@ models.</p>
 <p>This is intended to be used inside of the data processor and
 therefore is an internal function. This documentation exists to explain the process
 and help the user understand the parameters that can be set in the pre-processor function.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Gelman, A. (2007) "Scaling regression inputs by
-dividing by two standard deviations." Unpublished. Source:
-<a href='http://www.stat.columbia.edu/~gelman/research/unpublished/standardizing.pdf'>http://www.stat.columbia.edu/~gelman/research/unpublished/standardizing.pdf</a>.</p>
+<p><code><a href='https://recipes.tidymodels.org/reference/step_hyperbolic.html'>recipes::step_hyperbolic()</a></code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/index.html#section-step-functions-normalization'>https://recipes.tidymodels.org/reference/index.html#section-step-functions-normalization</a></p>
-<p>step_center</p>
-<p><code><a href='https://recipes.tidymodels.org/reference/step_center.html'>recipes::step_center()</a></code></p>
-<p><a href='https://recipes.tidymodels.org/reference/step_center.html'>https://recipes.tidymodels.org/reference/step_center.html</a></p>
-<p>step_normalize</p>
-<p><code><a href='https://recipes.tidymodels.org/reference/step_normalize.html'>recipes::step_normalize()</a></code></p>
-<p><a href='https://recipes.tidymodels.org/reference/step_normalize.html'>https://recipes.tidymodels.org/reference/step_normalize.html</a></p>
-<p>step_range</p>
-<p><code><a href='https://recipes.tidymodels.org/reference/step_range.html'>recipes::step_range()</a></code></p>
-<p><a href='https://recipes.tidymodels.org/reference/step_range.html'>https://recipes.tidymodels.org/reference/step_range.html</a></p>
-<p>step_scale</p>
-<p><code><a href='https://recipes.tidymodels.org/reference/step_scale.html'>recipes::step_scale()</a></code></p>
-<p><a href='https://recipes.tidymodels.org/reference/step_scale.html'>https://recipes.tidymodels.org/reference/step_scale.html</a></p>
+    <div class='dont-index'><p><a href='https://recipes.tidymodels.org/reference/step_poly.html'>https://recipes.tidymodels.org/reference/step_poly.html</a></p>
 <p>Other Data Recipes: 
 <code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
-<code><a href='hai_data_poly.html'>hai_data_poly</a>()</code>,
+<code><a href='hai_data_scale.html'>hai_data_scale</a>()</code>,
 <code><a href='hai_data_transform.html'>hai_data_transform</a>()</code>,
 <code><a href='hai_data_trig.html'>hai_data_trig</a>()</code>,
 <code><a href='pca_your_recipe.html'>pca_your_recipe</a>()</code></p>
 <p>Other Preprocessor: 
 <code><a href='hai_data_impute.html'>hai_data_impute</a>()</code>,
-<code><a href='hai_data_poly.html'>hai_data_poly</a>()</code>,
+<code><a href='hai_data_scale.html'>hai_data_scale</a>()</code>,
 <code><a href='hai_data_transform.html'>hai_data_transform</a>()</code>,
 <code><a href='hai_data_trig.html'>hai_data_trig</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
@@ -255,25 +208,24 @@ dividing by two standard deviations." Unpublished. Source:
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>rec_obj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://recipes.tidymodels.org/reference/recipe.html'>recipe</a></span><span class='op'>(</span><span class='va'>value</span> <span class='op'>~</span><span class='va'>.</span>, <span class='va'>df_tbl</span><span class='op'>)</span></span>
 <span class='r-in'></span>
-<span class='r-in'><span class='fu'>healthyR.ai</span><span class='fu'>:::</span><span class='fu'>hai_data_scale</span><span class='op'>(</span></span>
+<span class='r-in'><span class='fu'>healthyR.ai</span><span class='fu'>:::</span><span class='fu'>hai_data_poly</span><span class='op'>(</span></span>
 <span class='r-in'>    .recipe_object <span class='op'>=</span> <span class='va'>rec_obj</span>,</span>
-<span class='r-in'>    <span class='va'>value</span>,</span>
-<span class='r-in'>    .type_of_scale <span class='op'>=</span> <span class='st'>"center"</span></span>
+<span class='r-in'>    <span class='va'>value</span></span>
 <span class='r-in'><span class='op'>)</span><span class='op'>$</span><span class='va'>scale_rec_obj</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
 <span class='r-in'>    <span class='fu'><a href='get_juiced_data.html'>get_juiced_data</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 100 x 2</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col    value</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2013-01-01  0.715</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2013-02-01  0.658</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2013-03-01 -<span style='color: #BB0000;'>0.486</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2013-04-01  1.82 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2013-05-01 -<span style='color: #BB0000;'>1.32</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2013-06-01  0.479</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2013-07-01 -<span style='color: #BB0000;'>0.798</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2013-08-01 -<span style='color: #BB0000;'>0.937</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2013-09-01 -<span style='color: #BB0000;'>2.39</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2013-10-01  2.26 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 100 x 3</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    date_col   value_poly_1 value_poly_2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> 2013-01-01       0.035<span style='text-decoration: underline;'>4</span>     -<span style='color: #BB0000;'>0.101</span>  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> 2013-02-01       0.042<span style='text-decoration: underline;'>8</span>     -<span style='color: #BB0000;'>0.095</span><span style='color: #BB0000; text-decoration: underline;'>0</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> 2013-03-01      -<span style='color: #BB0000;'>0.150</span>       0.156  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> 2013-04-01       0.078<span style='text-decoration: underline;'>1</span>     -<span style='color: #BB0000;'>0.052</span><span style='color: #BB0000; text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> 2013-05-01      -<span style='color: #BB0000;'>0.096</span><span style='color: #BB0000; text-decoration: underline;'>3</span>      0.003<span style='text-decoration: underline;'>40</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> 2013-06-01       0.116       0.024<span style='text-decoration: underline;'>3</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> 2013-07-01      -<span style='color: #BB0000;'>0.047</span><span style='color: #BB0000; text-decoration: underline;'>6</span>     -<span style='color: #BB0000;'>0.079</span><span style='color: #BB0000; text-decoration: underline;'>6</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> 2013-08-01      -<span style='color: #BB0000;'>0.116</span>       0.051<span style='text-decoration: underline;'>2</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> 2013-09-01       0.170       0.187  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> 2013-10-01      -<span style='color: #BB0000;'>0.032</span><span style='color: #BB0000; text-decoration: underline;'>0</span>     -<span style='color: #BB0000;'>0.095</span><span style='color: #BB0000; text-decoration: underline;'>2</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 90 more rows</span></span>
 <span class='r-in'></span>
 </pre>
