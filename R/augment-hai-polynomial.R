@@ -55,7 +55,7 @@ hai_polynomial_augment <- function(.data, .formula = NULL, .pred_col = NULL
 
     # Tidyeval ----
     f <- .formula
-    d <- as.integer(.degree)
+    d <- base::as.integer(.degree)
     pred_col_var_expr <- rlang::enquo(.pred_col)
     ncp <- .new_col_prefix
 
@@ -67,14 +67,14 @@ hai_polynomial_augment <- function(.data, .formula = NULL, .pred_col = NULL
 
     # Checks ----
     if(!is.null(f)){
-        f = as.formula(f)
+        f = stats::as.formula(f)
     } else if(
         !rlang::quo_is_missing(pred_col_var_expr) &
         !rlang::quo_is_null(pred_col_var_expr) &
         !is.null(d) &
         is.integer(d)
     ){
-        f = reformulate(
+        f = stats::reformulate(
             paste0(
                 'poly(',
                 colnames(data_tbl[-1]),
