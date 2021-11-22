@@ -110,12 +110,14 @@ step_scale
 
 Other Data Recipes: 
 \code{\link{hai_data_impute}()},
-\code{\link{hai_step_trig}()},
+\code{\link{hai_data_transform}()},
+\code{\link{hai_data_trig}()},
 \code{\link{pca_your_recipe}()}
 
 Other Preprocessor: 
 \code{\link{hai_data_impute}()},
-\code{\link{hai_step_trig}()}
+\code{\link{hai_data_transform}()},
+\code{\link{hai_data_trig}()}
 }
 \author{
 Steven P. Sanderson II, MPH
