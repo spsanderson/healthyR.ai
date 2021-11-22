@@ -28,7 +28,6 @@ Imports:
     ggplot2,
     tidyr,
     forcats,
-    timetk,
     recipes,
     parsnip,
     rsample,
@@ -45,7 +44,9 @@ Suggests:
     rstudioapi,
     healthyR.data,
     scales,
-    tidyselect
+    tidyselect,
+    janitor,
+    timetk
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
