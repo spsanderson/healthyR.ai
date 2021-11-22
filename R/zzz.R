@@ -46,29 +46,29 @@ maybe_register_s3_methods <- function() {
     names <- names(ns)
 
     # # ----------------------------------------------------------------------------
-    #
-    # tidy_names <- c(
-    #     grep("tidy.step",  names, fixed = TRUE, value = TRUE),
-    #     grep("tidy.check", names, fixed = TRUE, value = TRUE)
-    # )
-    #
-    # tidy_classes <- gsub("tidy.", "", tidy_names)
-    #
-    # for (i in seq_along(tidy_names)) {
-    #     class <- tidy_classes[[i]]
-    #     s3_register("generics::tidy", class)
-    # }
-    #
+
+    tidy_names <- c(
+        grep("tidy.step",  names, fixed = TRUE, value = TRUE),
+        grep("tidy.check", names, fixed = TRUE, value = TRUE)
+    )
+
+    tidy_classes <- gsub("tidy.", "", tidy_names)
+
+    for (i in seq_along(tidy_names)) {
+        class <- tidy_classes[[i]]
+        s3_register("generics::tidy", class)
+    }
+
     # # ----------------------------------------------------------------------------
-    #
-    # tidy_check_names <- grep("tidy.check", names, fixed = TRUE, value = TRUE)
-    # tidy_check_classes <- gsub("tidy.", "", tidy_check_names)
-    #
-    # for (i in seq_along(tidy_check_names)) {
-    #     class <- tidy_check_classes[[i]]
-    #     s3_register("generics::tidy", class)
-    # }
-    #
+
+    tidy_check_names <- grep("tidy.check", names, fixed = TRUE, value = TRUE)
+    tidy_check_classes <- gsub("tidy.", "", tidy_check_names)
+
+    for (i in seq_along(tidy_check_names)) {
+        class <- tidy_check_classes[[i]]
+        s3_register("generics::tidy", class)
+    }
+
     # ----------------------------------------------------------------------------
 
     if (rlang::is_installed("tune") && utils::packageVersion("tune") >= "0.1.1.9000") {
