@@ -13,6 +13,7 @@ None
 7. Fix #89 - Add `hai_fourier_discrete_vec()`, `hai_fourier_discrete_augment()`, `step_hai_fourier_discrete()`
 8. Fix #57 - Add `hai_polynomial_augment()`
 9. Fix #60 - Add internal function `hai_data_transform()`
+10. Fix #93 - Add internal function `hai_data_poly()`
 
 ## Minor Fixes and Improvments
 1. Fix #81 - Add process to register s3 methods to work with `tune` objects.

@@ -143,12 +143,14 @@ step_impute_roll
 \url{https://recipes.tidymodels.org/reference/step_impute_roll.html}
 
 Other Data Recipes: 
+\code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_transform}()},
 \code{\link{hai_data_trig}()},
 \code{\link{pca_your_recipe}()}
 
 Other Preprocessor: 
+\code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_transform}()},
 \code{\link{hai_data_trig}()}
