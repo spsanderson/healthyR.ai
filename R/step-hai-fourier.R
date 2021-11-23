@@ -210,11 +210,12 @@ print.step_hai_fourier <-
         invisible(x)
     }
 
+#' Requited Packages
 #' @rdname required_pkgs.healthyR.ai
 #' @keywords internal
 #' @return A character vector
 #' @param x A recipe step
-#' @noRd
+# @noRd
 #' @export
 required_pkgs.step_hai_fourier <- function(x, ...) {
     c("healthyR.ai")

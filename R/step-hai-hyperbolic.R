@@ -195,11 +195,12 @@ print.step_hai_hyperbolic <-
         invisible(x)
     }
 
+#' Requited Packages
 #' @rdname required_pkgs.healthyR.ai
 #' @keywords internal
 #' @return A character vector
 #' @param x A recipe step
-#' @noRd
+# @noRd
 #' @export
 required_pkgs.step_hai_hyperbolic <- function(x, ...) {
     c("healthyR.ai")
