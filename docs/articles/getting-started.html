@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3.9000</span>
       </span>
     </div>
 
@@ -58,9 +60,8 @@
      
     <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-<li class="divider">
-  </ul>
+  <ul class="dropdown-menu" role="menu"><li class="divider">
+  </li></ul>
 </li>
 <li>
   <a href="../reference/index.html">Function Reference</a>
@@ -71,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/spsanderson/healthyR.ai/">
+  <a href="https://github.com/spsanderson/healthyR.ai/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -86,109 +87,109 @@
 
       
 
-      </header><script src="getting-started_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started with healthyR.ai</h1>
-            <h3 class="subtitle">A Quick Introduction</h3>
-                        <h4 class="author">Steven P. Sanderson II, MPH</h4>
+            <h3 data-toc-skip class="subtitle">A Quick Introduction</h3>
+                        <h4 data-toc-skip class="author">Steven P. Sanderson II, MPH</h4>
             
-            <h4 class="date">2021-11-24</h4>
+            <h4 data-toc-skip class="date">2021-12-08</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/spsanderson/healthyR.ai/blob/master/vignettes/getting-started.Rmd"><code>vignettes/getting-started.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/spsanderson/healthyR.ai/blob/HEAD/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
       <div class="hidden name"><code>getting-started.Rmd</code></div>
 
     </div>
 
     
     
-<p>First of all, thank you for using <code>healthyR.ai</code>. If you encounter issues or want to make a feature request, please visit <a href="https://github.com/spsanderson/healthyR.ai/issues" class="uri">https://github.com/spsanderson/healthyR.ai/issues</a></p>
+<p>First of all, thank you for using <code>healthyR.ai</code>. If you encounter issues or want to make a feature request, please visit <a href="https://github.com/spsanderson/healthyR.ai/issues" class="external-link uri">https://github.com/spsanderson/healthyR.ai/issues</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.ai">healthyR.ai</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.ai" class="external-link">healthyR.ai</a></span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'tune':</span>
 <span class="co">#&gt;   method                   from   </span>
 <span class="co">#&gt;   required_pkgs.model_spec parsnip</span>
-<span class="co">#&gt; == Welcome to healthyR.ai ======================================================</span>
-<span class="co">#&gt; If you find this package useful, please leave a star: https://github.com/spsanderson/healthyR.ai</span>
-<span class="co">#&gt; If you encounter a bug or want to request an enhancement please file an issue at:</span>
-<span class="co">#&gt;    https://github.com/spsanderson/healthyR.ai/issues</span>
-<span class="co">#&gt; Thank you for using healthyR.ai!</span></code></pre></div>
-<p>In this should example we will showcase the <code><a href="../reference/pca_your_recipe.html">pca_your_recipe()</a></code> function. This function takes only a few arguments. The arguments are currently <code>.data</code> which is the full data set that gets passed internally to the <code><a href="https://recipes.tidymodels.org/reference/bake.html">recipes::bake()</a></code> function, <code>.recipe_object</code> which is a recipe you have already made and want to pass to the function in order to perform the pca, and finally <code>.threshold</code> which is the fraction of the variance that should be captured by the components.</p>
+<span class="co">#&gt; <span style="color: #444444;">==</span> <span style="color: #444444;">Welcome to healthyR.ai</span> <span style="color: #444444;">======================================================</span></span>
+<span class="co"><span style="color: #0087D7;">#&gt; If you find this package useful, please leave a star: https://github.com/spsanderson/healthyR.ai</span></span>
+<span class="co"><span style="color: #0087D7;">#&gt; If you encounter a bug or want to request an enhancement please file an issue at:</span></span>
+<span class="co"><span style="color: #0087D7;">#&gt;    https://github.com/spsanderson/healthyR.ai/issues</span></span>
+<span class="co"><span style="color: #0087D7;">#&gt; Thank you for using healthyR.ai!</span></span></code></pre></div>
+<p>In this should example we will showcase the <code><a href="../reference/pca_your_recipe.html">pca_your_recipe()</a></code> function. This function takes only a few arguments. The arguments are currently <code>.data</code> which is the full data set that gets passed internally to the <code><a href="https://recipes.tidymodels.org/reference/bake.html" class="external-link">recipes::bake()</a></code> function, <code>.recipe_object</code> which is a recipe you have already made and want to pass to the function in order to perform the pca, and finally <code>.threshold</code> which is the fraction of the variance that should be captured by the components.</p>
 <p>To start this walk through we will first load in a few libraries.</p>
-<div id="libraries" class="section level1">
-<h1 class="hasAnchor">
-<a href="#libraries" class="anchor"></a>Libraries</h1>
+<div class="section level1">
+<h1 id="libraries">Libraries<a class="anchor" aria-label="anchor" href="#libraries"></a>
+</h1>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/business-science/timetk">timetk</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.data">healthyR.data</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org">rsample</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes">recipes</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/business-science/timetk" class="external-link">timetk</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.data" class="external-link">healthyR.data</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org" class="external-link">rsample</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#data" class="anchor"></a>Data</h1>
+<div class="section level1">
+<h1 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+</h1>
 <p>Now that we have out libraries we can go ahead and get our data set ready.</p>
-<div id="data-set" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data-set" class="anchor"></a>Data Set</h2>
+<div class="section level2">
+<h2 id="data-set">Data Set<a class="anchor" aria-label="anchor" href="#data-set"></a>
+</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="va">healthyR_data</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">visit_end_date_time</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/summarise_by_time.html">summarise_by_time</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="va">healthyR_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">visit_end_date_time</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/summarise_by_time.html" class="external-link">summarise_by_time</a></span><span class="op">(</span>
         .date_var <span class="op">=</span> <span class="va">visit_end_date_time</span>,
         .by       <span class="op">=</span> <span class="st">"month"</span>,
-        value     <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>
-    <span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="st">"date_col"</span>,<span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/filter_by_time.html">filter_by_time</a></span><span class="op">(</span>
+        value     <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>
+    <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html" class="external-link">set_names</a></span><span class="op">(</span><span class="st">"date_col"</span>,<span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/filter_by_time.html" class="external-link">filter_by_time</a></span><span class="op">(</span>
         .date_var <span class="op">=</span> <span class="va">date_col</span>,
         .start_date <span class="op">=</span> <span class="st">"2013"</span>,
         .end_date <span class="op">=</span> <span class="st">"2020"</span>
     <span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data_tbl</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_tbl</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 x 2</span></span>
 <span class="co">#&gt;   date_col            value</span>
-<span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;</span>
-<span class="co">#&gt; 1 2013-01-01 00:00:00  2082</span>
-<span class="co">#&gt; 2 2013-02-01 00:00:00  1719</span>
-<span class="co">#&gt; 3 2013-03-01 00:00:00  1796</span>
-<span class="co">#&gt; 4 2013-04-01 00:00:00  1865</span>
-<span class="co">#&gt; 5 2013-05-01 00:00:00  2028</span>
-<span class="co">#&gt; 6 2013-06-01 00:00:00  1813</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2013-01-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">2</span>082</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2013-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>719</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2013-03-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>796</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2013-04-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>865</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2013-05-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">2</span>028</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2013-06-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>813</span></code></pre></div>
 <p>The data set is simple and by itself would not be at all useful for a pca analysis since there is only one predictor, being time. In order to facilitate the use of the function and this example, we will create a <code>splits</code> object and a <code>recipe</code> object.</p>
 </div>
-<div id="splits" class="section level2">
-<h2 class="hasAnchor">
-<a href="#splits" class="anchor"></a>Splits</h2>
+<div class="section level2">
+<h2 id="splits">Splits<a class="anchor" aria-label="anchor" href="#splits"></a>
+</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">splits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">initial_split</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_tbl</span>, prop <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">splits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">initial_split</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_tbl</span>, prop <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
 
 <span class="va">splits</span>
 <span class="co">#&gt; &lt;Analysis/Assess/Total&gt;</span>
 <span class="co">#&gt; &lt;76/19/95&gt;</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 x 2</span></span>
 <span class="co">#&gt;   date_col            value</span>
-<span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;</span>
-<span class="co">#&gt; 1 2013-02-01 00:00:00  1719</span>
-<span class="co">#&gt; 2 2017-05-01 00:00:00  1647</span>
-<span class="co">#&gt; 3 2017-10-01 00:00:00  1614</span>
-<span class="co">#&gt; 4 2013-06-01 00:00:00  1813</span>
-<span class="co">#&gt; 5 2019-08-01 00:00:00  1416</span>
-<span class="co">#&gt; 6 2015-06-01 00:00:00  1630</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2017-07-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>535</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2017-09-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>512</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2013-04-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>865</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2014-03-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>749</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2013-06-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>813</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2017-06-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>661</span></code></pre></div>
 </div>
-<div id="initial-recipe" class="section level2">
-<h2 class="hasAnchor">
-<a href="#initial-recipe" class="anchor"></a>Initial Recipe</h2>
+<div class="section level2">
+<h2 id="initial-recipe">Initial Recipe<a class="anchor" aria-label="anchor" href="#initial-recipe"></a>
+</h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">.</span>, <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/step_timeseries_signature.html">step_timeseries_signature</a></span><span class="op">(</span><span class="va">date_col</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span>
-    <span class="fu"><a href="https://recipes.tidymodels.org/reference/step_rm.html">step_rm</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">.</span>, <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rdrr.io/pkg/timetk/man/step_timeseries_signature.html" class="external-link">step_timeseries_signature</a></span><span class="op">(</span><span class="va">date_col</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://recipes.tidymodels.org/reference/step_rm.html" class="external-link">step_rm</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="st">"(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">rec_obj</span>
 <span class="co">#&gt; Recipe</span>
@@ -204,29 +205,29 @@
 <span class="co">#&gt; Timeseries signature features from date_col</span>
 <span class="co">#&gt; Delete terms matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)")</span>
 
-<span class="fu"><a href="../reference/get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="../reference/get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 76</span>
 <span class="co">#&gt; Columns: 20</span>
-<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2013-02-01, 2017-05-01, 2017-10-01, 2013-06-01, 20~</span>
-<span class="co">#&gt; $ value              &lt;int&gt; 1719, 1647, 1614, 1813, 1416, 1630, 1486, 1550, 161~</span>
-<span class="co">#&gt; $ date_col_index.num &lt;dbl&gt; 1359676800, 1493596800, 1506816000, 1370044800, 156~</span>
-<span class="co">#&gt; $ date_col_year      &lt;int&gt; 2013, 2017, 2017, 2013, 2019, 2015, 2019, 2018, 201~</span>
-<span class="co">#&gt; $ date_col_half      &lt;int&gt; 1, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_quarter   &lt;int&gt; 1, 2, 4, 2, 3, 2, 2, 4, 2, 4, 2, 3, 4, 4, 2, 2, 2, ~</span>
-<span class="co">#&gt; $ date_col_month     &lt;int&gt; 2, 5, 10, 6, 8, 6, 5, 11, 4, 11, 4, 7, 12, 10, 5, 5~</span>
-<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; February, May, October, June, August, June, May, No~</span>
-<span class="co">#&gt; $ date_col_day       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_wday      &lt;int&gt; 6, 2, 1, 7, 5, 2, 4, 5, 1, 4, 7, 3, 1, 4, 6, 6, 6, ~</span>
-<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Friday, Monday, Sunday, Saturday, Thursday, Monday,~</span>
-<span class="co">#&gt; $ date_col_mday      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
-<span class="co">#&gt; $ date_col_qday      &lt;int&gt; 32, 31, 1, 62, 32, 62, 31, 32, 1, 32, 1, 1, 62, 1, ~</span>
-<span class="co">#&gt; $ date_col_yday      &lt;int&gt; 32, 121, 274, 152, 213, 152, 121, 305, 91, 305, 91,~</span>
-<span class="co">#&gt; $ date_col_mweek     &lt;int&gt; 5, 6, 5, 5, 5, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, ~</span>
-<span class="co">#&gt; $ date_col_week      &lt;int&gt; 5, 18, 40, 22, 31, 22, 18, 44, 13, 44, 13, 26, 48, ~</span>
-<span class="co">#&gt; $ date_col_week2     &lt;int&gt; 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ date_col_week3     &lt;int&gt; 2, 0, 1, 1, 1, 1, 0, 2, 1, 2, 1, 2, 0, 1, 0, 0, 2, ~</span>
-<span class="co">#&gt; $ date_col_week4     &lt;int&gt; 1, 2, 0, 2, 3, 2, 2, 0, 1, 0, 1, 2, 0, 0, 2, 2, 2, ~</span>
-<span class="co">#&gt; $ date_col_mday7     &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span></code></pre></div>
+<span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2017-07-01, 2017-09-01, 2013-04-01, 2014-03-01, 20~</span>
+<span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1535, 1512, 1865, 1749, 1813, 1661, 1474, 1782, 151~</span>
+<span class="co">#&gt; $ date_col_index.num <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1498867200, 1504224000, 1364774400, 1393632000, 137~</span>
+<span class="co">#&gt; $ date_col_year      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2017, 2017, 2013, 2014, 2013, 2017, 2019, 2014, 201~</span>
+<span class="co">#&gt; $ date_col_half      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_quarter   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 2, 1, 2, 2, 3, 3, 1, 2, 1, 3, 1, 3, 2, 1, 2, ~</span>
+<span class="co">#&gt; $ date_col_month     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 7, 9, 4, 3, 6, 6, 7, 7, 2, 6, 3, 8, 2, 8, 6, 1, 6, ~</span>
+<span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> July, September, April, March, June, June, July, Ju~</span>
+<span class="co">#&gt; $ date_col_day       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_wday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 7, 6, 2, 7, 7, 5, 2, 3, 5, 6, 3, 7, 1, 2, 1, 1, 2, ~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Saturday, Friday, Monday, Saturday, Saturday, Thurs~</span>
+<span class="co">#&gt; $ date_col_mday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_qday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 63, 1, 60, 62, 62, 1, 1, 32, 62, 61, 32, 32, 32,~</span>
+<span class="co">#&gt; $ date_col_yday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 182, 244, 91, 60, 152, 152, 182, 182, 32, 152, 61, ~</span>
+<span class="co">#&gt; $ date_col_mweek     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 5, 5, 6, 5, 5, 5, 6, 5, 5, 5, 5, 5, 5, 6, 5, 5, 6, ~</span>
+<span class="co">#&gt; $ date_col_week      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 26, 35, 13, 9, 22, 22, 26, 26, 5, 22, 9, 31, 5, 31,~</span>
+<span class="co">#&gt; $ date_col_week2     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, ~</span>
+<span class="co">#&gt; $ date_col_week3     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 2, 1, 0, 1, 1, 2, 2, 2, 1, 0, 1, 2, 1, 1, 1, 1, ~</span>
+<span class="co">#&gt; $ date_col_week4     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 3, 1, 1, 2, 2, 2, 2, 1, 2, 1, 3, 1, 3, 2, 1, 2, ~</span>
+<span class="co">#&gt; $ date_col_mday7     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~</span></code></pre></div>
 <p>Now that we have out initial recipe we can use the <code><a href="../reference/pca_your_recipe.html">pca_your_recipe()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pca_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pca_your_recipe.html">pca_your_recipe</a></span><span class="op">(</span>
@@ -239,9 +240,9 @@
 <span class="co">#&gt;   as.zoo.data.frame zoo</span></code></pre></div>
 </div>
 </div>
-<div id="inspect-pca-output" class="section level1">
-<h1 class="hasAnchor">
-<a href="#inspect-pca-output" class="anchor"></a>Inspect PCA Output</h1>
+<div class="section level1">
+<h1 id="inspect-pca-output">Inspect PCA Output<a class="anchor" aria-label="anchor" href="#inspect-pca-output"></a>
+</h1>
 <p>The function returns a list object and does so <code>insvisible</code> so you must assign the output to a variable, you can then access the items of the list in the usual manner.</p>
 <p>The following items are included in the output of the function:</p>
 <ol style="list-style-type: decimal">
@@ -256,9 +257,9 @@
 <li>pca_rotation_df</li>
 </ol>
 <p>Lets start going down the list of items.</p>
-<div id="pca-transform" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pca-transform" class="anchor"></a>PCA Transform</h2>
+<div class="section level2">
+<h2 id="pca-transform">PCA Transform<a class="anchor" aria-label="anchor" href="#pca-transform"></a>
+</h2>
 <p>This is the portion you will want to output to a variable as this is the recipe object itself that you will use further down the line of your work.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pca_rec_obj</span> <span class="op">&lt;-</span> <span class="va">pca_list</span><span class="op">$</span><span class="va">pca_transform</span>
@@ -281,49 +282,49 @@
 <span class="co">#&gt; Sparse, unbalanced variable filter on recipes::all_numeric()</span>
 <span class="co">#&gt; No PCA components were extracted.</span></code></pre></div>
 </div>
-<div id="variable-loadings" class="section level2">
-<h2 class="hasAnchor">
-<a href="#variable-loadings" class="anchor"></a>Variable Loadings</h2>
+<div class="section level2">
+<h2 id="variable-loadings">Variable Loadings<a class="anchor" aria-label="anchor" href="#variable-loadings"></a>
+</h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">variable_loadings</span>
-<span class="co">#&gt; # A tibble: 169 x 4</span>
-<span class="co">#&gt;    terms                 value component id       </span>
-<span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 date_col_index.num  0.0468  PC1       pca_E9SXg</span>
-<span class="co">#&gt;  2 date_col_year      -0.00733 PC1       pca_E9SXg</span>
-<span class="co">#&gt;  3 date_col_half       0.388   PC1       pca_E9SXg</span>
-<span class="co">#&gt;  4 date_col_quarter    0.434   PC1       pca_E9SXg</span>
-<span class="co">#&gt;  5 date_col_month      0.439   PC1       pca_E9SXg</span>
-<span class="co">#&gt;  6 date_col_wday      -0.0299  PC1       pca_E9SXg</span>
-<span class="co">#&gt;  7 date_col_qday       0.105   PC1       pca_E9SXg</span>
-<span class="co">#&gt;  8 date_col_yday       0.439   PC1       pca_E9SXg</span>
-<span class="co">#&gt;  9 date_col_mweek     -0.0148  PC1       pca_E9SXg</span>
-<span class="co">#&gt; 10 date_col_week       0.439   PC1       pca_E9SXg</span>
-<span class="co">#&gt; # ... with 159 more rows</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 169 x 4</span></span>
+<span class="co">#&gt;    terms                value component id       </span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> date_col_index.num -<span style="color: #BB0000;">0.110</span>  PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> date_col_year      -<span style="color: #BB0000;">0.057</span><span style="color: #BB0000; text-decoration: underline;">8</span> PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> date_col_half      -<span style="color: #BB0000;">0.385</span>  PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> date_col_quarter   -<span style="color: #BB0000;">0.433</span>  PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> date_col_month     -<span style="color: #BB0000;">0.437</span>  PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> date_col_wday       0.022<span style="text-decoration: underline;">8</span> PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> date_col_qday      -<span style="color: #BB0000;">0.066</span><span style="color: #BB0000; text-decoration: underline;">6</span> PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> date_col_yday      -<span style="color: #BB0000;">0.437</span>  PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> date_col_mweek     -<span style="color: #BB0000;">0.024</span><span style="color: #BB0000; text-decoration: underline;">6</span> PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> date_col_week      -<span style="color: #BB0000;">0.437</span>  PC1       pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #949494;"># ... with 159 more rows</span></span></code></pre></div>
 </div>
-<div id="variable-variance" class="section level2">
-<h2 class="hasAnchor">
-<a href="#variable-variance" class="anchor"></a>Variable Variance</h2>
+<div class="section level2">
+<h2 id="variable-variance">Variable Variance<a class="anchor" aria-label="anchor" href="#variable-variance"></a>
+</h2>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">variable_variance</span>
-<span class="co">#&gt; # A tibble: 52 x 4</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 52 x 4</span></span>
 <span class="co">#&gt;    terms       value component id       </span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;     &lt;int&gt; &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 variance 5.13             1 pca_E9SXg</span>
-<span class="co">#&gt;  2 variance 2.02             2 pca_E9SXg</span>
-<span class="co">#&gt;  3 variance 1.49             3 pca_E9SXg</span>
-<span class="co">#&gt;  4 variance 1.36             4 pca_E9SXg</span>
-<span class="co">#&gt;  5 variance 1.17             5 pca_E9SXg</span>
-<span class="co">#&gt;  6 variance 0.697            6 pca_E9SXg</span>
-<span class="co">#&gt;  7 variance 0.606            7 pca_E9SXg</span>
-<span class="co">#&gt;  8 variance 0.473            8 pca_E9SXg</span>
-<span class="co">#&gt;  9 variance 0.0604           9 pca_E9SXg</span>
-<span class="co">#&gt; 10 variance 0.000262        10 pca_E9SXg</span>
-<span class="co">#&gt; # ... with 42 more rows</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> variance 5.14             1 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> variance 1.98             2 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> variance 1.58             3 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> variance 1.29             4 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> variance 1.09             5 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> variance 0.688            6 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> variance 0.599            7 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> variance 0.572            8 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> variance 0.061<span style="text-decoration: underline;">3</span>           9 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> variance 0.000<span style="text-decoration: underline;">247</span>        10 pca_8zGhu</span>
+<span class="co">#&gt; <span style="color: #949494;"># ... with 42 more rows</span></span></code></pre></div>
 </div>
-<div id="pca-estimates" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pca-estimates" class="anchor"></a>PCA Estimates</h2>
+<div class="section level2">
+<h2 id="pca-estimates">PCA Estimates<a class="anchor" aria-label="anchor" href="#pca-estimates"></a>
+</h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_estimates</span>
 <span class="co">#&gt; Recipe</span>
@@ -345,70 +346,70 @@
 <span class="co">#&gt; Sparse, unbalanced variable filter removed date_col_day, date_col_mday, date_col_m... [trained]</span>
 <span class="co">#&gt; PCA extraction with date_col_index.num, date_col_year, date_col_half... [trained]</span></code></pre></div>
 </div>
-<div id="jucied-and-baked-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#jucied-and-baked-data" class="anchor"></a>Jucied and Baked Data</h2>
+<div class="section level2">
+<h2 id="jucied-and-baked-data">Jucied and Baked Data<a class="anchor" aria-label="anchor" href="#jucied-and-baked-data"></a>
+</h2>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_juiced_estimates</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_juiced_estimates</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 76</span>
 <span class="co">#&gt; Columns: 9</span>
-<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2013-02-01, 2017-05-01, 2017-10-01, 2013-06-01, 20~</span>
-<span class="co">#&gt; $ value              &lt;dbl&gt; 0.613520091, 0.353676288, 0.234581211, 0.952760612,~</span>
-<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; February, May, October, June, August, June, May, No~</span>
-<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Friday, Monday, Sunday, Saturday, Thursday, Monday,~</span>
-<span class="co">#&gt; $ PC1                &lt;dbl&gt; -3.0061476, -0.9586553, 2.6002788, -0.5550260, 0.82~</span>
-<span class="co">#&gt; $ PC2                &lt;dbl&gt; -1.982370997, 0.128668103, 0.666523882, -2.17411718~</span>
-<span class="co">#&gt; $ PC3                &lt;dbl&gt; -0.35224167, 0.11944126, -0.73676614, -1.21259943, ~</span>
-<span class="co">#&gt; $ PC4                &lt;dbl&gt; -0.69604233, 1.59170405, 1.84657350, -1.42874807, -~</span>
-<span class="co">#&gt; $ PC5                &lt;dbl&gt; 1.2270232, -1.7116372, 0.4799034, -0.1038426, -0.35~</span>
+<span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2017-07-01, 2017-09-01, 2013-04-01, 2014-03-01, 20~</span>
+<span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.01819171, -0.09890010, 1.13979823, 0.73274722, 0~</span>
+<span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> July, September, April, March, June, June, July, Ju~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Saturday, Friday, Monday, Saturday, Saturday, Thurs~</span>
+<span class="co">#&gt; $ PC1                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -1.06185979, -1.46829136, 1.94641220, 2.68081337, 0~</span>
+<span class="co">#&gt; $ PC2                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.36863550, -0.59681092, 2.11661163, 1.51989165, 2~</span>
+<span class="co">#&gt; $ PC3                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.072470263, 0.960514799, -2.190875153, 2.05454382~</span>
+<span class="co">#&gt; $ PC4                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.74746532, -2.66279633, 0.07429122, -0.17220015, ~</span>
+<span class="co">#&gt; $ PC5                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -2.17044000, -0.22757224, 0.58921831, 0.25977126, -~</span>
 
-<span class="va">pca_list</span><span class="op">$</span><span class="va">pca_baked_data</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">pca_list</span><span class="op">$</span><span class="va">pca_baked_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 95</span>
 <span class="co">#&gt; Columns: 9</span>
-<span class="co">#&gt; $ date_col           &lt;dttm&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 20~</span>
-<span class="co">#&gt; $ value              &lt;dbl&gt; 1.9235659, 0.6135201, 0.8914086, 1.1404256, 1.72868~</span>
-<span class="co">#&gt; $ date_col_month.lbl &lt;ord&gt; January, February, March, April, May, June, July, A~</span>
-<span class="co">#&gt; $ date_col_wday.lbl  &lt;ord&gt; Tuesday, Friday, Friday, Monday, Wednesday, Saturda~</span>
-<span class="co">#&gt; $ PC1                &lt;dbl&gt; -3.5075014, -3.0061476, -2.5259829, -1.9803911, -1.~</span>
-<span class="co">#&gt; $ PC2                &lt;dbl&gt; -2.0511627, -1.9823710, -2.2851773, -2.0296268, -2.~</span>
-<span class="co">#&gt; $ PC3                &lt;dbl&gt; 0.5692684, -0.3522417, -1.4234544, 0.7480671, -1.48~</span>
-<span class="co">#&gt; $ PC4                &lt;dbl&gt; 1.86191212, -0.69604233, -1.03470848, 2.10572189, 0~</span>
-<span class="co">#&gt; $ PC5                &lt;dbl&gt; 0.37278529, 1.22702324, -1.05546982, 0.15181266, -0~</span></code></pre></div>
+<span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 20~</span>
+<span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.9012643, 0.6274754, 0.8976731, 1.1397982, 1.71177~</span>
+<span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> January, February, March, April, May, June, July, A~</span>
+<span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Tuesday, Friday, Friday, Monday, Wednesday, Saturda~</span>
+<span class="co">#&gt; $ PC1                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.4889271, 3.0355138, 2.7418425, 1.9464122, 1.18747~</span>
+<span class="co">#&gt; $ PC2                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.0013068, 1.7849194, 2.1230492, 2.1166116, 2.21100~</span>
+<span class="co">#&gt; $ PC3                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -2.0246132, 0.1647536, 1.7939156, -2.1908752, 0.952~</span>
+<span class="co">#&gt; $ PC4                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.03135340, -0.75234979, -0.13107852, 0.07429122, 0~</span>
+<span class="co">#&gt; $ PC5                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.25699035, -1.39964274, 0.49212433, 0.58921831, 0.~</span></code></pre></div>
 </div>
-<div id="roatation-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#roatation-data" class="anchor"></a>Roatation Data</h2>
+<div class="section level2">
+<h2 id="roatation-data">Roatation Data<a class="anchor" aria-label="anchor" href="#roatation-data"></a>
+</h2>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_rotation_df</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_rotation_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 13</span>
 <span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ PC1  &lt;dbl&gt; 0.04682022, -0.00732531, 0.38788218, 0.43383415, 0.43925217, -0.0~</span>
-<span class="co">#&gt; $ PC2  &lt;dbl&gt; 0.691538965, 0.696308729, -0.021884379, 0.009609595, -0.021871899~</span>
-<span class="co">#&gt; $ PC3  &lt;dbl&gt; 0.05798829, 0.05560286, 0.25719783, 0.01867537, 0.01954542, -0.21~</span>
-<span class="co">#&gt; $ PC4  &lt;dbl&gt; -0.05052058, -0.04531279, -0.07065434, 0.04889255, -0.04315533, -~</span>
-<span class="co">#&gt; $ PC5  &lt;dbl&gt; -0.11193739, -0.10677712, 0.13753427, 0.10196885, -0.04614542, 0.~</span>
-<span class="co">#&gt; $ PC6  &lt;dbl&gt; -0.0026823383, -0.0004687311, 0.1641478630, 0.1268790825, -0.0133~</span>
-<span class="co">#&gt; $ PC7  &lt;dbl&gt; 0.019937445, 0.020672658, -0.243005412, -0.025487546, -0.00395693~</span>
-<span class="co">#&gt; $ PC8  &lt;dbl&gt; 0.010891586, 0.004946674, 0.109681349, 0.073849699, 0.045515694, ~</span>
-<span class="co">#&gt; $ PC9  &lt;dbl&gt; -0.002451557, 0.024333216, 0.812995072, -0.272925829, -0.21705375~</span>
-<span class="co">#&gt; $ PC10 &lt;dbl&gt; -0.0123731849, 0.0110037977, -0.0039478407, -0.3095278926, -0.367~</span>
-<span class="co">#&gt; $ PC11 &lt;dbl&gt; 2.349270e-02, -2.410704e-02, -8.893747e-05, -6.731589e-02, -5.937~</span>
-<span class="co">#&gt; $ PC12 &lt;dbl&gt; -0.0069872895, 0.0066815849, -0.0027038516, -0.7749333777, 0.5146~</span>
-<span class="co">#&gt; $ PC13 &lt;dbl&gt; 7.070033e-01, -7.048143e-01, -1.379124e-04, -3.174583e-02, -2.701~</span></code></pre></div>
+<span class="co">#&gt; $ PC1  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.10992955, -0.05779694, -0.38500738, -0.43257326, -0.43661627, ~</span>
+<span class="co">#&gt; $ PC2  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.68084419, -0.69693481, 0.02755856, 0.05605961, 0.05108298, -0.~</span>
+<span class="co">#&gt; $ PC3  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.02113794, 0.01484697, -0.11578089, -0.07019986, 0.05497822, 0.4~</span>
+<span class="co">#&gt; $ PC4  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.105953419, 0.112482706, -0.276025722, -0.003139855, -0.03980356~</span>
+<span class="co">#&gt; $ PC5  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.02537159, 0.01900854, -0.10599425, -0.06692558, 0.05652077, -0.~</span>
+<span class="co">#&gt; $ PC6  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0430243888, -0.0440965910, -0.2475517356, -0.1393308734, 0.000~</span>
+<span class="co">#&gt; $ PC7  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.02561939, 0.02117202, 0.19194146, -0.02030501, 0.03609033, -0.2~</span>
+<span class="co">#&gt; $ PC8  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.056596062, -0.055347684, -0.006865554, -0.025106403, -0.015949~</span>
+<span class="co">#&gt; $ PC9  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.006362852, -0.020274053, -0.807451585, 0.270899115, 0.216116648~</span>
+<span class="co">#&gt; $ PC10 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0126569555, 0.0105105001, -0.0044540337, -0.3005716560, -0.377~</span>
+<span class="co">#&gt; $ PC11 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0208042985, 0.0213955562, -0.0012369307, -0.0088726323, 0.6396~</span>
+<span class="co">#&gt; $ PC12 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.434051e-05, 3.187093e-04, 3.112534e-03, 7.844620e-01, -4.464311~</span>
+<span class="co">#&gt; $ PC13 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -7.111301e-01, 7.009078e-01, 1.115507e-04, 2.599996e-02, 8.756342~</span></code></pre></div>
 </div>
-<div id="variance-and-scree-plot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#variance-and-scree-plot" class="anchor"></a>Variance and Scree Plot</h2>
+<div class="section level2">
+<h2 id="variance-and-scree-plot">Variance and Scree Plot<a class="anchor" aria-label="anchor" href="#variance-and-scree-plot"></a>
+</h2>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_df</span> <span class="op"><a href="../reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 13</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ PC              &lt;chr&gt; "PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8"~</span>
-<span class="co">#&gt; $ var_explained   &lt;dbl&gt; 3.944772e-01, 1.552774e-01, 1.145197e-01, 1.047176e-01~</span>
-<span class="co">#&gt; $ var_pct_txt     &lt;chr&gt; "39.45%", "15.53%", "11.45%", "10.47%", "8.98%", "5.36~</span>
-<span class="co">#&gt; $ cum_var_pct     &lt;dbl&gt; 0.3944772, 0.5497547, 0.6642744, 0.7689920, 0.8587758,~</span>
-<span class="co">#&gt; $ cum_var_pct_txt &lt;chr&gt; "39.45%", "54.98%", "66.43%", "76.90%", "85.88%", "91.~</span>
-<span class="co">#&gt; $ ou_threshold    &lt;fct&gt; Under, Under, Under, Under, Over, Over, Over, Over, Ov~</span></code></pre></div>
+<span class="co">#&gt; $ PC              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8"~</span>
+<span class="co">#&gt; $ var_explained   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.957314e-01, 1.524093e-01, 1.211927e-01, 9.927032e-02~</span>
+<span class="co">#&gt; $ var_pct_txt     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "39.57%", "15.24%", "12.12%", "9.93%", "8.37%", "5.29%~</span>
+<span class="co">#&gt; $ cum_var_pct     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3957314, 0.5481407, 0.6693334, 0.7686037, 0.8522557,~</span>
+<span class="co">#&gt; $ cum_var_pct_txt <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "39.57%", "54.81%", "66.93%", "76.86%", "85.23%", "90.~</span>
+<span class="co">#&gt; $ ou_threshold    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Under, Under, Under, Under, Over, Over, Over, Over, Ov~</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_scree_plt</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/scree_plt-1.png" width="768"></p>
@@ -427,11 +428,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Steven Sanderson.</p>
+  <p></p>
+<p>Developed by Steven Sanderson.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -439,6 +442,8 @@
 
   
 
+
+  
 
   </body>
 </html>
