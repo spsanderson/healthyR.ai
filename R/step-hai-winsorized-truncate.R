@@ -61,7 +61,7 @@
 #'
 #' # Create a recipe object
 #' rec_obj <- recipe(b ~ ., data = data_tbl) %>%
-#'   step_hai_winsorize_truncate(a, .fraction = 0.05)
+#'   step_hai_winsorized_truncate(a, fraction = 0.05)
 #'
 #' # View the recipe object
 #' rec_obj
@@ -177,7 +177,7 @@ bake.step_hai_winsorized_truncate <- function(object, new_data, ...){
 #' @export
 print.step_hai_winsorized_truncate <-
     function(x, width = max(20, options()$width - 35), ...) {
-        cat("winsorized Truncation transformation on ", sep = "")
+        cat("Winsorized Truncation transformation on ", sep = "")
         printer(
             # Names before prep (could be selectors)
             untr_obj = x$terms,

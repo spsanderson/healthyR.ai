@@ -41,7 +41,7 @@
 #' @export
 #'
 
-hai_winsorized_move_augment <- function(.data, .value, .names = "auto"){
+hai_winsorized_move_augment <- function(.data, .value, .multiple, .names = "auto"){
 
     column_expr <- rlang::enquo(.value)
 
@@ -49,20 +49,22 @@ hai_winsorized_move_augment <- function(.data, .value, .names = "auto"){
 
     col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
 
-    make_call <- function(col, scale_type){
+    make_call <- function(col, multiple){
         rlang::call2(
             "hai_winsorized_move_vec",
             .x            = rlang::sym(col)
+            , .multiple   = multiple
             , .ns         = "healthyR.ai"
         )
     }
 
     grid <- expand.grid(
         col                = col_nms
+        , multiple         = .multiple
         , stringsAsFactors = FALSE
     )
 
-    calls <- purrr::pmap(.l = list(grid$col), make_call)
+    calls <- purrr::pmap(.l = list(grid$col, grid$multiple), make_call)
 
     if(any(.names == "auto")) {
         newname <- paste0("winsor_scale_", grid$col)

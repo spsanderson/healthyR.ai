@@ -4,7 +4,7 @@
 \alias{hai_winsorized_truncate_augment}
 \title{Augment Function Winsorize Truncate}
 \usage{
-hai_winsorized_truncate_augment(.data, .value, .names = "auto")
+hai_winsorized_truncate_augment(.data, .value, .fraction, .names = "auto")
 }
 \arguments{
 \item{.data}{The data being passed that will be augmented by the function.}
