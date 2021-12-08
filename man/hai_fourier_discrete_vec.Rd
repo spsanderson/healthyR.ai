@@ -77,7 +77,8 @@ lines(vec_3, col = "green")
 Other Vector Function: 
 \code{\link{hai_fourier_vec}()},
 \code{\link{hai_hyperbolic_vec}()},
-\code{\link{hai_winsorized_move_vec}()}
+\code{\link{hai_winsorized_move_vec}()},
+\code{\link{hai_winsorized_truncate_vec}()}
 }
 \author{
 Steven P. Sanderson II, MPH

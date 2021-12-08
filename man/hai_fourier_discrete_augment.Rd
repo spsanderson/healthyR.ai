@@ -75,7 +75,8 @@ Other Augment Function:
 \code{\link{hai_fourier_augment}()},
 \code{\link{hai_hyperbolic_augment}()},
 \code{\link{hai_polynomial_augment}()},
-\code{\link{hai_winsorized_move_augment}()}
+\code{\link{hai_winsorized_move_augment}()},
+\code{\link{hai_winsorized_truncate_augment}()}
 }
 \author{
 Steven P. Sanderson II, MPH

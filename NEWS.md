@@ -4,10 +4,14 @@
 None
 
 ## New Features
-1. Fix #108 - Add functions
+1. Fix #108 - Add functions:
 -  `hai_winsorized_move_vec()`
 -  `hai_winsorized_move_augment()`
 -  `step_hai_winsorized_move()`
+2. Fix #107 - Add functions:
+-  `hai_winsorized_truncate_vec()`
+-  `hai_winsorized_truncate_augment()`
+-  `step_hai_winsorized_truncate()`
 
 ## Minor Fixes and Improvements
 None

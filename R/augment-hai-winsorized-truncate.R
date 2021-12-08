@@ -1,4 +1,4 @@
-#' Augment Function Winsorize Move
+#' Augment Function Winsorize Truncate
 #'
 #' @family Augment Function
 #'
@@ -9,16 +9,16 @@
 #'
 #' @details
 #' Takes a numeric vector and will return a winsorized vector of values that have
-#' been moved some multiple from the mean absolute deviation zero center of some
-#' vector. The intent of winsorization is to limit the effect of extreme values.
+#' been truncated if they are less than or greater than some defined fraction of
+#' a quantile. The intent of winsorization is to limit the effect of extreme values.
 #'
 #' @seealso \url{https://en.wikipedia.org/wiki/Winsorizing}
 #'
 #' @param .data The data being passed that will be augmented by the function.
 #' @param .value This is passed [rlang::enquo()] to capture the vectors you want
 #' to augment.
-#' @param .multiple A positive number indicating how many times the the zero center
-#' mean absolute deviation should be multiplied by for the scaling parameter.
+#' @param .fraction A positive fractional between 0 and 0.5 that is passed to the
+#' `stats::quantile` paramater of `probs`.
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -33,7 +33,7 @@
 #'   b    = runif(len_out)
 #' )
 #'
-#' hai_winsorized_move_augment(data_tbl, a, .multiple = 3)
+#' hai_winsorized_truncate_augment(data_tbl, a, .fraction = 0.05)
 #'
 #' @return
 #' An augmented tibble
@@ -41,7 +41,7 @@
 #' @export
 #'
 
-hai_winsorized_move_augment <- function(.data, .value, .names = "auto"){
+hai_winsorized_truncate_augment <- function(.data, .value, .names = "auto"){
 
     column_expr <- rlang::enquo(.value)
 
@@ -51,7 +51,7 @@ hai_winsorized_move_augment <- function(.data, .value, .names = "auto"){
 
     make_call <- function(col, scale_type){
         rlang::call2(
-            "hai_winsorized_move_vec",
+            "hai_winsorized_truncate_vec",
             .x            = rlang::sym(col)
             , .ns         = "healthyR.ai"
         )
@@ -65,7 +65,7 @@ hai_winsorized_move_augment <- function(.data, .value, .names = "auto"){
     calls <- purrr::pmap(.l = list(grid$col), make_call)
 
     if(any(.names == "auto")) {
-        newname <- paste0("winsor_scale_", grid$col)
+        newname <- paste0("winsor_trunc_", grid$col)
     } else {
         newname <- as.list(.names)
     }
