@@ -108,6 +108,7 @@ rec_obj \%>\% get_juiced_data()
 \seealso{
 Other Recipes: 
 \code{\link{step_hai_fourier_discrete}()},
-\code{\link{step_hai_hyperbolic}()}
+\code{\link{step_hai_hyperbolic}()},
+\code{\link{step_hai_winsorized_move}()}
 }
 \concept{Recipes}
