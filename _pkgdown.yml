@@ -42,9 +42,7 @@ reference:
      -  contains("step_hai_")
   -  title: Vectorized Functions
      contents:
-     -  "hai_hyperbolic_vec"
-     -  "hai_fourier_vec"
-     -  "hai_fourier_discrete_vec"
+     -  contains("_vec")
   -  title: Augmenting Functions
      contents:
      -  contains("_augment")

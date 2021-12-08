@@ -41,7 +41,7 @@
 #' @export
 #'
 
-hai_winsorized_truncate_augment <- function(.data, .value, .names = "auto"){
+hai_winsorized_truncate_augment <- function(.data, .value, .fraction, .names = "auto"){
 
     column_expr <- rlang::enquo(.value)
 
@@ -49,20 +49,22 @@ hai_winsorized_truncate_augment <- function(.data, .value, .names = "auto"){
 
     col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
 
-    make_call <- function(col, scale_type){
+    make_call <- function(col, fraction){
         rlang::call2(
             "hai_winsorized_truncate_vec",
             .x            = rlang::sym(col)
+            , .fraction   = fraction
             , .ns         = "healthyR.ai"
         )
     }
 
     grid <- expand.grid(
         col                = col_nms
+        , fraction         = .fraction
         , stringsAsFactors = FALSE
     )
 
-    calls <- purrr::pmap(.l = list(grid$col), make_call)
+    calls <- purrr::pmap(.l = list(grid$col, grid$fraction), make_call)
 
     if(any(.names == "auto")) {
         newname <- paste0("winsor_trunc_", grid$col)

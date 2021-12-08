@@ -61,7 +61,7 @@
 #'
 #' # Create a recipe object
 #' rec_obj <- recipe(b ~ ., data = data_tbl) %>%
-#'   step_hai_winsorize_move(a, .multiple = 3)
+#'   step_hai_winsorized_move(a, multiple = 3)
 #'
 #' # View the recipe object
 #' rec_obj

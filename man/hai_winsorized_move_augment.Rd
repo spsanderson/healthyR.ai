@@ -4,7 +4,7 @@
 \alias{hai_winsorized_move_augment}
 \title{Augment Function Winsorize Move}
 \usage{
-hai_winsorized_move_augment(.data, .value, .names = "auto")
+hai_winsorized_move_augment(.data, .value, .multiple, .names = "auto")
 }
 \arguments{
 \item{.data}{The data being passed that will be augmented by the function.}

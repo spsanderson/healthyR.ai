@@ -83,7 +83,7 @@ data_tbl <- tibble(
 
 # Create a recipe object
 rec_obj <- recipe(b ~ ., data = data_tbl) \%>\%
-  step_hai_winsorize_truncate(a, .fraction = 0.05)
+  step_hai_winsorized_truncate(a, fraction = 0.05)
 
 # View the recipe object
 rec_obj
