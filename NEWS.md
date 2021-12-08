@@ -1,5 +1,17 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+None
+
+## New Features
+1. Fix #108 - Add functions
+-  `hai_winsorized_move_vec()`
+-  `hai_winsorized_move_augment()`
+-  `step_hai_winsorized_move()`
+
+## Minor Fixes and Improvements
+None
+
 # healthyR.ai 0.0.3
 
 ## Breaking Changes
