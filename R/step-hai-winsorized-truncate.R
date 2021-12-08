@@ -1,9 +1,9 @@
-#' Recipes Step Winsorized Move Generator
+#' Recipes Step Winsorized Truncate Generator
 #'
 #' @family Recipes
 #'
 #' @description
-#' `step_hai_winsorized_move` creates a a *specification* of a recipe
+#' `step_hai_winsorized_truncate` creates a a *specification* of a recipe
 #'  step that will winsorize numeric data.
 #'
 #' @param recipe A recipe object. The step will be added to the
@@ -11,8 +11,8 @@
 #' @param ... One or more selector functions to choose which
 #'  variables that will be used to create the new variables. The
 #'  selected variables should have class `numeric`
-#' @param .multiple A positive number indicating how many times the the zero center
-#' mean absolute deviation should be multiplied by for the scaling parameter.
+#' @param .fraction A positive fractional between 0 and 0.5 that is passed to the
+#' `stats::quantile` paramater of `probs`.
 #' @param trained A logical to indicate if the quantities for
 #'  preprocessing have been estimated.
 #' @param role For model terms created by this step, what analysis
@@ -29,7 +29,7 @@
 #'  using skip = TRUE as it may affect the computations for subsequent operations.
 #' @param id A character string that is unique to this step to identify it.
 #'
-#' @return For `step_hai_winsorize_move`, an updated version of recipe with
+#' @return For `step_hai_winsorize_truncate`, an updated version of recipe with
 #'  the new step added to the sequence of existing steps (if any).
 #'
 #'  Main Recipe Functions:
@@ -41,7 +41,7 @@
 #' @details
 #'
 #' __Numeric Variables__
-#'  Unlike other steps, `step_hai_winsorize_move` does *not*
+#'  Unlike other steps, `step_hai_winsorize_truncate` does *not*
 #'  remove the original numeric variables. [recipes::step_rm()] can be
 #'  used for this purpose.
 #'
@@ -61,7 +61,7 @@
 #'
 #' # Create a recipe object
 #' rec_obj <- recipe(b ~ ., data = data_tbl) %>%
-#'   step_hai_winsorize_move(a, .multiple = 3)
+#'   step_hai_winsorize_truncate(a, .fraction = 0.05)
 #'
 #' # View the recipe object
 #' rec_obj
@@ -78,42 +78,42 @@
 #'
 #' @importFrom recipes prep bake rand_id
 
-step_hai_winsorized_move <- function(recipe,
-                                ...,
-                                role       = "predictor",
-                                trained    = FALSE,
-                                columns    = NULL,
-                                multiple   = 3,
-                                skip       = FALSE,
-                                id         = rand_id("hai_winsorized_move")
+step_hai_winsorized_truncate <- function(recipe,
+                                     ...,
+                                     role       = "predictor",
+                                     trained    = FALSE,
+                                     columns    = NULL,
+                                     fraction   = 0.05,
+                                     skip       = FALSE,
+                                     id         = rand_id("hai_winsorized_truncate")
 ){
 
     terms <- recipes::ellipse_check(...)
 
     recipes::add_step(
         recipe,
-        step_hai_winsorized_move_new(
+        step_hai_winsorized_truncate_new(
             terms      = terms,
             role       = role,
             trained    = trained,
             columns    = columns,
-            multiple   = multiple,
+            fraction   = fraction,
             skip       = skip,
             id         = id
         )
     )
 }
 
-step_hai_winsorized_move_new <-
-    function(terms, role, trained, columns, multiple, skip, id){
+step_hai_winsorized_truncate_new <-
+    function(terms, role, trained, columns, fraction, skip, id){
 
         recipes::step(
-            subclass   = "hai_winsorized_move",
+            subclass   = "hai_winsorized_truncate",
             terms      = terms,
             role       = role,
             trained    = trained,
             columns    = columns,
-            multiple   = multiple,
+            fraction   = fraction,
             skip       = skip,
             id         = id
         )
@@ -121,7 +121,7 @@ step_hai_winsorized_move_new <-
     }
 
 #' @export
-prep.step_hai_winsorized_move <- function(x, training, info = NULL, ...) {
+prep.step_hai_winsorized_truncate <- function(x, training, info = NULL, ...) {
 
     col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
@@ -129,17 +129,17 @@ prep.step_hai_winsorized_move <- function(x, training, info = NULL, ...) {
 
     if(any(value_data$type != "numeric")){
         rlang::abort(
-            paste0("All variables for `step_hai_winsorized_move` must be `numeric`",
+            paste0("All variables for `step_hai_winsorized_truncate` must be `numeric`",
                    "`integer` `double` classes.")
         )
     }
 
-    step_hai_winsorized_move_new(
+    step_hai_winsorized_truncate_new(
         terms      = x$terms,
         role       = x$role,
         trained    = TRUE,
         columns    = col_names,
-        multiple   = x$multiple,
+        fraction   = x$fraction,
         skip       = x$skip,
         id         = x$id
     )
@@ -147,27 +147,27 @@ prep.step_hai_winsorized_move <- function(x, training, info = NULL, ...) {
 }
 
 #' @export
-bake.step_hai_winsorized_move <- function(object, new_data, ...){
+bake.step_hai_winsorized_truncate <- function(object, new_data, ...){
 
-    make_call <- function(col, multiple){
+    make_call <- function(col, fraction){
         rlang::call2(
-            "hai_winsorized_move_vec",
+            "hai_winsorized_truncate_vec",
             .x            = rlang::sym(col)
-            , .multiple   = multiple
+            , .fraction   = fraction
             , .ns         = "healthyR.ai"
         )
     }
 
     grid <- expand.grid(
         col                = object$columns
-        , multiple         = object$multiple
+        , fraction         = object$fraction
         , stringsAsFactors = FALSE
     )
 
-    calls <- purrr::pmap(.l = list(grid$col, grid$multiple), make_call)
+    calls <- purrr::pmap(.l = list(grid$col, grid$fraction), make_call)
 
     # Column Names
-    newname <- paste0("winsorized_move_", grid$col)
+    newname <- paste0("winsorized_truncate_", grid$col)
     calls   <- recipes::check_name(calls, new_data, object, newname, TRUE)
 
     tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
@@ -175,9 +175,9 @@ bake.step_hai_winsorized_move <- function(object, new_data, ...){
 }
 
 #' @export
-print.step_hai_winsorized_move <-
+print.step_hai_winsorized_truncate <-
     function(x, width = max(20, options()$width - 35), ...) {
-        cat("winsorized Scaling/Move transformation on ", sep = "")
+        cat("winsorized Truncation transformation on ", sep = "")
         printer(
             # Names before prep (could be selectors)
             untr_obj = x$terms,
@@ -198,6 +198,6 @@ print.step_hai_winsorized_move <-
 #' @param x A recipe step
 # @noRd
 #' @export
-required_pkgs.step_hai_winsorized_move <- function(x, ...) {
+required_pkgs.step_hai_winsorized_truncate <- function(x, ...) {
     c("healthyR.ai")
 }
