@@ -5,9 +5,6 @@
 
 ## R CMD check results
 
-0 errors | 1 warnings | 0 note
+0 errors | 1 warnings | 1 note
 
-Update package to 0.0.3
-
-The warnings and issues have been fixed. 
-Resubmitting 11/23/2021
+Update package to 0.0.4
