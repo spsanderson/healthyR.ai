@@ -35,6 +35,9 @@ preprocessing have been estimated.}
 used as inputs. This field is a placeholder and will be
 populated once \code{recipes::prep()} is used.}
 
+\item{multiple}{A positive number indicating how many times the the zero center
+mean absolute deviation should be multiplied by for the scaling parameter.}
+
 \item{skip}{A logical. Should the step be skipped when the recipe is
 baked by bake.recipe()? While all operations are baked when prep.recipe()
 is run, some operations may not be able to be conducted on new data
@@ -42,9 +45,6 @@ is run, some operations may not be able to be conducted on new data
 using skip = TRUE as it may affect the computations for subsequent operations.}
 
 \item{id}{A character string that is unique to this step to identify it.}
-
-\item{.multiple}{A positive number indicating how many times the the zero center
-mean absolute deviation should be multiplied by for the scaling parameter.}
 }
 \value{
 For \code{step_hai_winsorize_move}, an updated version of recipe with

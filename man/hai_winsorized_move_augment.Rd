@@ -14,6 +14,8 @@ to augment.}
 
 \item{.multiple}{A positive number indicating how many times the the zero center
 mean absolute deviation should be multiplied by for the scaling parameter.}
+
+\item{.names}{The default is "auto"}
 }
 \value{
 An augmented tibble

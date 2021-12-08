@@ -11,7 +11,7 @@
 #' @param ... One or more selector functions to choose which
 #'  variables that will be used to create the new variables. The
 #'  selected variables should have class `numeric`
-#' @param .multiple A positive number indicating how many times the the zero center
+#' @param multiple A positive number indicating how many times the the zero center
 #' mean absolute deviation should be multiplied by for the scaling parameter.
 #' @param trained A logical to indicate if the quantities for
 #'  preprocessing have been estimated.

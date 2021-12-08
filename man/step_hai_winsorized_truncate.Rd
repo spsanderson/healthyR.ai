@@ -35,6 +35,9 @@ preprocessing have been estimated.}
 used as inputs. This field is a placeholder and will be
 populated once \code{recipes::prep()} is used.}
 
+\item{fraction}{A positive fractional between 0 and 0.5 that is passed to the
+\code{stats::quantile} paramater of \code{probs}.}
+
 \item{skip}{A logical. Should the step be skipped when the recipe is
 baked by bake.recipe()? While all operations are baked when prep.recipe()
 is run, some operations may not be able to be conducted on new data
@@ -42,9 +45,6 @@ is run, some operations may not be able to be conducted on new data
 using skip = TRUE as it may affect the computations for subsequent operations.}
 
 \item{id}{A character string that is unique to this step to identify it.}
-
-\item{.fraction}{A positive fractional between 0 and 0.5 that is passed to the
-\code{stats::quantile} paramater of \code{probs}.}
 }
 \value{
 For \code{step_hai_winsorize_truncate}, an updated version of recipe with

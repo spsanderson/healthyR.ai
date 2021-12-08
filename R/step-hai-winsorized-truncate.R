@@ -11,7 +11,7 @@
 #' @param ... One or more selector functions to choose which
 #'  variables that will be used to create the new variables. The
 #'  selected variables should have class `numeric`
-#' @param .fraction A positive fractional between 0 and 0.5 that is passed to the
+#' @param fraction A positive fractional between 0 and 0.5 that is passed to the
 #' `stats::quantile` paramater of `probs`.
 #' @param trained A logical to indicate if the quantities for
 #'  preprocessing have been estimated.
