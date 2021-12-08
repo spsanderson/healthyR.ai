@@ -10,15 +10,15 @@
 \alias{required_pkgs.step_hai_winsorized_truncate}
 \title{Requited Packages}
 \usage{
-required_pkgs.step_hai_fourier_discrete(x, ...)
+\method{required_pkgs}{step_hai_fourier_discrete}(x, ...)
 
-required_pkgs.step_hai_fourier(x, ...)
+\method{required_pkgs}{step_hai_fourier}(x, ...)
 
-required_pkgs.step_hai_hyperbolic(x, ...)
+\method{required_pkgs}{step_hai_hyperbolic}(x, ...)
 
-required_pkgs.step_hai_winsorized_move(x, ...)
+\method{required_pkgs}{step_hai_winsorized_move}(x, ...)
 
-required_pkgs.step_hai_winsorized_truncate(x, ...)
+\method{required_pkgs}{step_hai_winsorized_truncate}(x, ...)
 }
 \arguments{
 \item{x}{A recipe step}
