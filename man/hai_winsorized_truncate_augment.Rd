@@ -14,6 +14,8 @@ to augment.}
 
 \item{.fraction}{A positive fractional between 0 and 0.5 that is passed to the
 \code{stats::quantile} paramater of \code{probs}.}
+
+\item{.names}{The default is "auto"}
 }
 \value{
 An augmented tibble

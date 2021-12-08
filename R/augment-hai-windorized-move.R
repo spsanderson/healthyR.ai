@@ -19,6 +19,7 @@
 #' to augment.
 #' @param .multiple A positive number indicating how many times the the zero center
 #' mean absolute deviation should be multiplied by for the scaling parameter.
+#' @param .names The default is "auto"
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))

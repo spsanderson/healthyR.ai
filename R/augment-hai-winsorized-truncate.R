@@ -19,6 +19,7 @@
 #' to augment.
 #' @param .fraction A positive fractional between 0 and 0.5 that is passed to the
 #' `stats::quantile` paramater of `probs`.
+#' @param .names The default is "auto"
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
