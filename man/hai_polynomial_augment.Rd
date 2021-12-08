@@ -67,7 +67,8 @@ hai_polynomial_augment(.data = data_tbl, .formula = A ~ .^2, .degree = 1)
 Other Augment Function: 
 \code{\link{hai_fourier_augment}()},
 \code{\link{hai_fourier_discrete_augment}()},
-\code{\link{hai_hyperbolic_augment}()}
+\code{\link{hai_hyperbolic_augment}()},
+\code{\link{hai_winsorized_move_augment}()}
 }
 \author{
 Steven P. Sanderson II, MPH
