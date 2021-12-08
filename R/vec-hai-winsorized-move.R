@@ -15,10 +15,10 @@
 #' @seealso \url{https://en.wikipedia.org/wiki/Winsorizing}
 #'
 #' This function can be used on it's own. It is also the basis for the function
-#' [healthyR.ai::hai_hyperbolic_augment()].
+#' [healthyR.ai::hai_winsorized_move_augment()].
 #'
 #' @param .x A numeric vector
-#' @param .multiple An positive number indicating how many times the the zero center
+#' @param .multiple A positive number indicating how many times the the zero center
 #' mean absolute deviation should be multiplied by for the scaling parameter.
 #'
 #' @examples
