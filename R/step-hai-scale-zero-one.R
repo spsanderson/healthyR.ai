@@ -69,20 +69,20 @@
 #'
 #' @importFrom recipes prep bake rand_id
 
-step_hai_zero_one_scale <- function(recipe,
+step_hai_scale_zero_one <- function(recipe,
                                     ...,
                                     role = "predictor",
                                     trained = FALSE,
                                     columns = NULL,
                                     skip = FALSE,
-                                    id = rand_id("hai_zero_one_scale")
+                                    id = rand_id("hai_scale_zero_one")
 ){
 
     terms <- recipes::ellipse_check(...)
 
     recipes::add_step(
         recipe,
-        step_hai_zero_one_scale_new(
+        step_hai_scale_zero_one_new(
             terms = terms,
             role = role,
             trained = trained,
@@ -93,10 +93,10 @@ step_hai_zero_one_scale <- function(recipe,
     )
 }
 
-step_hai_zero_one_scale_new <- function(terms, role, trained, columns, skip, id){
+step_hai_scale_zero_one_new <- function(terms, role, trained, columns, skip, id){
 
     recipes::step(
-        subclass = "hai_zero_one_scale",
+        subclass = "hai_scale_zero_one",
         terms = terms,
         role = role,
         trained = trained,
@@ -107,7 +107,7 @@ step_hai_zero_one_scale_new <- function(terms, role, trained, columns, skip, id)
 }
 
 #' @export
-prep.step_hai_zero_one_scale <- function(x, training, infor = NULL, ...){
+prep.step_hai_scale_zero_one <- function(x, training, infor = NULL, ...){
 
     col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
@@ -115,12 +115,12 @@ prep.step_hai_zero_one_scale <- function(x, training, infor = NULL, ...){
 
     if(any(value_data$type != "numeric")){
         rlang::abort(
-            paste0("All variables for `step_hai_zero_one_scale` must be `numeric`",
+            paste0("All variables for `step_hai_scale_zero_one` must be `numeric`",
                    "`integer`,`double` classes.")
         )
     }
 
-    step_hai_zero_one_scale_new(
+    step_hai_scale_zero_one_new(
         terms   = x$terms,
         role    = x$role,
         trained = TRUE,
@@ -132,7 +132,7 @@ prep.step_hai_zero_one_scale <- function(x, training, infor = NULL, ...){
 }
 
 #' @export
-bake.step_hai_zero_one_scale <- function(object, new_data, ...){
+bake.step_hai_scale_zero_one <- function(object, new_data, ...){
 
     make_call <- function(col){
         rlang::call2(
@@ -158,7 +158,7 @@ bake.step_hai_zero_one_scale <- function(object, new_data, ...){
 }
 
 #' @export
-print.step_hai_zero_one_scale <- function(x, width = max(20, options()$width - 35), ...){
+print.step_hai_scale_zero_one <- function(x, width = max(20, options()$width - 35), ...){
     cat("Zero-One Scale transformations on ", sep = "")
     printer(
         # Names before prep (could be selectors)
@@ -181,6 +181,6 @@ print.step_hai_zero_one_scale <- function(x, width = max(20, options()$width - 3
 #' @param x A recipe step
 # @noRd
 #' @export
-required_pkgs.step_hai_zero_one_scale <- function(x, ...) {
+required_pkgs.step_hai_scale_zero_one <- function(x, ...) {
     c("healthyR.ai")
 }
