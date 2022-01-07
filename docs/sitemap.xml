@@ -97,6 +97,15 @@
     <loc>/reference/hai_polynomial_augment.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_range_statistic.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_scale_zero_one_augment.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_scale_zero_one_vec.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_step_transform.html</loc>
   </url>
   <url>
@@ -134,6 +143,9 @@
   </url>
   <url>
     <loc>/reference/step_hai_hyperbolic.html</loc>
+  </url>
+  <url>
+    <loc>/reference/step_hai_scale_zero_one.html</loc>
   </url>
   <url>
     <loc>/reference/step_hai_winsorized_move.html</loc>
