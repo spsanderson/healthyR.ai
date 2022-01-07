@@ -68,3 +68,119 @@
 #' @export
 #'
 #' @importFrom recipes prep bake rand_id
+
+step_hai_zero_one_scale <- function(recipe,
+                                    ...,
+                                    role = "predictor",
+                                    trained = FALSE,
+                                    columns = NULL,
+                                    skip = FALSE,
+                                    id = rand_id("hai_zero_one_scale")
+){
+
+    terms <- recipes::ellipse_check(...)
+
+    recipes::add_step(
+        recipe,
+        step_hai_zero_one_scale_new(
+            terms = terms,
+            role = role,
+            trained = trained,
+            columns = columns,
+            skip = skip,
+            id = id
+        )
+    )
+}
+
+step_hai_zero_one_scale_new <- function(terms, role, trained, columns, skip, id){
+
+    recipes::step(
+        subclass = "hai_zero_one_scale",
+        terms = terms,
+        role = role,
+        trained = trained,
+        columns = columns,
+        skip = skip,
+        id = id
+    )
+}
+
+#' @export
+prep.step_hai_zero_one_scale <- function(x, training, infor = NULL, ...){
+
+    col_names <- recipes::recipes_eval_select(x$terms, training, info)
+
+    value_data <- info[info$variable %in% col_names, ]
+
+    if(any(value_data$type != "numeric")){
+        rlang::abort(
+            paste0("All variables for `step_hai_zero_one_scale` must be `numeric`",
+                   "`integer`,`double` classes.")
+        )
+    }
+
+    step_hai_zero_one_scale_new(
+        terms   = x$terms,
+        role    = x$role,
+        trained = TRUE,
+        columns = col_names,
+        skip    = x$skip,
+        id      = x$id
+    )
+
+}
+
+#' @export
+bake.step_hai_zero_one_scale <- function(object, new_data, ...){
+
+    make_call <- function(col){
+        rlang::call2(
+            "hai_zero_one_scale",
+            .x = rlang::sym(col),
+            .nx = "healthyR.ai"
+        )
+    }
+
+    grid <- expand.grid(
+        col = object$columns
+        , stringsAsFactors = FALSE
+    )
+
+    calls <- purrr::pmap(.l = list(grid$col), make_call)
+
+    # Columns Names
+    newname <- paste0("hai_zero_one_scale_", grid$col)
+    calls <- recipes::check_name(calls, new_data, object, newname, TRUE)
+
+    tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
+
+}
+
+#' @export
+print.step_hai_zero_one_scale <- function(x, width = max(20, options()$width - 35), ...){
+    cat("Zero-One transformations on ", sep = "")
+    printer(
+        # Names before prep (could be selectors)
+        untr_obj = x$terms,
+        # Names after prep:
+        tr_obj = names(x$columns),
+        # Has it been prepped?
+        trained = x$trained,
+        # An estimate of how many characters to print on a line:
+        width = width
+    )
+    invisible(x)
+
+}
+
+#' Required Packages
+#' @rdname required_pkgs.healthyR.ai
+#' @keywords internal
+#' @return A character vector
+#' @param x A recipe step
+# @noRd
+#' @export
+required_pkgs.step_hai_zero_one_scale <- function(x, ...) {
+    c("healthyR.ai")
+}
