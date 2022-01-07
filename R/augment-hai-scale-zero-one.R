@@ -22,9 +22,11 @@
 #' @param .data The data being passed that will be augmented by the function.
 #' @param .value This is passed [rlang::enquo()] to capture the vectors you want
 #' to augment.
+#' @param .names This is set to 'auto' by default but can be a user supplied
+#' character string.
 #'
 #' @examples
-#' df <- date.frame(x = rnorm(100, 2, 1))
+#' df <- data.frame(x = rnorm(100, 2, 1))
 #' hai_scale_zero_one_augment(df, x)
 #'
 #' @return
