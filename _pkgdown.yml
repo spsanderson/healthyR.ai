@@ -46,3 +46,6 @@ reference:
   -  title: Augmenting Functions
      contents:
      -  contains("_augment")
+  -  title: Miscellaneous Functions
+     contents:
+     -  "hai_range_statistic"
