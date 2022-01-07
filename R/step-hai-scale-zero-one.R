@@ -136,7 +136,7 @@ bake.step_hai_zero_one_scale <- function(object, new_data, ...){
 
     make_call <- function(col){
         rlang::call2(
-            "hai_zero_one_scale",
+            "hai_scale_zero_one",
             .x = rlang::sym(col),
             .nx = "healthyR.ai"
         )
@@ -150,7 +150,7 @@ bake.step_hai_zero_one_scale <- function(object, new_data, ...){
     calls <- purrr::pmap(.l = list(grid$col), make_call)
 
     # Columns Names
-    newname <- paste0("hai_zero_one_scale_", grid$col)
+    newname <- paste0("hai_scale_zero_one_", grid$col)
     calls <- recipes::check_name(calls, new_data, object, newname, TRUE)
 
     tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
@@ -159,7 +159,7 @@ bake.step_hai_zero_one_scale <- function(object, new_data, ...){
 
 #' @export
 print.step_hai_zero_one_scale <- function(x, width = max(20, options()$width - 35), ...){
-    cat("Zero-One transformations on ", sep = "")
+    cat("Zero-One Scale transformations on ", sep = "")
     printer(
         # Names before prep (could be selectors)
         untr_obj = x$terms,
