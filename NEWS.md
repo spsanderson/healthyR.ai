@@ -1,5 +1,18 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+None
+
+## New Features
+1. Fix #118 - Add functions:
+-  `hai_scale_zero_one_vec()`
+-  `hai_scale_zero_one_augment()`
+-  `step_hai_scale_zero_one()`
+2. Fix #119 - Add function: `hai_range_statistic()`
+
+## Minor Fixes and Improvements
+None
+
 # healthyR.ai 0.0.4
 
 ## Breaking Changes
