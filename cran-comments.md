@@ -7,4 +7,4 @@
 
 0 errors | 1 warnings | 1 note
 
-Update package to 0.0.4
+Update package to 0.0.5
