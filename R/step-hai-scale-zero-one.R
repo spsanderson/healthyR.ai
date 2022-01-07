@@ -107,7 +107,7 @@ step_hai_scale_zero_one_new <- function(terms, role, trained, columns, skip, id)
 }
 
 #' @export
-prep.step_hai_scale_zero_one <- function(x, training, infor = NULL, ...){
+prep.step_hai_scale_zero_one <- function(x, training, info = NULL, ...){
 
     col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
