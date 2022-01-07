@@ -29,8 +29,6 @@ Imports:
     tidyr,
     forcats,
     recipes,
-    parsnip,
-    rsample,
     purrr,
     h2o
 Suggests: 
