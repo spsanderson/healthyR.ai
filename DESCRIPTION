@@ -29,6 +29,7 @@ Imports:
     tidyr,
     forcats,
     recipes,
+    rsample,
     purrr,
     h2o
 Suggests: 
