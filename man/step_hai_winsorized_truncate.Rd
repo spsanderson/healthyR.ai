@@ -102,6 +102,7 @@ Other Recipes:
 \code{\link{step_hai_fourier_discrete}()},
 \code{\link{step_hai_fourier}()},
 \code{\link{step_hai_hyperbolic}()},
+\code{\link{step_hai_scale_zero_one}()},
 \code{\link{step_hai_winsorized_move}()}
 }
 \concept{Recipes}
