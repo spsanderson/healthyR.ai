@@ -6,6 +6,17 @@
 None
 
 ## New Features
+1. Fix #132 - Add functions:
+-  `hai_kurtosis_vec()`
+-  `hai_skewness_vec()`
+
+## Minor Fixes and Improvements
+None
+
+## Breaking Changes
+None
+
+## New Features
 1. Fix #118 - Add functions:
 -  `hai_scale_zero_one_vec()`
 -  `hai_scale_zero_one_augment()`
