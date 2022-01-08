@@ -45,6 +45,8 @@ Other Vector Function:
 \code{\link{hai_fourier_discrete_vec}()},
 \code{\link{hai_fourier_vec}()},
 \code{\link{hai_hyperbolic_vec}()},
+\code{\link{hai_kurtosis_vec}()},
+\code{\link{hai_skewness_vec}()},
 \code{\link{hai_winsorized_move_vec}()},
 \code{\link{hai_winsorized_truncate_vec}()}
 }
