@@ -1,7 +1,5 @@
 # healthyR.ai (development version)
 
-# healthyR.ai 0.0.5
-
 ## Breaking Changes
 None
 
@@ -15,6 +13,8 @@ None
 
 ## Breaking Changes
 None
+
+# healthyR.ai 0.0.5
 
 ## New Features
 1. Fix #118 - Add functions:
