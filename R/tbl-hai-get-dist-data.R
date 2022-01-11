@@ -1,5 +1,7 @@
 #' Get Distribution Data Helper
 #'
+#' @family Distribution Functions
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @details This function expects to take the output of the `hai_distribution_comparison_tbl()`
