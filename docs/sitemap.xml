@@ -52,6 +52,9 @@
     <loc>/reference/hai_data_trig.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_distribution_comparison_tbl.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_fourier_augment.html</loc>
   </url>
   <url>
@@ -62,6 +65,9 @@
   </url>
   <url>
     <loc>/reference/hai_fourier_vec.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_get_dist_data_tbl.html</loc>
   </url>
   <url>
     <loc>/reference/hai_hyperbolic_augment.html</loc>
