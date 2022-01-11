@@ -40,6 +40,10 @@ reference:
      desc: Functions to add recipe steps
      contents:
      -  contains("step_hai_")
+  -  title: Table Functions
+     desc: Functions that return tibbles
+     contents:
+     -  contains("_tbl")
   -  title: Vectorized Functions
      contents:
      -  contains("_vec")
