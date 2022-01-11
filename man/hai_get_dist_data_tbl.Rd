@@ -37,6 +37,11 @@ df <- hai_scale_zero_one_vec(.x = mtcars$mpg) \%>\%
 hai_get_dist_data_tbl(df)
 
 }
+\seealso{
+Other Distribution Functions: 
+\code{\link{hai_distribution_comparison_tbl}()}
+}
 \author{
 Steven P. Sanderson II, MPH
 }
+\concept{Distribution Functions}

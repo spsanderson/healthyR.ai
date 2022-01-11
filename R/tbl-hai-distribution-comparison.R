@@ -1,5 +1,7 @@
 #' Compare Data Against Distributions
 #'
+#' @family Distribution Functions
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @details Get information on the empirical distribution of your data along with
