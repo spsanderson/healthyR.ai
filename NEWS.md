@@ -7,6 +7,7 @@ None
 1. Fix #132 - Add functions:
 -  `hai_kurtosis_vec()`
 -  `hai_skewness_vec()`
+2. Fix #133 - Add function `hai_distribution_comparison_tbl()`
 
 ## Minor Fixes and Improvements
 None

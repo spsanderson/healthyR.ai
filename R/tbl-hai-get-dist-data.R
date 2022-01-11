@@ -2,15 +2,30 @@
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
-#' @details
+#' @details This function expects to take the output of the `hai_distribution_comparison_tbl()`
+#' function. It returns a tibble of the distribution and the randomly generated
+#' data produced from the associated stats r function like `rnorm`
 #'
-#' @description
+#' @description This function will return a tibble that can either be nested/unnested,
+#' and grouped or ungrouped. The `.data` argument must be the output of the
+#' `hai_distribution_comparison_tbl()` function.
 #'
-#' @param
+#' @param .data The data from the `hai_distribution_comparison_tbl()` function
+#' as this function looks for a class of 'hai_dist_data'
+#' @param .unnest Should the resulting tibble be unnested, a boolean value TRUE/FALSE.
+#' The default is TRUE
+#' @param .group_data Shold the resulting tibble be grouped, a boolean value TRUE/FALSE.
+#' The default is FALSE
 #'
 #' @examples
+#' library(dplyr)
+#'
+#' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
+#'   hai_distribution_comparison_tbl()
+#' hai_get_dist_data_tbl(df)
 #'
 #' @return
+#' A tibble.
 #'
 #' @export
 #'
