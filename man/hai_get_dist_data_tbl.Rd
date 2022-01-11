@@ -6,16 +6,35 @@
 \usage{
 hai_get_dist_data_tbl(.data, .unnest = TRUE, .group_data = FALSE)
 }
-\value{
+\arguments{
+\item{.data}{The data from the \code{hai_distribution_comparison_tbl()} function
+as this function looks for a class of 'hai_dist_data'}
 
+\item{.unnest}{Should the resulting tibble be unnested, a boolean value TRUE/FALSE.
+The default is TRUE}
+
+\item{.group_data}{Shold the resulting tibble be grouped, a boolean value TRUE/FALSE.
+The default is FALSE}
+}
+\value{
+A tibble.
 }
 \description{
-
+This function will return a tibble that can either be nested/unnested,
+and grouped or ungrouped. The \code{.data} argument must be the output of the
+\code{hai_distribution_comparison_tbl()} function.
 }
 \details{
-
+This function expects to take the output of the \code{hai_distribution_comparison_tbl()}
+function. It returns a tibble of the distribution and the randomly generated
+data produced from the associated stats r function like \code{rnorm}
 }
 \examples{
+library(dplyr)
+
+df <- hai_scale_zero_one_vec(.x = mtcars$mpg) \%>\%
+  hai_distribution_comparison_tbl()
+hai_get_dist_data_tbl(df)
 
 }
 \author{
