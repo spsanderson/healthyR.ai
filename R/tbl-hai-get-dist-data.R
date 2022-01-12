@@ -41,9 +41,9 @@ hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
     # Get Data ----
     data_tbl <- .data
 
-    if(!"hai_dist_tbl" %in% class(data_tbl)){
-        stop(call. = FALSE, ".data must be of class `hai_dist_data`. Did you use
-         the `haid_distribution_comparison_tbl()` function?")
+    if(!attributes(data_tbl)$tibble_type == "hai_dist_compare_tbl"){
+        rlang::abort("Attribute of 'hai_dist_compare_tbl' is missing.
+                 Did you use the 'hai_distribution_comparison_tlb()' function?")
     }
 
     # Names ----
@@ -51,12 +51,12 @@ hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
 
     # Checks ----
     if((!"dist_data" %in% col_nms) | (!"density_data" %in% col_nms)){
-        stop(call. = FALSE, ".data must be of class `hai_dist_data`. Did you use
+        rlang::abort("Missing columns of 'dist_data' and or 'density_data'. Did you use
          the `hai_distribution_comparison_tbl()` function?")
     }
 
     if((!is.logical(unnest_bool)) | (!is.logical(group_data_bool))){
-        stop(call. = FALSE, "Both .unnest and .group_data must be a logical/boolean value.")
+        rlang::abort("Both .unnest and .group_data must be a logical/boolean value.")
     }
 
     # Get tibble ----
@@ -75,6 +75,11 @@ hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
         data_tbl <- data_tbl %>%
             dplyr::group_by(distribution)
     }
+
+    # Add attributes ----
+    attr(data_tbl, ".data") <- .data
+    attr(data_tbl, ".unnest") <- .unnest
+    attr(data_tbl, ".group_data") <- .group_data
 
     # Return ----
     return(data_tbl)
