@@ -27,6 +27,9 @@
 #' and [healthyR.ai::hai_kurtosis_vec()] in order to help create the random data
 #' from the distributions.
 #'
+#' Internally the skewness and kurtosis calculations are the square root of the
+#' squared values.
+#'
 #' The distributions that can be chosen from are:
 #'
 #' | Distribution | R stats::dist |
@@ -70,8 +73,8 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
     dl      <- as.vector(tolower(.distributions))
 
     # Parameters ----
-    hskew   <- healthyR.ai::hai_skewness_vec(x_term)
-    hkurt   <- healthyR.ai::hai_kurtosis_vec(x_term)
+    hskew   <- sqrt(healthyR.ai::hai_skewness_vec(x_term)^2)
+    hkurt   <- sqrt(healthyR.ai::hai_kurtosis_vec(x_term)^2)
     mu      <- mean(x_term, na.rm = TRUE)
     std     <- stats::sd(x_term, na.rm = TRUE)
     minimum <- min(x_term, na.rm = TRUE)
