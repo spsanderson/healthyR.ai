@@ -9,6 +9,10 @@ None
 -  `hai_skewness_vec()`
 2. Fix #133 - Add function `hai_distribution_comparison_tbl()`
 3. Fix #138 - Add function `hai_get_dist_data_tbl()`
+4. Fix #140 - Add function `hai_get_density_data_tbl()`
+5. Fix #146 - Add function `hai_density_plot()`
+6. Fix #141 - Add function `hai_density_qq_plot()`
+7. Fix #139 - Add function `hai_density_hist_plot()`
 
 ## Minor Fixes and Improvements
 None
