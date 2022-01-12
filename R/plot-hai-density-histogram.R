@@ -1,10 +1,10 @@
-#' Density QQ Plot
+#' Density Histogram Plot
 #'
 #' @family Distribution Plots
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
-#' @details This will produce a qq plot of the density information that is
+#' @details This will produce a histogram of the density information that is
 #' produced from the function `hai_get_density_data_tbl`. It will look for an attribute
 #' from the `.data` param to ensure the function was used.
 #'
@@ -31,12 +31,10 @@
 #'
 #' tidy_density_tbl <- hai_get_density_data_tbl(df)
 #'
-#' hai_density_qq_plot(
+#' hai_density_hist_plot(
 #'  .data = tidy_density_tbl,
 #'  .dist_name_col = distribution,
-#'  .x_col = x,
-#'  .y_col = y,
-#'  .size = 1,
+#'  .value_col = dist_data
 #'  .alpha = 0.5,
 #'  .interactive = FALSE
 #' )
@@ -47,31 +45,26 @@
 #' @export
 #'
 
-hai_density_qq_plot <- function(.data, .dist_name_col = distribution, .x_col = x
-                                , .y_col = y, .size = 1, .alpha = 0.382,
-                                .interactive = FALSE){
+hai_density_hist_plot <- function(.data, .dist_name_col = distribution,
+                                  .value_col = dist_data,
+                                  .alpha = .382, .interactive = FALSE){
 
     # Tidyeval ----
     dist_name_var <- rlang::enquo(.dist_name_col)
-    x_col_var     <- rlang::enquo(.x_col)
-    y_col_var     <- rlang::enquo(.y_col)
-    size <- as.numeric(.size)
+    value_col_var <- rlang::enquo(.value_col)
     alpha <- as.numeric(.alpha)
 
     dnv_name <- rlang::quo_name(dist_name_var)
-    xcv_name <- rlang::quo_name(x_col_var)
-    ycv_name <- rlang::quo_name(y_col_var)
+    vcv_name <- rlang::quo_name(value_col_var)
 
     # Checks ----
-    if(rlang::quo_is_missing(dist_name_var) |
-       rlang::quo_is_missing(x_col_var) |
-       rlang::quo_is_missing(y_col_var)
+    if(rlang::quo_is_missing(dist_name_var) | rlang::quo_is_missing(value_col_var)
     ){
         rlang::abort(
             "All parameters must be supplied:
-       * .dist_name_col,
-       * .x_col, and
-       * .y_col"
+       * .dist_name_col
+       * .value_col
+       "
         )
     }
 
@@ -79,8 +72,8 @@ hai_density_qq_plot <- function(.data, .dist_name_col = distribution, .x_col = x
         rlang::abort("The .alpha parameter must be a number between 0 and 1")
     }
 
-    if(!is.numeric(size) | (size <= 0)){
-        rlang::abort("The .size parameter must be a number greater than 0")
+    if(!is.data.frame(.data)){
+        rlang::abort("The .data argument cannot be blank.")
     }
 
     # Data setup ----
@@ -88,30 +81,29 @@ hai_density_qq_plot <- function(.data, .dist_name_col = distribution, .x_col = x
         dplyr::ungroup() %>%
         dplyr::select(
             {{dist_name_var}},
-            {{x_col_var}},
-            {{y_col_var}}
+            {{value_col_var}}
         )
 
-    if(!attributes(.data)$tibble_type == "hai_density_data_tbl"){
-        rlang::abort("The attribute 'hai_density_data_tbl' is missing.
-                     This function is designed to be used with 'hai_density_data_tbl'")
+    if(!attributes(.data)$tibble_type == "hai_dist_data_tbl"){
+        rlang::abort("The attribute of tibble_type must be equal to 'hai_dist_data_tbl'.
+        Did you use the 'hai_get_dist_data_tbl` function?")
     }
 
     # Plots ----
     plt <- ggplot2::ggplot(
         data = data_tbl,
         mapping = ggplot2::aes_string(
-            sample = ycv_name,
-            color  = dnv_name,
-            group  = dnv_name
+            x     = vcv_name,
+            fill  = dnv_name
         )
     ) +
-        ggplot2::stat_qq(size = size, alpha = alpha) +
-        ggplot2::stat_qq_line() +
+        ggplot2::geom_histogram(color = "black", alpha = alpha, binwidth = 0.05) +
         ggplot2::theme_minimal() +
         ggplot2::labs(
-            title = "QQ Plot Comparison",
-            color = "Distribution"
+            title = "Density Comparison Histogram",
+            fill  = "Distribution",
+            x = "",
+            y = ""
         ) +
         ggplot2::theme(legend.position = "bottom")
 
