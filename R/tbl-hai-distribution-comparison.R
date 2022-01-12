@@ -48,6 +48,8 @@
 #' @param .x The numeric vector to analyze.
 #' @param .distributions A character vector of distributions to check. For example,
 #' c("gamma","beta")
+#' @param .normalize A boolean value of TRUE/FALSE, the default is TRUE. This
+#' will normalize the data using the `hai_scale_zero_one_vec` function.
 #'
 #' @examples
 #' x_vec <- hai_scale_zero_one_vec(mtcars$mpg)
@@ -63,11 +65,16 @@
 #' @export
 #'
 
-hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta")){
+hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta"),
+                                            .normalize = TRUE){
 
     # Tidyeval ----
     x_term  <- .x
     dl      <- as.vector(tolower(.distributions))
+
+    if(.normalize){
+        x_term <- healthyR.ai::hai_scale_zero_one_vec(x_term)
+    }
 
     # Parameters ----
     hskew   <- healthyR.ai::hai_skewness_vec(x_term)
