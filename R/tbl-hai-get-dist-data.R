@@ -80,6 +80,7 @@ hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
     attr(data_tbl, ".data") <- .data
     attr(data_tbl, ".unnest") <- .unnest
     attr(data_tbl, ".group_data") <- .group_data
+    attr(data_tbl, "tibble_type") <- "hai_dist_data_tbl"
 
     # Return ----
     return(data_tbl)
