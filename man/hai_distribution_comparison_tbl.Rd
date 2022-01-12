@@ -4,13 +4,20 @@
 \alias{hai_distribution_comparison_tbl}
 \title{Compare Data Against Distributions}
 \usage{
-hai_distribution_comparison_tbl(.x, .distributions = c("gamma", "beta"))
+hai_distribution_comparison_tbl(
+  .x,
+  .distributions = c("gamma", "beta"),
+  .normalize = TRUE
+)
 }
 \arguments{
 \item{.x}{The numeric vector to analyze.}
 
 \item{.distributions}{A character vector of distributions to check. For example,
 c("gamma","beta")}
+
+\item{.normalize}{A boolean value of TRUE/FALSE, the default is TRUE. This
+will normalize the data using the \code{hai_scale_zero_one_vec} function.}
 }
 \value{
 A tibble.
