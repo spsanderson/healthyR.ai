@@ -26,7 +26,7 @@
 #' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
 #'   hai_distribution_comparison_tbl()
 #'
-#' tidy_density_tbl <- hai_get_density_data_tbl(df)
+#' dist_data_tbl <- hai_get_dist_data_tbl(df)
 #'
 #' hai_density_hist_plot(
 #'  .data = tidy_density_tbl,
