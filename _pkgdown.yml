@@ -24,6 +24,7 @@ reference:
      desc: Functions for plotting
      contents:
      -  "hai_control_chart"
+     -  contains("_plot")
   -  title: Clustering Functions
      desc: Functions for Clustering and Analysis
   -  subtitle: K-Means

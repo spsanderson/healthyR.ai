@@ -22,9 +22,8 @@ This will not change the distribution just it's scale in order to make sure
 that many different types of distributions can be fit to the data, which
 should help identify what the distribution of the passed data could be.
 
-The resulting output has a class of \code{hai_density_tbl} attached to it, if you
-want to interact with it in the typicall \code{tidyverse} fashion, simply pipe it
-to \code{dplyr::as_tibble} and continue.
+The resulting output has attributes added to it that get used in other functions
+that are meant to compliment each other.
 
 This function will automatically pass the \code{.x} parameter to \code{\link[=hai_skewness_vec]{hai_skewness_vec()}}
 and \code{\link[=hai_kurtosis_vec]{hai_kurtosis_vec()}} in order to help create the random data
@@ -69,6 +68,7 @@ df
 }
 \seealso{
 Other Distribution Functions: 
+\code{\link{hai_get_density_data_tbl}()},
 \code{\link{hai_get_dist_data_tbl}()}
 }
 \author{
