@@ -1,5 +1,7 @@
 #' Density Histogram Plot
 #'
+#' @family Distribution Plots
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @details This will produce a histogram of the density information that is
@@ -37,7 +39,7 @@
 #' )
 #'
 #' @return
-#' A plot, either ggplot2 or plotly
+#' A plot, either `ggplot`2 or `plotly`
 #'
 #' @export
 #'
@@ -76,7 +78,7 @@ hai_density_plot <- function(.data, .dist_name_col = distribution, .value_col = 
             {{value_col_var}}
         )
 
-    if(!attributes(data_tbl)$tibble_type == "hai_dist_data_tbl"){
+    if(!attributes(.data)$tibble_type == "hai_dist_data_tbl"){
         rlang::abort("The attribute 'hai_get_dist_data_tbl' is missing.
                      This function is designed to be used with 'hai_get_dist_data_tbl'")
     }
