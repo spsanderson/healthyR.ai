@@ -29,9 +29,6 @@ This function will automatically pass the \code{.x} parameter to \code{\link[=ha
 and \code{\link[=hai_kurtosis_vec]{hai_kurtosis_vec()}} in order to help create the random data
 from the distributions.
 
-Internally the skewness and kurtosis calculations are the square root of the
-squared values.
-
 The distributions that can be chosen from are:\tabular{ll}{
    Distribution \tab R stats::dist \cr
    normal \tab rnorm \cr

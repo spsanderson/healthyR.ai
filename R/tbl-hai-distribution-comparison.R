@@ -27,9 +27,6 @@
 #' and [healthyR.ai::hai_kurtosis_vec()] in order to help create the random data
 #' from the distributions.
 #'
-#' Internally the skewness and kurtosis calculations are the square root of the
-#' squared values.
-#'
 #' The distributions that can be chosen from are:
 #'
 #' | Distribution | R stats::dist |
