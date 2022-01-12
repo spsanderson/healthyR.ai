@@ -47,7 +47,6 @@ from the \code{.data} param to ensure the function was used.
 }
 \examples{
 library(dplyr)
-library(healthyverse)
 
 df <- hai_scale_zero_one_vec(.x = mtcars$mpg) \%>\%
   hai_distribution_comparison_tbl()
