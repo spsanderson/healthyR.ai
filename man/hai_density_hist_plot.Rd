@@ -47,7 +47,7 @@ df <- hai_scale_zero_one_vec(.x = mtcars$mpg) \%>\%
 dist_data_tbl <- hai_get_dist_data_tbl(df)
 
 hai_density_hist_plot(
- .data = tidy_density_tbl,
+ .data = dist_data_tbl,
  .dist_name_col = distribution,
  .value_col = dist_data,
  .alpha = 0.5,
