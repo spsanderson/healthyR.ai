@@ -118,6 +118,21 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
         rlang::abort("You entered a distribution that is unsupported")
     }
 
+    # Will it fail? ----
+    if(("beta" %in% dl) & (hskew < 0)){
+        rlang::abort("The rbeta function does not support a negative skew.")
+    } else if(("gamma" %in% dl) & (hskew < 0)){
+        rlang::abort("The rgamma function does not support a negative skew.")
+    } else if(("weibull" %in% dl) & (hskew < 0)){
+        rlang::abort("The rweibull function does not support a negative skew.")
+    } else if(("chisquare" %in% dl) & (hskew < 0)){
+        rlang::abort("The rchisq function does not support a negative skew.")
+    } else if(("f" %in% dl) & (hskew < 0)){
+        rlang::abort("The rf function does not support a negative skew.")
+    } else if(("poisson" %in% dl) & (hskew < 0)){
+        rlang::abort("The rpois function does not support a negative skew.")
+    }
+
     # Make distributions ----
     dist_tbl <- dist_df %>%
         dplyr::mutate(
