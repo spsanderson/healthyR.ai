@@ -1,4 +1,4 @@
-#' Get Distribution Data Helper
+#' Get Density Data Helper
 #'
 #' @family Distribution Functions
 #'
@@ -32,7 +32,7 @@
 #' @export
 #'
 
-hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
+hai_get_density_data_tbl <- function(.data, .unnest = TRUE, .group_data = TRUE){
 
     # Tidyeval ----
     unnest_bool     <- as.logical(.unnest)
@@ -51,28 +51,33 @@ hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
 
     # Checks ----
     if((!"dist_data" %in% col_nms) | (!"density_data" %in% col_nms)){
-        rlang::abort("Missing columns of 'dist_data' and or 'density_data'. Did you use
+        rlang::abort("Attribute of `hai_dist_compare_tbl`. Did you use
          the `hai_distribution_comparison_tbl()` function?")
     }
 
-    if((!is.logical(unnest_bool)) | (!is.logical(group_data_bool))){
-        rlang::abort("Both .unnest and .group_data must be a logical/boolean value.")
-    }
+    # Get data and lists ----
+    l        <- tibble::as_tibble(df) %>% dplyr::select(-dist_data)
+    dist_nms <- dplyr::pull(l, distribution)
+    l        <- l %>% dplyr::pull(density_data)
+    names(l) <- dist_nms
 
-    # Get tibble ----
-    data_tbl <- tibble::as_tibble(.data)
+    tidy_l <- purrr::map(.x = l, .f = broom::tidy)
+    tidy_nested_tbl <- tibble::as_tibble(dist_nms) %>%
+        dplyr::mutate(
+            density_obj = purrr::pluck(tidy_l)
+        ) %>%
+        dplyr::rename(distribution = value)
 
-    data_tbl <- data_tbl %>%
-        dplyr::select(-density_data)
-
+    # Logic Params
     if(unnest_bool){
-        data_tbl <- data_tbl %>%
-            tidyr::unnest(dist_data) %>%
+        data_tbl <- tidy_nested_tbl %>%
+            tidyr::unnest(cols = density_obj) %>%
             dplyr::ungroup()
     }
 
     if(group_data_bool){
-        data_tbl <- data_tbl %>%
+        data_tbl <- tidy_nested_tbl %>%
+            tidyr::unnest(cols = density_obj) %>%
             dplyr::group_by(distribution)
     }
 
@@ -80,7 +85,7 @@ hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
     attr(data_tbl, ".data") <- .data
     attr(data_tbl, ".unnest") <- .unnest
     attr(data_tbl, ".group_data") <- .group_data
-    attr(data_tbl, "tibble_type") <- "hai_dist_data_tbl"
+    attr(data_tbl, "tibble_type") <- "hai_density_data_tbl"
 
     # Return ----
     return(data_tbl)
