@@ -4,7 +4,7 @@
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
-#' @details This will produce a histogram of the density information that is
+#' @details This will produce a qq plot of the density information that is
 #' produced from the function `hai_get_density_data_tbl`. It will look for an attribute
 #' from the `.data` param to ensure the function was used.
 #'
