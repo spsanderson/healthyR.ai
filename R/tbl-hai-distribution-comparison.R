@@ -20,9 +20,8 @@
 #' that many different types of distributions can be fit to the data, which
 #' should help identify what the distribution of the passed data could be.
 #'
-#' The resulting output has a class of `hai_density_tbl` attached to it, if you
-#' want to interact with it in the typicall `tidyverse` fashion, simply pipe it
-#' to `dplyr::as_tibble` and continue.
+#' The resulting output has attributes added to it that get used in other functions
+#' that are meant to compliment each other.
 #'
 #' This function will automatically pass the `.x` parameter to [healthyR.ai::hai_skewness_vec()]
 #' and [healthyR.ai::hai_kurtosis_vec()] in order to help create the random data
@@ -139,7 +138,7 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
             )
         ) %>%
         dplyr::group_by(distribution) %>%
-        dplyr::mutate(density_data = list(stats::density(unlist(dist_data)))) %>%
+        dplyr::mutate(density_data = list(density(unlist(dist_data)))) %>%
         dplyr::ungroup() %>%
         dplyr::select(-stats_func)
 
@@ -152,8 +151,10 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
 
     dist_final_tbl <- rbind(dist_tbl, emp_dens_tbl)
 
-    # Add Class of hai_dist_tbl
-    class(dist_final_tbl) <- c("tbl_df","tbl","data.frame","hai_dist_tbl")
+    # Add attributes ----
+    attr(dist_final_tbl, ".x") <- .x
+    attr(dist_final_tbl, ".distributions") <- .distributions
+    attr(dist_final_tbl, "tibble_type") <- "hai_dist_compare_tbl"
 
     # Return ----
     return(dist_final_tbl)
