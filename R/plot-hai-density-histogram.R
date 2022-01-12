@@ -22,7 +22,6 @@
 #'
 #' @examples
 #' library(dplyr)
-#' library(healthyverse)
 #'
 #' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
 #'   hai_distribution_comparison_tbl()
@@ -32,7 +31,7 @@
 #' hai_density_hist_plot(
 #'  .data = tidy_density_tbl,
 #'  .dist_name_col = distribution,
-#'  .value_col = dist_data
+#'  .value_col = dist_data,
 #'  .alpha = 0.5,
 #'  .interactive = FALSE
 #' )
