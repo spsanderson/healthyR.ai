@@ -73,8 +73,8 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
     dl      <- as.vector(tolower(.distributions))
 
     # Parameters ----
-    hskew   <- sqrt(healthyR.ai::hai_skewness_vec(x_term)^2)
-    hkurt   <- sqrt(healthyR.ai::hai_kurtosis_vec(x_term)^2)
+    hskew   <- healthyR.ai::hai_skewness_vec(x_term)
+    hkurt   <- healthyR.ai::hai_kurtosis_vec(x_term)
     mu      <- mean(x_term, na.rm = TRUE)
     std     <- stats::sd(x_term, na.rm = TRUE)
     minimum <- min(x_term, na.rm = TRUE)
