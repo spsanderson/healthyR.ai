@@ -23,7 +23,6 @@
 #'
 #' @examples
 #' library(dplyr)
-#' library(healthyverse)
 #'
 #' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
 #'   hai_distribution_comparison_tbl()
@@ -88,7 +87,7 @@ hai_density_plot <- function(.data, .dist_name_col = distribution, .value_col = 
         data = data_tbl,
         mapping = ggplot2::aes_string(vcv_name, color = dnv_name, group = dnv_name)
     ) +
-        ggplot2::geom_density(alpha = .alpha) +
+        ggplot2::geom_density(alpha = alpha) +
         ggplot2::theme_minimal() +
         ggplot2::labs(
             title = "Distribution Density Comparison",

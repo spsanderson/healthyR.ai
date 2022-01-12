@@ -45,7 +45,8 @@ Suggests:
     scales,
     tidyselect,
     janitor,
-    timetk
+    timetk,
+    plotly
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)

@@ -26,6 +26,8 @@ distribution and that is set as the default.}
 \item{.y_col}{The column that contains the y values that comes from the
 \code{hai_get_density_data_tbl} function.}
 
+\item{.size}{The size parameter for ggplot}
+
 \item{.alpha}{The alpha parameter for ggplot}
 
 \item{.interactive}{This is a Boolean fo TRUE/FALSE and is defaulted to FALSE.
@@ -45,7 +47,6 @@ from the \code{.data} param to ensure the function was used.
 }
 \examples{
 library(dplyr)
-library(healthyverse)
 
 df <- hai_scale_zero_one_vec(.x = mtcars$mpg) \%>\%
   hai_distribution_comparison_tbl()
