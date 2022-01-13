@@ -89,6 +89,8 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
     maximum <- max(x_term, na.rm = TRUE)
     med     <- stats::median(x_term, na.rm = TRUE)
     n       <- length(x_term)
+    mu_log  <- mean(abs(log1p(x_term)))
+    sd_log  <- sd(abs(log1p(x_term)))
 
     # Distribution Table and associate stats function
     dist_df <- tibble::tibble(
@@ -175,7 +177,7 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
                 stats_func == "runif" ~ list(stats::runif(n = n, min = minimum, max = maximum)),
                 stats_func == "rexp" ~ list(stats::rexp(n = n, rate = hkurt)),
                 stats_func == "rlogis" ~ list(stats::rlogis(n = n, location = hskew, scale = hkurt)),
-                stats_func == "rlnorm" ~ list(stats::rlnorm(n = n, meanlog = log(mu), sdlog = log(std))),
+                stats_func == "rlnorm" ~ list(stats::rlnorm(n = n, meanlog = mu_log, sdlog = sd_log)),
                 stats_func == "rweibull" ~ list(stats::rweibull(n = n, shape = hskew, scale = hkurt)),
                 stats_func == "rchisq" ~ list(stats::rchisq(n = n, df = hskew)),
                 stats_func == "rcauchy" ~ list(stats::rcauchy(n = n, location = hskew, scale = hkurt)),
