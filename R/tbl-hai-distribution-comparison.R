@@ -14,6 +14,10 @@
 #' This has the effect of giving you the desired vector that can be used in resultant
 #' plots (`dist_data`) or you can interact with the `density` object itself.
 #'
+#' If the skewness of the distribution is negative, then for the gamma and beta
+#' distributions the skew is set equal to the kurtosis and the kurtosis is set
+#' equal to `sqrt((skew)^2)`
+#'
 #' @description This function will attempt to get some key information on the
 #' data you pass to it. It will also automatically normalize the data from 0 to 1.
 #' This will not change the distribution just it's scale in order to make sure
@@ -127,9 +131,17 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
 
     # Will it fail? ----
     if(("beta" %in% dl) & (hskew < 0)){
-        rlang::abort("The rbeta function does not support a negative skew.")
+        rlang::warn(
+            "The rbeta function does not support a negative skew.
+    To get around this, the skew is set equal to the kurtosis and the kurtosis is set
+    equal to sqrt((skew)^2). NOTE: This may not necissarly be what you need."
+        )
     } else if(("gamma" %in% dl) & (hskew < 0)){
-        rlang::abort("The rgamma function does not support a negative skew.")
+        rlang::warn(
+            "The rgamma function does not support a negative skew.
+    To get around this, the skew is set equal to the kurtosis and the kurtosis is set
+    equal to sqrt((skew)^2). NOTE: This may not necissarly be what you need."
+        )
     } else if(("weibull" %in% dl) & (hskew < 0)){
         rlang::abort("The rweibull function does not support a negative skew.")
     } else if(("chisquare" %in% dl) & (hskew < 0)){
@@ -144,8 +156,21 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
     dist_tbl <- dist_df %>%
         dplyr::mutate(
             dist_data = dplyr::case_when(
-                stats_func == "rgamma" ~ list(stats::rgamma(n = n, shape = hskew, rate = hkurt)),
-                stats_func == "rbeta" ~ list(stats::rbeta(n = n, shape1 = hskew, shape2 = hkurt, ncp = med)),
+                stats_func == "rgamma" ~ list(
+                    stats::rgamma(
+                        n = n,
+                        shape = ifelse(hskew < 0, abs(hskew), hskew)
+                        , rate = ifelse(hskew < 0, sqrt((hskew^2)), hkurt)
+                    )
+                ),
+                stats_func == "rbeta" ~ list(
+                    stats::rbeta(
+                        n = n,
+                        shape1 = ifelse(hskew < 0, hkurt, hskew),
+                        shape2 = ifelse(hskew < 0, sqrt((hskew^2)), hkurt)
+                        , ncp = med
+                    )
+                ),
                 stats_func == "rnorm" ~ list(stats::rnorm(n = n, mean = mu, sd = std)),
                 stats_func == "runif" ~ list(stats::runif(n = n, min = minimum, max = maximum)),
                 stats_func == "rexp" ~ list(stats::rexp(n = n, rate = hkurt)),
@@ -176,6 +201,7 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta
     # Add attributes ----
     attr(dist_final_tbl, ".x") <- .x
     attr(dist_final_tbl, ".distributions") <- .distributions
+    attr(dist_final_tbl, ".normalize") <- .normalize
     attr(dist_final_tbl, "tibble_type") <- "hai_dist_compare_tbl"
 
     # Return ----
