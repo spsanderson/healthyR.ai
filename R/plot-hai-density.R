@@ -88,7 +88,7 @@ hai_density_plot <- function(.data, .dist_name_col, .x_col, .y_col,
             {{y_col_var}}
         )
 
-    if(!attributes(data_tbl)$tibble_type == "hai_density_data_tbl"){
+    if(!attributes(.data)$tibble_type == "hai_density_data_tbl"){
         rlang::abort("Attibute of 'hai_density_data_tbl' is missing.
                  Did yo use the 'hai_get_density_data_tbl()' function?")
     }
