@@ -63,6 +63,10 @@ which is the \code{dist_data} column passed to \code{list(stats::density(unlist(
 
 This has the effect of giving you the desired vector that can be used in resultant
 plots (\code{dist_data}) or you can interact with the \code{density} object itself.
+
+If the skewness of the distribution is negative, then for the gamma and beta
+distributions the skew is set equal to the kurtosis and the kurtosis is set
+equal to \code{sqrt((skew)^2)}
 }
 \examples{
 x_vec <- hai_scale_zero_one_vec(mtcars$mpg)
