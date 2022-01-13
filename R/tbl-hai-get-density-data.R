@@ -55,7 +55,7 @@ hai_get_density_data_tbl <- function(.data, .unnest = TRUE, .group_data = TRUE){
     }
 
     # Get data and lists ----
-    l        <- tibble::as_tibble(df) %>% dplyr::select(-dist_data)
+    l        <- tibble::as_tibble(data_tbl) %>% dplyr::select(-dist_data)
     dist_nms <- dplyr::pull(l, distribution)
     l        <- l %>% dplyr::pull(density_data)
     names(l) <- dist_nms
