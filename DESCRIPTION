@@ -31,16 +31,13 @@ Imports:
     recipes,
     rsample,
     purrr,
-    h2o,
-    cli,
-    crayon
+    h2o
 Suggests: 
     rmarkdown,
     knitr,
     roxygen2,
     stats,
     tidyquant,
-    rstudioapi,
     healthyR.data,
     scales,
     tidyselect,
