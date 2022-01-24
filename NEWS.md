@@ -14,7 +14,9 @@
 7. Fix #139 - Add function `hai_density_hist_plot()`
 
 ## Minor Fixes and Improvements
-None
+1. Fix #180 - Move `cli` and `crayon` to Imports from Suggest due to `pillar` 
+not importing anymore.
+2. Fix #182 - Drop need for `cli`, `crayon`, and `rstudioapi`
 
 ## Breaking Changes
 None
