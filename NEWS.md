@@ -1,15 +1,6 @@
+# healthyR.ai (development version)
+
 # healthyR.ai 0.0.6
-
-## Breaking Changes
-
-## New Features
-
-## Minor Fixes and Improvements
-1. Fix #180 - Move `cli` and `crayon` to Imports from Suggest due to `pillar` 
-not importing anymore.
-
-## Breaking Changes
-None
 
 ## New Features
 1. Fix #132 - Add functions:
