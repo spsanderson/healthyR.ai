@@ -1,5 +1,3 @@
-# healthyR.ai (development version)
-
 # healthyR.ai 0.0.6
 
 ## New Features
@@ -12,6 +10,7 @@
 5. Fix #146 - Add function `hai_density_plot()`
 6. Fix #141 - Add function `hai_density_qq_plot()`
 7. Fix #139 - Add function `hai_density_hist_plot()`
+8. Fix #56 - Add function `hai_histogram_facet_plot()`
 
 ## Minor Fixes and Improvements
 1. Fix #180 - Move `cli` and `crayon` to Imports from Suggest due to `pillar` 
