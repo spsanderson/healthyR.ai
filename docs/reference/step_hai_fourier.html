@@ -25,7 +25,7 @@ feature that can aid in machine learning."><!-- mathjax --><script src="https://
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
       </span>
     </div>
 
@@ -45,7 +45,10 @@ feature that can aid in machine learning."><!-- mathjax --><script src="https://
      
     <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu"><li class="divider">
+  <ul class="dropdown-menu" role="menu"><li class="dropdown-header">K-Means</li>
+    <li>
+      <a href="../articles/auto-kmeans.html">Auto M-Means Clustering</a>
+    </li>
   </ul></li>
 <li>
   <a href="../reference/index.html">Function Reference</a>
@@ -213,33 +216,33 @@ used for this purpose.</p>
 <span class="r-in"><span class="co"># Bake the recipe object - Adds the Time Series Signature</span></span>
 <span class="r-in"><span class="fu"><a href="https://recipes.tidymodels.org/reference/bake.html" class="external-link">bake</a></span><span class="op">(</span><span class="fu"><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">prep</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span>, <span class="va">data_tbl</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 x 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col        b       a fourier_b_sin fourier_b_cos fourier_b_sincos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.504  -<span style="color: #BB0000;">0.699</span>        -<span style="color: #BB0000;">0.022</span><span style="color: #BB0000; text-decoration: underline;">9</span>        -<span style="color: #BB0000;">1.00</span>            0.022<span style="text-decoration: underline;">9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.428  -<span style="color: #BB0000;">0.114</span>         0.438         -<span style="color: #BB0000;">0.899</span>          -<span style="color: #BB0000;">0.394</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.356  -<span style="color: #BB0000;">1.75</span>          0.786         -<span style="color: #BB0000;">0.619</span>          -<span style="color: #BB0000;">0.486</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.699  -<span style="color: #BB0000;">1.81</span>         -<span style="color: #BB0000;">0.950</span>         -<span style="color: #BB0000;">0.313</span>           0.298 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.320   0.664         0.904         -<span style="color: #BB0000;">0.427</span>          -<span style="color: #BB0000;">0.386</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.093<span style="text-decoration: underline;">7</span>  0.049<span style="text-decoration: underline;">5</span>        0.555          0.832           0.462 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.419  -<span style="color: #BB0000;">0.122</span>         0.488         -<span style="color: #BB0000;">0.873</span>          -<span style="color: #BB0000;">0.426</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.958   0.780        -<span style="color: #BB0000;">0.259</span>          0.966          -<span style="color: #BB0000;">0.250</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.784   0.368        -<span style="color: #BB0000;">0.977</span>          0.213          -<span style="color: #BB0000;">0.208</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.130   1.89          0.730          0.683           0.499 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col       b       a fourier_b_sin fourier_b_cos fourier_b_sincos</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.971 -<span style="color: #BB0000;">1.27</span>         -<span style="color: #BB0000;">0.178</span>        0.984           -<span style="color: #BB0000;">0.175</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.133  0.887         0.742        0.671            0.497  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.525  0.145        -<span style="color: #BB0000;">0.159</span>       -<span style="color: #BB0000;">0.987</span>            0.157  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.995  0.019<span style="text-decoration: underline;">6</span>       -<span style="color: #BB0000;">0.032</span><span style="color: #BB0000; text-decoration: underline;">4</span>       0.999           -<span style="color: #BB0000;">0.032</span><span style="color: #BB0000; text-decoration: underline;">4</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.807  1.12         -<span style="color: #BB0000;">0.936</span>        0.353           -<span style="color: #BB0000;">0.330</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.137 -<span style="color: #BB0000;">0.793</span>         0.759        0.651            0.494  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.250  0.174         1.00        -<span style="color: #BB0000;">0.001</span><span style="color: #BB0000; text-decoration: underline;">39</span>         -<span style="color: #BB0000;">0.001</span><span style="color: #BB0000; text-decoration: underline;">39</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.890 -<span style="color: #BB0000;">0.561</span>        -<span style="color: #BB0000;">0.636</span>        0.772           -<span style="color: #BB0000;">0.491</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.690 -<span style="color: #BB0000;">0.340</span>        -<span style="color: #BB0000;">0.929</span>       -<span style="color: #BB0000;">0.369</span>            0.343  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.285 -<span style="color: #BB0000;">0.096</span><span style="color: #BB0000; text-decoration: underline;">8</span>        0.976       -<span style="color: #BB0000;">0.219</span>           -<span style="color: #BB0000;">0.214</span>  </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">rec_obj</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 x 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col        b       a fourier_b_sin fourier_b_cos fourier_b_sincos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.504  -<span style="color: #BB0000;">0.699</span>        -<span style="color: #BB0000;">0.022</span><span style="color: #BB0000; text-decoration: underline;">9</span>        -<span style="color: #BB0000;">1.00</span>            0.022<span style="text-decoration: underline;">9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.428  -<span style="color: #BB0000;">0.114</span>         0.438         -<span style="color: #BB0000;">0.899</span>          -<span style="color: #BB0000;">0.394</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.356  -<span style="color: #BB0000;">1.75</span>          0.786         -<span style="color: #BB0000;">0.619</span>          -<span style="color: #BB0000;">0.486</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.699  -<span style="color: #BB0000;">1.81</span>         -<span style="color: #BB0000;">0.950</span>         -<span style="color: #BB0000;">0.313</span>           0.298 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.320   0.664         0.904         -<span style="color: #BB0000;">0.427</span>          -<span style="color: #BB0000;">0.386</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.093<span style="text-decoration: underline;">7</span>  0.049<span style="text-decoration: underline;">5</span>        0.555          0.832           0.462 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.419  -<span style="color: #BB0000;">0.122</span>         0.488         -<span style="color: #BB0000;">0.873</span>          -<span style="color: #BB0000;">0.426</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.958   0.780        -<span style="color: #BB0000;">0.259</span>          0.966          -<span style="color: #BB0000;">0.250</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.784   0.368        -<span style="color: #BB0000;">0.977</span>          0.213          -<span style="color: #BB0000;">0.208</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.130   1.89          0.730          0.683           0.499 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col       b       a fourier_b_sin fourier_b_cos fourier_b_sincos</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.971 -<span style="color: #BB0000;">1.27</span>         -<span style="color: #BB0000;">0.178</span>        0.984           -<span style="color: #BB0000;">0.175</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.133  0.887         0.742        0.671            0.497  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.525  0.145        -<span style="color: #BB0000;">0.159</span>       -<span style="color: #BB0000;">0.987</span>            0.157  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.995  0.019<span style="text-decoration: underline;">6</span>       -<span style="color: #BB0000;">0.032</span><span style="color: #BB0000; text-decoration: underline;">4</span>       0.999           -<span style="color: #BB0000;">0.032</span><span style="color: #BB0000; text-decoration: underline;">4</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.807  1.12         -<span style="color: #BB0000;">0.936</span>        0.353           -<span style="color: #BB0000;">0.330</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.137 -<span style="color: #BB0000;">0.793</span>         0.759        0.651            0.494  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.250  0.174         1.00        -<span style="color: #BB0000;">0.001</span><span style="color: #BB0000; text-decoration: underline;">39</span>         -<span style="color: #BB0000;">0.001</span><span style="color: #BB0000; text-decoration: underline;">39</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.890 -<span style="color: #BB0000;">0.561</span>        -<span style="color: #BB0000;">0.636</span>        0.772           -<span style="color: #BB0000;">0.491</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.690 -<span style="color: #BB0000;">0.340</span>        -<span style="color: #BB0000;">0.929</span>       -<span style="color: #BB0000;">0.369</span>            0.343  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.285 -<span style="color: #BB0000;">0.096</span><span style="color: #BB0000; text-decoration: underline;">8</span>        0.976       -<span style="color: #BB0000;">0.219</span>           -<span style="color: #BB0000;">0.214</span>  </span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -255,7 +258,7 @@ used for this purpose.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>

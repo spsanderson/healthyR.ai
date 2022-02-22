@@ -1,0 +1,129 @@
+---
+title: "Auto K-Means with healthyR.ai"
+subtitle: "K-Means Series"
+author: "Steven P. Sanderson II, MPH"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Auto K-Means with healthyR.ai}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 8,
+  fig.height = 4.5,
+  fig.align = 'center',
+  out.width = '95%',
+  dpi = 100
+)
+```
+
+```{r setup}
+library(healthyR.ai)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(h2o))
+```
+
+# Data
+Many times in a project we want to perform some sort of clustering on a given set
+of data. This can be accomplished many different ways. This `vignette` will 
+showcase how you can take a data set that is prepared, say like the internal
+`iris` file and process it with the `healthyR.ai` function `hai_kmeans_automl()`.
+
+First lets take a look at the data itself.
+
+```{r iris_data}
+df_tbl <- iris
+
+glimpse(df_tbl)
+```
+
+From here we can see that the data is already prepared and ready to go. There is
+a factor column that denotes the species or the `row` data and the columns are 
+already numeric. Now the rest is fairly simple and straight forward. Let's use
+the `hai_kmeans_automl()` function to create the list output that comes from it
+where we will want to use the `Species` column as the predictor based upon the features
+presented.
+
+# Use the function
+```{r automl_kmeas}
+column_names <- names(iris)
+target_col <- "Species"
+predictor_cols <- setdiff(column_names, target_col)
+```
+
+Now we have our column inputs for the function, so we can go ahead and run it.
+
+```{r run_auto_ml}
+h2o.init()
+
+output <- hai_kmeans_automl(
+  .data = df_tbl,
+  .predictors = predictor_cols,
+  .standardize = FALSE
+)
+
+h2o.shutdown(prompt = FALSE)
+```
+
+This function gives a lot of output inside of it. From here we will discuss what 
+comes out of the function.
+
+# Function Output
+
+Lets take a look at the structure of the output object. It is a list of lists with
+four main components. They are the following:
+
+-  data
+-  auto_kmeans_obj
+-  model_id (h2o model id)
+-  scree_plt (a `ggplot2` object)
+
+Lets explor each of these items.
+
+## Data
+
+Inside of the data list there are several sections. We can view and access these 
+very simply. You will find that all of the outputs have been labeled in a very
+simple to understand manner.
+
+```{r data_section}
+output$data
+```
+
+## Auto-ML Object
+
+Now for the auto-ml object itself.
+
+```{r autom_obj}
+output$auto_kmeans_obj
+```
+
+## The Best Model
+
+We also have in the output the best model that is saved off.
+
+```{r best_model}
+output$model_id
+```
+
+## Scree Plot
+
+There is also a `ggplot2` scree plot that is generated, this helps us to understand
+how many clusters are in the data resulting from minimizing the within sum of squares 
+errors.
+
+```{r scree_plot}
+print(output$scree_plt)
+```
