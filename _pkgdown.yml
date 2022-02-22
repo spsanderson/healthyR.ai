@@ -13,7 +13,9 @@ navbar:
     - text: "Articles"
       href: articles/index.html
       menu:
-        -  text: "---"
+        -  text: "K-Means"
+        -  text: "Auto M-Means Clustering"
+           href: articles/auto-kmeans.html
     - text: "Function Reference"
       href: reference/index.html
     - text: "News"

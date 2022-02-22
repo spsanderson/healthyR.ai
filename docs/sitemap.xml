@@ -4,6 +4,9 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/articles/auto-kmeans.html</loc>
+  </url>
+  <url>
     <loc>/articles/getting-started.html</loc>
   </url>
   <url>
@@ -52,6 +55,15 @@
     <loc>/reference/hai_data_trig.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_density_hist_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_density_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_density_qq_plot.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_distribution_comparison_tbl.html</loc>
   </url>
   <url>
@@ -67,7 +79,13 @@
     <loc>/reference/hai_fourier_vec.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_get_density_data_tbl.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_get_dist_data_tbl.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_histogram_facet_plot.html</loc>
   </url>
   <url>
     <loc>/reference/hai_hyperbolic_augment.html</loc>
