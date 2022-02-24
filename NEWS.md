@@ -11,6 +11,8 @@
 6. Fix #141 - Add function `hai_density_qq_plot()`
 7. Fix #139 - Add function `hai_density_hist_plot()`
 8. Fix #56 - Add function `hai_histogram_facet_plot()`
+9. Fix #178 - Add loadings plots to `pca_your_data()` output. Added a parameter
+of `.top_n` to get how many vairable loadings you want returned.
 
 ## Minor Fixes and Improvements
 1. Fix #180 - Move `cli` and `crayon` to Imports from Suggest due to `pillar` 

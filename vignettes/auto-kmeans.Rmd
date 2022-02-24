@@ -65,7 +65,7 @@ predictor_cols <- setdiff(column_names, target_col)
 
 Now we have our column inputs for the function, so we can go ahead and run it.
 
-```{r run_auto_ml}
+```{r run_auto_ml, eval=FALSE}
 h2o.init()
 
 output <- hai_kmeans_automl(
@@ -98,7 +98,7 @@ Inside of the data list there are several sections. We can view and access these
 very simply. You will find that all of the outputs have been labeled in a very
 simple to understand manner.
 
-```{r data_section}
+```{r data_section, eval=FALSE}
 output$data
 ```
 
@@ -106,7 +106,7 @@ output$data
 
 Now for the auto-ml object itself.
 
-```{r autom_obj}
+```{r autom_obj, eval=FALSE}
 output$auto_kmeans_obj
 ```
 
@@ -114,7 +114,7 @@ output$auto_kmeans_obj
 
 We also have in the output the best model that is saved off.
 
-```{r best_model}
+```{r best_model, eval=FALSE}
 output$model_id
 ```
 
@@ -124,6 +124,6 @@ There is also a `ggplot2` scree plot that is generated, this helps us to underst
 how many clusters are in the data resulting from minimizing the within sum of squares 
 errors.
 
-```{r scree_plot}
+```{r scree_plot, eval=FALSE}
 print(output$scree_plt)
 ```

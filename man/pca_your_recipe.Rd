@@ -4,7 +4,7 @@
 \alias{pca_your_recipe}
 \title{Perform PCA}
 \usage{
-pca_your_recipe(.recipe_object, .data, .threshold = 0.75)
+pca_your_recipe(.recipe_object, .data, .threshold = 0.75, .top_n = 5)
 }
 \arguments{
 \item{.recipe_object}{The recipe object you want to pass.}
@@ -14,6 +14,8 @@ into \code{.recipe_object} in order to obtain the baked data of the transform.}
 
 \item{.threshold}{A number between 0 and 1. A fraction of the total variance
 that should be covered by the components.}
+
+\item{.top_n}{How many variables loadings should be returned per PC}
 }
 \value{
 A list object with several components.
@@ -35,8 +37,12 @@ items that get returned are:
 \item pca_juiced_estimates
 \item pca_baked_data
 \item pca_variance_df
+\item pca_rotattion_df
 \item pca_variance_scree_plt
-\item pca_rotation_df
+\item pca_loadings_plt
+\item pca_loadings_plotly
+\item pca_top_n_loadings_plt
+\item pca_top_n_plotly
 }
 }
 \examples{
@@ -47,6 +53,7 @@ suppressPackageStartupMessages(library(healthyR.data))
 suppressPackageStartupMessages(library(rsample))
 suppressPackageStartupMessages(library(recipes))
 suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(plotly))
 
 data_tbl <- healthyR_data \%>\%
     select(visit_end_date_time) \%>\%
@@ -70,6 +77,8 @@ rec_obj <- recipe(value ~ ., training(splits)) \%>\%
 
 output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
 output_list$pca_variance_scree_plt
+output_list$pca_top_loadings_plt
+output_list$pca_top_n_loadings_plt
 
 }
 \seealso{

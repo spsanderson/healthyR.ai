@@ -46,6 +46,7 @@ suppressPackageStartupMessages(library(healthyR.data))
 suppressPackageStartupMessages(library(rsample))
 suppressPackageStartupMessages(library(recipes))
 suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(plotly))
 ```
 
 # Data
@@ -105,7 +106,8 @@ Now that we have out initial recipe we can use the `pca_your_recipe()` function.
 pca_list <- pca_your_recipe(
   .recipe_object = rec_obj,
   .data          = data_tbl,
-  .threshold     = 0.8
+  .threshold     = 0.8,
+  .top_n         = 5
 )
 ```
 
@@ -180,4 +182,12 @@ pca_list$pca_variance_df %>% glimpse()
 
 ```{r scree_plt, fig.width=8, fig.height=8}
 pca_list$pca_variance_scree_plt
+```
+
+## Variable Loading Plots
+
+```{r loading_plots}
+pca_list$pca_loadings_plt
+
+pca_list$pca_top_n_loadings_plt
 ```

@@ -9,7 +9,7 @@ hai_scale_zero_one_augment(.data, .value, .names = "auto")
 \arguments{
 \item{.data}{The data being passed that will be augmented by the function.}
 
-\item{.value}{This is passed \code{\link[rlang:nse-defuse]{rlang::enquo()}} to capture the vectors you want
+\item{.value}{This is passed \code{\link[rlang:enquo]{rlang::enquo()}} to capture the vectors you want
 to augment.}
 
 \item{.names}{This is set to 'auto' by default but can be a user supplied

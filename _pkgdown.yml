@@ -1,4 +1,5 @@
 template:
+  boostrap: 5
   params:
     bootswatch: flatly
     ganalytics: G-VBQMCBEYRN
