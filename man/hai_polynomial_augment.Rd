@@ -17,7 +17,7 @@ hai_polynomial_augment(
 
 \item{.formula}{This should be a valid formula like 'y ~ .^2' or NULL.}
 
-\item{.pred_col}{This is passed \code{\link[rlang:nse-defuse]{rlang::enquo()}} to capture the vector that you
+\item{.pred_col}{This is passed \code{\link[rlang:enquo]{rlang::enquo()}} to capture the vector that you
 designate as the 'y' column.}
 
 \item{.degree}{This should be an integer and is used to set the degree in the

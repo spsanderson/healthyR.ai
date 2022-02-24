@@ -24,14 +24,19 @@
 #'   5. pca_juiced_estimates
 #'   6. pca_baked_data
 #'   7. pca_variance_df
-#'   8. pca_variance_scree_plt
-#'   9. pca_rotation_df
+#'   8. pca_rotattion_df
+#'   9. pca_variance_scree_plt
+#'   10. pca_loadings_plt
+#'   11. pca_loadings_plotly
+#'   12. pca_top_n_loadings_plt
+#'   13. pca_top_n_plotly
 #'
 #' @param .recipe_object The recipe object you want to pass.
 #' @param .data The full data set that is used in the original recipe object passed
 #' into `.recipe_object` in order to obtain the baked data of the transform.
 #' @param .threshold A number between 0 and 1. A fraction of the total variance
 #' that should be covered by the components.
+#' @param .top_n How many variables loadings should be returned per PC
 #'
 #' @examples
 #' suppressPackageStartupMessages(library(timetk))
@@ -41,6 +46,7 @@
 #' suppressPackageStartupMessages(library(rsample))
 #' suppressPackageStartupMessages(library(recipes))
 #' suppressPackageStartupMessages(library(ggplot2))
+#' suppressPackageStartupMessages(library(plotly))
 #'
 #' data_tbl <- healthyR_data %>%
 #'     select(visit_end_date_time) %>%
@@ -64,6 +70,8 @@
 #'
 #' output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
 #' output_list$pca_variance_scree_plt
+#' output_list$pca_top_loadings_plt
+#' output_list$pca_top_n_loadings_plt
 #'
 #' @return
 #' A list object with several components.
@@ -71,11 +79,12 @@
 #' @export
 #'
 
-pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75){
+pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75, .top_n = 5){
 
     # Variables ----
     rec_obj       <- .recipe_object
     threshold_var <- .threshold
+    n <- .top_n
 
     # * Checks ----
     # Is the .recipe_object in fact a class of recipe?
@@ -142,8 +151,13 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75){
         ) +
         ggplot2::geom_col() +
         ggplot2::scale_y_continuous(labels = scales::percent) +
-        tidyquant::scale_fill_tq() +
-        tidyquant::theme_tq() +
+        ggplot2::scale_fill_manual(
+            values = c("Over" = "red",
+                       "Under" = "darkgreen")
+        ) +
+        #tidyquant::scale_fill_tq() +
+        #tidyquant::theme_tq() +
+        ggplot2::theme_minimal() +
         ggplot2::labs(
             title = "PCA Scree Plot"
             , subtitle = "Typically the first red column is your last PC"
@@ -151,6 +165,58 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75){
             , y = "% Variance Explained"
             , fill = "Threshold Indicator"
         )
+
+    var_load_plt_tbl <- variable_loadings
+    var_load_plt_tbl$component <- forcats::fct_inorder(var_load_plt_tbl$component)
+    var_load_plt_tbl$pos_neg <- ifelse(var_load_plt_tbl$value > 0, "Positive", "Negative")
+    pca_range <- max(abs(var_load_plt_tbl$value))
+    pca_range <- c(-pca_range, pca_range)
+    loadings_plt <- var_load_plt_tbl %>%
+        dplyr::mutate(component = component) %>%
+        ggplot2::ggplot(ggplot2::aes(value, terms, fill = pos_neg)) +
+        ggplot2::geom_col(show.legend = FALSE) +
+        ggplot2::facet_wrap(~ component) +
+        ggplot2::labs(y = NULL, x = "Coefficient Value") +
+        ggplot2::xlim(pca_range) +
+        ggplot2::theme_minimal() +
+        ggplot2::scale_fill_manual(
+            values = c("Positive" = "darkgreen",
+                       "Negative" = "red")
+        )
+
+    var_load_top_n_plt_tbl <- variable_loadings %>%
+        dplyr::mutate(component = forcats::fct_inorder(component)) %>%
+        dplyr::mutate(
+            `Positive?` = value > 0,
+            abs_value = abs(value)
+        ) %>%
+        dplyr::group_by(component) %>%
+        dplyr::slice_max(abs_value, n = n) %>%
+        dplyr::ungroup() %>%
+        dplyr::arrange(component, abs_value) %>%
+        dplyr::mutate(order = dplyr::row_number())
+
+    # Tactics based on
+    # https://drsimonj.svbtle.com/ordering-categories-within-ggplot2-facets
+    # https://github.com/tidymodels/learntidymodels/blob/main/R/plot_top_loadings.R
+    var_load_top_n_plt <- var_load_top_n_plt_tbl %>%
+        ggplot2::ggplot(ggplot2::aes(x = order, y = abs_value, fill = `Positive?`)) +
+        ggplot2::geom_col() +
+        ggplot2::coord_flip() +
+        ggplot2::facet_wrap(~ component, scales = "free_y") +
+        ggplot2::scale_x_continuous(
+            breaks = var_load_top_n_plt_tbl$order,
+            labels = var_load_top_n_plt_tbl$terms,
+            expand = c(0,0)
+        ) +
+        ggplot2::labs(x = NULL, y = "Abs. Coefficient Value") +
+        ggplot2::theme_minimal() +
+        ggplot2::theme(legend.position = "bottom") +
+        ggplot2::scale_fill_manual(
+            values = c("FALSE" = "red",
+                       "TRUE" = "darkgreen")
+        )
+
     # * Build List ----
     output_list <- list(
         pca_transform          = pca_transform,
@@ -160,8 +226,12 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75){
         pca_juiced_estimates   = juiced_estimates,
         pca_baked_data         = pca_baked_data,
         pca_variance_df        = var_df,
+        pca_rotation_df        = pca_rotation_df,
         pca_variance_scree_plt = var_plt,
-        pca_rotation_df        = pca_rotation_df
+        pca_loadings_plt       = loadings_plt,
+        pca_loadings_plotly    = plotly::ggplotly(loadings_plt),
+        pca_top_n_loadings_plt = var_load_top_n_plt,
+        pca_top_n_plotly       = plotly::ggplotly(var_load_top_n_plt)
     )
 
     # * Return ----
