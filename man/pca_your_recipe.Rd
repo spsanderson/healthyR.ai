@@ -77,7 +77,7 @@ rec_obj <- recipe(value ~ ., training(splits)) \%>\%
 
 output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
 output_list$pca_variance_scree_plt
-output_list$pca_top_loadings_plt
+output_list$pca_loadings_plt
 output_list$pca_top_n_loadings_plt
 
 }
