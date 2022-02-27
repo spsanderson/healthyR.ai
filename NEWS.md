@@ -18,6 +18,7 @@ of `.top_n` to get how many vairable loadings you want returned.
 1. Fix #180 - Move `cli` and `crayon` to Imports from Suggest due to `pillar` 
 not importing anymore.
 2. Fix #182 - Drop need for `cli`, `crayon`, and `rstudioapi`
+3. Fix #187 - Update step print methods as described by the tidymodels team.
 
 ## Breaking Changes
 None
