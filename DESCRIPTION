@@ -31,12 +31,12 @@ Imports:
     recipes,
     rsample,
     purrr,
-    h2o
+    h2o,
+    stats
 Suggests: 
     rmarkdown,
     knitr,
     roxygen2,
-    stats,
     tidyquant,
     healthyR.data,
     scales,
