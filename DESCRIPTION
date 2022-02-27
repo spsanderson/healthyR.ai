@@ -31,7 +31,8 @@ Imports:
     recipes,
     rsample,
     purrr,
-    h2o
+    h2o,
+    stats
 Suggests: 
     rmarkdown,
     knitr,
