@@ -1,5 +1,3 @@
-# healthyR.ai 0.0.7
-
 # healthyR.ai 0.0.6
 
 ## New Features
