@@ -9,4 +9,6 @@
 
 Update package to 0.0.6
 
-All issues per email from CRAN addressed and fixed as evidenced by rhub check
+All issues per email from CRAN addressed and fixed as evidenced by rhub check.
+Per CRAN changed from if(class(.x) == "Date") and if(calss(.x) == "POSIXct") to
+if(inherits(x = .x, "Date")) and if(inherits(x = .x, "POSIXct"))
