@@ -37,7 +37,6 @@ Suggests:
     rmarkdown,
     knitr,
     roxygen2,
-    stats,
     tidyquant,
     healthyR.data,
     scales,
