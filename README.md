@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/healthyR.ai)](https://cran.r-project.org/package=healthyR.ai)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/healthyR.ai)](https://cran.r-project.org/package=healthyR.ai)
 ![](https://cranlogs.r-pkg.org/badges/healthyR.ai)
 ![](https://cranlogs.r-pkg.org/badges/grand-total/healthyR.ai)
 [![Lifecycle:
@@ -39,11 +39,18 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(healthyR.ai)
-#> == Welcome to healthyR.ai ======================================================
-#> If you find this package useful, please leave a star: https://github.com/spsanderson/healthyR.ai
+#> Registered S3 method overwritten by 'tune':
+#>   method                   from   
+#>   required_pkgs.model_spec parsnip
+#> 
+#> == Welcome to healthyR.ai ===========================================================================
+#> If you find this package useful, please leave a star: 
+#>    https://github.com/spsanderson/healthyR.ai'
+#> 
 #> If you encounter a bug or want to request an enhancement please file an issue at:
 #>    https://github.com/spsanderson/healthyR.ai/issues
-#> Thank you for using healthyR.ai!
+#> 
+#> Thank you for using healthyR.ai
 library(ggplot2)
 
 data_tbl <- tibble::tibble(
