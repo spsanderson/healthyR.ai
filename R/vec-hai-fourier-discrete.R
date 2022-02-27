@@ -61,9 +61,9 @@
 
 hai_fourier_discrete_vec <- function(.x, .period, .order, .scale_type = c("sin","cos","sincos")){
 
-    if(class(.x) == "Date"){
+    if(inherits(x = .x, "Date")){
         x_term <- as.numeric(.x) %>% as.integer()
-    } else if(class(.x) == "POSIXct") {
+    } else if(inherits(x = .x, "POSIXct")) {
         x_term <- as.numeric(.x) %>% as.integer()
     } else {
         x_term <- .x
