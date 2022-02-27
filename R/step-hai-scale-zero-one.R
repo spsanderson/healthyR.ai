@@ -159,16 +159,9 @@ bake.step_hai_scale_zero_one <- function(object, new_data, ...){
 
 #' @export
 print.step_hai_scale_zero_one <- function(x, width = max(20, options()$width - 35), ...){
-    cat("Zero-One Scale transformations on ", sep = "")
-    printer(
-        # Names before prep (could be selectors)
-        untr_obj = x$terms,
-        # Names after prep:
-        tr_obj = names(x$columns),
-        # Has it been prepped?
-        trained = x$trained,
-        # An estimate of how many characters to print on a line:
-        width = width
+    title <- "Zero-One Scale Transformation on "
+    recipes::print_step(
+        x$columns, x$terms, x$trained, width = width, title = title
     )
     invisible(x)
 
