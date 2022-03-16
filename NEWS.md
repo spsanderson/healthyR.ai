@@ -2,6 +2,7 @@
 
 ## New Features
 1. Fix #209 - Add function `hai_skewed_features()`
+2. Fix #210 - Export current internal functions.
 
 ## Minor Fixes and Improvements
 None

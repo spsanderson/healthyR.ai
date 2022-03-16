@@ -40,6 +40,9 @@ reference:
   -  title: Data Wrangling
      contents:
      -  "get_juiced_data"
+  -  title: Data Preprocessors
+     contents:
+     -  has_concept(Preprocessor)
   -  title: Recipe Steps
      desc: Functions to add recipe steps
      contents:
