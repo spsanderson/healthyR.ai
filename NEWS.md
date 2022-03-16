@@ -1,5 +1,14 @@
 # healthyR.ai (development version)
 
+## New Features
+1. Fix #209 - Add function `hai_skewed_features()`
+
+## Minor Fixes and Improvements
+None
+
+## Breaking Changes
+None
+
 # healthyR.ai 0.0.6
 
 ## New Features
