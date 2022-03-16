@@ -126,4 +126,3 @@ Steven P. Sanderson II, MPH
 }
 \concept{Data Recipes}
 \concept{Preprocessor}
-\keyword{internal}
