@@ -155,8 +155,6 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75, .top_n = 5
             values = c("Over" = "red",
                        "Under" = "darkgreen")
         ) +
-        #tidyquant::scale_fill_tq() +
-        #tidyquant::theme_tq() +
         ggplot2::theme_minimal() +
         ggplot2::labs(
             title = "PCA Scree Plot"
