@@ -146,7 +146,7 @@ hai_control_chart <- function(
             title = .plt_title
             , caption = .plt_catpion
         ) +
-        tidyquant::theme_tq()
+        ggplot2::theme_minimal()
 
     if (.print_plot) {
         print(chart)

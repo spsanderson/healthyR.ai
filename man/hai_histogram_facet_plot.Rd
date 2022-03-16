@@ -10,7 +10,7 @@ hai_histogram_facet_plot(
   .ncol = 5,
   .fct_reorder = FALSE,
   .fct_rev = FALSE,
-  .fill = tidyquant::palette_light()[[3]],
+  .fill = "steelblue",
   .color = "white",
   .scale = "free",
   .interactive = FALSE
@@ -27,7 +27,7 @@ hai_histogram_facet_plot(
 
 \item{.fct_rev}{Should the factor column be reversed? TRUE/FALSE, default of FALSE}
 
-\item{.fill}{Default is \code{tidyquant::palaette_light()[[3]]}}
+\item{.fill}{Default is \code{steelblue}}
 
 \item{.color}{Default is 'white'}
 
