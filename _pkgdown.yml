@@ -57,3 +57,4 @@ reference:
   -  title: Miscellaneous Functions
      contents:
      -  "hai_range_statistic"
+     -  "hai_skewed_features"
