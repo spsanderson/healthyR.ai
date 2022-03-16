@@ -12,7 +12,7 @@
 #' @param .ncol The number of columns for the facet_warp argument.
 #' @param .fct_reorder Should the factor column be reordered? TRUE/FALSE, default of FALSE
 #' @param .fct_rev Should the factor column be reversed? TRUE/FALSE, default of FALSE
-#' @param .fill Default is `tidyquant::palaette_light()[[3]]`
+#' @param .fill Default is `steelblue`
 #' @param .color Default is 'white'
 #' @param .scale Default is 'free'
 #' @param .interactive Default is FALSE, TRUE will produce a `plotly` plot.
@@ -28,7 +28,7 @@
 #'
 
 hai_histogram_facet_plot <- function(.data, .bins = 10, .ncol = 5, .fct_reorder = FALSE,
-                                 .fct_rev = FALSE, .fill = tidyquant::palette_light()[[3]],
+                                 .fct_rev = FALSE, .fill = "steelblue",
                                  .color = "white", .scale = "free", .interactive = FALSE) {
 
     # Tidyeval ----
