@@ -3,7 +3,6 @@
 #' @family Data Recipes
 #' @family Preprocessor
 #'
-#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
