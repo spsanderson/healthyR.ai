@@ -3,9 +3,14 @@
 ## New Features
 1. Fix #209 - Add function `hai_skewed_features()`
 2. Fix #210 - Export current internal functions.
+3. Fix #208 - Enhance `hai_histogram_facet_plot()` 
 
 ## Minor Fixes and Improvements
-None
+1. Fix #208 - Enhance `hai_histogram_facet_plot()` It now returns a list output
+invisible while printing the plot out. The list includes the original data and
+the factored data along with the plot. There has been a parameter addition of 
+`.scale_data` which is set to FALSE and uses `hai_scale_zero_one_vec()` to do 
+the work.
 
 ## Breaking Changes
 None

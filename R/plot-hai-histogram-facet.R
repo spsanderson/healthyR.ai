@@ -8,7 +8,9 @@
 #' faceted histogram.
 #'
 #' @param .data The data you want to pass to the function.
-#' @param .bins The number of bins for the historgrams.
+#' @param .bins The number of bins for the histograms.
+#' @param .scale_data This is a boolean set to FALSE. TRUE will use `hai_scale_zero_one_vec()`
+#' to `[0, 1]` scale the data.
 #' @param .ncol The number of columns for the facet_warp argument.
 #' @param .fct_reorder Should the factor column be reordered? TRUE/FALSE, default of FALSE
 #' @param .fct_rev Should the factor column be reversed? TRUE/FALSE, default of FALSE
@@ -27,15 +29,17 @@
 #' @export
 #'
 
-hai_histogram_facet_plot <- function(.data, .bins = 10, .ncol = 5, .fct_reorder = FALSE,
-                                 .fct_rev = FALSE, .fill = "steelblue",
-                                 .color = "white", .scale = "free", .interactive = FALSE) {
+hai_histogram_facet_plot <- function(.data, .bins = 10, .scale_data = FALSE, .ncol = 5,
+                                     .fct_reorder = FALSE, .fct_rev = FALSE,
+                                     .fill = "steelblue", .color = "white",
+                                     .scale = "free", .interactive = FALSE) {
 
     # Tidyeval ----
     bins <- as.numeric(.bins)
     n_col <- as.numeric(.ncol)
     fctreorder <- as.logical(.fct_reorder)
     fctrev <- as.logical(.fct_rev)
+    scle <- as.logical(.scale_data)
     fill <- .fill
     color <- .color
     scale <- .scale
@@ -51,6 +55,16 @@ hai_histogram_facet_plot <- function(.data, .bins = 10, .ncol = 5, .fct_reorder 
 
     # Data ----
     data <- dplyr::as_tibble(.data)
+
+    if (scle){
+        data <- data %>%
+            dplyr::mutate(
+                dplyr::across(
+                    .cols = tidyselect::vars_select_helpers$where(is.numeric),
+                    .fns  = healthyR.ai::hai_scale_zero_one_vec
+                )
+            )
+    }
 
     data_factored <- data %>%
         dplyr::mutate(
@@ -77,6 +91,7 @@ hai_histogram_facet_plot <- function(.data, .bins = 10, .ncol = 5, .fct_reorder 
             dplyr::mutate(key = fct_rev(key))
     }
 
+    # Plot----
     g <- data_factored %>%
         ggplot2::ggplot(ggplot2::aes(x = value, group = key)) +
         ggplot2::geom_histogram(bins = bins, fill = fill, color = color) +
@@ -87,5 +102,16 @@ hai_histogram_facet_plot <- function(.data, .bins = 10, .ncol = 5, .fct_reorder 
         g <- plotly::ggplotly(g)
     }
 
-    return(g)
+    # Return ----
+    output <- list(
+        data = list(
+            input_data    = data,
+            data_factored = data_factored
+        ),
+        plot = g
+    )
+
+    print(g)
+    return(invisible(output))
+
 }
