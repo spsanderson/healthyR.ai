@@ -83,8 +83,13 @@
 </ol></div>
 <div class="section level3">
 <h3 id="minor-fixes-and-improvements-development-version">Minor Fixes and Improvements<a class="anchor" aria-label="anchor" href="#minor-fixes-and-improvements-development-version"></a></h3>
-<p>None</p>
-</div>
+<ol style="list-style-type: decimal"><li>Fix <a href="https://github.com/spsanderson/healthyR.ai/issues/208" class="external-link">#208</a> - Enhance <code><a href="../reference/hai_histogram_facet_plot.html">hai_histogram_facet_plot()</a></code> It now
+returns a list output invisible while printing the plot out. The list
+includes the original data and the factored data along with the plot.
+There has been a parameter addition of <code>.scale_data</code> which is
+set to FALSE and uses <code><a href="../reference/hai_scale_zero_one_vec.html">hai_scale_zero_one_vec()</a></code> to do the
+work.</li>
+</ol></div>
 <div class="section level3">
 <h3 id="breaking-changes-development-version">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
 <p>None</p>

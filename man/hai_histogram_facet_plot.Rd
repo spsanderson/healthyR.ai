@@ -52,6 +52,7 @@ Takes in a data.frame/tibble and returns a faceted historgram.
 \examples{
 
 hai_histogram_facet_plot(.data = iris)
+hai_histogram_facet_plot(.data = iris, .scale_data = TRUE)
 
 }
 \author{

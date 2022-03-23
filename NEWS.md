@@ -3,7 +3,6 @@
 ## New Features
 1. Fix #209 - Add function `hai_skewed_features()`
 2. Fix #210 - Export current internal functions.
-3. Fix #208 - Enhance `hai_histogram_facet_plot()` 
 
 ## Minor Fixes and Improvements
 1. Fix #208 - Enhance `hai_histogram_facet_plot()` It now returns a list output
