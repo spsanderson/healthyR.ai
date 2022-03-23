@@ -7,6 +7,7 @@
 hai_histogram_facet_plot(
   .data,
   .bins = 10,
+  .scale_data = FALSE,
   .ncol = 5,
   .fct_reorder = FALSE,
   .fct_rev = FALSE,
@@ -19,7 +20,10 @@ hai_histogram_facet_plot(
 \arguments{
 \item{.data}{The data you want to pass to the function.}
 
-\item{.bins}{The number of bins for the historgrams.}
+\item{.bins}{The number of bins for the histograms.}
+
+\item{.scale_data}{This is a boolean set to FALSE. TRUE will use \code{hai_scale_zero_one_vec()}
+to \verb{[0, 1]} scale the data.}
 
 \item{.ncol}{The number of columns for the facet_warp argument.}
 
@@ -48,6 +52,7 @@ Takes in a data.frame/tibble and returns a faceted historgram.
 \examples{
 
 hai_histogram_facet_plot(.data = iris)
+hai_histogram_facet_plot(.data = iris, .scale_data = TRUE)
 
 }
 \author{
