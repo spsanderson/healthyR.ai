@@ -6,16 +6,19 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
-#' Takes a numeric vector and will return a vector that has been scaled from `[0,1]`
+#' Takes a numeric vector and will return a vector that has been scaled by mean
+#' and standard deviation
 #'
 #' @details
-#' Takes a numeric vector and will return a vector that has been scaled from `[0,1]`
+#' Takes a numeric vector and will return a vector that has been scaled by mean
+#' and standard deviation.
+#'
 #' The input vector must be numeric. The computation is fairly straightforward.
 #' This may be helpful when trying to compare the distributions of data where a
 #' distribution like beta from the `fitdistrplus` package which requires data to be
 #' between 0 and 1
 #'
-#' \deqn{y[h] = (x - min(x))/(max(x) - min(x))}
+#' \deqn{y[h] = (x - mean(x) / sd(x))}
 #'
 #' This function is intended to be used on its own in order to add columns to a
 #' tibble.
@@ -27,8 +30,8 @@
 #' character string.
 #'
 #' @examples
-#' df <- data.frame(x = rnorm(100, 2, 1))
-#' hai_scale_zero_one_augment(df, x)
+#' df <- data.frame(x = mtcars$mpg)
+#' hai_scale_zscore_augment(df, x)
 #'
 #' @return
 #' An augmented tibble
@@ -36,7 +39,7 @@
 #' @export
 #
 
-hai_scale_zero_one_augment <- function(.data, .value, .names = "auto"){
+hai_scale_zscore_augment <- function(.data, .value, .names = "auto"){
 
     column_expr <- rlang::enquo(.value)
 
@@ -48,7 +51,7 @@ hai_scale_zero_one_augment <- function(.data, .value, .names = "auto"){
 
     make_call <- function(col){
         rlang::call2(
-            "hai_scale_zero_one_vec",
+            "hai_scale_zscore_vec",
             .x = rlang::sym(col)
             , .ns = "healthyR.ai"
         )
@@ -62,7 +65,7 @@ hai_scale_zero_one_augment <- function(.data, .value, .names = "auto"){
     calls <- purrr::pmap(.l = list(grid$col), make_call)
 
     if(any(.names == "auto")){
-        newname <- paste0("hai_scale_zero_one_", grid$col)
+        newname <- paste0("hai_scale_zscore_", grid$col)
     } else {
         newname <- as.list(.names)
     }
