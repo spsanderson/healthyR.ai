@@ -1,6 +1,7 @@
 #' Vector Function Scale to Zero and One
 #'
 #' @family Vector Function
+#' @family Scale
 #'
 #' @author Steven P. Sanderson II, MPH
 #'

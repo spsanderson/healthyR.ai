@@ -53,6 +53,7 @@ Other Augment Function:
 \code{\link{hai_hyperbolic_augment}()},
 \code{\link{hai_polynomial_augment}()},
 \code{\link{hai_scale_zero_one_augment}()},
+\code{\link{hai_scale_zscore_augment}()},
 \code{\link{hai_winsorized_move_augment}()}
 }
 \author{

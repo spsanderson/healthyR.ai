@@ -115,8 +115,14 @@ tibble.</p>
 <code><a href="hai_fourier_discrete_augment.html">hai_fourier_discrete_augment</a>()</code>,
 <code><a href="hai_hyperbolic_augment.html">hai_hyperbolic_augment</a>()</code>,
 <code><a href="hai_polynomial_augment.html">hai_polynomial_augment</a>()</code>,
+<code><a href="hai_scale_zscore_augment.html">hai_scale_zscore_augment</a>()</code>,
 <code><a href="hai_winsorized_move_augment.html">hai_winsorized_move_augment</a>()</code>,
-<code><a href="hai_winsorized_truncate_augment.html">hai_winsorized_truncate_augment</a>()</code></p></div>
+<code><a href="hai_winsorized_truncate_augment.html">hai_winsorized_truncate_augment</a>()</code></p>
+<p>Other Scale: 
+<code><a href="hai_scale_zero_one_vec.html">hai_scale_zero_one_vec</a>()</code>,
+<code><a href="hai_scale_zscore_augment.html">hai_scale_zscore_augment</a>()</code>,
+<code><a href="hai_scale_zscore_vec.html">hai_scale_zscore_vec</a>()</code>,
+<code><a href="step_hai_scale_zscore.html">step_hai_scale_zscore</a>()</code></p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -128,18 +134,18 @@ tibble.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">hai_scale_zero_one_augment</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 x 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        x hai_scale_zero_one_x</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 0.810                0.248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2.76                 0.709</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1.44                 0.397</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1.70                 0.459</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1.91                 0.510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 0.690                0.220</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1.55                 0.423</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2.17                 0.571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1.99                 0.528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2.15                 0.567</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            x hai_scale_zero_one_x</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  1.72                    0.508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  3.42                    0.862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  2.48                    0.665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  1.20                    0.400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  1.53                    0.469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  2.60                    0.690</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  1.85                    0.534</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> -<span style="color: #BB0000;">0.000</span><span style="color: #BB0000; text-decoration: underline;">684</span>                0.151</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  2.32                    0.633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  2.34                    0.637</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 90 more rows</span></span>
 <span class="r-in"></span>
 </code></pre></div>

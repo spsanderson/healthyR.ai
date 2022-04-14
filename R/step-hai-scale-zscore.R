@@ -1,9 +1,10 @@
-#' Recipes Data Scale to Zero and One
+#' Recipes Data Scale by Z-Score
 #'
 #' @family Recipes
+#' @family Scale
 #'
 #' @description
-#' `step_hai_scale_zero_one` creates a a *specification* of a recipe
+#' `step_hai_scale_zscore` creates a a *specification* of a recipe
 #'  step that will convert numeric data into from a time series into its
 #'  velocity.
 #'
@@ -28,7 +29,7 @@
 #'  using skip = TRUE as it may affect the computations for subsequent operations.
 #' @param id A character string that is unique to this step to identify it.
 #'
-#' @return For `step_hai_scale_zero_one`, an updated version of recipe with
+#' @return For `step_hai_scale_zscore`, an updated version of recipe with
 #'  the new step added to the sequence of existing steps (if any).
 #'
 #'  Main Recipe Functions:
@@ -40,7 +41,7 @@
 #' @details
 #'
 #' __Numeric Variables__
-#'  Unlike other steps, `step_hai_scale_zero_one` does *not*
+#'  Unlike other steps, `step_hai_scale_zscore` does *not*
 #'  remove the original numeric variables. [recipes::step_rm()] can be
 #'  used for this purpose.
 #'
@@ -48,11 +49,13 @@
 #' suppressPackageStartupMessages(library(dplyr))
 #' suppressPackageStartupMessages(library(recipes))
 #'
-#' data_tbl <- data.frame(a = rnorm(200, 3, 1), b = rnorm(200, 2, 2))
+#' data_tbl <- data.frame(a = mtcars$mpg
+#'   , b = AirPassengers %>% as.vector() %>% head(32)
+#' )
 #'
 #' # Create a recipe object
 #' rec_obj <- recipe(a ~ ., data = data_tbl) %>%
-#'   step_hai_scale_zero_one(b)
+#'   step_hai_scale_zscore(b)
 #'
 #' # View the recipe object
 #' rec_obj
@@ -69,20 +72,20 @@
 #'
 #' @importFrom recipes prep bake rand_id
 
-step_hai_scale_zero_one <- function(recipe,
+step_hai_scale_zscore <- function(recipe,
                                     ...,
                                     role = "predictor",
                                     trained = FALSE,
                                     columns = NULL,
                                     skip = FALSE,
-                                    id = rand_id("hai_scale_zero_one")
+                                    id = rand_id("hai_scale_zscore")
 ){
 
     terms <- recipes::ellipse_check(...)
 
     recipes::add_step(
         recipe,
-        step_hai_scale_zero_one_new(
+        step_hai_scale_zscore_new(
             terms = terms,
             role = role,
             trained = trained,
@@ -93,10 +96,10 @@ step_hai_scale_zero_one <- function(recipe,
     )
 }
 
-step_hai_scale_zero_one_new <- function(terms, role, trained, columns, skip, id){
+step_hai_scale_zscore_new <- function(terms, role, trained, columns, skip, id){
 
     recipes::step(
-        subclass = "hai_scale_zero_one",
+        subclass = "hai_scale_zscore",
         terms = terms,
         role = role,
         trained = trained,
@@ -107,7 +110,7 @@ step_hai_scale_zero_one_new <- function(terms, role, trained, columns, skip, id)
 }
 
 #' @export
-prep.step_hai_scale_zero_one <- function(x, training, info = NULL, ...){
+prep.step_hai_scale_zscore <- function(x, training, info = NULL, ...){
 
     col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
@@ -115,12 +118,12 @@ prep.step_hai_scale_zero_one <- function(x, training, info = NULL, ...){
 
     if(any(value_data$type != "numeric")){
         rlang::abort(
-            paste0("All variables for `step_hai_scale_zero_one` must be `numeric`",
+            paste0("All variables for `step_hai_scale_zscore` must be `numeric`",
                    "`integer`,`double` classes.")
         )
     }
 
-    step_hai_scale_zero_one_new(
+    step_hai_scale_zscore_new(
         terms   = x$terms,
         role    = x$role,
         trained = TRUE,
@@ -132,11 +135,11 @@ prep.step_hai_scale_zero_one <- function(x, training, info = NULL, ...){
 }
 
 #' @export
-bake.step_hai_scale_zero_one <- function(object, new_data, ...){
+bake.step_hai_scale_zscore <- function(object, new_data, ...){
 
     make_call <- function(col){
         rlang::call2(
-            "hai_scale_zero_one_vec",
+            "hai_scale_zscore_vec",
             .x = rlang::sym(col),
             .ns = "healthyR.ai"
         )
@@ -150,7 +153,7 @@ bake.step_hai_scale_zero_one <- function(object, new_data, ...){
     calls <- purrr::pmap(.l = list(grid$col), make_call)
 
     # Columns Names
-    newname <- paste0("hai_scale_zero_one_", grid$col)
+    newname <- paste0("hai_scale_zscore_", grid$col)
     calls <- recipes::check_name(calls, new_data, object, newname, TRUE)
 
     tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
@@ -158,7 +161,7 @@ bake.step_hai_scale_zero_one <- function(object, new_data, ...){
 }
 
 #' @export
-print.step_hai_scale_zero_one <- function(x, width = max(20, options()$width - 35), ...){
+print.step_hai_scale_zscore <- function(x, width = max(20, options()$width - 35), ...){
     title <- "Zero-One Scale Transformation on "
     recipes::print_step(
         x$columns, x$terms, x$trained, width = width, title = title
@@ -174,6 +177,6 @@ print.step_hai_scale_zero_one <- function(x, width = max(20, options()$width - 3
 #' @param x A recipe step
 # @noRd
 #' @export
-required_pkgs.step_hai_scale_zero_one <- function(x, ...) {
+required_pkgs.step_hai_scale_zscore <- function(x, ...) {
     c("healthyR.ai")
 }

@@ -35,6 +35,7 @@ Other Vector Function:
 \code{\link{hai_hyperbolic_vec}()},
 \code{\link{hai_kurtosis_vec}()},
 \code{\link{hai_scale_zero_one_vec}()},
+\code{\link{hai_scale_zscore_vec}()},
 \code{\link{hai_winsorized_move_vec}()},
 \code{\link{hai_winsorized_truncate_vec}()}
 }

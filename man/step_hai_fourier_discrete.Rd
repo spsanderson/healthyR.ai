@@ -110,6 +110,7 @@ Other Recipes:
 \code{\link{step_hai_fourier}()},
 \code{\link{step_hai_hyperbolic}()},
 \code{\link{step_hai_scale_zero_one}()},
+\code{\link{step_hai_scale_zscore}()},
 \code{\link{step_hai_winsorized_move}()},
 \code{\link{step_hai_winsorized_truncate}()}
 }

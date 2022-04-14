@@ -133,6 +133,12 @@
     <loc>/reference/hai_scale_zero_one_vec.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_scale_zscore_augment.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_scale_zscore_vec.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_skewed_features.html</loc>
   </url>
   <url>
@@ -179,6 +185,9 @@
   </url>
   <url>
     <loc>/reference/step_hai_scale_zero_one.html</loc>
+  </url>
+  <url>
+    <loc>/reference/step_hai_scale_zscore.html</loc>
   </url>
   <url>
     <loc>/reference/step_hai_winsorized_move.html</loc>
