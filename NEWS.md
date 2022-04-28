@@ -8,6 +8,9 @@ None
 2. Fix #210 - Export current internal functions.
 3. Fix #206 - Add functions `hai_scale_zscore_vec()` and `hai_scale_zscore_augment()` 
 and add `step_hai_scale_zscore()`
+4. Fix #207 - Add function `hai_knn_data_prepper()`
+5. Fix #220 - Add function `hai_default_regression_metric_set()`
+6. Fix #222 - Add function `hai_default_classification_metric_set()`
 
 ## Minor Fixes and Improvements
 1. Fix #208 - Enhance `hai_histogram_facet_plot()` It now returns a list output
