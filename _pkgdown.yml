@@ -61,3 +61,6 @@ reference:
      contents:
      -  "hai_range_statistic"
      -  "hai_skewed_features"
+  -  title: Metric Sets
+     contents:
+     -  has_concept("Default Metric Sets")
