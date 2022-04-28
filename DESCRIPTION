@@ -43,7 +43,9 @@ Suggests:
     janitor,
     timetk,
     plotly,
-    rsample
+    rsample,
+    kknn,
+    hardhat
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
