@@ -11,6 +11,7 @@ and add `step_hai_scale_zscore()`
 4. Fix #207 - Add function `hai_knn_data_prepper()`
 5. Fix #220 - Add function `hai_default_regression_metric_set()`
 6. Fix #222 - Add function `hai_default_classification_metric_set()`
+7. Fix #205 and #223 - Add function `hai_auto_knn()`
 
 ## Minor Fixes and Improvements
 1. Fix #208 - Enhance `hai_histogram_facet_plot()` It now returns a list output
