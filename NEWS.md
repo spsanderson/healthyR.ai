@@ -18,6 +18,7 @@ invisible while printing the plot out. The list includes the original data and
 the factored data along with the plot. There has been a parameter addition of 
 `.scale_data` which is set to FALSE and uses `hai_scale_zero_one_vec()` to do 
 the work.
+2. Fix #221 - Add yardstick (>= 0.0.8) to DESCRIPTION file.
 
 ## Breaking Changes
 None

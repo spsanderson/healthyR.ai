@@ -20,6 +20,7 @@ BugReports: https://github.com/spsanderson/healthyR.ai/issues
 Imports: 
     magrittr,
     rlang (>= 0.1.2),
+    yardstick (>= 0.0.8),
     utils,
     broom,
     ggrepel,
