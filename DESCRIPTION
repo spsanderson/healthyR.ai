@@ -32,7 +32,12 @@ Imports:
     recipes,
     purrr,
     h2o,
-    stats
+    stats,
+    dials,
+    parsnip,
+    tune,
+    workflows,
+    modeltime
 Suggests: 
     rmarkdown,
     knitr,
