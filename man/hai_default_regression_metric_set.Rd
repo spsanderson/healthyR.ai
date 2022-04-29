@@ -15,6 +15,10 @@ Default regression metric sets from \code{yardstick}
 \details{
 Default regression metric sets from \code{yardstick}
 }
+\examples{
+hai_default_regression_metric_set()
+
+}
 \seealso{
 Other Default Metric Sets: 
 \code{\link{hai_default_classification_metric_set}()}
