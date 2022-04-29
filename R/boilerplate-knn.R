@@ -19,10 +19,10 @@
 #' `hai_knn_data_prepper()` and an automatic recipe_object.
 #' @param .splits_obj NULL is the default, when NULL then one will be created.
 #' @param .rsamp_obj NULL is the default, when NULL then one will be created. It
-#' will default to creating an [rsamples::mc_cv()] object.
+#' will default to creating an [rsample::mc_cv()] object.
 #' @param .tune Default is TRUE, this will create a tuning grid and tuned workflow
 #' @param .grid_size Default is 10
-#' @param .num_cres Default is 1
+#' @param .num_cores Default is 1
 #' @param .best_metric Default is "rmse". You can choose a metric depending on the
 #' model_type used. If `regression` then see [healthyR.ai::hai_default_regression_metric_set()],
 #' if `classification` then see [healthyR.ai::hai_default_classification_metric_set()].
