@@ -32,7 +32,7 @@ reference:
      desc: Functions for Clustering and Analysis
   -  subtitle: K-Means
      contents:
-     -  contains("hai_kmeans")
+     -  has_concetp("Kmeans")
   -  title: Boiler Plate functions
      desc: Functions for automatic Recipes, Workflows and Tuned models.
      contents:
@@ -60,7 +60,7 @@ reference:
      -  contains("_vec")
   -  title: Augmenting Functions
      contents:
-     -  contains("_augment")
+     -  has_concept("Augment Function")
   -  title: Miscellaneous Functions
      contents:
      -  "hai_range_statistic"
