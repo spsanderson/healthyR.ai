@@ -19,7 +19,7 @@
 #' `hai_knn_data_prepper()` and an automatic recipe_object.
 #' @param .splits_obj NULL is the default, when NULL then one will be created.
 #' @param .rsamp_obj NULL is the default, when NULL then one will be created. It
-#' will default to creating an [ramples::mc_cv()] object.
+#' will default to creating an [rsamples::mc_cv()] object.
 #' @param .tune Default is TRUE, this will create a tuning grid and tuned workflow
 #' @param .grid_size Default is 10
 #' @param .num_cres Default is 1
@@ -223,6 +223,8 @@ hai_auto_knn <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
             plotly_grid_plot = plotly::ggplotly(tune_results_plt)
         )
     }
+
+    attr(output, "function_type") <- "boilerplate"
 
     return(invisible(output))
 

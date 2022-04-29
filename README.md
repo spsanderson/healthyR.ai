@@ -39,9 +39,6 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(healthyR.ai)
-#> Registered S3 method overwritten by 'tune':
-#>   method                   from   
-#>   required_pkgs.model_spec parsnip
 #> 
 #> == Welcome to healthyR.ai ===========================================================================
 #> If you find this package useful, please leave a star: 
@@ -61,9 +58,6 @@ data_tbl <- tibble::tibble(
         date = Sys.Date() - sample.int(100))
 
 my_chart <- hai_control_chart(data_tbl, count, date)
-#> Registered S3 method overwritten by 'quantmod':
-#>   method            from
-#>   as.zoo.data.frame zoo
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
