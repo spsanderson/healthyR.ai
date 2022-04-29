@@ -50,7 +50,7 @@ reference:
   -  title: Recipe Steps
      desc: Functions to add recipe steps
      contents:
-     -  contains("step_hai_")
+     -  has_concept("Recipes")
   -  title: Table Functions
      desc: Functions that return tibbles
      contents:
