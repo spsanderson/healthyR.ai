@@ -32,7 +32,7 @@ reference:
      desc: Functions for Clustering and Analysis
   -  subtitle: K-Means
      contents:
-     -  has_concetp("Kmeans")
+     -  has_concept("Kmeans")
   -  title: Boiler Plate functions
      desc: Functions for automatic Recipes, Workflows and Tuned models.
      contents:

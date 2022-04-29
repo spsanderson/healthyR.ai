@@ -8,6 +8,9 @@
 #'
 #' @description Default regression metric sets from `yardstick`
 #'
+#' @examples
+#' hai_default_regression_metric_set()
+#'
 #' @return
 #' A yardstick metric set tibble
 #'
@@ -35,6 +38,9 @@ hai_default_regression_metric_set <- function(){
 #' @details Default classification metric sets from `yardstick`
 #'
 #' @description Default classification metric sets from `yardstick`
+#'
+#' @examples
+#' hai_default_classification_metric_set()
 #'
 #' @return
 #' A yardstick metric set tibble

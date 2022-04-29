@@ -25,7 +25,7 @@ is not exported but may be called via the ::: method.'><!-- mathjax --><script s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7</span>
       </span>
     </div>
 
@@ -133,7 +133,8 @@ and help the user understand the parameters that can be set in the pre-processor
 <code><a href="hai_data_impute.html">hai_data_impute</a>()</code>,
 <code><a href="hai_data_poly.html">hai_data_poly</a>()</code>,
 <code><a href="hai_data_scale.html">hai_data_scale</a>()</code>,
-<code><a href="hai_data_transform.html">hai_data_transform</a>()</code></p></div>
+<code><a href="hai_data_transform.html">hai_data_transform</a>()</code>,
+<code><a href="hai_knn_data_prepper.html">hai_knn_data_prepper</a>()</code></p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -163,16 +164,16 @@ and help the user understand the parameters that can be set in the pre-processor
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 x 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col    value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01 -<span style="color: #BB0000;">0.584</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01 -<span style="color: #BB0000;">0.672</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2013-03-01  0.774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01 -<span style="color: #BB0000;">0.958</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01  0.716</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01  0.822</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01 -<span style="color: #BB0000;">0.881</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01  0.164</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01  0.753</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01  0.237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01  0.999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01  0.439</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2013-03-01 -<span style="color: #BB0000;">0.610</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01 -<span style="color: #BB0000;">0.285</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01 -<span style="color: #BB0000;">0.937</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01  0.853</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01  0.241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01  0.867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01 -<span style="color: #BB0000;">0.825</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01  0.166</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 90 more rows</span></span>
 <span class="r-in"></span>
 </code></pre></div>
@@ -189,8 +190,7 @@ and help the user understand the parameters that can be set in the pre-processor
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

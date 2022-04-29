@@ -34,6 +34,9 @@
     <loc>/reference/get_juiced_data.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_auto_knn.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_control_chart.html</loc>
   </url>
   <url>
@@ -53,6 +56,12 @@
   </url>
   <url>
     <loc>/reference/hai_data_trig.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_default_classification_metric_set.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_default_regression_metric_set.html</loc>
   </url>
   <url>
     <loc>/reference/hai_density_hist_plot.html</loc>
@@ -116,6 +125,9 @@
   </url>
   <url>
     <loc>/reference/hai_kmeans_user_item_tbl.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_knn_data_prepper.html</loc>
   </url>
   <url>
     <loc>/reference/hai_kurtosis_vec.html</loc>
