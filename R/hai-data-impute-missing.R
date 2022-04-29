@@ -166,7 +166,7 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
     }
 
     # Is the .recipe_object in fact a class of recipe?
-    if (!class(rec_obj) == "recipe"){
+    if (!inherits(x = rec_obj, what = "recipe")){
         stop(call. = FALSE, "You must supply an object of class recipe.")
     }
 

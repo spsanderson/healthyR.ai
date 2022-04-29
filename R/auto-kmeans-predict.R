@@ -45,7 +45,7 @@ hai_kmeans_automl_predict <- function(.input){
 
     input <- .input
 
-    if (!class(output) == "list"){
+    if (!inherits(x = input, what = "list")){
         stop(call. = FALSE, "(.input) should be a list object from the hai_kmeans_automl function.")
     }
 

@@ -8,3 +8,6 @@
 0 errors | 1 warnings | 1 note
 
 Update package to 0.0.7
+
+Fixed all instances where class was being compared with a character, changed to
+use inherits functionality.
