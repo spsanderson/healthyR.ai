@@ -25,7 +25,7 @@ hai_auto_knn(
 \item{.splits_obj}{NULL is the default, when NULL then one will be created.}
 
 \item{.rsamp_obj}{NULL is the default, when NULL then one will be created. It
-will default to creating an \code{\link[ramples:mc_cv]{ramples::mc_cv()}} object.}
+will default to creating an \code{\link[rsamples:mc_cv]{rsamples::mc_cv()}} object.}
 
 \item{.tune}{Default is TRUE, this will create a tuning grid and tuned workflow}
 
