@@ -33,6 +33,10 @@ reference:
   -  subtitle: K-Means
      contents:
      -  contains("hai_kmeans")
+  -  title: Boiler Plate functions
+     desc: Functions for automatic Recipes, Workflows and Tuned models.
+     contents:
+     -  has_concept("Boiler_Plate")
   -  title: Dimensionality Reduction
      desc: Functions for dimension reduction
      contents:
