@@ -249,7 +249,7 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
         stop(call. = FALSE, "(.user_item_data) is not a data.frame/tibble, please supply original user item tibble.")
     }
 
-    if (!class(kmeans_obj) == "kmeans") {
+    if (!inherits(x = kmeans_obj, what = "kmeans")) {
         stop(call. = FALSE, "(.kmeans_obj) is not of class 'kmeans'")
     }
 

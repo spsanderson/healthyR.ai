@@ -97,11 +97,11 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         stop(call. = FALSE, "(.print_model_summary) must be a logical, TRUE/FALSE.")
     }
 
-    if(!class(predictors) == "character"){
+    if(!inherits(x = predictors, what = "character")){
         stop(call. = FALSE, "(.predictors) must be a character list like: c('col1','col2')")
     }
 
-    if(!class(initialization_mode) == "character"){
+    if(!inherits(x = initialization_mode, what = "character")){
         stop(call. = FALSE, "(.initialization_mode) must be a character.")
     }
 
@@ -111,7 +111,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         stop(call. = FALSE, "(.initialization_mode) invalid choice made.")
     }
 
-    if(!class(categorical_encode) == "character"){
+    if(!inherits(x = categorical_encode, what = "charachter")){
         stop(call. = FALSE, "(.categorical_encoding) must be a character.")
     }
 
