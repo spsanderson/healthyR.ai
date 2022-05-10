@@ -1,5 +1,15 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+None
+
+## New Features
+1. Fix #219 - Add functions `color_blind()` `hai_scale_color_colorblind()` and
+`hai_scale_fill_colorblind()`
+
+## Minor Fixes and Improvements
+None
+
 # healthyR.ai 0.0.7
 
 ## Breaking Changes
