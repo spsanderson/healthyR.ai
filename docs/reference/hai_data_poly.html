@@ -148,20 +148,20 @@ and help the user understand the parameters that can be set in the pre-processor
 <span class="r-in">    <span class="va">value</span></span>
 <span class="r-in"><span class="op">)</span><span class="op">$</span><span class="va">scale_rec_obj</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">    <span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 x 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col   value_poly_1 value_poly_2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01      -<span style="color: #BB0000;">0.121</span>        0.032<span style="text-decoration: underline;">8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01      -<span style="color: #BB0000;">0.055</span><span style="color: #BB0000; text-decoration: underline;">1</span>      -<span style="color: #BB0000;">0.079</span><span style="color: #BB0000; text-decoration: underline;">6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2013-03-01       0.040<span style="text-decoration: underline;">8</span>      -<span style="color: #BB0000;">0.081</span><span style="color: #BB0000; text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01      -<span style="color: #BB0000;">0.168</span>        0.167 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01       0.055<span style="text-decoration: underline;">8</span>      -<span style="color: #BB0000;">0.064</span><span style="color: #BB0000; text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01       0.124        0.071<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01      -<span style="color: #BB0000;">0.087</span><span style="color: #BB0000; text-decoration: underline;">5</span>      -<span style="color: #BB0000;">0.036</span><span style="color: #BB0000; text-decoration: underline;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01       0.032<span style="text-decoration: underline;">6</span>      -<span style="color: #BB0000;">0.088</span><span style="color: #BB0000; text-decoration: underline;">5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01       0.021<span style="text-decoration: underline;">5</span>      -<span style="color: #BB0000;">0.096</span><span style="color: #BB0000; text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01       0.158        0.175 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 90 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01      -<span style="color: #BB0000;">0.038</span><span style="color: #BB0000; text-decoration: underline;">5</span>     -<span style="color: #BB0000;">0.112</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01       0.068<span style="text-decoration: underline;">2</span>     -<span style="color: #BB0000;">0.069</span><span style="color: #BB0000; text-decoration: underline;">8</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2013-03-01       0.140       0.129  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01       0.135       0.110  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01       0.028<span style="text-decoration: underline;">5</span>     -<span style="color: #BB0000;">0.121</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01      -<span style="color: #BB0000;">0.044</span><span style="color: #BB0000; text-decoration: underline;">6</span>     -<span style="color: #BB0000;">0.106</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01       0.080<span style="text-decoration: underline;">1</span>     -<span style="color: #BB0000;">0.046</span><span style="color: #BB0000; text-decoration: underline;">5</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01      -<span style="color: #BB0000;">0.141</span>       0.129  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01      -<span style="color: #BB0000;">0.132</span>       0.096<span style="text-decoration: underline;">6</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01      -<span style="color: #BB0000;">0.096</span><span style="color: #BB0000; text-decoration: underline;">5</span>     -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 90 more rows</span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

@@ -23,6 +23,7 @@ functions so that it will extract the \code{tuned_results} from the tuning proce
 if it has indeed been tuned.
 }
 \examples{
+\dontrun{
 data <- iris
 
 rec_obj <- hai_knn_data_prepper(data, Species ~ .)
@@ -32,11 +33,12 @@ auto_knn <- hai_auto_knn(
  .rec_obj = rec_obj,
  .best_metric = "f_meas",
  .model_type = "classification",
- .grid_size = 1,
- .num_cores = 1
+ .grid_size = 2,
+ .num_cores = 4
  )
 
- hai_auto_wflw_metrics(auto_knn)
+hai_auto_wflw_metrics(auto_knn)
+}
 
 }
 \seealso{

@@ -16,6 +16,7 @@
 #' @param .data The output of the `hai_auto_` boilerplate function in it's entirety.
 #'
 #' @examples
+#' \dontrun{
 #' data <- iris
 #'
 #' rec_obj <- hai_knn_data_prepper(data, Species ~ .)
@@ -25,11 +26,12 @@
 #'  .rec_obj = rec_obj,
 #'  .best_metric = "f_meas",
 #'  .model_type = "classification",
-#'  .grid_size = 1,
-#'  .num_cores = 1
+#'  .grid_size = 2,
+#'  .num_cores = 4
 #'  )
 #'
-#'  hai_auto_wflw_metrics(auto_knn)
+#' hai_auto_wflw_metrics(auto_knn)
+#' }
 #'
 #' @return
 #' A tibble
