@@ -20,7 +20,7 @@ hai_auto_knn(
 \item{.data}{The data being passed to the function. The time-series object.}
 
 \item{.rec_obj}{This is the recipe object you want to use. You can use
-\code{hai_knn_data_prepper()} and an automatic recipe_object.}
+\code{hai_knn_data_prepper()} an automatic recipe_object.}
 
 \item{.splits_obj}{NULL is the default, when NULL then one will be created.}
 

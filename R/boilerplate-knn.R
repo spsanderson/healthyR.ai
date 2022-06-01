@@ -16,7 +16,7 @@
 #'
 #' @param .data The data being passed to the function. The time-series object.
 #' @param .rec_obj This is the recipe object you want to use. You can use
-#' `hai_knn_data_prepper()` and an automatic recipe_object.
+#' `hai_knn_data_prepper()` an automatic recipe_object.
 #' @param .splits_obj NULL is the default, when NULL then one will be created.
 #' @param .rsamp_obj NULL is the default, when NULL then one will be created. It
 #' will default to creating an [rsample::mc_cv()] object.
@@ -225,6 +225,10 @@ hai_auto_knn <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
     }
 
     attr(output, "function_type") <- "boilerplate"
+    attr(output, ".grid_size") <- .grid_size
+    attr(output, ".tune") <- .tune
+    attr(output, ".best_metric") <- .best_metric
+    attr(output, ".model_type") <- .model_type
 
     return(invisible(output))
 

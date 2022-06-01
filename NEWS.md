@@ -8,7 +8,8 @@ None
 `hai_scale_fill_colorblind()`
 
 ## Minor Fixes and Improvements
-None
+1. Fix #240 = Add parameter arguments as attributes to list output for boilerplate
+functions.
 
 # healthyR.ai 0.0.7
 
