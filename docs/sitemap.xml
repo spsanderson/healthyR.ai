@@ -31,10 +31,16 @@
     <loc>/README.knit.html</loc>
   </url>
   <url>
+    <loc>/reference/color_blind.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_juiced_data.html</loc>
   </url>
   <url>
     <loc>/reference/hai_auto_knn.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_auto_wflw_metrics.html</loc>
   </url>
   <url>
     <loc>/reference/hai_control_chart.html</loc>
@@ -137,6 +143,12 @@
   </url>
   <url>
     <loc>/reference/hai_range_statistic.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_scale_color_colorblind.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_scale_fill_colorblind.html</loc>
   </url>
   <url>
     <loc>/reference/hai_scale_zero_one_augment.html</loc>

@@ -125,21 +125,21 @@ function. It returns a tibble of the <code>tidy</code> density data.</p>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_scale_zero_one_vec.html">hai_scale_zero_one_vec</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="hai_distribution_comparison_tbl.html">hai_distribution_comparison_tbl</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">hai_get_density_data_tbl</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,536 x 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,536 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Groups:   distribution [3]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    distribution      x      y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> gamma        -<span style="color: #BB0000;">0.153</span> 0.011<span style="text-decoration: underline;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gamma        -<span style="color: #BB0000;">0.151</span> 0.012<span style="text-decoration: underline;">5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gamma        -<span style="color: #BB0000;">0.149</span> 0.014<span style="text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gamma        -<span style="color: #BB0000;">0.147</span> 0.016<span style="text-decoration: underline;">1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gamma        -<span style="color: #BB0000;">0.145</span> 0.018<span style="text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gamma        -<span style="color: #BB0000;">0.143</span> 0.020<span style="text-decoration: underline;">6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gamma        -<span style="color: #BB0000;">0.141</span> 0.023<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gamma        -<span style="color: #BB0000;">0.138</span> 0.026<span style="text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gamma        -<span style="color: #BB0000;">0.136</span> 0.029<span style="text-decoration: underline;">6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> gamma        -<span style="color: #BB0000;">0.134</span> 0.033<span style="text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 1,526 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    distribution      x       y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> gamma        -<span style="color: #BB0000;">0.210</span> 0.009<span style="text-decoration: underline;">01</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gamma        -<span style="color: #BB0000;">0.207</span> 0.010<span style="text-decoration: underline;">4</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gamma        -<span style="color: #BB0000;">0.204</span> 0.011<span style="text-decoration: underline;">9</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gamma        -<span style="color: #BB0000;">0.201</span> 0.013<span style="text-decoration: underline;">7</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gamma        -<span style="color: #BB0000;">0.197</span> 0.015<span style="text-decoration: underline;">6</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gamma        -<span style="color: #BB0000;">0.194</span> 0.017<span style="text-decoration: underline;">8</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gamma        -<span style="color: #BB0000;">0.191</span> 0.020<span style="text-decoration: underline;">3</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gamma        -<span style="color: #BB0000;">0.188</span> 0.023<span style="text-decoration: underline;">1</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gamma        -<span style="color: #BB0000;">0.185</span> 0.026<span style="text-decoration: underline;">2</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> gamma        -<span style="color: #BB0000;">0.181</span> 0.029<span style="text-decoration: underline;">7</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,526 more rows</span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

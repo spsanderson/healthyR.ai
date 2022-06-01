@@ -6,6 +6,7 @@ None
 ## New Features
 1. Fix #219 - Add functions `color_blind()` `hai_scale_color_colorblind()` and
 `hai_scale_fill_colorblind()`
+2. Fix #227 - Add function `hai_auto_wflw_metrics()`
 
 ## Minor Fixes and Improvements
 1. Fix #240 = Add parameter arguments as attributes to list output for boilerplate
