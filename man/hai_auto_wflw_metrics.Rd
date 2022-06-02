@@ -43,6 +43,7 @@ hai_auto_wflw_metrics(auto_knn)
 }
 \seealso{
 Other Boiler_Plate: 
+\code{\link{hai_auto_c50}()},
 \code{\link{hai_auto_knn}()}
 }
 \author{
