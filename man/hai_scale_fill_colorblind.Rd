@@ -6,6 +6,27 @@
 \usage{
 hai_scale_fill_colorblind(..., theme = "hai")
 }
-\description{
-Provide Colorblind Compliant Colors
+\arguments{
+\item{...}{Data passed in from a \code{ggplot} object}
+
+\item{theme}{Right now this is \code{hai} only. Anything else will render an error.}
 }
+\value{
+A \code{gggplot} layer
+}
+\description{
+8 Hex RGB color definitions suitable for charts for colorblind people.
+}
+\details{
+This function is used in others in order to help render plots for those that
+are color blind.
+}
+\seealso{
+Other Color_Blind: 
+\code{\link{color_blind}()},
+\code{\link{hai_scale_color_colorblind}()}
+}
+\author{
+Steven P. Sanderson II, MPH
+}
+\concept{Color_Blind}

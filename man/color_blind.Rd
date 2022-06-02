@@ -6,6 +6,26 @@
 \usage{
 color_blind()
 }
+\value{
+A vector of 8 Hex RGB definitions.
+}
 \description{
 8 Hex RGB color definitions suitable for charts for colorblind people.
 }
+\details{
+This function is used in others in order to help render plots for those that
+are color blind.
+}
+\examples{
+color_blind()
+
+}
+\seealso{
+Other Color_Blind: 
+\code{\link{hai_scale_color_colorblind}()},
+\code{\link{hai_scale_fill_colorblind}()}
+}
+\author{
+Steven P. Sanderson II, MPH
+}
+\concept{Color_Blind}
