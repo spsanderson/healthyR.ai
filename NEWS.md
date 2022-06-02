@@ -7,6 +7,8 @@ None
 1. Fix #219 - Add functions `color_blind()` `hai_scale_color_colorblind()` and
 `hai_scale_fill_colorblind()`
 2. Fix #227 - Add function `hai_auto_wflw_metrics()`
+3. Fix #243 - Add boilerplate functions for C5.0 `hai_c50_data_prepper()` and
+`hai_auto_c50()`
 
 ## Minor Fixes and Improvements
 1. Fix #240 = Add parameter arguments as attributes to list output for boilerplate

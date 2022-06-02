@@ -63,6 +63,7 @@ Other Data Recipes:
 \code{\link{pca_your_recipe}()}
 
 Other Preprocessor: 
+\code{\link{hai_c50_data_prepper}()},
 \code{\link{hai_data_impute}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_transform}()},
