@@ -165,6 +165,7 @@ Other Preprocessor:
 \code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_trig}()},
+\code{\link{hai_glmnet_data_prepper}()},
 \code{\link{hai_knn_data_prepper}()}
 }
 \author{

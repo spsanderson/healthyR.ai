@@ -41,7 +41,11 @@ Other Preprocessor:
 \code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_transform}()},
-\code{\link{hai_data_trig}()}
+\code{\link{hai_data_trig}()},
+\code{\link{hai_glmnet_data_prepper}()}
+
+Other knn: 
+\code{\link{hai_glmnet_data_prepper}()}
 }
 \author{
 Steven P. Sanderson II, MPH
