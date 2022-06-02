@@ -151,6 +151,7 @@ Other Data Recipes:
 
 Other Preprocessor: 
 \code{\link{hai_c50_data_prepper}()},
+\code{\link{hai_cubist_data_prepper}()},
 \code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},
 \code{\link{hai_data_transform}()},
