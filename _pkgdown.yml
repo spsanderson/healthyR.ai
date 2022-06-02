@@ -28,6 +28,7 @@ reference:
      contents:
      -  "hai_control_chart"
      -  contains("_plot")
+     -  has_concept("Color_Blind")
   -  title: Clustering Functions
      desc: Functions for Clustering and Analysis
   -  subtitle: K-Means

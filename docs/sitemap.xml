@@ -37,13 +37,28 @@
     <loc>/reference/get_juiced_data.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_auto_c50.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_auto_cubist.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_auto_glmnet.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_auto_knn.html</loc>
   </url>
   <url>
     <loc>/reference/hai_auto_wflw_metrics.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_c50_data_prepper.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_control_chart.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_cubist_data_prepper.html</loc>
   </url>
   <url>
     <loc>/reference/hai_data_impute.html</loc>
@@ -98,6 +113,9 @@
   </url>
   <url>
     <loc>/reference/hai_get_dist_data_tbl.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_glmnet_data_prepper.html</loc>
   </url>
   <url>
     <loc>/reference/hai_histogram_facet_plot.html</loc>
