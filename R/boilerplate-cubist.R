@@ -1,12 +1,12 @@
 #' Boilerplate Workflow
 #'
 #' @family Boiler_Plate
-#' @family glmnet
+#' @family cubist
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @details
-#' This uses the `parsnip::multinom_reg()` with the `engine` set to `glmnet`
+#' This uses the `parsnip::multinom_reg()` with the `engine` set to `cubist`
 #'
 #' @description This is a boilerplate function to create automatically the following:
 #' -  recipe
@@ -16,29 +16,28 @@
 #'
 #' @param .data The data being passed to the function. The time-series object.
 #' @param .rec_obj This is the recipe object you want to use. You can use
-#' `hai_glmnet_data_prepper()` an automatic recipe_object.
+#' `hai_cubist_data_prepper()` an automatic recipe_object.
 #' @param .splits_obj NULL is the default, when NULL then one will be created.
 #' @param .rsamp_obj NULL is the default, when NULL then one will be created. It
 #' will default to creating an [rsample::mc_cv()] object.
 #' @param .tune Default is TRUE, this will create a tuning grid and tuned workflow
 #' @param .grid_size Default is 10
 #' @param .num_cores Default is 1
-#' @param .best_metric Default is "f_meas". You can choose a metric depending on the
-#' model_type used. If `regression` then see [healthyR.ai::hai_default_regression_metric_set()],
-#' if `classification` then see [healthyR.ai::hai_default_classification_metric_set()].
-#' @param .model_type Default is `classification`, can also be `regression`.
+#' @param .best_metric Default is "rmse". The only `.model_type` you can use with
+#' `Cubist` is `regression` so use [healthyR.ai::hai_default_regression_metric_set()]
+#' to get the available metrics. Because of this the `.model_type` parameter is
+#' omitted from this function.
 #'
 #' @examples
 #' \dontrun{
-#' data <- iris
+#' data <- mtcars
 #'
-#' rec_obj <- hai_glmnet_data_prepper(data, Species ~ .)
+#' rec_obj <- hai_cubist_data_prepper(data, mpg ~ .)
 #'
-#' auto_glm <- hai_auto_glmnet(
+#' auto_glm <- hai_auto_cubist(
 #'   .data = data,
 #'   .rec_obj = rec_obj,
-#'   .best_metric = "f_meas",
-#'   .model_type = "classification"
+#'   .best_metric = "rmse"
 #' )
 #'
 #' auto_glm$recipe_info
@@ -50,9 +49,9 @@
 #' @export
 #'
 
-hai_auto_glmnet <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
+hai_auto_cubist <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
                             .tune = TRUE, .grid_size = 10, .num_cores = 1,
-                            .best_metric = "f_meas", .model_type = "classification"){
+                            .best_metric = "rmse"){
 
     # Tidyeval ----
     grid_size <- as.numeric(.grid_size)
@@ -64,7 +63,7 @@ hai_auto_glmnet <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     splits <- .splits_obj
     rec_obj <- .rec_obj
     rsamp_obj <- .rsamp_obj
-    model_type <- as.character(.model_type)
+    model_type <- "regression"
 
     # Checks ----
     if (!inherits(x = splits, what = "rsplit") && !is.null(splits)){
@@ -77,17 +76,6 @@ hai_auto_glmnet <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     if (!inherits(x = rec_obj, what = "recipe")){
         rlang::abort(
             message = "'.rec_obj' must have a class of 'recipe'."
-        )
-    }
-
-    if (!model_type %in% c("regression","classification")){
-        rlang::abort(
-            message = paste0(
-                "You chose a mode of: '",
-                model_type,
-                "' this is unsupported. Choose from either 'regression' or 'classification'."
-            ),
-            use_cli_format = TRUE
         )
     }
 
@@ -108,11 +96,7 @@ hai_auto_glmnet <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     }
 
     # Set default metric set ----
-    if (model_type == "classification"){
-        ms <- healthyR.ai::hai_default_classification_metric_set()
-    } else {
-        ms <- healthyR.ai::hai_default_regression_metric_set()
-    }
+    ms <- healthyR.ai::hai_default_regression_metric_set()
 
     # Get splits if not then create
     if (is.null(splits)){
@@ -124,18 +108,18 @@ hai_auto_glmnet <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     # Tune/Spec ----
     if (.tune){
         # Model Specification
-        model_spec <- parsnip::multinom_reg(
-            penalty = tune::tune(),
-            mixture = tune::tune()
+        model_spec <- parsnip::cubist_rules(
+            committees = tune::tune(),
+            neighbors = tune::tune()
         )
     } else {
-        model_spec <- parsnip::multinom_reg()
+        model_spec <- parsnip::cubist_rules()
     }
 
     # Model Specification ----
     model_spec <- model_spec %>%
         parsnip::set_mode(mode = model_type) %>%
-        parsnip::set_engine(engine = "glmnet")
+        parsnip::set_engine(engine = "Cubist")
 
     # Workflow ----
     wflw <- workflows::workflow() %>%
@@ -225,8 +209,8 @@ hai_auto_glmnet <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     attr(output, ".grid_size") <- .grid_size
     attr(output, ".tune") <- .tune
     attr(output, ".best_metric") <- .best_metric
-    attr(output, ".model_type") <- .model_type
-    attr(output, ".engine") <- "glmnet"
+    attr(output, ".model_type") <- model_type
+    attr(output, ".engine") <- "Cubist"
 
     return(invisible(output))
 

@@ -38,6 +38,7 @@ get_juiced_data(rec_obj)
 \url{https://www.rulequest.com/see5-unix.html}
 
 Other Preprocessor: 
+\code{\link{hai_cubist_data_prepper}()},
 \code{\link{hai_data_impute}()},
 \code{\link{hai_data_poly}()},
 \code{\link{hai_data_scale}()},

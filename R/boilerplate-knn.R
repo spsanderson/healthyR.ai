@@ -229,6 +229,7 @@ hai_auto_knn <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
     attr(output, ".tune") <- .tune
     attr(output, ".best_metric") <- .best_metric
     attr(output, ".model_type") <- .model_type
+    attr(output, ".engine") <- "kknn"
 
     return(invisible(output))
 
