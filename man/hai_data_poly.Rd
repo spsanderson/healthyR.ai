@@ -30,7 +30,7 @@ This is intended to be used inside of the data processor and
 therefore is an internal function. This documentation exists to explain the process
 and help the user understand the parameters that can be set in the pre-processor function.
 
-\code{\link[recipes:step_hyperbolic]{recipes::step_hyperbolic()}}
+\code{\link[recipes:step_poly]{recipes::step_poly()}}
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
