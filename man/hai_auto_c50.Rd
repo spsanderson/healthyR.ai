@@ -74,6 +74,7 @@ auto_c50$recipe_info
 \seealso{
 Other Boiler_Plate: 
 \code{\link{hai_auto_cubist}()},
+\code{\link{hai_auto_earth}()},
 \code{\link{hai_auto_glmnet}()},
 \code{\link{hai_auto_knn}()},
 \code{\link{hai_auto_wflw_metrics}()}
