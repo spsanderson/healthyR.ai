@@ -52,7 +52,8 @@ Other Preprocessor:
 \code{\link{hai_data_trig}()},
 \code{\link{hai_earth_data_prepper}()},
 \code{\link{hai_glmnet_data_prepper}()},
-\code{\link{hai_knn_data_prepper}()}
+\code{\link{hai_knn_data_prepper}()},
+\code{\link{hai_svm_rbf_data_prepper}()}
 
 Other SVM_Poly: 
 \code{\link{hai_auto_svm_poly}()}

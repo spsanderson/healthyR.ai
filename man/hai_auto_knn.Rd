@@ -80,6 +80,7 @@ Other Boiler_Plate:
 \code{\link{hai_auto_earth}()},
 \code{\link{hai_auto_glmnet}()},
 \code{\link{hai_auto_svm_poly}()},
+\code{\link{hai_auto_svm_rbf}()},
 \code{\link{hai_auto_wflw_metrics}()}
 }
 \author{
