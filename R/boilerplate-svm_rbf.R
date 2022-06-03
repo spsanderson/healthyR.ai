@@ -1,12 +1,12 @@
 #' Boilerplate Workflow
 #'
 #' @family Boiler_Plate
-#' @family SVM_Poly
+#' @family SVM_RBF
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @details
-#' This uses the `parsnip::svm_poly()` with the `engine` set to `kernlab`
+#' This uses the `parsnip::svm_rbf()` with the `engine` set to `kernlab`
 #'
 #' @description This is a boilerplate function to create automatically the following:
 #' -  recipe
@@ -14,11 +14,11 @@
 #' -  workflow
 #' -  tuned model (grid ect)
 #'
-#' @seealso \url{https://parsnip.tidymodels.org/reference/svm_poly.html}
+#' @seealso \url{https://parsnip.tidymodels.org/reference/svm_rbf.html}
 #'
 #' @param .data The data being passed to the function. The time-series object.
 #' @param .rec_obj This is the recipe object you want to use. You can use
-#' `hai_svm_poly_data_prepper()` an automatic recipe_object.
+#' `hai_svm_rbf_data_prepper()` an automatic recipe_object.
 #' @param .splits_obj NULL is the default, when NULL then one will be created.
 #' @param .rsamp_obj NULL is the default, when NULL then one will be created. It
 #' will default to creating an [rsample::mc_cv()] object.
@@ -34,15 +34,15 @@
 #' \dontrun{
 #' data <- iris
 #'
-#' rec_obj <- hai_svm_poly_data_prepper(data, Species ~ .)
+#' rec_obj <- hai_svm_rbf_data_prepper(data, Species ~ .)
 #'
-#' auto_svm_poly <- hai_auto_svm_poly(
+#' auto_rbf <- hai_auto_svm_rbf(
 #'   .data = data,
 #'   .rec_obj = rec_obj,
 #'   .best_metric = "f_meas"
 #' )
 #'
-#' auto_svm_poly$recipe_info
+#' auto_rbf$recipe_info
 #' }
 #'
 #' @return
@@ -51,9 +51,9 @@
 #' @export
 #'
 
-hai_auto_svm_poly <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
-                              .tune = TRUE, .grid_size = 10, .num_cores = 1,
-                              .best_metric = "f_meas", .model_type = "classification"){
+hai_auto_svm_rbf <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
+                             .tune = TRUE, .grid_size = 10, .num_cores = 1,
+                             .best_metric = "f_meas", .model_type = "classification"){
 
     # Tidyeval ----
     grid_size <- as.numeric(.grid_size)
@@ -125,13 +125,12 @@ hai_auto_svm_poly <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = 
     # Tune/Spec ----
     if (.tune){
         # Model Specification
-        model_spec <- parsnip::svm_poly(
+        model_spec <- parsnip::svm_rbf(
             cost = tune::tune(),
-            degree = tune::tune(),
-            scale_factor = tune::tune()
+            rbf_sigma = tune::tune()
         )
     } else {
-        model_spec <- parsnip::svm_poly()
+        model_spec <- parsnip::svm_rbf()
     }
 
     # Model Specification ----

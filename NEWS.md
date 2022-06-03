@@ -17,6 +17,8 @@ None
 `hai_auto_earth()`
 7. Fix #259 - Add boilerplate functions for Kernlab `hai_svm_poly_data_prepper()` and
 `hai_auto_svm_poly()`
+8. Fix #265 - Add boilerplate functions for Kernlab `hai_svm_rbf_data_prepper()` and
+`hai_auto_svm_rbf()`
 
 ## Minor Fixes and Improvements
 1. Fix #240 = Add parameter arguments as attributes to list output for boilerplate

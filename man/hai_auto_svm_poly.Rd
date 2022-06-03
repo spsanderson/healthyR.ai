@@ -52,7 +52,7 @@ This is a boilerplate function to create automatically the following:
 }
 }
 \details{
-This uses the \code{parsnip::svm_poly()} with the \code{engine} set to \code{svm_poly}
+This uses the \code{parsnip::svm_poly()} with the \code{engine} set to \code{kernlab}
 }
 \examples{
 \dontrun{
@@ -79,6 +79,7 @@ Other Boiler_Plate:
 \code{\link{hai_auto_earth}()},
 \code{\link{hai_auto_glmnet}()},
 \code{\link{hai_auto_knn}()},
+\code{\link{hai_auto_svm_rbf}()},
 \code{\link{hai_auto_wflw_metrics}()}
 
 Other SVM_Poly: 
