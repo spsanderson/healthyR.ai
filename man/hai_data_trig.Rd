@@ -7,7 +7,7 @@
 hai_data_trig(
   .recipe_object = NULL,
   ...,
-  .type_of_scale = "sin",
+  .type_of_scale = "sinh",
   .inverse = FALSE
 )
 }
@@ -20,9 +20,9 @@ predict the missing data in each variable. See selections() for more details}
 
 \item{.type_of_scale}{This is a quoted argument and can be one of the following:
 \itemize{
-\item "sin"
-\item "cos"
-\item "tan"
+\item "sinh"
+\item "cosh"
+\item "tanh"
 }}
 
 \item{.inverse}{A logical: should the inverse function be used? Default is FALSE}
@@ -32,7 +32,7 @@ A list object
 }
 \description{
 Takes in a recipe and will scale values using a selected recipe. To call the
-recipe use a quoted argument like "sin", "cos" or "tan". This function
+recipe use a quoted argument like "sinh", "cosh" or "tanh". This function
 is not exported but may be called via the ::: method.
 }
 \details{
@@ -61,7 +61,7 @@ rec_obj <- recipe(value ~., df_tbl)
 healthyR.ai:::hai_data_trig(
     .recipe_object = rec_obj,
     value,
-    .type_of_scale = "sin"
+    .type_of_scale = "sinh"
 )$scale_rec_obj \%>\%
     get_juiced_data()
 

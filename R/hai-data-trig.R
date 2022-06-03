@@ -7,7 +7,7 @@
 #'
 #' @description
 #' Takes in a recipe and will scale values using a selected recipe. To call the
-#' recipe use a quoted argument like "sin", "cos" or "tan". This function
+#' recipe use a quoted argument like "sinh", "cosh" or "tanh". This function
 #' is not exported but may be called via the ::: method.
 #'
 #' @details
@@ -26,9 +26,9 @@
 #' When used with imp_vars, these dots indicate which variables are used to
 #' predict the missing data in each variable. See selections() for more details
 #' @param .type_of_scale This is a quoted argument and can be one of the following:
-#' -  "sin"
-#' -  "cos"
-#' -  "tan"
+#' -  "sinh"
+#' -  "cosh"
+#' -  "tanh"
 #' @param .inverse A logical: should the inverse function be used? Default is FALSE
 #'
 #' @examples
@@ -47,7 +47,7 @@
 #' healthyR.ai:::hai_data_trig(
 #'     .recipe_object = rec_obj,
 #'     value,
-#'     .type_of_scale = "sin"
+#'     .type_of_scale = "sinh"
 #' )$scale_rec_obj %>%
 #'     get_juiced_data()
 #'
@@ -56,7 +56,7 @@
 #'
 
 hai_data_trig <-  function(.recipe_object = NULL, ...,
-                           .type_of_scale = "sin", .inverse = FALSE){
+                           .type_of_scale = "sinh", .inverse = FALSE){
 
     # Make sure a recipe was passed
     if(is.null(.recipe_object)){
@@ -72,29 +72,29 @@ hai_data_trig <-  function(.recipe_object = NULL, ...,
 
     # * Checks ----
     if(!tolower(scale_type) %in% c(
-        "sin","cos","tan"
+        "sinh","cosh","tanh"
       )
     ){
         stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
-             from 'sin','cos','tan'")
+             from 'sinh','cosh','tanh'")
     }
 
     # If Statement to get the recipe desired ----
-    if(scale_type == "sin"){
+    if(scale_type == "sinh"){
         scale_obj <- recipes::step_hyperbolic(
             recipe  = rec_obj,
             func    = scale_type,
             inverse = inverse_bool,
             !!! terms
         )
-    } else if(scale_type == "cos"){
+    } else if(scale_type == "cosh"){
         scale_obj <- recipes::step_hyperbolic(
             recipe  = rec_obj,
             func    = scale_type,
             inverse = inverse_bool,
             !!! terms
         )
-    } else if(scale_type == "tan"){
+    } else if(scale_type == "tanh"){
         scale_obj <- recipes::step_hyperbolic(
             recipe  = rec_obj,
             func    = scale_type,
