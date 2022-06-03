@@ -6,7 +6,7 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @details
-#' This uses the `parsnip::svm_poly()` with the `engine` set to `svm_poly`
+#' This uses the `parsnip::svm_poly()` with the `engine` set to `kernlab`
 #'
 #' @description This is a boilerplate function to create automatically the following:
 #' -  recipe
