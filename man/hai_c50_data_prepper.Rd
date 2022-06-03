@@ -46,7 +46,8 @@ Other Preprocessor:
 \code{\link{hai_data_trig}()},
 \code{\link{hai_earth_data_prepper}()},
 \code{\link{hai_glmnet_data_prepper}()},
-\code{\link{hai_knn_data_prepper}()}
+\code{\link{hai_knn_data_prepper}()},
+\code{\link{hai_svm_poly_data_prepper}()}
 
 Other C5.0: 
 \code{\link{hai_auto_c50}()}
