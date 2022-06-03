@@ -55,6 +55,9 @@
     <loc>/reference/hai_auto_svm_poly.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_auto_svm_rbf.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_auto_wflw_metrics.html</loc>
   </url>
   <url>
@@ -203,6 +206,9 @@
   </url>
   <url>
     <loc>/reference/hai_svm_poly_data_prepper.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_svm_rbf_data_prepper.html</loc>
   </url>
   <url>
     <loc>/reference/hai_winsorized_move_augment.html</loc>
