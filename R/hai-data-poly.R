@@ -17,7 +17,7 @@
 #' therefore is an internal function. This documentation exists to explain the process
 #' and help the user understand the parameters that can be set in the pre-processor function.
 #'
-#' [recipes::step_hyperbolic()]
+#' [recipes::step_poly()]
 #' @seealso \url{https://recipes.tidymodels.org/reference/step_poly.html}
 #'
 #' @param .recipe_object The data that you want to process
