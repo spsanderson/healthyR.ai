@@ -52,7 +52,7 @@ This is a boilerplate function to create automatically the following:
 }
 }
 \details{
-This uses the \code{parsnip::svm_poly()} with the \code{engine} set to \code{svm_poly}
+This uses the \code{parsnip::svm_poly()} with the \code{engine} set to \code{kernlab}
 }
 \examples{
 \dontrun{
