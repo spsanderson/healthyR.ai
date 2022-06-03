@@ -50,7 +50,7 @@ This is a boilerplate function to create automatically the following:
 }
 }
 \details{
-This uses the \code{parsnip::multinom_reg()} with the \code{engine} set to \code{cubist}
+This uses the \code{parsnip::cubist_rules()} with the \code{engine} set to \code{cubist}
 }
 \examples{
 \dontrun{
@@ -58,13 +58,13 @@ data <- mtcars
 
 rec_obj <- hai_cubist_data_prepper(data, mpg ~ .)
 
-auto_glm <- hai_auto_cubist(
+auto_cube <- hai_auto_cubist(
   .data = data,
   .rec_obj = rec_obj,
   .best_metric = "rmse"
 )
 
-auto_glm$recipe_info
+auto_cube$recipe_info
 }
 
 }
