@@ -130,14 +130,16 @@ omitted from this function.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>This uses the <code><a href="https://parsnip.tidymodels.org/reference/multinom_reg.html" class="external-link">parsnip::multinom_reg()</a></code> with the <code>engine</code> set to <code>cubist</code></p>
+    <p>This uses the <code><a href="https://parsnip.tidymodels.org/reference/cubist_rules.html" class="external-link">parsnip::cubist_rules()</a></code> with the <code>engine</code> set to <code>cubist</code></p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Other Boiler_Plate: 
 <code><a href="hai_auto_c50.html">hai_auto_c50</a>()</code>,
+<code><a href="hai_auto_earth.html">hai_auto_earth</a>()</code>,
 <code><a href="hai_auto_glmnet.html">hai_auto_glmnet</a>()</code>,
 <code><a href="hai_auto_knn.html">hai_auto_knn</a>()</code>,
+<code><a href="hai_auto_svm_poly.html">hai_auto_svm_poly</a>()</code>,
 <code><a href="hai_auto_wflw_metrics.html">hai_auto_wflw_metrics</a>()</code></p>
 <p>Other cubist: 
 <code><a href="hai_cubist_data_prepper.html">hai_cubist_data_prepper</a>()</code></p></div>
@@ -154,13 +156,13 @@ omitted from this function.</p></dd>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_cubist_data_prepper.html">hai_cubist_data_prepper</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">auto_glm</span> <span class="op">&lt;-</span> <span class="fu">hai_auto_cubist</span><span class="op">(</span></span>
+<span class="r-in"><span class="va">auto_cube</span> <span class="op">&lt;-</span> <span class="fu">hai_auto_cubist</span><span class="op">(</span></span>
 <span class="r-in">  .data <span class="op">=</span> <span class="va">data</span>,</span>
 <span class="r-in">  .rec_obj <span class="op">=</span> <span class="va">rec_obj</span>,</span>
 <span class="r-in">  .best_metric <span class="op">=</span> <span class="st">"rmse"</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">auto_glm</span><span class="op">$</span><span class="va">recipe_info</span></span>
+<span class="r-in"><span class="va">auto_cube</span><span class="op">$</span><span class="va">recipe_info</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-in"></span>
 </code></pre></div>

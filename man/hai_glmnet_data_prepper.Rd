@@ -43,7 +43,8 @@ Other Preprocessor:
 \code{\link{hai_data_transform}()},
 \code{\link{hai_data_trig}()},
 \code{\link{hai_earth_data_prepper}()},
-\code{\link{hai_knn_data_prepper}()}
+\code{\link{hai_knn_data_prepper}()},
+\code{\link{hai_svm_poly_data_prepper}()}
 
 Other knn: 
 \code{\link{hai_knn_data_prepper}()}

@@ -43,10 +43,16 @@
     <loc>/reference/hai_auto_cubist.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_auto_earth.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_auto_glmnet.html</loc>
   </url>
   <url>
     <loc>/reference/hai_auto_knn.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_auto_svm_poly.html</loc>
   </url>
   <url>
     <loc>/reference/hai_auto_wflw_metrics.html</loc>
@@ -95,6 +101,9 @@
   </url>
   <url>
     <loc>/reference/hai_distribution_comparison_tbl.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_earth_data_prepper.html</loc>
   </url>
   <url>
     <loc>/reference/hai_fourier_augment.html</loc>
@@ -191,6 +200,9 @@
   </url>
   <url>
     <loc>/reference/hai_step_trig.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_svm_poly_data_prepper.html</loc>
   </url>
   <url>
     <loc>/reference/hai_winsorized_move_augment.html</loc>
