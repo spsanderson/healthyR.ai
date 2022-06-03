@@ -29,7 +29,7 @@ Imports:
     ggplot2,
     tidyr,
     forcats,
-    recipes,
+    recipes (>= 0.2.0.9001),
     purrr,
     h2o,
     stats,
@@ -52,5 +52,7 @@ Suggests:
     kknn,
     hardhat
 VignetteBuilder: knitr
+Remotes: 
+    tidymodels/recipes
 Depends: 
     R (>= 2.10)
