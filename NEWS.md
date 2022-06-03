@@ -13,6 +13,8 @@ None
 `hai_auto_glmnet()`
 5. Fix #249 - Add boilerplate functions for cubist `hai_cubist_data_prepper()` and
 `hai_auto_cubist()`
+6. Fix #256 - Add boilerplate functions for Earth `hai_earth_data_prepper()` and
+`hai_auto_earth()`
 
 ## Minor Fixes and Improvements
 1. Fix #240 = Add parameter arguments as attributes to list output for boilerplate
