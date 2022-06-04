@@ -48,7 +48,8 @@ Other Preprocessor:
 \code{\link{hai_knn_data_prepper}()},
 \code{\link{hai_ranger_data_prepper}()},
 \code{\link{hai_svm_poly_data_prepper}()},
-\code{\link{hai_svm_rbf_data_prepper}()}
+\code{\link{hai_svm_rbf_data_prepper}()},
+\code{\link{hai_xgboost_data_prepper}()}
 
 Other cubist: 
 \code{\link{hai_auto_cubist}()}

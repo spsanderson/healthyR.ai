@@ -21,6 +21,8 @@ None
 `hai_auto_svm_rbf()`
 9. Fix #269 - Add boilerplate functions for ranger `hai_ranger_data_prepper()` and
 `hai_auto_ranger()`
+10. Fix #274 - Add boilerplate functions for xgboost `hai_xgboost_data_prepper()` and
+`hai_auto_xgboost()`
 
 ## Minor Fixes and Improvements
 1. Fix #240 - Add parameter arguments as attributes to list output for boilerplate

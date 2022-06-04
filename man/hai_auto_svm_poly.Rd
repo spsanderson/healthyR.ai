@@ -81,7 +81,8 @@ Other Boiler_Plate:
 \code{\link{hai_auto_knn}()},
 \code{\link{hai_auto_ranger}()},
 \code{\link{hai_auto_svm_rbf}()},
-\code{\link{hai_auto_wflw_metrics}()}
+\code{\link{hai_auto_wflw_metrics}()},
+\code{\link{hai_auto_xgboost}()}
 
 Other SVM_Poly: 
 \code{\link{hai_svm_poly_data_prepper}()}

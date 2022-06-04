@@ -50,7 +50,8 @@ Other Boiler_Plate:
 \code{\link{hai_auto_knn}()},
 \code{\link{hai_auto_ranger}()},
 \code{\link{hai_auto_svm_poly}()},
-\code{\link{hai_auto_svm_rbf}()}
+\code{\link{hai_auto_svm_rbf}()},
+\code{\link{hai_auto_xgboost}()}
 }
 \author{
 Steven P. Sanderson II, MPH
