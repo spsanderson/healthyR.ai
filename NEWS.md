@@ -19,10 +19,13 @@ None
 `hai_auto_svm_poly()`
 8. Fix #265 - Add boilerplate functions for Kernlab `hai_svm_rbf_data_prepper()` and
 `hai_auto_svm_rbf()`
+9. Fix #269 - Add boilerplate functions for ranger `hai_ranger_data_prepper()` and
+`hai_auto_ranger()`
 
 ## Minor Fixes and Improvements
-1. Fix #240 = Add parameter arguments as attributes to list output for boilerplate
+1. Fix #240 - Add parameter arguments as attributes to list output for boilerplate
 functions.
+2. Fix #273 - We fixed a bug 🐛 in step_hyperbolic() in tidymodels/recipes#932 and this PR updates healthyR.ai to reflect that fix. Thank you @juliasilge
 
 # healthyR.ai 0.0.7
 
