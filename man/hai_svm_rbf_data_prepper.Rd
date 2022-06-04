@@ -53,6 +53,7 @@ Other Preprocessor:
 \code{\link{hai_earth_data_prepper}()},
 \code{\link{hai_glmnet_data_prepper}()},
 \code{\link{hai_knn_data_prepper}()},
+\code{\link{hai_ranger_data_prepper}()},
 \code{\link{hai_svm_poly_data_prepper}()}
 
 Other SVM_RBF: 
