@@ -22,6 +22,7 @@
 #' like `price ~ .`
 #'
 #' @examples
+#' library(ggplot2)
 #' hai_cubist_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
 #' rec_obj <- hai_cubist_data_prepper(diamonds, price ~ .)
 #' get_juiced_data(rec_obj)
