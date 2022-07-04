@@ -28,6 +28,8 @@ use in the Earth algorithm. The Earth algorithm is for regression only.
 This function will output a recipe specification.
 }
 \examples{
+library(ggplot2)
+
 # Regression
 hai_earth_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
 reg_obj <- hai_earth_data_prepper(diamonds, price ~ .)

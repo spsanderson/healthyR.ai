@@ -22,6 +22,8 @@
 #' like `price ~ .`
 #'
 #' @examples
+#' library(ggplot2)
+#'
 #' # Regression
 #' hai_ranger_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
 #' reg_obj <- hai_ranger_data_prepper(diamonds, price ~ .)
@@ -42,7 +44,7 @@ hai_ranger_data_prepper <- function(.data, .recipe_formula){
 
     # Recipe ---
     rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
-        recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.))
+        recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.character))
 
     # Return ----
     return(rec_obj)

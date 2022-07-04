@@ -28,6 +28,8 @@ use in the XGBoost algorithm.
 This function will output a recipe specification.
 }
 \examples{
+library(ggplot2)
+
 # Regression
 hai_xgboost_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
 reg_obj <- hai_xgboost_data_prepper(diamonds, price ~ .)

@@ -29,6 +29,8 @@ algorithm. It expects data to be presented in a certain fashion.
 This function will output a recipe specification.
 }
 \examples{
+library(ggplot2)
+
 hai_c50_data_prepper(.data = Titanic, .recipe_formula = Survived ~ .)
 rec_obj <- hai_c50_data_prepper(Titanic, Survived ~ .)
 get_juiced_data(rec_obj)
