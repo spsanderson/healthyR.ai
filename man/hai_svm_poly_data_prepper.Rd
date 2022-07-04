@@ -28,6 +28,8 @@ use in the SVM_Poly algorithm. The SVM_Poly algorithm is for regression only.
 This function will output a recipe specification.
 }
 \examples{
+library(ggplot2)
+
 # Regression
 hai_svm_poly_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
 reg_obj <- hai_svm_poly_data_prepper(diamonds, price ~ .)

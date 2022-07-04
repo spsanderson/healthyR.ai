@@ -1,13 +1,9 @@
 ## Test environments
-* local R installation, R 4.1.0
-* ubuntu 16.04 (on travis-ci), R 4.1.0
+* local R installation, R 4.2.1
 * win-builder (devel)
 
 ## R CMD check results
 
-0 errors | 1 warnings | 0 note
+0 errors | 0 warnings | 1 note
 
-Update package to 0.0.7
-
-Fixed all instances where class was being compared with a character, changed to
-use inherits functionality.
+Update package to 0.0.8

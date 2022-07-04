@@ -22,6 +22,8 @@
 #' like `price ~ .`
 #'
 #' @examples
+#' library(ggplot2)
+#'
 #' # Regression
 #' hai_ranger_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
 #' reg_obj <- hai_ranger_data_prepper(diamonds, price ~ .)
