@@ -24,7 +24,7 @@ faceted histogram."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -81,47 +81,68 @@ faceted histogram.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_histogram_facet_plot</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  .bins <span class="op">=</span> <span class="fl">10</span>,
-  .scale_data <span class="op">=</span> <span class="cn">FALSE</span>,
-  .ncol <span class="op">=</span> <span class="fl">5</span>,
-  .fct_reorder <span class="op">=</span> <span class="cn">FALSE</span>,
-  .fct_rev <span class="op">=</span> <span class="cn">FALSE</span>,
-  .fill <span class="op">=</span> <span class="st">"steelblue"</span>,
-  .color <span class="op">=</span> <span class="st">"white"</span>,
-  .scale <span class="op">=</span> <span class="st">"free"</span>,
-  .interactive <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_histogram_facet_plot</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  .bins <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  .scale_data <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .ncol <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  .fct_reorder <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .fct_rev <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .fill <span class="op">=</span> <span class="st">"steelblue"</span>,</span>
+<span>  .color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>  .scale <span class="op">=</span> <span class="st">"free"</span>,</span>
+<span>  .interactive <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>The data you want to pass to the function.</p></dd>
+
+
 <dt>.bins</dt>
 <dd><p>The number of bins for the histograms.</p></dd>
+
+
 <dt>.scale_data</dt>
 <dd><p>This is a boolean set to FALSE. TRUE will use <code><a href="hai_scale_zero_one_vec.html">hai_scale_zero_one_vec()</a></code>
 to <code>[0, 1]</code> scale the data.</p></dd>
+
+
 <dt>.ncol</dt>
 <dd><p>The number of columns for the facet_warp argument.</p></dd>
+
+
 <dt>.fct_reorder</dt>
 <dd><p>Should the factor column be reordered? TRUE/FALSE, default of FALSE</p></dd>
+
+
 <dt>.fct_rev</dt>
 <dd><p>Should the factor column be reversed? TRUE/FALSE, default of FALSE</p></dd>
+
+
 <dt>.fill</dt>
 <dd><p>Default is <code>steelblue</code></p></dd>
+
+
 <dt>.color</dt>
 <dd><p>Default is 'white'</p></dd>
+
+
 <dt>.scale</dt>
 <dd><p>Default is 'free'</p></dd>
+
+
 <dt>.interactive</dt>
 <dd><p>Default is FALSE, TRUE will produce a <code>plotly</code> plot.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A ggplot or plotly plot</p>
+    
+
+<p>A ggplot or plotly plot</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -134,12 +155,12 @@ to <code>[0, 1]</code> scale the data.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu">hai_histogram_facet_plot</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">hai_histogram_facet_plot</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hai_histogram_facet_plot-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">hai_histogram_facet_plot</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">iris</span>, .scale_data <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">hai_histogram_facet_plot</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">iris</span>, .scale_data <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hai_histogram_facet_plot-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -154,7 +175,7 @@ to <code>[0, 1]</code> scale the data.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

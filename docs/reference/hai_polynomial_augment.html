@@ -25,7 +25,7 @@ NULL then the user must enter a .degree AND .pred_col column."><!-- mathjax --><
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -83,35 +83,46 @@ their own formula using the <code>.formula</code> parameter or, if they leave th
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_polynomial_augment</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  .formula <span class="op">=</span> <span class="cn">NULL</span>,
-  .pred_col <span class="op">=</span> <span class="cn">NULL</span>,
-  .degree <span class="op">=</span> <span class="fl">1</span>,
-  .new_col_prefix <span class="op">=</span> <span class="st">"nt_"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_polynomial_augment</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  .formula <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .pred_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .degree <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  .new_col_prefix <span class="op">=</span> <span class="st">"nt_"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>The data being passed that will be augmented by the function.</p></dd>
+
+
 <dt>.formula</dt>
 <dd><p>This should be a valid formula like 'y ~ .^2' or NULL.</p></dd>
+
+
 <dt>.pred_col</dt>
 <dd><p>This is passed <code><a href="https://rlang.r-lib.org/reference/enquo.html" class="external-link">rlang::enquo()</a></code> to capture the vector that you
 designate as the 'y' column.</p></dd>
+
+
 <dt>.degree</dt>
 <dd><p>This should be an integer and is used to set the degree in the
 poly function. The degree must be less than the unique data points or it will
 error out.</p></dd>
+
+
 <dt>.new_col_prefix</dt>
 <dd><p>The default is "nt_" which stands for "new_term". You can
 set this to whatever you like, as long as it is a quoted string.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An augmented tibble</p>
+    
+
+<p>An augmented tibble</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -143,14 +154,14 @@ The default is 'nt_'</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>,</span>
-<span class="r-in">  B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">  C <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">6</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">hai_polynomial_augment</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">data_tbl</span>, .pred_col <span class="op">=</span> <span class="va">A</span>, .degree <span class="op">=</span> <span class="fl">2</span>, .new_col_prefix <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  C <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">6</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">hai_polynomial_augment</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">data_tbl</span>, .pred_col <span class="op">=</span> <span class="va">A</span>, .degree <span class="op">=</span> <span class="fl">2</span>, .new_col_prefix <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The formula used is: A ~ poly(B, 2) + poly(C, 2)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       A     B     C nintercept npoly_b_2_1 npoly_b_2_2 npoly_c_2_1 npoly_c_2_2</span>
@@ -158,7 +169,7 @@ The default is 'nt_'</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     0     1     2          1   -<span style="color: #BB0000;">7.07</span><span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>       0.408   -<span style="color: #BB0000;">7.07</span><span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>       0.408</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2     3     4          1   -<span style="color: #BB0000;">7.85</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-17</span>      -<span style="color: #BB0000;">0.816</span>   -<span style="color: #BB0000;">7.85</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-17</span>      -<span style="color: #BB0000;">0.816</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     4     5     6          1    7.07<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>       0.408    7.07<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>       0.408</span>
-<span class="r-in"><span class="fu">hai_polynomial_augment</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">data_tbl</span>, .formula <span class="op">=</span> <span class="va">A</span> <span class="op">~</span> <span class="va">.</span><span class="op">^</span><span class="fl">2</span>, .degree <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">hai_polynomial_augment</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">data_tbl</span>, .formula <span class="op">=</span> <span class="va">A</span> <span class="op">~</span> <span class="va">.</span><span class="op">^</span><span class="fl">2</span>, .degree <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The formula used is: A ~ .^2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       A     B     C nt_intercept  nt_b  nt_c nt_b_c</span>
@@ -166,7 +177,7 @@ The default is 'nt_'</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     0     1     2            1     1     2      2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2     3     4            1     3     4     12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     4     5     6            1     5     6     30</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -181,7 +192,7 @@ The default is 'nt_'</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

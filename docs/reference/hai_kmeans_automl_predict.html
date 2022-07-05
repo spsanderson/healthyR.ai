@@ -24,7 +24,7 @@ object with a lot of useful and easy to use tidy style information."><!-- mathja
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -81,17 +81,20 @@ object with a lot of useful and easy to use tidy style information.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_kmeans_automl_predict</span><span class="op">(</span><span class="va">.input</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_kmeans_automl_predict</span><span class="op">(</span><span class="va">.input</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.input</dt>
 <dd><p>This is the output of the <code><a href="hai_kmeans_automl.html">hai_kmeans_automl()</a></code> function.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list object</p>
+    
+
+<p>A list object</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -122,20 +125,20 @@ are in the formate of a factor using <code><a href="https://forcats.tidyverse.or
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">h2o.init</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_kmeans_automl.html">hai_kmeans_automl</a></span><span class="op">(</span></span>
-<span class="r-in">    .data <span class="op">=</span> <span class="va">iris</span>,</span>
-<span class="r-in">    .predictors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Width"</span>,<span class="st">"Sepal.Length"</span>,<span class="st">"Petal.Width"</span>,<span class="st">"Petal.Length"</span><span class="op">)</span>,</span>
-<span class="r-in">    .standardize <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">hai_kmeans_automl_predict</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">h2o.shutdown</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">h2o.init</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_kmeans_automl.html">hai_kmeans_automl</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    .data <span class="op">=</span> <span class="va">iris</span>,</span></span>
+<span class="r-in"><span>    .predictors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Width"</span>,<span class="st">"Sepal.Length"</span>,<span class="st">"Petal.Width"</span>,<span class="st">"Petal.Length"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    .standardize <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">hai_kmeans_automl_predict</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">h2o.shutdown</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -150,7 +153,7 @@ are in the formate of a factor using <code><a href="https://forcats.tidyverse.or
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

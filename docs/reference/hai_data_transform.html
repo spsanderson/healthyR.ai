@@ -26,7 +26,7 @@ is not exported but may be called via the ::: method.'><!-- mathjax --><script s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -85,34 +85,38 @@ is not exported but may be called via the ::: method.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_data_transform</span><span class="op">(</span>
-  .recipe_object <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>,
-  .type_of_scale <span class="op">=</span> <span class="st">"log"</span>,
-  .bc_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,
-  .bc_num_unique <span class="op">=</span> <span class="fl">5</span>,
-  .bs_deg_free <span class="op">=</span> <span class="cn">NULL</span>,
-  .bs_degree <span class="op">=</span> <span class="fl">3</span>,
-  .log_base <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
-  .log_offset <span class="op">=</span> <span class="fl">0</span>,
-  .logit_offset <span class="op">=</span> <span class="fl">0</span>,
-  .ns_deg_free <span class="op">=</span> <span class="fl">2</span>,
-  .rel_shift <span class="op">=</span> <span class="fl">0</span>,
-  .rel_reverse <span class="op">=</span> <span class="cn">FALSE</span>,
-  .rel_smooth <span class="op">=</span> <span class="cn">FALSE</span>,
-  .yj_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,
-  .yj_num_unique <span class="op">=</span> <span class="fl">5</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_data_transform</span><span class="op">(</span></span>
+<span>  .recipe_object <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  .type_of_scale <span class="op">=</span> <span class="st">"log"</span>,</span>
+<span>  .bc_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  .bc_num_unique <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  .bs_deg_free <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .bs_degree <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  .log_base <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>  .log_offset <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  .logit_offset <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  .ns_deg_free <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  .rel_shift <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  .rel_reverse <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .rel_smooth <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .yj_limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  .yj_num_unique <span class="op">=</span> <span class="fl">5</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.recipe_object</dt>
 <dd><p>The data that you want to process</p></dd>
+
+
 <dt>...</dt>
 <dd><p>One or more selector functions to choose variables to be imputed.
 When used with imp_vars, these dots indicate which variables are used to
 predict the missing data in each variable. See selections() for more details</p></dd>
+
+
 <dt>.type_of_scale</dt>
 <dd><p>This is a quoted argument and can be one of the following:</p><ul><li><p>"boxcox"</p></li>
 <li><p>"bs"</p></li>
@@ -123,49 +127,78 @@ predict the missing data in each variable. See selections() for more details</p>
 <li><p>"sqrt"</p></li>
 <li><p>"yeojohnson</p></li>
 </ul></dd>
+
+
 <dt>.bc_limits</dt>
 <dd><p>A length 2 numeric vector defining the range to compute the
 transformation parameter lambda.</p></dd>
+
+
 <dt>.bc_num_unique</dt>
 <dd><p>An integer to specify minimum required unique values to
 evaluate for a transformation</p></dd>
+
+
 <dt>.bs_deg_free</dt>
 <dd><p>The degrees of freedom for the spline. As the degrees of
 freedom for a spline increase, more flexible and complex curves can be
 generated. When a single degree of freedom is used, the result is a rescaled
 version of the original data.</p></dd>
+
+
 <dt>.bs_degree</dt>
 <dd><p>Degree of polynomial spline (integer).</p></dd>
+
+
 <dt>.log_base</dt>
 <dd><p>A numberic value for the base.</p></dd>
+
+
 <dt>.log_offset</dt>
 <dd><p>An optional value to add to the data prior to logging (to avoid log(0))</p></dd>
+
+
 <dt>.logit_offset</dt>
 <dd><p>A numberic value to modify values ofthe columns that are
 either one or zero. They are modifed to be <code>x - offset</code> or <code>offset</code> respectively.</p></dd>
+
+
 <dt>.ns_deg_free</dt>
 <dd><p>The degrees of freedom for the natural spline. As the
 degrees of freedom for a natural spline increase, more flexible and complex
 curves can be generated. When a single degree of freedom is used, the result
 is a rescaled version of the original data.</p></dd>
+
+
 <dt>.rel_shift</dt>
 <dd><p>A numeric value dictating a translation to apply to the data.</p></dd>
+
+
 <dt>.rel_reverse</dt>
 <dd><p>A logical to indicate if theleft hinge should be used as
 opposed to the right hinge.</p></dd>
+
+
 <dt>.rel_smooth</dt>
 <dd><p>A logical indicating if hte softplus function, a smooth
 approximation to the rectified linear transformation, should be used.</p></dd>
+
+
 <dt>.yj_limits</dt>
 <dd><p>A length 2 numeric vector defining the range to compute the
 transformation parameter lambda.</p></dd>
+
+
 <dt>.yj_num_unique</dt>
 <dd><p>An integer where data that have less possible values
 will not be evaluated for a transformation.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list object</p>
+    
+
+<p>A list object</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -209,8 +242,10 @@ and help the user understand the parameters that can be set in the pre-processor
 <code><a href="hai_earth_data_prepper.html">hai_earth_data_prepper</a>()</code>,
 <code><a href="hai_glmnet_data_prepper.html">hai_glmnet_data_prepper</a>()</code>,
 <code><a href="hai_knn_data_prepper.html">hai_knn_data_prepper</a>()</code>,
+<code><a href="hai_ranger_data_prepper.html">hai_ranger_data_prepper</a>()</code>,
 <code><a href="hai_svm_poly_data_prepper.html">hai_svm_poly_data_prepper</a>()</code>,
-<code><a href="hai_svm_rbf_data_prepper.html">hai_svm_rbf_data_prepper</a>()</code></p></div>
+<code><a href="hai_svm_rbf_data_prepper.html">hai_svm_rbf_data_prepper</a>()</code>,
+<code><a href="hai_xgboost_data_prepper.html">hai_xgboost_data_prepper</a>()</code></p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -219,39 +254,39 @@ and help the user understand the parameters that can be set in the pre-processor
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">date_seq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2013-01-01"</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">100</span>, by <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">val_seq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">6</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df_tbl</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span class="r-in">    date_col <span class="op">=</span> <span class="va">date_seq</span>,</span>
-<span class="r-in">    value    <span class="op">=</span> <span class="va">val_seq</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span><span class="va">.</span>, <span class="va">df_tbl</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">healthyR.ai</span><span class="fu">:::</span><span class="fu">hai_data_transform</span><span class="op">(</span></span>
-<span class="r-in">    .recipe_object <span class="op">=</span> <span class="va">rec_obj</span>,</span>
-<span class="r-in">    <span class="va">value</span>,</span>
-<span class="r-in">    .type_of_scale <span class="op">=</span> <span class="st">"log"</span></span>
-<span class="r-in"><span class="op">)</span><span class="op">$</span><span class="va">scale_rec_obj</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">date_seq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2013-01-01"</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">100</span>, by <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">val_seq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">6</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_tbl</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    date_col <span class="op">=</span> <span class="va">date_seq</span>,</span></span>
+<span class="r-in"><span>    value    <span class="op">=</span> <span class="va">val_seq</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span><span class="va">.</span>, <span class="va">df_tbl</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">healthyR.ai</span><span class="fu">:::</span><span class="fu">hai_data_transform</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    .recipe_object <span class="op">=</span> <span class="va">rec_obj</span>,</span></span>
+<span class="r-in"><span>    <span class="va">value</span>,</span></span>
+<span class="r-in"><span>    .type_of_scale <span class="op">=</span> <span class="st">"log"</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">$</span><span class="va">scale_rec_obj</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col   value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01  2.15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01  1.73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01  1.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01  2.09</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2013-03-01  1.83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01  1.90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01  1.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01  1.87</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01  1.97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01  1.83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01  1.83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01  2.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01  1.76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01  2.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01  1.46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01  2.23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01  1.91</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01  2.08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01  1.85</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 90 more rows</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -266,7 +301,7 @@ and help the user understand the parameters that can be set in the pre-processor
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

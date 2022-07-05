@@ -24,7 +24,7 @@ object with a lot of useful and easy to use tidy style information."><!-- mathja
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -81,39 +81,53 @@ object with a lot of useful and easy to use tidy style information.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_kmeans_automl</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  .split_ratio <span class="op">=</span> <span class="fl">0.8</span>,
-  .seed <span class="op">=</span> <span class="fl">1234</span>,
-  .centers <span class="op">=</span> <span class="fl">10</span>,
-  .standardize <span class="op">=</span> <span class="cn">TRUE</span>,
-  .print_model_summary <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">.predictors</span>,
-  .categorical_encoding <span class="op">=</span> <span class="st">"auto"</span>,
-  .initialization_mode <span class="op">=</span> <span class="st">"Furthest"</span>,
-  .max_iterations <span class="op">=</span> <span class="fl">100</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_kmeans_automl</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  .split_ratio <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  .seed <span class="op">=</span> <span class="fl">1234</span>,</span>
+<span>  .centers <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  .standardize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  .print_model_summary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">.predictors</span>,</span>
+<span>  .categorical_encoding <span class="op">=</span> <span class="st">"auto"</span>,</span>
+<span>  .initialization_mode <span class="op">=</span> <span class="st">"Furthest"</span>,</span>
+<span>  .max_iterations <span class="op">=</span> <span class="fl">100</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>The data that is to be passed for clustering.</p></dd>
+
+
 <dt>.split_ratio</dt>
 <dd><p>The ratio for training and testing splits.</p></dd>
+
+
 <dt>.seed</dt>
 <dd><p>The default is 1234, but can be set to any integer.</p></dd>
+
+
 <dt>.centers</dt>
 <dd><p>The default is 1. Specify the number of clusters (groups of data)
 in a data set.</p></dd>
+
+
 <dt>.standardize</dt>
 <dd><p>The default is set to TRUE. When TRUE all numeric columns
 will be set to zero mean and unit variance.</p></dd>
+
+
 <dt>.print_model_summary</dt>
 <dd><p>This is a boolean and controls if the model summary
 is printed to the console. The default is TRUE.</p></dd>
+
+
 <dt>.predictors</dt>
 <dd><p>This must be in the form of c("column_1", "column_2", ... "column_n")</p></dd>
+
+
 <dt>.categorical_encoding</dt>
 <dd><p>Can be one of the following:</p><ul><li><p>"auto"</p></li>
 <li><p>"enum"</p></li>
@@ -124,18 +138,25 @@ is printed to the console. The default is TRUE.</p></dd>
 <li><p>"sort_by_response"</p></li>
 <li><p>"enum_limited"</p></li>
 </ul></dd>
+
+
 <dt>.initialization_mode</dt>
 <dd><p>This can be one of the following:</p><ul><li><p>"Random"</p></li>
 <li><p>"Furthest (default)</p></li>
 <li><p>"PlusPlus"</p></li>
 </ul></dd>
+
+
 <dt>.max_iterations</dt>
 <dd><p>The default is 100. This specifies the number of training
 iterations</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list object</p>
+    
+
+<p>A list object</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -155,16 +176,16 @@ iterations</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">h2o.init</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu">hai_kmeans_automl</span><span class="op">(</span></span>
-<span class="r-in">    .data <span class="op">=</span> <span class="va">iris</span>,</span>
-<span class="r-in">    .predictors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Width"</span>,<span class="st">"Sepal.Length"</span>,<span class="st">"Petal.Width"</span>,<span class="st">"Petal.Length"</span><span class="op">)</span>,</span>
-<span class="r-in">    .standardize <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="fu">h2o.shutdown</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">h2o.init</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu">hai_kmeans_automl</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    .data <span class="op">=</span> <span class="va">iris</span>,</span></span>
+<span class="r-in"><span>    .predictors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Width"</span>,<span class="st">"Sepal.Length"</span>,<span class="st">"Petal.Width"</span>,<span class="st">"Petal.Length"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    .standardize <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">h2o.shutdown</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -179,7 +200,7 @@ iterations</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

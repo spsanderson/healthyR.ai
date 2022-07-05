@@ -29,7 +29,7 @@ tuned model (grid ect)
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -88,47 +88,66 @@ tuned model (grid ect)
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_auto_svm_poly</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  <span class="va">.rec_obj</span>,
-  .splits_obj <span class="op">=</span> <span class="cn">NULL</span>,
-  .rsamp_obj <span class="op">=</span> <span class="cn">NULL</span>,
-  .tune <span class="op">=</span> <span class="cn">TRUE</span>,
-  .grid_size <span class="op">=</span> <span class="fl">10</span>,
-  .num_cores <span class="op">=</span> <span class="fl">1</span>,
-  .best_metric <span class="op">=</span> <span class="st">"f_meas"</span>,
-  .model_type <span class="op">=</span> <span class="st">"classification"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_auto_svm_poly</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  <span class="va">.rec_obj</span>,</span>
+<span>  .splits_obj <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .rsamp_obj <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .tune <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  .grid_size <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  .num_cores <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  .best_metric <span class="op">=</span> <span class="st">"f_meas"</span>,</span>
+<span>  .model_type <span class="op">=</span> <span class="st">"classification"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>The data being passed to the function. The time-series object.</p></dd>
+
+
 <dt>.rec_obj</dt>
 <dd><p>This is the recipe object you want to use. You can use
 <code><a href="hai_svm_poly_data_prepper.html">hai_svm_poly_data_prepper()</a></code> an automatic recipe_object.</p></dd>
+
+
 <dt>.splits_obj</dt>
 <dd><p>NULL is the default, when NULL then one will be created.</p></dd>
+
+
 <dt>.rsamp_obj</dt>
 <dd><p>NULL is the default, when NULL then one will be created. It
 will default to creating an <code><a href="https://rsample.tidymodels.org/reference/mc_cv.html" class="external-link">rsample::mc_cv()</a></code> object.</p></dd>
+
+
 <dt>.tune</dt>
 <dd><p>Default is TRUE, this will create a tuning grid and tuned workflow</p></dd>
+
+
 <dt>.grid_size</dt>
 <dd><p>Default is 10</p></dd>
+
+
 <dt>.num_cores</dt>
 <dd><p>Default is 1</p></dd>
+
+
 <dt>.best_metric</dt>
 <dd><p>Default is "f_meas". You can choose a metric depending on the
 model_type used. If <code>regression</code> then see <code><a href="hai_default_regression_metric_set.html">hai_default_regression_metric_set()</a></code>,
 if <code>classification</code> then see <code><a href="hai_default_classification_metric_set.html">hai_default_classification_metric_set()</a></code>.</p></dd>
+
+
 <dt>.model_type</dt>
 <dd><p>Default is <code>classification</code>, can also be <code>regression</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list</p>
+    
+
+<p>A list</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -143,8 +162,10 @@ if <code>classification</code> then see <code><a href="hai_default_classificatio
 <code><a href="hai_auto_earth.html">hai_auto_earth</a>()</code>,
 <code><a href="hai_auto_glmnet.html">hai_auto_glmnet</a>()</code>,
 <code><a href="hai_auto_knn.html">hai_auto_knn</a>()</code>,
+<code><a href="hai_auto_ranger.html">hai_auto_ranger</a>()</code>,
 <code><a href="hai_auto_svm_rbf.html">hai_auto_svm_rbf</a>()</code>,
-<code><a href="hai_auto_wflw_metrics.html">hai_auto_wflw_metrics</a>()</code></p>
+<code><a href="hai_auto_wflw_metrics.html">hai_auto_wflw_metrics</a>()</code>,
+<code><a href="hai_auto_xgboost.html">hai_auto_xgboost</a>()</code></p>
 <p>Other SVM_Poly: 
 <code><a href="hai_svm_poly_data_prepper.html">hai_svm_poly_data_prepper</a>()</code></p></div>
     </div>
@@ -155,20 +176,20 @@ if <code>classification</code> then see <code><a href="hai_default_classificatio
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">iris</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_svm_poly_data_prepper.html">hai_svm_poly_data_prepper</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">Species</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">auto_svm_poly</span> <span class="op">&lt;-</span> <span class="fu">hai_auto_svm_poly</span><span class="op">(</span></span>
-<span class="r-in">  .data <span class="op">=</span> <span class="va">data</span>,</span>
-<span class="r-in">  .rec_obj <span class="op">=</span> <span class="va">rec_obj</span>,</span>
-<span class="r-in">  .best_metric <span class="op">=</span> <span class="st">"f_meas"</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">auto_svm_poly</span><span class="op">$</span><span class="va">recipe_info</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">iris</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_svm_poly_data_prepper.html">hai_svm_poly_data_prepper</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">Species</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">auto_svm_poly</span> <span class="op">&lt;-</span> <span class="fu">hai_auto_svm_poly</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  .data <span class="op">=</span> <span class="va">data</span>,</span></span>
+<span class="r-in"><span>  .rec_obj <span class="op">=</span> <span class="va">rec_obj</span>,</span></span>
+<span class="r-in"><span>  .best_metric <span class="op">=</span> <span class="st">"f_meas"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">auto_svm_poly</span><span class="op">$</span><span class="va">recipe_info</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -183,7 +204,7 @@ if <code>classification</code> then see <code><a href="hai_default_classificatio
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

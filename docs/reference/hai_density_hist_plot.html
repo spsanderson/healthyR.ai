@@ -24,7 +24,7 @@ density information provided from the hai_get_density_data_tbl function."><!-- m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -81,34 +81,47 @@ density information provided from the <code>hai_get_density_data_tbl</code> func
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_density_hist_plot</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  .dist_name_col <span class="op">=</span> <span class="va">distribution</span>,
-  .value_col <span class="op">=</span> <span class="va">dist_data</span>,
-  .alpha <span class="op">=</span> <span class="fl">0.382</span>,
-  .interactive <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_density_hist_plot</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  .dist_name_col <span class="op">=</span> <span class="va">distribution</span>,</span>
+<span>  .value_col <span class="op">=</span> <span class="va">dist_data</span>,</span>
+<span>  .alpha <span class="op">=</span> <span class="fl">0.382</span>,</span>
+<span>  .interactive <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>The data that is produced from using <code>hai_get_density_data_tbl</code></p></dd>
+
+
 <dt>.dist_name_col</dt>
 <dd><p>The column that has the distribution name, should be
 distribution and that is set as the default.</p></dd>
+
+
 <dt>.value_col</dt>
 <dd><p>The column that contains the x values that comes from the
 <code>hai_get_density_data_tbl</code> function.</p></dd>
+
+
 <dt>.alpha</dt>
 <dd><p>The alpha parameter for ggplot</p></dd>
+
+
 <dt>.interactive</dt>
 <dd><p>This is a Boolean fo TRUE/FALSE and is defaulted to FALSE.
 TRUE will produce a <code>plotly</code> plot.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A plot, either <code>ggplot2</code> or <code>plotly</code></p>
+    
+
+<p>A plot, either <code>ggplot2</code> or <code>plotly</code></p>
+
+
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -129,22 +142,22 @@ from the <code>.data</code> param to ensure the function was used.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_scale_zero_one_vec.html">hai_scale_zero_one_vec</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="hai_distribution_comparison_tbl.html">hai_distribution_comparison_tbl</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">dist_data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_get_dist_data_tbl.html">hai_get_dist_data_tbl</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">hai_density_hist_plot</span><span class="op">(</span></span>
-<span class="r-in"> .data <span class="op">=</span> <span class="va">dist_data_tbl</span>,</span>
-<span class="r-in"> .dist_name_col <span class="op">=</span> <span class="va">distribution</span>,</span>
-<span class="r-in"> .value_col <span class="op">=</span> <span class="va">dist_data</span>,</span>
-<span class="r-in"> .alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span class="r-in"> .interactive <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_scale_zero_one_vec.html">hai_scale_zero_one_vec</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="hai_distribution_comparison_tbl.html">hai_distribution_comparison_tbl</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">dist_data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_get_dist_data_tbl.html">hai_get_dist_data_tbl</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">hai_density_hist_plot</span><span class="op">(</span></span></span>
+<span class="r-in"><span> .data <span class="op">=</span> <span class="va">dist_data_tbl</span>,</span></span>
+<span class="r-in"><span> .dist_name_col <span class="op">=</span> <span class="va">distribution</span>,</span></span>
+<span class="r-in"><span> .value_col <span class="op">=</span> <span class="va">dist_data</span>,</span></span>
+<span class="r-in"><span> .alpha <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span> .interactive <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hai_density_hist_plot-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -159,7 +172,7 @@ from the <code>.data</code> param to ensure the function was used.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
