@@ -25,7 +25,7 @@ feature that can aid in machine learning."><!-- mathjax --><script src="https://
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -83,18 +83,18 @@ feature that can aid in machine learning.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">step_hai_fourier_discrete</span><span class="op">(</span>
-  <span class="va">recipe</span>,
-  <span class="va">...</span>,
-  role <span class="op">=</span> <span class="st">"predictor"</span>,
-  trained <span class="op">=</span> <span class="cn">FALSE</span>,
-  columns <span class="op">=</span> <span class="cn">NULL</span>,
-  scale_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sin"</span>, <span class="st">"cos"</span>, <span class="st">"sincos"</span><span class="op">)</span>,
-  period <span class="op">=</span> <span class="fl">1</span>,
-  order <span class="op">=</span> <span class="fl">1</span>,
-  skip <span class="op">=</span> <span class="cn">FALSE</span>,
-  id <span class="op">=</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/rand_id.html" class="external-link">rand_id</a></span><span class="op">(</span><span class="st">"hai_fourier_discrete"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">step_hai_fourier_discrete</span><span class="op">(</span></span>
+<span>  <span class="va">recipe</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  role <span class="op">=</span> <span class="st">"predictor"</span>,</span>
+<span>  trained <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  columns <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  scale_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sin"</span>, <span class="st">"cos"</span>, <span class="st">"sincos"</span><span class="op">)</span>,</span>
+<span>  period <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  order <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  skip <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  id <span class="op">=</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/rand_id.html" class="external-link">rand_id</a></span><span class="op">(</span><span class="st">"hai_fourier_discrete"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -102,42 +102,65 @@ feature that can aid in machine learning.</p>
     <dl><dt>recipe</dt>
 <dd><p>A recipe object. The step will be added to the
 sequence of operations for this recipe.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>One or more selector functions to choose which
 variables that will be used to create the new variables. The
 selected variables should have class <code>numeric</code> or <code>date</code>,<code>POSIXct</code></p></dd>
+
+
 <dt>role</dt>
 <dd><p>For model terms created by this step, what analysis
 role should they be assigned?. By default, the function assumes
 that the new variable columns created by the original variables
 will be used as predictors in a model.</p></dd>
+
+
 <dt>trained</dt>
 <dd><p>A logical to indicate if the quantities for
 preprocessing have been estimated.</p></dd>
+
+
 <dt>columns</dt>
 <dd><p>A character string of variables that will be
 used as inputs. This field is a placeholder and will be
 populated once <code><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">recipes::prep()</a></code> is used.</p></dd>
+
+
 <dt>scale_type</dt>
 <dd><p>A character string of a scaling type, one of "sin","cos", or "sincos"</p></dd>
+
+
 <dt>period</dt>
 <dd><p>The number of observations that complete a cycle</p></dd>
+
+
 <dt>order</dt>
 <dd><p>The fourier term order</p></dd>
+
+
 <dt>skip</dt>
 <dd><p>A logical. Should the step be skipped when the recipe is
 baked by bake.recipe()? While all operations are baked when prep.recipe()
 is run, some operations may not be able to be conducted on new data
 (e.g. processing the outcome variable(s)). Care should be taken when
 using skip = TRUE as it may affect the computations for subsequent operations.</p></dd>
+
+
 <dt>id</dt>
 <dd><p>A character string that is unique to this step to identify it.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>For <code>step_hai_fourier_discrete</code>, an updated version of recipe with
-the new step added to the sequence of existing steps (if any).
-Main Recipe Functions:</p><ul><li><p><code><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipes::recipe()</a></code></p></li>
+    
+
+<p>For <code>step_hai_fourier_discrete</code>, an updated version of recipe with
+the new step added to the sequence of existing steps (if any).</p>
+
+
+<p>Main Recipe Functions:</p><ul><li><p><code><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipes::recipe()</a></code></p></li>
 <li><p><code><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">recipes::prep()</a></code></p></li>
 <li><p><code><a href="https://recipes.tidymodels.org/reference/bake.html" class="external-link">recipes::bake()</a></code></p></li>
 </ul></div>
@@ -161,27 +184,27 @@ used for this purpose.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">len_out</span>    <span class="op">=</span> <span class="fl">10</span></span>
-<span class="r-in"><span class="va">by_unit</span>    <span class="op">=</span> <span class="st">"month"</span></span>
-<span class="r-in"><span class="va">start_date</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2021-01-01"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span class="r-in">  date_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">start_date</span>, length.out <span class="op">=</span> <span class="va">len_out</span>, by <span class="op">=</span> <span class="va">by_unit</span><span class="op">)</span>,</span>
-<span class="r-in">  a    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span>,</span>
-<span class="r-in">  b    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Create a recipe object</span></span>
-<span class="r-in"><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">a</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">data_tbl</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">step_hai_fourier_discrete</span><span class="op">(</span><span class="va">b</span>, scale_type <span class="op">=</span> <span class="st">"sin"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">step_hai_fourier_discrete</span><span class="op">(</span><span class="va">b</span>, scale_type <span class="op">=</span> <span class="st">"cos"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">step_hai_fourier_discrete</span><span class="op">(</span><span class="va">b</span>, scale_type <span class="op">=</span> <span class="st">"sincos"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># View the recipe object</span></span>
-<span class="r-in"><span class="va">rec_obj</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">len_out</span>    <span class="op">=</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span><span class="va">by_unit</span>    <span class="op">=</span> <span class="st">"month"</span></span></span>
+<span class="r-in"><span><span class="va">start_date</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2021-01-01"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  date_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">start_date</span>, length.out <span class="op">=</span> <span class="va">len_out</span>, by <span class="op">=</span> <span class="va">by_unit</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  a    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Create a recipe object</span></span></span>
+<span class="r-in"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">a</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">data_tbl</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">step_hai_fourier_discrete</span><span class="op">(</span><span class="va">b</span>, scale_type <span class="op">=</span> <span class="st">"sin"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">step_hai_fourier_discrete</span><span class="op">(</span><span class="va">b</span>, scale_type <span class="op">=</span> <span class="st">"cos"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">step_hai_fourier_discrete</span><span class="op">(</span><span class="va">b</span>, scale_type <span class="op">=</span> <span class="st">"sincos"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># View the recipe object</span></span></span>
+<span class="r-in"><span><span class="va">rec_obj</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
@@ -195,9 +218,9 @@ used for this purpose.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fourier Discrete Transformation on b</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fourier Discrete Transformation on b</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fourier Discrete Transformation on b</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Prepare the recipe object</span></span>
-<span class="r-in"><span class="fu"><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">prep</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Prepare the recipe object</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">prep</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
@@ -213,38 +236,38 @@ used for this purpose.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fourier Discrete Transformation on b [trained]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fourier Discrete Transformation on b [trained]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fourier Discrete Transformation on b [trained]</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Bake the recipe object - Adds the Time Series Signature</span></span>
-<span class="r-in"><span class="fu"><a href="https://recipes.tidymodels.org/reference/bake.html" class="external-link">bake</a></span><span class="op">(</span><span class="fu"><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">prep</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span>, <span class="va">data_tbl</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Bake the recipe object - Adds the Time Series Signature</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://recipes.tidymodels.org/reference/bake.html" class="external-link">bake</a></span><span class="op">(</span><span class="fu"><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">prep</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span>, <span class="va">data_tbl</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col        b       a fourier_discrete… fourier_discret… fourier_discret…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.129  -<span style="color: #BB0000;">1.02</span>                   1                1                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.414   0.315                  1                0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.687   0.512                  0                0                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.016<span style="text-decoration: underline;">8</span>  0.257                  1                1                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.779  -<span style="color: #BB0000;">0.580</span>                  0                1                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.488   0.012<span style="text-decoration: underline;">5</span>                 1                0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.707  -<span style="color: #BB0000;">1.31</span>                   0                0                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.834  -<span style="color: #BB0000;">0.760</span>                  0                1                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.231   0.688                  1                1                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.605   1.01                   0                0                1</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">rec_obj</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.718  -<span style="color: #BB0000;">0.809</span>                  0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.422   2.07                   1                0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.657   1.65                   0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.566   0.101                  0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.258   0.552                  1                0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.107  -<span style="color: #BB0000;">0.234</span>                  1                1                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.391  -<span style="color: #BB0000;">0.038</span><span style="color: #BB0000; text-decoration: underline;">6</span>                 1                0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.029<span style="text-decoration: underline;">3</span> -<span style="color: #BB0000;">1.04</span>                   1                1                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.603  -<span style="color: #BB0000;">0.352</span>                  0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.750  -<span style="color: #BB0000;">0.594</span>                  0                0                1</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">rec_obj</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col        b       a fourier_discrete… fourier_discret… fourier_discret…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.129  -<span style="color: #BB0000;">1.02</span>                   1                1                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.414   0.315                  1                0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.687   0.512                  0                0                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.016<span style="text-decoration: underline;">8</span>  0.257                  1                1                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.779  -<span style="color: #BB0000;">0.580</span>                  0                1                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.488   0.012<span style="text-decoration: underline;">5</span>                 1                0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.707  -<span style="color: #BB0000;">1.31</span>                   0                0                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.834  -<span style="color: #BB0000;">0.760</span>                  0                1                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.231   0.688                  1                1                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.605   1.01                   0                0                1</span>
-<span class="r-in"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 0.718  -<span style="color: #BB0000;">0.809</span>                  0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 0.422   2.07                   1                0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 0.657   1.65                   0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 0.566   0.101                  0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 0.258   0.552                  1                0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 0.107  -<span style="color: #BB0000;">0.234</span>                  1                1                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 0.391  -<span style="color: #BB0000;">0.038</span><span style="color: #BB0000; text-decoration: underline;">6</span>                 1                0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 0.029<span style="text-decoration: underline;">3</span> -<span style="color: #BB0000;">1.04</span>                   1                1                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 0.603  -<span style="color: #BB0000;">0.352</span>                  0                0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 0.750  -<span style="color: #BB0000;">0.594</span>                  0                0                1</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -259,7 +282,7 @@ used for this purpose.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -52,6 +52,9 @@
     <loc>/reference/hai_auto_knn.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_auto_ranger.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_auto_svm_poly.html</loc>
   </url>
   <url>
@@ -59,6 +62,9 @@
   </url>
   <url>
     <loc>/reference/hai_auto_wflw_metrics.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_auto_xgboost.html</loc>
   </url>
   <url>
     <loc>/reference/hai_c50_data_prepper.html</loc>
@@ -172,6 +178,9 @@
     <loc>/reference/hai_polynomial_augment.html</loc>
   </url>
   <url>
+    <loc>/reference/hai_ranger_data_prepper.html</loc>
+  </url>
+  <url>
     <loc>/reference/hai_range_statistic.html</loc>
   </url>
   <url>
@@ -221,6 +230,9 @@
   </url>
   <url>
     <loc>/reference/hai_winsorized_truncate_vec.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hai_xgboost_data_prepper.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>

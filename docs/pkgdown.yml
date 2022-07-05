@@ -1,8 +1,8 @@
 pandoc: 2.17.1.1
-pkgdown: 2.0.3
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   auto-kmeans: auto-kmeans.html
   getting-started: getting-started.html
-last_built: 2022-06-03T15:59Z
+last_built: 2022-07-05T14:39Z
 

@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@
                         <h4 data-toc-skip class="author">Steven P.
 Sanderson II, MPH</h4>
             
-            <h4 data-toc-skip class="date">2022-06-03</h4>
+            <h4 data-toc-skip class="date">2022-07-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/spsanderson/healthyR.ai/blob/HEAD/vignettes/auto-kmeans.Rmd" class="external-link"><code>vignettes/auto-kmeans.Rmd</code></a></small>
       <div class="hidden name"><code>auto-kmeans.Rmd</code></div>
@@ -109,10 +109,10 @@ Sanderson II, MPH</h4>
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.ai" class="external-link">healthyR.ai</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/h2oai/h2o-3" class="external-link">h2o</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spsanderson/healthyR.ai" class="external-link">healthyR.ai</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/h2oai/h2o-3" class="external-link">h2o</a></span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
@@ -124,16 +124,16 @@ with the <code>healthyR.ai</code> function
 <code><a href="../reference/hai_kmeans_automl.html">hai_kmeans_automl()</a></code>.</p>
 <p>First lets take a look at the data itself.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_tbl</span> <span class="op">&lt;-</span> <span class="va">iris</span>
-
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df_tbl</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 150</span>
-<span class="co">#&gt; Columns: 5</span>
-<span class="co">#&gt; $ Sepal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…</span>
-<span class="co">#&gt; $ Sepal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…</span>
-<span class="co">#&gt; $ Petal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…</span>
-<span class="co">#&gt; $ Petal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…</span>
-<span class="co">#&gt; $ Species      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_tbl</span> <span class="op">&lt;-</span> <span class="va">iris</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df_tbl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 150</span></span>
+<span><span class="co">#&gt; Columns: 5</span></span>
+<span><span class="co">#&gt; $ Sepal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…</span></span>
+<span><span class="co">#&gt; $ Sepal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…</span></span>
+<span><span class="co">#&gt; $ Petal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…</span></span>
+<span><span class="co">#&gt; $ Petal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…</span></span>
+<span><span class="co">#&gt; $ Species      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</span></span></code></pre></div>
 <p>From here we can see that the data is already prepared and ready to
 go. There is a factor column that denotes the species or the
 <code>row</code> data and the columns are already numeric. Now the rest
@@ -146,21 +146,21 @@ as the predictor based upon the features presented.</p>
 <h2 id="use-the-function">Use the function<a class="anchor" aria-label="anchor" href="#use-the-function"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">column_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>
-<span class="va">target_col</span> <span class="op">&lt;-</span> <span class="st">"Species"</span>
-<span class="va">predictor_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="va">column_names</span>, <span class="va">target_col</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">column_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span><span class="va">target_col</span> <span class="op">&lt;-</span> <span class="st">"Species"</span></span>
+<span><span class="va">predictor_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="va">column_names</span>, <span class="va">target_col</span><span class="op">)</span></span></code></pre></div>
 <p>Now we have our column inputs for the function, so we can go ahead
 and run it.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/h2o/man/h2o.init.html" class="external-link">h2o.init</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hai_kmeans_automl.html">hai_kmeans_automl</a></span><span class="op">(</span>
-  .data <span class="op">=</span> <span class="va">df_tbl</span>,
-  .predictors <span class="op">=</span> <span class="va">predictor_cols</span>,
-  .standardize <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/h2o/man/h2o.shutdown.html" class="external-link">h2o.shutdown</a></span><span class="op">(</span>prompt <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/h2o/man/h2o.init.html" class="external-link">h2o.init</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hai_kmeans_automl.html">hai_kmeans_automl</a></span><span class="op">(</span></span>
+<span>  .data <span class="op">=</span> <span class="va">df_tbl</span>,</span>
+<span>  .predictors <span class="op">=</span> <span class="va">predictor_cols</span>,</span>
+<span>  .standardize <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/h2o/man/h2o.shutdown.html" class="external-link">h2o.shutdown</a></span><span class="op">(</span>prompt <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>This function gives a lot of output inside of it. From here we will
 discuss what comes out of the function.</p>
 </div>
@@ -183,21 +183,21 @@ of lists with four main components. They are the following:</p>
 access these very simply. You will find that all of the outputs have
 been labeled in a very simple to understand manner.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">output</span><span class="op">$</span><span class="va">data</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="auto-ml-object">Auto-ML Object<a class="anchor" aria-label="anchor" href="#auto-ml-object"></a>
 </h3>
 <p>Now for the auto-ml object itself.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">output</span><span class="op">$</span><span class="va">auto_kmeans_obj</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">auto_kmeans_obj</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="the-best-model">The Best Model<a class="anchor" aria-label="anchor" href="#the-best-model"></a>
 </h3>
 <p>We also have in the output the best model that is saved off.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">output</span><span class="op">$</span><span class="va">model_id</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">model_id</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="scree-plot">Scree Plot<a class="anchor" aria-label="anchor" href="#scree-plot"></a>
@@ -206,7 +206,7 @@ been labeled in a very simple to understand manner.</p>
 this helps us to understand how many clusters are in the data resulting
 from minimizing the within sum of squares errors.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">scree_plt</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">output</span><span class="op">$</span><span class="va">scree_plt</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -228,7 +228,7 @@ from minimizing the within sum of squares errors.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

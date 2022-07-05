@@ -25,7 +25,7 @@ hai_distribution_comparison_tbl() function."><!-- mathjax --><script src="https:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ and grouped or ungrouped. The <code>.data</code> argument must be the output of 
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_get_dist_data_tbl</span><span class="op">(</span><span class="va">.data</span>, .unnest <span class="op">=</span> <span class="cn">TRUE</span>, .group_data <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_get_dist_data_tbl</span><span class="op">(</span><span class="va">.data</span>, .unnest <span class="op">=</span> <span class="cn">TRUE</span>, .group_data <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -91,16 +91,23 @@ and grouped or ungrouped. The <code>.data</code> argument must be the output of 
     <dl><dt>.data</dt>
 <dd><p>The data from the <code><a href="hai_distribution_comparison_tbl.html">hai_distribution_comparison_tbl()</a></code> function
 as this function looks for a class of 'hai_dist_data'</p></dd>
+
+
 <dt>.unnest</dt>
 <dd><p>Should the resulting tibble be unnested, a boolean value TRUE/FALSE.
 The default is TRUE</p></dd>
+
+
 <dt>.group_data</dt>
 <dd><p>Shold the resulting tibble be grouped, a boolean value TRUE/FALSE.
 The default is FALSE</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble.</p>
+    
+
+<p>A tibble.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -121,26 +128,26 @@ data produced from the associated stats r function like <code>rnorm</code></p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_scale_zero_one_vec.html">hai_scale_zero_one_vec</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="hai_distribution_comparison_tbl.html">hai_distribution_comparison_tbl</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">hai_get_dist_data_tbl</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_scale_zero_one_vec.html">hai_scale_zero_one_vec</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="hai_distribution_comparison_tbl.html">hai_distribution_comparison_tbl</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">hai_get_dist_data_tbl</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 96 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    distribution dist_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> gamma          0.176  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gamma          0.030<span style="text-decoration: underline;">0</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gamma          0.261  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gamma          0.418  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gamma          0.003<span style="text-decoration: underline;">35</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gamma          0.015<span style="text-decoration: underline;">6</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gamma          0.052<span style="text-decoration: underline;">1</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gamma          0.044<span style="text-decoration: underline;">1</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gamma          0.007<span style="text-decoration: underline;">66</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> gamma          0.289  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> gamma           0.432 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> gamma           0.253 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> gamma           0.238 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> gamma           0.310 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> gamma           0.345 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> gamma           1.51  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> gamma           0.029<span style="text-decoration: underline;">8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> gamma           0.448 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> gamma           0.396 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> gamma           0.016<span style="text-decoration: underline;">6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 86 more rows</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -155,7 +162,7 @@ data produced from the associated stats r function like <code>rnorm</code></p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

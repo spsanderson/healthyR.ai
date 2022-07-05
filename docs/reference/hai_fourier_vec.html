@@ -28,7 +28,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -86,23 +86,32 @@
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">.x</span>, <span class="va">.period</span>, <span class="va">.order</span>, .scale_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sin"</span>, <span class="st">"cos"</span>, <span class="st">"sincos"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">.x</span>, <span class="va">.period</span>, <span class="va">.order</span>, .scale_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sin"</span>, <span class="st">"cos"</span>, <span class="st">"sincos"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.x</dt>
 <dd><p>A numeric vector</p></dd>
+
+
 <dt>.period</dt>
 <dd><p>The number of observations that complete a cycle</p></dd>
+
+
 <dt>.order</dt>
 <dd><p>The fourier term order</p></dd>
+
+
 <dt>.scale_type</dt>
 <dd><p>A character of one of the following: "sin","cos","sincos"</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric vector</p>
+    
+
+<p>A numeric vector</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -134,28 +143,28 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">len_out</span>    <span class="op">=</span> <span class="fl">25</span></span>
-<span class="r-in"><span class="va">by_unit</span>    <span class="op">=</span> <span class="st">"month"</span></span>
-<span class="r-in"><span class="va">start_date</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2021-01-01"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span class="r-in">  date_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">start_date</span>, length.out <span class="op">=</span> <span class="va">len_out</span>, by <span class="op">=</span> <span class="va">by_unit</span><span class="op">)</span>,</span>
-<span class="r-in">  a    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span>,</span>
-<span class="r-in">  b    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">vec_1</span> <span class="op">&lt;-</span> <span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">b</span>, .period <span class="op">=</span> <span class="fl">12</span>, .order <span class="op">=</span> <span class="fl">1</span>, .scale_type <span class="op">=</span> <span class="st">"sin"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">vec_2</span> <span class="op">&lt;-</span> <span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">b</span>, .period <span class="op">=</span> <span class="fl">12</span>, .order <span class="op">=</span> <span class="fl">1</span>, .scale_type <span class="op">=</span> <span class="st">"cos"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">vec_3</span> <span class="op">&lt;-</span> <span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">date_col</span>, .period <span class="op">=</span> <span class="fl">12</span>, .order <span class="op">=</span> <span class="fl">1</span>, .scale_type <span class="op">=</span> <span class="st">"sincos"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">vec_1</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">vec_2</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">vec_3</span>, col <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">len_out</span>    <span class="op">=</span> <span class="fl">25</span></span></span>
+<span class="r-in"><span><span class="va">by_unit</span>    <span class="op">=</span> <span class="st">"month"</span></span></span>
+<span class="r-in"><span><span class="va">start_date</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2021-01-01"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  date_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">start_date</span>, length.out <span class="op">=</span> <span class="va">len_out</span>, by <span class="op">=</span> <span class="va">by_unit</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  a    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">vec_1</span> <span class="op">&lt;-</span> <span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">b</span>, .period <span class="op">=</span> <span class="fl">12</span>, .order <span class="op">=</span> <span class="fl">1</span>, .scale_type <span class="op">=</span> <span class="st">"sin"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">vec_2</span> <span class="op">&lt;-</span> <span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">b</span>, .period <span class="op">=</span> <span class="fl">12</span>, .order <span class="op">=</span> <span class="fl">1</span>, .scale_type <span class="op">=</span> <span class="st">"cos"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">vec_3</span> <span class="op">&lt;-</span> <span class="fu">hai_fourier_vec</span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">date_col</span>, .period <span class="op">=</span> <span class="fl">12</span>, .order <span class="op">=</span> <span class="fl">1</span>, .scale_type <span class="op">=</span> <span class="st">"sincos"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data_tbl</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">vec_1</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">vec_2</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">vec_3</span>, col <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hai_fourier_vec-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -170,7 +179,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

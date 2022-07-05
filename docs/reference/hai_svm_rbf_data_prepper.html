@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">healthyR.ai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8.9000</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">.data</span>, <span class="va">.recipe_formula</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">.data</span>, <span class="va">.recipe_formula</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -88,14 +88,19 @@
 <dd><p>The data that you are passing to the function. Can be any type
 of data that is accepted by the <code>data</code> parameter of the <code>recipes::reciep()</code>
 function.</p></dd>
+
+
 <dt>.recipe_formula</dt>
 <dd><p>The formula that is going to be passed. For example
 if you are using the <code>diamonds</code> data then the formula would most likely be something
 like <code>price ~ .</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A recipe object</p>
+    
+
+<p>A recipe object</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -117,7 +122,9 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <code><a href="hai_earth_data_prepper.html">hai_earth_data_prepper</a>()</code>,
 <code><a href="hai_glmnet_data_prepper.html">hai_glmnet_data_prepper</a>()</code>,
 <code><a href="hai_knn_data_prepper.html">hai_knn_data_prepper</a>()</code>,
-<code><a href="hai_svm_poly_data_prepper.html">hai_svm_poly_data_prepper</a>()</code></p>
+<code><a href="hai_ranger_data_prepper.html">hai_ranger_data_prepper</a>()</code>,
+<code><a href="hai_svm_poly_data_prepper.html">hai_svm_poly_data_prepper</a>()</code>,
+<code><a href="hai_xgboost_data_prepper.html">hai_xgboost_data_prepper</a>()</code></p>
 <p>Other SVM_RBF: 
 <code><a href="hai_auto_svm_rbf.html">hai_auto_svm_rbf</a>()</code></p></div>
     </div>
@@ -128,8 +135,10 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Regression</span></span>
-<span class="r-in"><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">diamonds</span>, .recipe_formula <span class="op">=</span> <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Regression</span></span></span>
+<span class="r-in"><span><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">diamonds</span>, .recipe_formula <span class="op">=</span> <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
@@ -142,8 +151,8 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Zero variance filter on recipes::all_predictors()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Centering and scaling for recipes::all_numeric_predictors()</span>
-<span class="r-in"><span class="va">reg_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">diamonds</span>, <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">reg_obj</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">reg_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">diamonds</span>, <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">reg_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53,940 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    carat cut       color clarity  depth  table     x     y     z price</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -158,9 +167,9 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> -<span style="color: #BB0000;">1.22</span> Fair      E     VS2      2.34   1.59  -<span style="color: #BB0000;">1.66</span> -<span style="color: #BB0000;">1.71</span> -<span style="color: #BB0000;">1.49</span>   337</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> -<span style="color: #BB0000;">1.20</span> Very Good H     VS1     -<span style="color: #BB0000;">1.64</span>   1.59  -<span style="color: #BB0000;">1.54</span> -<span style="color: #BB0000;">1.47</span> -<span style="color: #BB0000;">1.63</span>   338</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 53,930 more rows</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Classification</span></span>
-<span class="r-in"><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Classification</span></span></span>
+<span class="r-in"><span><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
@@ -173,8 +182,8 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Zero variance filter on recipes::all_predictors()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Centering and scaling for recipes::all_numeric_predictors()</span>
-<span class="r-in"><span class="va">cla_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">cla_obj</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">cla_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">cla_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Class Sex    Age        n Survived</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
@@ -189,7 +198,7 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1st   Male   Adult  0.362 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2nd   Male   Adult  0.627 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 22 more rows</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -204,7 +213,7 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
