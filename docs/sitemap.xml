@@ -1,273 +1,273 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/404.html</loc>
   </url>
   <url>
-    <loc>/articles/auto-kmeans.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/articles/auto-kmeans.html</loc>
   </url>
   <url>
-    <loc>/articles/getting-started.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/articles/getting-started.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/articles/index.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/index.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/news/index.html</loc>
   </url>
   <url>
-    <loc>/README.knit.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/README.knit.html</loc>
   </url>
   <url>
-    <loc>/reference/color_blind.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/color_blind.html</loc>
   </url>
   <url>
-    <loc>/reference/get_juiced_data.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/get_juiced_data.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_c50.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_c50.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_cubist.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_cubist.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_earth.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_earth.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_glmnet.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_glmnet.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_knn.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_knn.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_ranger.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_ranger.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_svm_poly.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_svm_poly.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_svm_rbf.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_svm_rbf.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_wflw_metrics.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_wflw_metrics.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_auto_xgboost.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_auto_xgboost.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_c50_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_c50_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_control_chart.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_control_chart.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_cubist_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_cubist_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_data_impute.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_data_impute.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_data_poly.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_data_poly.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_data_preprocessor.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_data_preprocessor.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_data_scale.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_data_scale.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_data_transform.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_data_transform.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_data_trig.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_data_trig.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_default_classification_metric_set.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_default_classification_metric_set.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_default_regression_metric_set.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_default_regression_metric_set.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_density_hist_plot.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_density_hist_plot.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_density_plot.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_density_plot.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_density_qq_plot.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_density_qq_plot.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_distribution_comparison_tbl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_distribution_comparison_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_earth_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_earth_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_fourier_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_fourier_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_fourier_discrete_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_fourier_discrete_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_fourier_discrete_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_fourier_discrete_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_fourier_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_fourier_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_get_density_data_tbl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_get_density_data_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_get_dist_data_tbl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_get_dist_data_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_glmnet_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_glmnet_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_histogram_facet_plot.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_histogram_facet_plot.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_hyperbolic_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_hyperbolic_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_hyperbolic_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_hyperbolic_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_automl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_automl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_automl_predict.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_automl_predict.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_mapped_tbl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_mapped_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_obj.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_obj.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_scree_data_tbl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_scree_data_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_scree_plt.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_scree_plt.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_tidy_tbl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_tidy_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kmeans_user_item_tbl.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_user_item_tbl.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_knn_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_knn_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_kurtosis_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_kurtosis_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_polynomial_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_polynomial_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_ranger_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_ranger_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_range_statistic.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_range_statistic.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_scale_color_colorblind.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_scale_color_colorblind.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_scale_fill_colorblind.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_scale_fill_colorblind.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_scale_zero_one_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_scale_zero_one_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_scale_zero_one_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_scale_zero_one_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_scale_zscore_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_scale_zscore_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_scale_zscore_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_scale_zscore_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_skewed_features.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_skewed_features.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_skewness_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_skewness_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_step_transform.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_step_transform.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_step_trig.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_step_trig.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_svm_poly_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_svm_poly_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_svm_rbf_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_svm_rbf_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_winsorized_move_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_winsorized_move_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_winsorized_move_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_winsorized_move_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_winsorized_truncate_augment.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_winsorized_truncate_augment.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_winsorized_truncate_vec.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_winsorized_truncate_vec.html</loc>
   </url>
   <url>
-    <loc>/reference/hai_xgboost_data_prepper.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/hai_xgboost_data_prepper.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/pca_your_recipe.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/pca_your_recipe.html</loc>
   </url>
   <url>
-    <loc>/reference/pipe.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>/reference/required_pkgs.healthyR.ai.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/required_pkgs.healthyR.ai.html</loc>
   </url>
   <url>
-    <loc>/reference/step_hai_fourier.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/step_hai_fourier.html</loc>
   </url>
   <url>
-    <loc>/reference/step_hai_fourier_discrete.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/step_hai_fourier_discrete.html</loc>
   </url>
   <url>
-    <loc>/reference/step_hai_hyperbolic.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/step_hai_hyperbolic.html</loc>
   </url>
   <url>
-    <loc>/reference/step_hai_scale_zero_one.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/step_hai_scale_zero_one.html</loc>
   </url>
   <url>
-    <loc>/reference/step_hai_scale_zscore.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/step_hai_scale_zscore.html</loc>
   </url>
   <url>
-    <loc>/reference/step_hai_winsorized_move.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/step_hai_winsorized_move.html</loc>
   </url>
   <url>
-    <loc>/reference/step_hai_winsorized_truncate.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/step_hai_winsorized_truncate.html</loc>
   </url>
   <url>
-    <loc>/reference/tidyeval.html</loc>
+    <loc>https://www.spsanderson.com/healthyR.ai/reference/tidyeval.html</loc>
   </url>
 </urlset>
