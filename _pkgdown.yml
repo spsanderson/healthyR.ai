@@ -1,8 +1,8 @@
+url: https://www.spsanderson.com/healthyR.ai/
 template:
-  boostrap: 5
-  params:
-    bootswatch: flatly
-    ganalytics: G-VBQMCBEYRN
+  bootstrap: 5
+  bootswatch: flatly
+  ganalytics: G-VBQMCBEYRN
 
 navbar:
   title: "healthyR.ai"
