@@ -1,10 +1,10 @@
-pandoc: 2.17.1.1
+pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   auto-kmeans: auto-kmeans.html
   getting-started: getting-started.html
-last_built: 2022-07-19T16:20Z
+last_built: 2022-09-27T12:50Z
 urls:
   reference: https://www.spsanderson.com/healthyR.ai/reference
   article: https://www.spsanderson.com/healthyR.ai/articles
