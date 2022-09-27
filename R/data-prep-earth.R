@@ -6,7 +6,8 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @details This function will automatically prep your data.frame/tibble for
-#' use in the Earth algorithm. The Earth algorithm is for regression only.
+#' use in the Earth algorithm. The Earth algorithm is for classification and
+#' regression.
 #'
 #' This function will output a recipe specification.
 #'
