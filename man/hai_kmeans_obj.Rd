@@ -2,12 +2,12 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_obj}
 \alias{hai_kmeans_obj}
-\alias{keams_obj}
+\alias{kmeans_obj}
 \title{K-Means Object}
 \usage{
 hai_kmeans_obj(.data, .centers = 5)
 
-keams_obj(.data, .centers = 5)
+kmeans_obj(.data, .centers = 5)
 }
 \arguments{
 \item{.data}{The data that gets passed from \code{\link[=hai_kmeans_user_item_tbl]{hai_kmeans_user_item_tbl()}}}

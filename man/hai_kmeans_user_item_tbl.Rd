@@ -2,12 +2,12 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_user_item_tbl}
 \alias{hai_kmeans_user_item_tbl}
-\alias{keams_user_ite_tbl}
+\alias{kmeans_user_item_tbl}
 \title{K-Means User Item Tibble}
 \usage{
 hai_kmeans_user_item_tbl(.data, .row_input, .col_input, .record_input)
 
-keams_user_ite_tbl(.data, .row_input, .col_input, .record_input)
+kmeans_user_item_tbl(.data, .row_input, .col_input, .record_input)
 }
 \arguments{
 \item{.data}{The data that you want to transform}
