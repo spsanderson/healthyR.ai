@@ -103,7 +103,7 @@ hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_inpu
 
 #' @rdname hai_kmeans_user_item_tbl
 #' @export
-keams_user_ite_tbl <- hai_kmeans_user_item_tbl
+kmeans_user_item_tbl <- hai_kmeans_user_item_tbl
 
 
 #' K-Means Object
@@ -179,7 +179,7 @@ hai_kmeans_obj <- function(.data, .centers = 5){
 
 #' @rdname hai_kmeans_obj
 #' @export
-keams_obj <- hai_kmeans_obj
+kmeans_obj <- hai_kmeans_obj
 
 #' K-Means Object Tidy Functions
 #'
@@ -288,7 +288,7 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
 
 #' @rdname hai_kmeans_tidy_tbl
 #' @export
-keams_tidy_tbl <- hai_kmeans_tidy_tbl
+kmeans_tidy_tbl <- hai_kmeans_tidy_tbl
 
 #' K-Means Mapping Function
 #'
@@ -373,7 +373,7 @@ hai_kmeans_mapped_tbl <- function(.data, .centers = 15){
 
 #' @rdname hai_kmeans_mapped_tbl
 #' @export
-keams_mapped_tbl <- hai_kmeans_mapped_tbl
+kmeans_mapped_tbl <- hai_kmeans_mapped_tbl
 
 #' K-Means Scree Plot Data Table
 #'
@@ -441,7 +441,7 @@ hai_kmeans_scree_data_tbl <- function(.data) {
 
 #' @rdname hai_kmeans_scree_data_tbl
 #' @export
-keams_scree_data_tbl <- hai_kmeans_scree_data_tbl
+kmeans_scree_data_tbl <- hai_kmeans_scree_data_tbl
 
 #' K-Means Scree Plot
 #'

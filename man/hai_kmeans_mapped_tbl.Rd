@@ -2,12 +2,12 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_mapped_tbl}
 \alias{hai_kmeans_mapped_tbl}
-\alias{keams_mapped_tbl}
+\alias{kmeans_mapped_tbl}
 \title{K-Means Mapping Function}
 \usage{
 hai_kmeans_mapped_tbl(.data, .centers = 15)
 
-keams_mapped_tbl(.data, .centers = 15)
+kmeans_mapped_tbl(.data, .centers = 15)
 }
 \arguments{
 \item{.data}{You must have a tibble in the working environment from the

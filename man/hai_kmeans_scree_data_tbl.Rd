@@ -2,12 +2,12 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_scree_data_tbl}
 \alias{hai_kmeans_scree_data_tbl}
-\alias{keams_scree_data_tbl}
+\alias{kmeans_scree_data_tbl}
 \title{K-Means Scree Plot Data Table}
 \usage{
 hai_kmeans_scree_data_tbl(.data)
 
-keams_scree_data_tbl(.data)
+kmeans_scree_data_tbl(.data)
 }
 \arguments{
 \item{.data}{You must have a tibble in the working environment from the
