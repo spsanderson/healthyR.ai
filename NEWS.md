@@ -1,5 +1,15 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+None
+
+## New Features
+None
+
+## Minor Fixes and Improvments
+1. Fix #289 - Add the `uwot` package to the `DESCRIPTION` file in order to make
+`umap_` functions.
+
 # healthyR.ai 0.0.8
 
 ## Breaking Changes
