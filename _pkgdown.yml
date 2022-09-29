@@ -34,6 +34,9 @@ reference:
   -  subtitle: K-Means
      contents:
      -  has_concept("Kmeans")
+  -  subtitle: UMAP
+     contents:
+     -  has_concept("UMAP")
   -  title: Boiler Plate functions
      desc: Functions for automatic Recipes, Workflows and Tuned models.
      contents:
