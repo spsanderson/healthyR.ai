@@ -51,7 +51,8 @@ Suggests:
     rsample,
     kknn,
     hardhat,
-    uwot
+    uwot,
+    stringr
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
