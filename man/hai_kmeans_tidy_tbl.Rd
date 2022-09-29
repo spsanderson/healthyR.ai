@@ -2,9 +2,12 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_tidy_tbl}
 \alias{hai_kmeans_tidy_tbl}
+\alias{keams_tidy_tbl}
 \title{K-Means Object Tidy Functions}
 \usage{
 hai_kmeans_tidy_tbl(.kmeans_obj, .data, .tidy_type = "tidy")
+
+keams_tidy_tbl(.kmeans_obj, .data, .tidy_type = "tidy")
 }
 \arguments{
 \item{.kmeans_obj}{A \code{\link[stats:kmeans]{stats::kmeans()}} object}

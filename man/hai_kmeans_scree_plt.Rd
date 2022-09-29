@@ -2,9 +2,15 @@
 % Please edit documentation in R/kmean-funcs.R
 \name{hai_kmeans_scree_plt}
 \alias{hai_kmeans_scree_plt}
+\alias{kmeans_scree_plt}
+\alias{hai_kmeans_scree_plot}
 \title{K-Means Scree Plot}
 \usage{
 hai_kmeans_scree_plt(.data)
+
+kmeans_scree_plt(.data)
+
+hai_kmeans_scree_plot(.data)
 }
 \arguments{
 \item{.data}{The data from the \code{\link[=hai_kmeans_mapped_tbl]{hai_kmeans_mapped_tbl()}} function}
