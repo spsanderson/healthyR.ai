@@ -50,7 +50,8 @@ Suggests:
     plotly,
     rsample,
     kknn,
-    hardhat
+    hardhat,
+    uwot
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
