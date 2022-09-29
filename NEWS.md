@@ -7,6 +7,8 @@ None
 1. Fix #286 - Add function `hai_umap_list()` and alias `umap_list()` this helps
 users who transition from the `healthyR` functionality of the same name, while
 also creating distinct functionality related to `healthyR.ai`
+2. Fix #287 - Add function `hai_umap_plot()` and alias `umap_plt()` this helps the 
+same as Fix #286.
 
 ## Minor Fixes and Improvments
 1. Fix #289 - Add the `uwot` package to the `DESCRIPTION` file in order to make

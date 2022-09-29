@@ -59,6 +59,9 @@ umap_list(.data = uit_tbl, kmm_tbl, 3)
 \item \url{https://github.com/jlmelville/uwot} (GitHub)
 \item \url{https://github.com/jlmelville/uwot} (arXiv paper)
 }
+
+Other UMAP: 
+\code{\link{hai_umap_plot}()}
 }
 \author{
 Steven P. Sanderson II, MPH
