@@ -36,6 +36,8 @@ is not exported but may be called via the ::: method.'><!-- mathjax --><script s
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <h6 class="dropdown-header" data-toc-skip>K-Means</h6>
     <a class="dropdown-item" href="../articles/auto-kmeans.html">Auto M-Means Clustering</a>
+    <h6 class="dropdown-header" data-toc-skip>K-Means and UMAP</h6>
+    <a class="dropdown-item" href="../articles/kmeans-umap.html">K-Means and UMAP</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -188,7 +190,7 @@ dividing by two standard deviations." Unpublished. Source:
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">date_seq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2013-01-01"</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">100</span>, by <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">val_seq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">6</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">df_tbl</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">df_tbl</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    date_col <span class="op">=</span> <span class="va">date_seq</span>,</span></span>
 <span class="r-in"><span>    value    <span class="op">=</span> <span class="va">val_seq</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
@@ -204,16 +206,16 @@ dividing by two standard deviations." Unpublished. Source:
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col    value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01  4.41 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01  0.430</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2013-03-01 -<span style="color: #BB0000;">1.51</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01 -<span style="color: #BB0000;">1.65</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01  2.49 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01 -<span style="color: #BB0000;">1.34</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01 -<span style="color: #BB0000;">1.31</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01 -<span style="color: #BB0000;">2.72</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01  0.496</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01  0.703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2013-01-01  3.99 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2013-02-01 -<span style="color: #BB0000;">0.231</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2013-03-01  1.40 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2013-04-01 -<span style="color: #BB0000;">2.28</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2013-05-01 -<span style="color: #BB0000;">4.50</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2013-06-01  3.59 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-07-01  0.142</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-08-01  1.61 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2013-09-01 -<span style="color: #BB0000;">2.38</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2013-10-01 -<span style="color: #BB0000;">1.34</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 90 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

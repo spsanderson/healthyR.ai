@@ -14,6 +14,7 @@ same as Fix #286.
 1. Fix #289 - Add the `uwot` package to the `DESCRIPTION` file in order to make
 `umap_` functions.
 2. Fix #288 - Alias all kmeans hai functions to mirror healthyR for api compatability.
+3. Fix #290 - Add kmeans-umap vignette.
 
 # healthyR.ai 0.0.8
 

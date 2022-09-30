@@ -46,6 +46,8 @@ c("sin","cos","tan", "sincos")
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <h6 class="dropdown-header" data-toc-skip>K-Means</h6>
     <a class="dropdown-item" href="../articles/auto-kmeans.html">Auto M-Means Clustering</a>
+    <h6 class="dropdown-header" data-toc-skip>K-Means and UMAP</h6>
+    <a class="dropdown-item" href="../articles/kmeans-umap.html">K-Means and UMAP</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -153,7 +155,7 @@ tibble.</p>
 <span class="r-in"><span><span class="va">by_unit</span>    <span class="op">=</span> <span class="st">"month"</span></span></span>
 <span class="r-in"><span><span class="va">start_date</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2021-01-01"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  date_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html" class="external-link">seq.Date</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">start_date</span>, length.out <span class="op">=</span> <span class="va">len_out</span>, by <span class="op">=</span> <span class="va">by_unit</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  a    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  b    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">len_out</span><span class="op">)</span></span></span>
@@ -161,32 +163,32 @@ tibble.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">hai_hyperbolic_augment</span><span class="op">(</span><span class="va">data_tbl</span>, <span class="va">b</span>, .scale_type <span class="op">=</span> <span class="st">"sin"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col         a     b hyperbolic_b_sin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 -<span style="color: #BB0000;">0.150</span>  0.407            0.396</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 -<span style="color: #BB0000;">0.225</span>  0.154            0.154</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01  0.217  0.160            0.160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01  0.223  0.192            0.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01  1.14   0.971            0.825</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01  0.502  0.912            0.791</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01  0.054<span style="text-decoration: underline;">3</span> 0.178            0.177</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 -<span style="color: #BB0000;">2.29</span>   0.597            0.562</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01  0.515  0.240            0.238</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01  0.023<span style="text-decoration: underline;">2</span> 0.203            0.201</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col        a      b hyperbolic_b_sin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 -<span style="color: #BB0000;">0.590</span> 0.456            0.440 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01  0.466 0.300            0.296 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01  2.72  0.630            0.589 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01  0.581 0.884            0.774 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01  2.12  0.082<span style="text-decoration: underline;">0</span>           0.081<span style="text-decoration: underline;">9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01  0.462 0.689            0.636 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 -<span style="color: #BB0000;">1.99</span>  0.591            0.557 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 -<span style="color: #BB0000;">0.595</span> 0.467            0.450 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01  0.678 0.064<span style="text-decoration: underline;">7</span>           0.064<span style="text-decoration: underline;">6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01  0.938 0.494            0.474 </span>
 <span class="r-in"><span><span class="fu">hai_hyperbolic_augment</span><span class="op">(</span><span class="va">data_tbl</span>, <span class="va">b</span>, .scale_type <span class="op">=</span> <span class="st">"tan"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col         a     b hyperbolic_b_tan</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 -<span style="color: #BB0000;">0.150</span>  0.407            0.432</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01 -<span style="color: #BB0000;">0.225</span>  0.154            0.156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01  0.217  0.160            0.162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01  0.223  0.192            0.194</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01  1.14   0.971            1.46 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01  0.502  0.912            1.29 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01  0.054<span style="text-decoration: underline;">3</span> 0.178            0.180</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 -<span style="color: #BB0000;">2.29</span>   0.597            0.679</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01  0.515  0.240            0.245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01  0.023<span style="text-decoration: underline;">2</span> 0.203            0.206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col        a      b hyperbolic_b_tan</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 -<span style="color: #BB0000;">0.590</span> 0.456            0.490 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01  0.466 0.300            0.310 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01  2.72  0.630            0.730 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01  0.581 0.884            1.22  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01  2.12  0.082<span style="text-decoration: underline;">0</span>           0.082<span style="text-decoration: underline;">1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01  0.462 0.689            0.824 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 -<span style="color: #BB0000;">1.99</span>  0.591            0.670 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 -<span style="color: #BB0000;">0.595</span> 0.467            0.504 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01  0.678 0.064<span style="text-decoration: underline;">7</span>           0.064<span style="text-decoration: underline;">8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01  0.938 0.494            0.539 </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

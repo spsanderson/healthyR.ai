@@ -34,6 +34,8 @@ tibble for inspection and for use in the hai_kmeans_scree_plt() function."><!-- 
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <h6 class="dropdown-header" data-toc-skip>K-Means</h6>
     <a class="dropdown-item" href="../articles/auto-kmeans.html">Auto M-Means Clustering</a>
+    <h6 class="dropdown-header" data-toc-skip>K-Means and UMAP</h6>
+    <a class="dropdown-item" href="../articles/kmeans-umap.html">K-Means and UMAP</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -121,7 +123,7 @@ show the values (tot.withinss) at each center.</p>
 <span class="r-in"><span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">payer_grouping</span> <span class="op">!=</span> <span class="st">"?"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">service_line</span>, <span class="va">payer_grouping</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>record <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ui_tbl</span> <span class="op">&lt;-</span>  <span class="fu"><a href="hai_kmeans_user_item_tbl.html">hai_kmeans_user_item_tbl</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   .data           <span class="op">=</span> <span class="va">data_tbl</span></span></span>
@@ -143,14 +145,14 @@ show the values (tot.withinss) at each center.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>       5       0.202 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>       6       0.159 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>       7       0.124 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       8       0.092<span style="text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>       9       0.071<span style="text-decoration: underline;">6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       8       0.088<span style="text-decoration: underline;">4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>       9       0.072<span style="text-decoration: underline;">2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>      10       0.057<span style="text-decoration: underline;">6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span>      11       0.046<span style="text-decoration: underline;">0</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>      12       0.036<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span>      13       0.029<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span>      14       0.024<span style="text-decoration: underline;">7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span>      15       0.016<span style="text-decoration: underline;">0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span>      13       0.027<span style="text-decoration: underline;">2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span>      14       0.021<span style="text-decoration: underline;">2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span>      15       0.016<span style="text-decoration: underline;">1</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
