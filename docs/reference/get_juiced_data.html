@@ -32,6 +32,8 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <h6 class="dropdown-header" data-toc-skip>K-Means</h6>
     <a class="dropdown-item" href="../articles/auto-kmeans.html">Auto M-Means Clustering</a>
+    <h6 class="dropdown-header" data-toc-skip>K-Means and UMAP</h6>
+    <a class="dropdown-item" href="../articles/kmeans-umap.html">K-Means and UMAP</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -128,16 +130,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 76 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col            value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2017-09-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>512</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2015-09-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2016-07-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>444</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2017-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2017-03-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>659</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2018-01-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>756</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2015-06-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>630</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2013-03-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>796</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2020-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>363</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2014-09-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>749</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2016-10-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>488</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2019-01-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>631</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2018-07-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2020-11-01 <span style="color: #949494;">00:00:00</span>   313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2018-05-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>677</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2014-04-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>805</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2019-12-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>381</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2018-04-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>616</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2018-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2015-05-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>544</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 66 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

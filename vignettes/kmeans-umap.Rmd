@@ -1,0 +1,173 @@
+---
+title: "Clustering with K-Means and UMAP"
+author: "Steven P. Sanderson II, MPH"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Clustering with K-Means and UMAP}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+    message = FALSE,
+    warning = FALSE,
+    fig.width = 8, 
+    fig.height = 4.5,
+    fig.align = 'center',
+    out.width='95%', 
+    dpi = 100,
+    collapse = TRUE,
+    comment = "#>"
+)
+```
+
+> healthyR.ai: A toolkit for hospital data
+# Libaray Load
+
+First things first, lets load in the library:
+
+```{r setup}
+library(healthyR.ai)
+```
+
+# Information
+
+K-Means is a partition algorithm initially designed for signal processing.
+The goal is to partition *`n`* observations into *`k`* clusters where
+each *`n`* is in *`k`*. The unsupervised k-means algorithm has a loose
+relationship to the k-nearest neighbor classifier, a popular supervised
+machine learning technique for classification that is often confused
+with k-means due to the name. Applying the 1-nearest neighbor classifier
+to the cluster centers obtained by k-means classifies new data into the
+existing clusters.
+
+The aim of this vignette is to showcase the use of the `healthyR`
+wrapper for the `kmeans` function the the wrapper and plot for the
+`uwot::umap` projection function. We will go through the entire workflow
+from getting the data to getting the fina `UMAP` plot.
+
+# Generate some data
+
+```{r get_data}
+library(healthyR.data)
+library(dplyr)
+library(broom)
+library(ggplot2)
+
+data_tbl <- healthyR_data %>%
+    filter(ip_op_flag == "I") %>%
+    filter(payer_grouping != "Medicare B") %>%
+    filter(payer_grouping != "?") %>%
+    select(service_line, payer_grouping) %>%
+    mutate(record = 1) %>%
+    as_tibble()
+
+data_tbl %>%
+  glimpse()
+```
+
+Now that we have our data we need to generate what is called a user item
+table. To do this we use the function *`hai_kmeans_user_item_tbl`* which
+takes in just a few arguments. The purpose of the user item table is to
+aggregate and normalize the data between the users and the items.
+
+The data that we have generated is going to look for clustering amongst
+the *`service_lines`* (the user) and the *`payer_grouping`* (item)
+columns.
+
+Lets now create the user item table.
+
+# User Item Tibble
+
+```{r uit}
+uit_tbl <- hai_kmeans_user_item_tbl(data_tbl, service_line, payer_grouping, record)
+uit_tbl
+```
+
+The table is aggregated by item for the various users to which the
+algorithm will be applied.
+
+Now that we have this data we need to find what will be out optimal k
+(clusters). To do this we need to generate a table of data that will
+have a column of k and for that k apply the k-means function to the data
+with that k and return the **`total within sum of squares`**.
+
+To do this there is a convienent function called *`hai_kmeans_mapped_tbl`*
+that takes as its sole argument the output from the
+*`hai_kmeans_user_item_tbl`*. There is an argument *`.centers`* where the
+default is set to 15.
+
+# K-Means Mapped Tibble
+```{r kmm_tbl}
+kmm_tbl <- hai_kmeans_mapped_tbl(uit_tbl)
+kmm_tbl
+```
+
+As we see there are three columns, `centers`, `k_means` and `glance`.
+The k_means column is the `k_means` list object and `glance` is the
+tibble returned by the `broom::glance` function.
+
+```{r kmm_tbl_glance}
+kmm_tbl %>%
+  tidyr::unnest(glance)
+```
+
+As stated we use the `tot.withinss` to decide what will become our *`k`*, an easy
+way to do this is to visualize the Scree Plot, also known as the elbow plot. This 
+is done by ploting the `x-axis` as the `centers` and the `y-axis` as the `tot.withinss`.
+
+# Scree Plot and Data
+
+```{r scree_plt}
+hai_kmeans_scree_plt(.data = kmm_tbl)
+```
+
+If we want to see the scree plot data that creates the plot then we can use another function `hai_kmeans_scree_data_tbl`.
+
+```{r scree_data}
+hai_kmeans_scree_data_tbl(kmm_tbl)
+```
+
+With the above pieces of information we can decide upon a value for *`k`*, in this
+instance we are going to use 3. Now that we have that we can go ahead with creating the umap list object where we can take a look at a great many things associated with the data.
+
+# UMAP List Object
+
+Now lets go ahead and create our UMAP list object.
+
+```{r umap_list, message=FALSE, warning=FALSE}
+ump_lst <- hai_umap_list(.data = uit_tbl, kmm_tbl, 3)
+```
+
+Now that it is created, lets take a look at each item in the list. The `umap_list` function returns a list of 5 items.
+
+  * umap_obj
+  * umap_results_tbl
+  * kmeans_obj
+  * kmeans_cluster_tbl
+  * umap_kmeans_cluster_results_tbl
+  
+Since we have the list object we can now inspect the `kmeans_obj`, first thing we will do is use the `hai_kmeans_tidy_tbl` function to inspect things.
+
+```{r kmeans_obj_inspect}
+km_obj <- ump_lst$kmeans_obj
+hai_kmeans_tidy_tbl(.kmeans_obj = km_obj, .data = uit_tbl, .tidy_type = "glance")
+hai_kmeans_tidy_tbl(km_obj, uit_tbl, "augment")
+hai_kmeans_tidy_tbl(km_obj, uit_tbl, "tidy")
+```
+
+# UMAP Plot
+
+Now that we have all of the above data we can visualize our clusters that are colored by their cluster number.
+
+```{r umap_plt}
+hai_umap_plot(.data = ump_lst, .point_size = 3, TRUE)
+```

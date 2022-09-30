@@ -49,6 +49,8 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <h6 class="dropdown-header" data-toc-skip>K-Means</h6>
     <a class="dropdown-item" href="../articles/auto-kmeans.html">Auto M-Means Clustering</a>
+    <h6 class="dropdown-header" data-toc-skip>K-Means and UMAP</h6>
+    <a class="dropdown-item" href="../articles/kmeans-umap.html">K-Means and UMAP</a>
   </div>
 </li>
 <li class="nav-item">
@@ -182,12 +184,12 @@ facilitate the use of the function and this example, we will create a
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 2</span></span></span>
 <span><span class="co">#&gt;   date_col            value</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2014-01-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>844</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2013-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>719</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2015-10-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>641</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2018-09-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>343</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2014-07-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>782</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2020-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>363</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2015-06-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>630</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2018-08-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>609</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2013-12-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>670</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2017-10-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>614</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2016-08-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>537</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2014-01-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>844</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="initial-recipe">Initial Recipe<a class="anchor" aria-label="anchor" href="#initial-recipe"></a>
@@ -216,25 +218,25 @@ facilitate the use of the function and this example, we will create a
 <span><span class="co">#&gt; Please use `recipes_eval_select()` instead.</span></span>
 <span><span class="co">#&gt; Rows: 76</span></span>
 <span><span class="co">#&gt; Columns: 20</span></span>
-<span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2014-01-01, 2013-02-01, 2015-10-01, 2018-09-01, 20…</span></span>
-<span><span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1844, 1719, 1641, 1343, 1782, 1363, 1444, 1443, 174…</span></span>
-<span><span class="co">#&gt; $ date_col_index.num <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1388534400, 1359676800, 1443657600, 1535760000, 140…</span></span>
-<span><span class="co">#&gt; $ date_col_year      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2014, 2013, 2015, 2018, 2014, 2020, 2016, 2019, 201…</span></span>
-<span><span class="co">#&gt; $ date_col_half      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 2, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, …</span></span>
-<span><span class="co">#&gt; $ date_col_quarter   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 4, 3, 3, 1, 3, 2, 2, 3, 1, 2, 4, 4, 3, 3, 4, …</span></span>
-<span><span class="co">#&gt; $ date_col_month     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 10, 9, 7, 2, 7, 4, 6, 8, 1, 5, 11, 11, 8, 8, …</span></span>
-<span><span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> January, February, October, September, July, Februa…</span></span>
+<span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2015-06-01, 2018-08-01, 2013-12-01, 2017-10-01, 20…</span></span>
+<span><span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1630, 1609, 1670, 1614, 1537, 1844, 1607, 1661, 167…</span></span>
+<span><span class="co">#&gt; $ date_col_index.num <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1433116800, 1533081600, 1385856000, 1506816000, 147…</span></span>
+<span><span class="co">#&gt; $ date_col_year      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2015, 2018, 2013, 2017, 2016, 2014, 2017, 2017, 201…</span></span>
+<span><span class="co">#&gt; $ date_col_half      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 2, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 2, 2, 2, …</span></span>
+<span><span class="co">#&gt; $ date_col_quarter   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 3, 4, 4, 3, 1, 3, 2, 2, 3, 4, 2, 1, 3, 3, 4, 3, …</span></span>
+<span><span class="co">#&gt; $ date_col_month     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 8, 12, 10, 8, 1, 8, 6, 5, 9, 11, 6, 2, 7, 9, 10,…</span></span>
+<span><span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> June, August, December, October, August, January, A…</span></span>
 <span><span class="co">#&gt; $ date_col_day       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span></span>
-<span><span class="co">#&gt; $ date_col_wday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4, 6, 5, 7, 3, 7, 6, 2, 6, 5, 3, 6, 5, 6, 6, 4, 3, …</span></span>
-<span><span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Wednesday, Friday, Thursday, Saturday, Tuesday, Sat…</span></span>
+<span><span class="co">#&gt; $ date_col_wday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 4, 1, 1, 2, 4, 3, 5, 3, 3, 4, 7, 2, 3, 5, 2, 5, …</span></span>
+<span><span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Monday, Wednesday, Sunday, Sunday, Monday, Wednesda…</span></span>
 <span><span class="co">#&gt; $ date_col_mday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span></span>
-<span><span class="co">#&gt; $ date_col_qday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 32, 1, 63, 1, 32, 1, 1, 62, 32, 1, 31, 32, 32, 3…</span></span>
-<span><span class="co">#&gt; $ date_col_yday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 32, 274, 244, 182, 32, 183, 91, 152, 213, 1, 122…</span></span>
-<span><span class="co">#&gt; $ date_col_mweek     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 6, 5, 5, 5, 5, 5, 5, …</span></span>
-<span><span class="co">#&gt; $ date_col_week      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 5, 40, 35, 26, 5, 27, 13, 22, 31, 1, 18, 44, 44,…</span></span>
-<span><span class="co">#&gt; $ date_col_week2     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, …</span></span>
-<span><span class="co">#&gt; $ date_col_week3     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 1, 2, 2, 2, 0, 1, 1, 1, 1, 0, 2, 2, 1, 1, 1, …</span></span>
-<span><span class="co">#&gt; $ date_col_week4     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 0, 3, 2, 1, 3, 1, 2, 3, 1, 2, 0, 0, 3, 3, 0, …</span></span>
+<span><span class="co">#&gt; $ date_col_qday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 62, 32, 62, 1, 32, 1, 32, 62, 31, 63, 32, 62, 32, 1…</span></span>
+<span><span class="co">#&gt; $ date_col_yday      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 152, 213, 335, 274, 214, 1, 213, 152, 121, 245, 305…</span></span>
+<span><span class="co">#&gt; $ date_col_mweek     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 5, 5, 5, 6, 5, 6, 5, 5, 6, 5, 5, 6, 5, 5, 6, 5, …</span></span>
+<span><span class="co">#&gt; $ date_col_week      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 22, 31, 48, 40, 31, 1, 31, 22, 18, 35, 44, 22, 5, 2…</span></span>
+<span><span class="co">#&gt; $ date_col_week2     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, …</span></span>
+<span><span class="co">#&gt; $ date_col_week3     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 0, 1, 1, 1, 1, 1, 0, 2, 2, 1, 2, 2, 2, 1, 1, …</span></span>
+<span><span class="co">#&gt; $ date_col_week4     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 3, 0, 0, 3, 1, 3, 2, 2, 3, 0, 2, 1, 2, 3, 0, 3, …</span></span>
 <span><span class="co">#&gt; $ date_col_mday7     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span></span></code></pre></div>
 <p>Now that we have out initial recipe we can use the
 <code><a href="../reference/pca_your_recipe.html">pca_your_recipe()</a></code> function.</p>
@@ -302,18 +304,18 @@ work.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">variable_loadings</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 169 × 4</span></span></span>
-<span><span class="co">#&gt;    terms                 value component id       </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> date_col_index.num  0.055<span style="text-decoration: underline;">3</span>  PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> date_col_year       0.002<span style="text-decoration: underline;">88</span> PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> date_col_half       0.392   PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> date_col_quarter    0.437   PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> date_col_month      0.439   PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> date_col_wday      -<span style="color: #BB0000;">0.047</span><span style="color: #BB0000; text-decoration: underline;">8</span>  PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> date_col_qday       0.014<span style="text-decoration: underline;">9</span>  PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> date_col_yday       0.439   PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> date_col_mweek     -<span style="color: #BB0000;">0.015</span><span style="color: #BB0000; text-decoration: underline;">9</span>  PC1       pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> date_col_week       0.439   PC1       pca_rKe1L</span></span>
+<span><span class="co">#&gt;    terms                value component id       </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> date_col_index.num  0.108  PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> date_col_year       0.055<span style="text-decoration: underline;">0</span> PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> date_col_half       0.389  PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> date_col_quarter    0.436  PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> date_col_month      0.438  PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> date_col_wday      -<span style="color: #BB0000;">0.036</span><span style="color: #BB0000; text-decoration: underline;">1</span> PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> date_col_qday       0.040<span style="text-decoration: underline;">2</span> PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> date_col_yday       0.438  PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> date_col_mweek      0.039<span style="text-decoration: underline;">1</span> PC1       pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> date_col_week       0.438  PC1       pca_JqY60</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 159 more rows</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -324,16 +326,16 @@ work.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 52 × 4</span></span></span>
 <span><span class="co">#&gt;    terms       value component id       </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> variance 5.11             1 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> variance 2.02             2 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> variance 1.46             3 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> variance 1.37             4 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> variance 1.12             5 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> variance 0.761            6 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> variance 0.627            7 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> variance 0.496            8 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> variance 0.040<span style="text-decoration: underline;">3</span>           9 pca_rKe1L</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> variance 0.000<span style="text-decoration: underline;">191</span>        10 pca_rKe1L</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> variance 5.10             1 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> variance 2.01             2 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> variance 1.54             3 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> variance 1.46             4 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> variance 1.16             5 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> variance 0.644            6 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> variance 0.552            7 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> variance 0.490            8 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> variance 0.053<span style="text-decoration: underline;">6</span>           9 pca_JqY60</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> variance 0.000<span style="text-decoration: underline;">234</span>        10 pca_JqY60</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 42 more rows</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -367,28 +369,28 @@ work.</p>
 <code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_juiced_estimates</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 76</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2014-01-01, 2013-02-01, 2015-10-01, 2018-09-01, 20…</span></span>
-<span><span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.070068575, 0.628371792, 0.352752999, -0.700252132…</span></span>
-<span><span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> January, February, October, September, July, Februa…</span></span>
-<span><span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Wednesday, Friday, Thursday, Saturday, Tuesday, Sat…</span></span>
-<span><span class="co">#&gt; $ PC1                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.2690491, -2.8159315, 2.7528801, 1.4882984, 1.189…</span></span>
-<span><span class="co">#&gt; $ PC2                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -1.50401588, -2.16787338, -0.85358544, 0.92562100, …</span></span>
-<span><span class="co">#&gt; $ PC3                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.7588407, -0.3180835, 1.0634182, -2.5370388, 0.571…</span></span>
-<span><span class="co">#&gt; $ PC4                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.430730941, -0.224278904, -1.316954326, 1.1987894…</span></span>
-<span><span class="co">#&gt; $ PC5                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.8085875, 1.1458353, 0.9630599, 1.0111932, 0.83054…</span></span>
+<span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2015-06-01, 2018-08-01, 2013-12-01, 2017-10-01, 20…</span></span>
+<span><span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2607863, 0.1741651, 0.4257792, 0.1947892, -0.1228…</span></span>
+<span><span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> June, August, December, October, August, January, A…</span></span>
+<span><span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Monday, Wednesday, Sunday, Sunday, Monday, Wednesda…</span></span>
+<span><span class="co">#&gt; $ PC1                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.4831426, 1.0029947, 3.2790359, 2.7639723, 0.9868…</span></span>
+<span><span class="co">#&gt; $ PC2                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.02874231, -0.99523154, 2.84508850, -0.21956798, 0…</span></span>
+<span><span class="co">#&gt; $ PC3                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.3284105, -1.3105818, 1.6067382, 1.5184848, -2.04…</span></span>
+<span><span class="co">#&gt; $ PC4                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.923937265, -0.910065427, -0.008187517, 1.36633075…</span></span>
+<span><span class="co">#&gt; $ PC5                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.00602371, 0.09113442, 1.18786771, -0.47001975, 1.…</span></span>
 <span></span>
 <span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_baked_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 95</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 20…</span></span>
-<span><span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.9110593, 0.6283718, 0.9004570, 1.1442736, 1.72024…</span></span>
+<span><span class="co">#&gt; $ value              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.1252052, 0.6278954, 0.9455065, 1.2301192, 1.90246…</span></span>
 <span><span class="co">#&gt; $ date_col_month.lbl <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> January, February, March, April, May, June, July, A…</span></span>
 <span><span class="co">#&gt; $ date_col_wday.lbl  <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> Tuesday, Friday, Friday, Monday, Wednesday, Saturda…</span></span>
-<span><span class="co">#&gt; $ PC1                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.3098834, -2.8159315, -2.6684763, -1.7552401, -1.…</span></span>
-<span><span class="co">#&gt; $ PC2                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -2.3685495, -2.1678734, -1.7563919, -2.3477128, -1.…</span></span>
-<span><span class="co">#&gt; $ PC3                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.79875058, -0.31808352, -1.17928047, 1.85987929, -…</span></span>
-<span><span class="co">#&gt; $ PC4                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.0045519, -0.2242789, -1.4378253, 1.1587738, -1.54…</span></span>
-<span><span class="co">#&gt; $ PC5                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.10472387, 1.14583529, -0.66111824, -0.46826321, …</span></span></code></pre></div>
+<span><span class="co">#&gt; $ PC1                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -3.5186381, -3.1575655, -2.8695017, -1.9537404, -1.…</span></span>
+<span><span class="co">#&gt; $ PC2                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.6156264, 1.6781218, 2.1827366, 1.7613935, 2.05778…</span></span>
+<span><span class="co">#&gt; $ PC3                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.3005525, -0.5389262, 0.5932124, -0.3034450, 1.10…</span></span>
+<span><span class="co">#&gt; $ PC4                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.182828089, -0.232876743, -1.435984153, 2.33297785…</span></span>
+<span><span class="co">#&gt; $ PC5                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.31984888, -1.62559750, 0.28419854, -0.04965645, …</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="roatation-data">Roatation Data<a class="anchor" aria-label="anchor" href="#roatation-data"></a>
@@ -397,19 +399,19 @@ work.</p>
 <code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_rotation_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 13</span></span>
 <span><span class="co">#&gt; Columns: 13</span></span>
-<span><span class="co">#&gt; $ PC1  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.055268415, 0.002876107, 0.392079991, 0.436552106, 0.438616941, …</span></span>
-<span><span class="co">#&gt; $ PC2  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.690816446, 0.695547196, -0.047428456, -0.022830208, -0.01005389…</span></span>
-<span><span class="co">#&gt; $ PC3  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.05753746, 0.06645045, -0.11241125, 0.05256303, -0.07268281, -0.…</span></span>
-<span><span class="co">#&gt; $ PC4  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0961561764, 0.0967698192, 0.1903196528, 0.0030634313, -0.002921…</span></span>
-<span><span class="co">#&gt; $ PC5  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.05160103, 0.05872870, 0.20695943, 0.07316803, -0.05984590, 0.58…</span></span>
-<span><span class="co">#&gt; $ PC6  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.030098346, 0.031302436, -0.195389492, -0.128140341, -0.01252868…</span></span>
-<span><span class="co">#&gt; $ PC7  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.02234865, 0.01647958, -0.19740599, 0.01356698, 0.04972456, 0.63…</span></span>
-<span><span class="co">#&gt; $ PC8  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.037185059, 0.029964029, 0.171292502, -0.005317048, 0.059534205,…</span></span>
-<span><span class="co">#&gt; $ PC9  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.00953376, 0.01636204, 0.80356821, -0.26056753, -0.21460179, 0.…</span></span>
-<span><span class="co">#&gt; $ PC10 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0122933474, 0.0109180070, -0.0105633114, -0.2940386320, -0.386…</span></span>
-<span><span class="co">#&gt; $ PC11 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -2.327813e-02, 2.416002e-02, -8.948025e-04, 5.027100e-03, 6.27173…</span></span>
-<span><span class="co">#&gt; $ PC12 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.339281e-04, -2.219361e-04, 3.493812e-03, 7.931640e-01, -4.51636…</span></span>
-<span><span class="co">#&gt; $ PC13 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7.077616e-01, -7.041710e-01, 2.042412e-05, -2.558004e-02, -6.5624…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ PC1  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.10807784, 0.05501989, 0.38885872, 0.43647159, 0.43801185, -0.03…</span></span>
+<span><span class="co">#&gt; $ PC2  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.673223296, -0.690154845, 0.022891810, 0.017105490, 0.064967536…</span></span>
+<span><span class="co">#&gt; $ PC3  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.04507286, 0.04814840, -0.23553613, 0.01759802, -0.01850457, -0.…</span></span>
+<span><span class="co">#&gt; $ PC4  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.05670624, -0.04895768, 0.02358110, 0.04796313, -0.06923425, -0…</span></span>
+<span><span class="co">#&gt; $ PC5  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.12738794, 0.12339594, -0.19210565, -0.09964094, 0.04745442, -0.…</span></span>
+<span><span class="co">#&gt; $ PC6  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.01561378, 0.01398818, 0.31472248, 0.09131556, 0.01587434, -0.31…</span></span>
+<span><span class="co">#&gt; $ PC7  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.0586212484, -0.0584613711, 0.0103107059, 0.0788098483, -0.0046…</span></span>
+<span><span class="co">#&gt; $ PC8  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.06566702, 0.06033026, 0.02436082, -0.02957323, 0.04591932, 0.27…</span></span>
+<span><span class="co">#&gt; $ PC9  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.004784933, -0.031317059, -0.809661921, 0.270392219, 0.21009705…</span></span>
+<span><span class="co">#&gt; $ PC10 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.013448981, -0.012121805, 0.002920662, 0.292674667, 0.380502468,…</span></span>
+<span><span class="co">#&gt; $ PC11 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -2.241457e-02, 2.279165e-02, -1.276351e-03, -5.021720e-03, 6.3988…</span></span>
+<span><span class="co">#&gt; $ PC12 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0011004190, -0.0005552089, 0.0037884458, 0.7884711879, -0.44239…</span></span>
+<span><span class="co">#&gt; $ PC13 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7.105737e-01, -7.012965e-01, -6.445984e-05, -2.747619e-02, -7.818…</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="variance-and-scree-plot">Variance and Scree Plot<a class="anchor" aria-label="anchor" href="#variance-and-scree-plot"></a>
@@ -419,10 +421,10 @@ work.</p>
 <span><span class="co">#&gt; Rows: 13</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ PC              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8"…</span></span>
-<span><span class="co">#&gt; $ var_explained   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.929371e-01, 1.550991e-01, 1.122451e-01, 1.052927e-01…</span></span>
-<span><span class="co">#&gt; $ var_pct_txt     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "39.29%", "15.51%", "11.22%", "10.53%", "8.63%", "5.86…</span></span>
-<span><span class="co">#&gt; $ cum_var_pct     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3929371, 0.5480363, 0.6602814, 0.7655740, 0.8519225,…</span></span>
-<span><span class="co">#&gt; $ cum_var_pct_txt <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "39.29%", "54.80%", "66.03%", "76.56%", "85.19%", "91.…</span></span>
+<span><span class="co">#&gt; $ var_explained   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.920416e-01, 1.543969e-01, 1.185686e-01, 1.121488e-01…</span></span>
+<span><span class="co">#&gt; $ var_pct_txt     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "39.20%", "15.44%", "11.86%", "11.21%", "8.90%", "4.95…</span></span>
+<span><span class="co">#&gt; $ cum_var_pct     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3920416, 0.5464385, 0.6650071, 0.7771559, 0.8661578,…</span></span>
+<span><span class="co">#&gt; $ cum_var_pct_txt <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "39.20%", "54.64%", "66.50%", "77.72%", "86.62%", "91.…</span></span>
 <span><span class="co">#&gt; $ ou_threshold    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Under, Under, Under, Under, Over, Over, Over, Over, Ov…</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_scree_plt</span></span></code></pre></div>
