@@ -56,24 +56,24 @@ suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(plotly))
 
 data_tbl <- healthyR_data \%>\%
-    select(visit_end_date_time) \%>\%
-    summarise_by_time(
-        .date_var = visit_end_date_time,
-        .by       = "month",
-        value     = n()
-    ) \%>\%
-    set_names("date_col","value") \%>\%
-    filter_by_time(
-        .date_var = date_col,
-        .start_date = "2013",
-        .end_date = "2020"
-    )
+  select(visit_end_date_time) \%>\%
+  summarise_by_time(
+    .date_var = visit_end_date_time,
+    .by       = "month",
+    value     = n()
+  ) \%>\%
+  set_names("date_col", "value") \%>\%
+  filter_by_time(
+    .date_var = date_col,
+    .start_date = "2013",
+    .end_date = "2020"
+  )
 
 splits <- initial_split(data = data_tbl, prop = 0.8)
 
 rec_obj <- recipe(value ~ ., training(splits)) \%>\%
-    step_timeseries_signature(date_col) \%>\%
-    step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
+  step_timeseries_signature(date_col) \%>\%
+  step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
 
 output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
 output_list$pca_variance_scree_plt

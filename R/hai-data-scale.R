@@ -67,96 +67,95 @@
 #' suppressPackageStartupMessages(library(recipes))
 #'
 #' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
-#' val_seq  <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
-#' df_tbl   <- tibble(
-#'     date_col = date_seq,
-#'     value    = val_seq
+#' val_seq <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
+#' df_tbl <- tibble(
+#'   date_col = date_seq,
+#'   value    = val_seq
 #' )
 #'
-#' rec_obj <- recipe(value ~., df_tbl)
+#' rec_obj <- recipe(value ~ ., df_tbl)
 #'
 #' healthyR.ai:::hai_data_scale(
-#'     .recipe_object = rec_obj,
-#'     value,
-#'     .type_of_scale = "center"
+#'   .recipe_object = rec_obj,
+#'   value,
+#'   .type_of_scale = "center"
 #' )$scale_rec_obj %>%
-#'     get_juiced_data()
+#'   get_juiced_data()
 #'
 #' @return
 #' A list object
 #'
 
-hai_data_scale <-  function(.recipe_object = NULL, ...,
-                            .type_of_scale = "center", .range_min = 0,
-                            .range_max = 1, .scale_factor = 1){
+hai_data_scale <- function(.recipe_object = NULL, ...,
+                           .type_of_scale = "center", .range_min = 0,
+                           .range_max = 1, .scale_factor = 1) {
 
-    # Make sure a recipe was passed
-    if(is.null(.recipe_object)){
-        rlang::abort("`.recipe_object` must be passed, please add.")
-    } else {
-        rec_obj <- .recipe_object
-    }
+  # Make sure a recipe was passed
+  if (is.null(.recipe_object)) {
+    rlang::abort("`.recipe_object` must be passed, please add.")
+  } else {
+    rec_obj <- .recipe_object
+  }
 
-    # * Parameters ----
-    terms        <- rlang::enquos(...)
-    scale_type   <- as.character(.type_of_scale)
-    range_min    <- as.numeric(.range_min)
-    range_max    <- as.numeric(.range_max)
-    scale_factor <- as.numeric(.scale_factor)
+  # * Parameters ----
+  terms <- rlang::enquos(...)
+  scale_type <- as.character(.type_of_scale)
+  range_min <- as.numeric(.range_min)
+  range_max <- as.numeric(.range_max)
+  scale_factor <- as.numeric(.scale_factor)
 
-    # * Checks ----
-    if(!is.null(range_min) & !is.numeric(range_min)){
-        stop(call. = FALSE, "(.range_min) must be numeric.")
-    }
+  # * Checks ----
+  if (!is.null(range_min) & !is.numeric(range_min)) {
+    stop(call. = FALSE, "(.range_min) must be numeric.")
+  }
 
-    if(!is.null(range_max) & !is.numeric(range_max)){
-        stop(call. = FALSE, "(.range_max) must be numeric.")
-    }
-    if(!is.null(scale_factor) & !is.numeric(scale_factor)){
-        stop(call. = FALSE, "(.scale_factor) must be numeric.")
-    }
+  if (!is.null(range_max) & !is.numeric(range_max)) {
+    stop(call. = FALSE, "(.range_max) must be numeric.")
+  }
+  if (!is.null(scale_factor) & !is.numeric(scale_factor)) {
+    stop(call. = FALSE, "(.scale_factor) must be numeric.")
+  }
 
-    if(!tolower(scale_type) %in% c(
-        "center","normalize","range","scale"
-    )
-    ){
-        stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
+  if (!tolower(scale_type) %in% c(
+    "center", "normalize", "range", "scale"
+  )
+  ) {
+    stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
              from 'center','normalize','range','scale'")
-    }
+  }
 
-    # If Statment to get the recipe desired ----
-    if(scale_type == "center"){
-        scale_obj <- recipes::step_center(
-            recipe = rec_obj,
-            !!! terms
-        )
-    } else if(scale_type == "normalize"){
-        scale_obj <- recipes::step_normalize(
-            recipe = rec_obj,
-            !!! terms
-        )
-    } else if(scale_type == "range"){
-        scale_obj <- recipes::step_range(
-            recipe = rec_obj,
-            !!! terms,
-            min = range_min,
-            max = range_max
-        )
-    } else if(scale_type == "scale"){
-        scale_obj <- recipes::step_scale(
-            recipe = rec_obj,
-            !!! terms,
-            factor = scale_factor
-        )
-    }
-
-    # * Recipe List ---
-    output <- list(
-        rec_base      = rec_obj,
-        scale_rec_obj = scale_obj
+  # If Statment to get the recipe desired ----
+  if (scale_type == "center") {
+    scale_obj <- recipes::step_center(
+      recipe = rec_obj,
+      !!!terms
     )
+  } else if (scale_type == "normalize") {
+    scale_obj <- recipes::step_normalize(
+      recipe = rec_obj,
+      !!!terms
+    )
+  } else if (scale_type == "range") {
+    scale_obj <- recipes::step_range(
+      recipe = rec_obj,
+      !!!terms,
+      min = range_min,
+      max = range_max
+    )
+  } else if (scale_type == "scale") {
+    scale_obj <- recipes::step_scale(
+      recipe = rec_obj,
+      !!!terms,
+      factor = scale_factor
+    )
+  }
 
-    # * Return ----
-    return(output)
+  # * Recipe List ---
+  output <- list(
+    rec_base      = rec_obj,
+    scale_rec_obj = scale_obj
+  )
 
+  # * Return ----
+  return(output)
 }

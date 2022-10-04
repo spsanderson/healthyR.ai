@@ -34,19 +34,19 @@ library(dplyr)
 library(broom)
 
 data_tbl <- healthyR_data \%>\%
-    filter(ip_op_flag == "I") \%>\%
-    filter(payer_grouping != "Medicare B") \%>\%
-    filter(payer_grouping != "?") \%>\%
-    select(service_line, payer_grouping) \%>\%
-    mutate(record = 1) \%>\%
-    as_tibble()
+  filter(ip_op_flag == "I") \%>\%
+  filter(payer_grouping != "Medicare B") \%>\%
+  filter(payer_grouping != "?") \%>\%
+  select(service_line, payer_grouping) \%>\%
+  mutate(record = 1) \%>\%
+  as_tibble()
 
 uit_tbl <- hai_kmeans_user_item_tbl(
-   .data           = data_tbl
-   , .row_input    = service_line
-   , .col_input    =  payer_grouping
-   , .record_input = record
- )
+  .data = data_tbl,
+  .row_input = service_line,
+  .col_input = payer_grouping,
+  .record_input = record
+)
 
 kmm_tbl <- hai_kmeans_mapped_tbl(uit_tbl)
 

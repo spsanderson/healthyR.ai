@@ -36,80 +36,79 @@
 #' suppressPackageStartupMessages(library(recipes))
 #'
 #' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
-#' val_seq  <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
-#' df_tbl   <- tibble(
-#'     date_col = date_seq,
-#'     value    = val_seq
+#' val_seq <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
+#' df_tbl <- tibble(
+#'   date_col = date_seq,
+#'   value    = val_seq
 #' )
 #'
-#' rec_obj <- recipe(value ~., df_tbl)
+#' rec_obj <- recipe(value ~ ., df_tbl)
 #'
 #' healthyR.ai:::hai_data_trig(
-#'     .recipe_object = rec_obj,
-#'     value,
-#'     .type_of_scale = "sinh"
+#'   .recipe_object = rec_obj,
+#'   value,
+#'   .type_of_scale = "sinh"
 #' )$scale_rec_obj %>%
-#'     get_juiced_data()
+#'   get_juiced_data()
 #'
 #' @return
 #' A list object
 #'
 
-hai_data_trig <-  function(.recipe_object = NULL, ...,
-                           .type_of_scale = "sinh", .inverse = FALSE){
+hai_data_trig <- function(.recipe_object = NULL, ...,
+                          .type_of_scale = "sinh", .inverse = FALSE) {
 
-    # Make sure a recipe was passed
-    if(is.null(.recipe_object)){
-        rlang::abort("`.recipe_object` must be passed, please add.")
-    } else {
-        rec_obj <- .recipe_object
-    }
+  # Make sure a recipe was passed
+  if (is.null(.recipe_object)) {
+    rlang::abort("`.recipe_object` must be passed, please add.")
+  } else {
+    rec_obj <- .recipe_object
+  }
 
-    # * Parameters ----
-    terms        <- rlang::enquos(...)
-    scale_type   <- as.character(.type_of_scale)
-    inverse_bool <- as.logical(.inverse)
+  # * Parameters ----
+  terms <- rlang::enquos(...)
+  scale_type <- as.character(.type_of_scale)
+  inverse_bool <- as.logical(.inverse)
 
-    # * Checks ----
-    if(!tolower(scale_type) %in% c(
-        "sinh","cosh","tanh"
-      )
-    ){
-        stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
+  # * Checks ----
+  if (!tolower(scale_type) %in% c(
+    "sinh", "cosh", "tanh"
+  )
+  ) {
+    stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
              from 'sinh','cosh','tanh'")
-    }
+  }
 
-    # If Statement to get the recipe desired ----
-    if(scale_type == "sinh"){
-        scale_obj <- recipes::step_hyperbolic(
-            recipe  = rec_obj,
-            func    = scale_type,
-            inverse = inverse_bool,
-            !!! terms
-        )
-    } else if(scale_type == "cosh"){
-        scale_obj <- recipes::step_hyperbolic(
-            recipe  = rec_obj,
-            func    = scale_type,
-            inverse = inverse_bool,
-            !!! terms
-        )
-    } else if(scale_type == "tanh"){
-        scale_obj <- recipes::step_hyperbolic(
-            recipe  = rec_obj,
-            func    = scale_type,
-            inverse = inverse_bool,
-            !!! terms
-        )
-    }
-
-    # * Recipe List ---
-    output <- list(
-        rec_base      = rec_obj,
-        scale_rec_obj = scale_obj
+  # If Statement to get the recipe desired ----
+  if (scale_type == "sinh") {
+    scale_obj <- recipes::step_hyperbolic(
+      recipe  = rec_obj,
+      func    = scale_type,
+      inverse = inverse_bool,
+      !!!terms
     )
+  } else if (scale_type == "cosh") {
+    scale_obj <- recipes::step_hyperbolic(
+      recipe  = rec_obj,
+      func    = scale_type,
+      inverse = inverse_bool,
+      !!!terms
+    )
+  } else if (scale_type == "tanh") {
+    scale_obj <- recipes::step_hyperbolic(
+      recipe  = rec_obj,
+      func    = scale_type,
+      inverse = inverse_bool,
+      !!!terms
+    )
+  }
 
-    # * Return ----
-    return(output)
+  # * Recipe List ---
+  output <- list(
+    rec_base      = rec_obj,
+    scale_rec_obj = scale_obj
+  )
 
+  # * Return ----
+  return(output)
 }

@@ -29,13 +29,13 @@ data <- iris
 rec_obj <- hai_knn_data_prepper(data, Species ~ .)
 
 auto_knn <- hai_auto_knn(
- .data = data,
- .rec_obj = rec_obj,
- .best_metric = "f_meas",
- .model_type = "classification",
- .grid_size = 2,
- .num_cores = 4
- )
+  .data = data,
+  .rec_obj = rec_obj,
+  .best_metric = "f_meas",
+  .model_type = "classification",
+  .grid_size = 2,
+  .num_cores = 4
+)
 
 hai_auto_wflw_metrics(auto_knn)
 }

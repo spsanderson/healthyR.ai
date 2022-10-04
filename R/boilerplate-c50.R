@@ -52,182 +52,180 @@
 
 hai_auto_c50 <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
                          .tune = TRUE, .grid_size = 10, .num_cores = 1,
-                         .best_metric = "f_meas", .model_type = "classification"){
+                         .best_metric = "f_meas", .model_type = "classification") {
 
-    # Tidyeval ----
-    grid_size <- as.numeric(.grid_size)
-    num_cores <- as.numeric(.num_cores)
-    best_metric <- as.character(.best_metric)
+  # Tidyeval ----
+  grid_size <- as.numeric(.grid_size)
+  num_cores <- as.numeric(.num_cores)
+  best_metric <- as.character(.best_metric)
 
-    data_tbl <- dplyr::as_tibble(.data)
+  data_tbl <- dplyr::as_tibble(.data)
 
-    splits <- .splits_obj
-    rec_obj <- .rec_obj
-    rsamp_obj <- .rsamp_obj
-    model_type <- as.character(.model_type)
+  splits <- .splits_obj
+  rec_obj <- .rec_obj
+  rsamp_obj <- .rsamp_obj
+  model_type <- as.character(.model_type)
 
-    # Checks ----
-    if (!inherits(x = splits, what = "rsplit") && !is.null(splits)){
-        rlang::abort(
-            message = "'.splits_obj' must have a class of 'rsplit', use the rsample package.",
-            use_cli_format = TRUE
-        )
-    }
+  # Checks ----
+  if (!inherits(x = splits, what = "rsplit") && !is.null(splits)) {
+    rlang::abort(
+      message = "'.splits_obj' must have a class of 'rsplit', use the rsample package.",
+      use_cli_format = TRUE
+    )
+  }
 
-    if (!inherits(x = rec_obj, what = "recipe")){
-        rlang::abort(
-            message = "'.rec_obj' must have a class of 'recipe'."
-        )
-    }
+  if (!inherits(x = rec_obj, what = "recipe")) {
+    rlang::abort(
+      message = "'.rec_obj' must have a class of 'recipe'."
+    )
+  }
 
-    if (!model_type %in% c("regression","classification")){
-        rlang::abort(
-            message = paste0(
-                "You chose a mode of: '",
-                model_type,
-                "' this is unsupported. Choose from either 'regression' or 'classification'."
-            ),
-            use_cli_format = TRUE
-        )
-    }
+  if (!model_type %in% c("regression", "classification")) {
+    rlang::abort(
+      message = paste0(
+        "You chose a mode of: '",
+        model_type,
+        "' this is unsupported. Choose from either 'regression' or 'classification'."
+      ),
+      use_cli_format = TRUE
+    )
+  }
 
-    if (!inherits(x = rsamp_obj, what = "rset") && !is.null(rsamp_obj)){
-        rlang::abort(
-            message = "The '.rsamp_obj' argument must either be NULL or an object of
+  if (!inherits(x = rsamp_obj, what = "rset") && !is.null(rsamp_obj)) {
+    rlang::abort(
+      message = "The '.rsamp_obj' argument must either be NULL or an object of
       calss 'rset'.",
       use_cli_format = TRUE
-        )
-    }
+    )
+  }
 
-    if (!inherits(x = splits, what = "rsplit") && !is.null(splits)){
-        rlang::abort(
-            message = "The '.splits_obj' argument must either be NULL or an object of
+  if (!inherits(x = splits, what = "rsplit") && !is.null(splits)) {
+    rlang::abort(
+      message = "The '.splits_obj' argument must either be NULL or an object of
       class 'rsplit'",
       use_cli_format = TRUE
-        )
-    }
+    )
+  }
 
-    # Set default metric set ----
-    if (model_type == "classification"){
-        ms <- healthyR.ai::hai_default_classification_metric_set()
-    } else {
-        ms <- healthyR.ai::hai_default_regression_metric_set()
-    }
+  # Set default metric set ----
+  if (model_type == "classification") {
+    ms <- healthyR.ai::hai_default_classification_metric_set()
+  } else {
+    ms <- healthyR.ai::hai_default_regression_metric_set()
+  }
 
-    # Get splits if not then create
-    if (is.null(splits)){
-        splits <- rsample::initial_split(data = data_tbl)
-    } else {
-        splits <- splits
-    }
+  # Get splits if not then create
+  if (is.null(splits)) {
+    splits <- rsample::initial_split(data = data_tbl)
+  } else {
+    splits <- splits
+  }
 
-    # Tune/Spec ----
-    if (.tune){
-        # Model Specification
-        model_spec <- parsnip::boost_tree(
-            trees = tune::tune(),
-            min_n = tune::tune()
-        )
-    } else {
-        model_spec <- parsnip::boost_tree()
-    }
+  # Tune/Spec ----
+  if (.tune) {
+    # Model Specification
+    model_spec <- parsnip::boost_tree(
+      trees = tune::tune(),
+      min_n = tune::tune()
+    )
+  } else {
+    model_spec <- parsnip::boost_tree()
+  }
 
-    # Model Specification ----
-    model_spec <- model_spec %>%
-        parsnip::set_mode(mode = model_type) %>%
-        parsnip::set_engine(engine = "C5.0")
+  # Model Specification ----
+  model_spec <- model_spec %>%
+    parsnip::set_mode(mode = model_type) %>%
+    parsnip::set_engine(engine = "C5.0")
 
-    # Workflow ----
-    wflw <- workflows::workflow() %>%
-        workflows::add_recipe(rec_obj) %>%
-        workflows::add_model(model_spec)
+  # Workflow ----
+  wflw <- workflows::workflow() %>%
+    workflows::add_recipe(rec_obj) %>%
+    workflows::add_model(model_spec)
 
-    # Tuning Grid ---
-    if (.tune){
+  # Tuning Grid ---
+  if (.tune) {
 
-        # Make tuning grid
-        tuning_grid_spec <- dials::grid_latin_hypercube(
-            hardhat::extract_parameter_set_dials(model_spec),
-            size = grid_size
-        )
-
-        # Cross validation object
-        if (is.null(rsamp_obj)){
-            cv_obj <- rsample::mc_cv(
-                data = rsample::training(splits)
-            )
-        } else {
-            cv_obj <- rsamp_obj
-        }
-
-        # Tune the workflow
-        # Start parallel backed
-        modeltime::parallel_start(num_cores)
-
-        tuned_results <- wflw %>%
-            tune::tune_grid(
-                resamples = cv_obj,
-                grid      = tuning_grid_spec,
-                metrics   = ms
-            )
-
-        modeltime::parallel_stop()
-
-        # Get the best result set by a specified metric
-        best_result_set <- tuned_results %>%
-            tune::show_best(metric = best_metric, n = 1)
-
-        # Plot results
-        tune_results_plt <- tuned_results %>%
-            tune::autoplot() +
-            ggplot2::theme_minimal() +
-            ggplot2::geom_smooth(se = FALSE) +
-            ggplot2::theme(legend.position = "bottom")
-
-        # Make final workflow
-        wflw_fit <- wflw %>%
-            tune::finalize_workflow(
-                tuned_results %>%
-                    tune::show_best(metric = best_metric, n = 1)
-            ) %>%
-            parsnip::fit(rsample::training(splits))
-
-    } else {
-        wflw_fit <- wflw %>%
-            parsnip::fit(rsample::training(splits))
-    }
-
-    # Return ----
-    output <- list(
-        recipe_info = rec_obj,
-        model_info = list(
-            model_spec  = model_spec,
-            wflw        = wflw,
-            fitted_wflw = wflw_fit,
-            was_tuned   = ifelse(.tune, "tuned", "not_tuned")
-        )
+    # Make tuning grid
+    tuning_grid_spec <- dials::grid_latin_hypercube(
+      hardhat::extract_parameter_set_dials(model_spec),
+      size = grid_size
     )
 
-    if (.tune){
-        output$tuned_info = list(
-            tuning_grid      = tuning_grid_spec,
-            cv_obj           = cv_obj,
-            tuned_results    = tuned_results,
-            grid_size        = grid_size,
-            best_metric      = best_metric,
-            best_result_set  = best_result_set,
-            tuning_grid_plot = tune_results_plt,
-            plotly_grid_plot = plotly::ggplotly(tune_results_plt)
-        )
+    # Cross validation object
+    if (is.null(rsamp_obj)) {
+      cv_obj <- rsample::mc_cv(
+        data = rsample::training(splits)
+      )
+    } else {
+      cv_obj <- rsamp_obj
     }
 
-    attr(output, "function_type") <- "boilerplate"
-    attr(output, ".grid_size") <- .grid_size
-    attr(output, ".tune") <- .tune
-    attr(output, ".best_metric") <- .best_metric
-    attr(output, ".model_type") <- .model_type
-    attr(output, ".engine") <- "C5.0"
+    # Tune the workflow
+    # Start parallel backed
+    modeltime::parallel_start(num_cores)
 
-    return(invisible(output))
+    tuned_results <- wflw %>%
+      tune::tune_grid(
+        resamples = cv_obj,
+        grid      = tuning_grid_spec,
+        metrics   = ms
+      )
 
+    modeltime::parallel_stop()
+
+    # Get the best result set by a specified metric
+    best_result_set <- tuned_results %>%
+      tune::show_best(metric = best_metric, n = 1)
+
+    # Plot results
+    tune_results_plt <- tuned_results %>%
+      tune::autoplot() +
+      ggplot2::theme_minimal() +
+      ggplot2::geom_smooth(se = FALSE) +
+      ggplot2::theme(legend.position = "bottom")
+
+    # Make final workflow
+    wflw_fit <- wflw %>%
+      tune::finalize_workflow(
+        tuned_results %>%
+          tune::show_best(metric = best_metric, n = 1)
+      ) %>%
+      parsnip::fit(rsample::training(splits))
+  } else {
+    wflw_fit <- wflw %>%
+      parsnip::fit(rsample::training(splits))
+  }
+
+  # Return ----
+  output <- list(
+    recipe_info = rec_obj,
+    model_info = list(
+      model_spec  = model_spec,
+      wflw        = wflw,
+      fitted_wflw = wflw_fit,
+      was_tuned   = ifelse(.tune, "tuned", "not_tuned")
+    )
+  )
+
+  if (.tune) {
+    output$tuned_info <- list(
+      tuning_grid      = tuning_grid_spec,
+      cv_obj           = cv_obj,
+      tuned_results    = tuned_results,
+      grid_size        = grid_size,
+      best_metric      = best_metric,
+      best_result_set  = best_result_set,
+      tuning_grid_plot = tune_results_plt,
+      plotly_grid_plot = plotly::ggplotly(tune_results_plt)
+    )
+  }
+
+  attr(output, "function_type") <- "boilerplate"
+  attr(output, ".grid_size") <- .grid_size
+  attr(output, ".tune") <- .tune
+  attr(output, ".best_metric") <- .best_metric
+  attr(output, ".model_type") <- .model_type
+  attr(output, ".engine") <- "C5.0"
+
+  return(invisible(output))
 }

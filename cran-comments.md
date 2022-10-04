@@ -4,6 +4,6 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 note
 
-Update package to 0.0.8
+Update package to 0.0.9

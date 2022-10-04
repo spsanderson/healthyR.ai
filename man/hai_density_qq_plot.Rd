@@ -54,13 +54,13 @@ df <- hai_scale_zero_one_vec(.x = mtcars$mpg) \%>\%
 tidy_density_tbl <- hai_get_density_data_tbl(df)
 
 hai_density_qq_plot(
- .data = tidy_density_tbl,
- .dist_name_col = distribution,
- .x_col = x,
- .y_col = y,
- .size = 1,
- .alpha = 0.5,
- .interactive = FALSE
+  .data = tidy_density_tbl,
+  .dist_name_col = distribution,
+  .x_col = x,
+  .y_col = y,
+  .size = 1,
+  .alpha = 0.5,
+  .interactive = FALSE
 )
 
 }

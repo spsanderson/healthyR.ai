@@ -91,21 +91,21 @@
 #' suppressPackageStartupMessages(library(recipes))
 #'
 #' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
-#' val_seq  <- rep(c(rnorm(9), NA), times = 10)
-#' df_tbl   <- tibble(
-#'     date_col = date_seq,
-#'     value    = val_seq
+#' val_seq <- rep(c(rnorm(9), NA), times = 10)
+#' df_tbl <- tibble(
+#'   date_col = date_seq,
+#'   value    = val_seq
 #' )
 #'
-#' rec_obj <- recipe(value ~., df_tbl)
+#' rec_obj <- recipe(value ~ ., df_tbl)
 #'
 #' healthyR.ai:::hai_data_impute(
-#'     .recipe_object = rec_obj,
-#'     value,
-#'     .type_of_imputation = "roll",
-#' .roll_statistic = median
+#'   .recipe_object = rec_obj,
+#'   value,
+#'   .type_of_imputation = "roll",
+#'   .roll_statistic = median
 #' )$impute_rec_obj %>%
-#'     get_juiced_data()
+#'   get_juiced_data()
 #'
 #' @return
 #' A list object
@@ -114,120 +114,120 @@
 hai_data_impute <- function(.recipe_object = NULL, ...,
                             .seed_value = 123, .type_of_imputation = "mean",
                             .number_of_trees = 25, .neighbors = 5, .mean_trim = 0,
-                            .roll_statistic, .roll_window = 5){
+                            .roll_statistic, .roll_window = 5) {
 
-    # Make sure a recipe was passed
-    if(is.null(.recipe_object)){
-        rlang::abort("`.recipe_object` must be passed, please add.")
-    } else {
-        rec_obj <- .recipe_object
-    }
+  # Make sure a recipe was passed
+  if (is.null(.recipe_object)) {
+    rlang::abort("`.recipe_object` must be passed, please add.")
+  } else {
+    rec_obj <- .recipe_object
+  }
 
-    # * Parameters ----
-    terms       <- rlang::enquos(...)
-    #impute_with <- .impute_vars_with
-    seed_value  <- as.integer(.seed_value)
-    impute_type <- as.character(.type_of_imputation)
-    trees       <- as.integer(.number_of_trees)
-    neighbors   <- as.integer(.neighbors)
-    mean_trim   <- as.numeric(.mean_trim) # 1 >= trim >= 0
-    roll_stat   <- .roll_statistic
-    roll_window <- as.integer(.roll_window)
+  # * Parameters ----
+  terms <- rlang::enquos(...)
+  # impute_with <- .impute_vars_with
+  seed_value <- as.integer(.seed_value)
+  impute_type <- as.character(.type_of_imputation)
+  trees <- as.integer(.number_of_trees)
+  neighbors <- as.integer(.neighbors)
+  mean_trim <- as.numeric(.mean_trim) # 1 >= trim >= 0
+  roll_stat <- .roll_statistic
+  roll_window <- as.integer(.roll_window)
 
-    # * Checks ----
-    # if (is.null(impute_with)) {
-    #     rlang::abort("`impute_with` Needs some variables please.")
-    # }
+  # * Checks ----
+  # if (is.null(impute_with)) {
+  #     rlang::abort("`impute_with` Needs some variables please.")
+  # }
 
-    if((!is.null(seed_value) & !is.numeric(seed_value))){
-        stop(call. = FALSE, "(.seed_value) must either be NULL or an integer.")
-    }
+  if ((!is.null(seed_value) & !is.numeric(seed_value))) {
+    stop(call. = FALSE, "(.seed_value) must either be NULL or an integer.")
+  }
 
-    if(!is.character(impute_type)){
-        stop(call. = FALSE, "(.type_of_imputation) must be a quoted function that takes a single
+  if (!is.character(impute_type)) {
+    stop(call. = FALSE, "(.type_of_imputation) must be a quoted function that takes a single
              parameter, i.e. mean or median.")
-    }
+  }
 
-    if(!tolower(impute_type) %in% c(
-        "bagged","knn","linear","lower","mean","median","mode","roll"
-        )
-    ){
-        stop(call. = FALSE, "(.type_of_imputattion) is not implemented. Please choose
+  if (!tolower(impute_type) %in% c(
+    "bagged", "knn", "linear", "lower", "mean", "median", "mode", "roll"
+  )
+  ) {
+    stop(call. = FALSE, "(.type_of_imputattion) is not implemented. Please choose
              from 'bagged','knn','linear','lower','mean','median','mode','roll'")
-    }
+  }
 
-    if(!is.numeric(trees) | !is.numeric(neighbors) | !is.numeric(roll_window)){
-        stop(call. = FALSE, "The parameters of (.trees), (.neighbors), and (.roll_window) must
+  if (!is.numeric(trees) | !is.numeric(neighbors) | !is.numeric(roll_window)) {
+    stop(call. = FALSE, "The parameters of (.trees), (.neighbors), and (.roll_window) must
              be integers.")
-    }
+  }
 
-    if(!is.numeric(mean_trim) | (mean_trim > 1) | (mean_trim < 0)){
-        stop(call. = FALSE, "(.mean_trim) must be a fraction between 0 and 1, such as 0.25")
-    }
+  if (!is.numeric(mean_trim) | (mean_trim > 1) | (mean_trim < 0)) {
+    stop(call. = FALSE, "(.mean_trim) must be a fraction between 0 and 1, such as 0.25")
+  }
 
-    # Is the .recipe_object in fact a class of recipe?
-    if (!inherits(x = rec_obj, what = "recipe")){
-        stop(call. = FALSE, "You must supply an object of class recipe.")
-    }
+  # Is the .recipe_object in fact a class of recipe?
+  if (!inherits(x = rec_obj, what = "recipe")) {
+    stop(call. = FALSE, "You must supply an object of class recipe.")
+  }
 
-    # * if statement to run the desired type of imputation
-    if(impute_type == "bagged"){
-        imp_obj <- recipes::step_impute_bag(
-            recipe      = rec_obj,
-            !!! terms,
-            #impute_with = impute_with,
-            trees       = trees,
-            seed_val    = seed_value
-        )
-    } else if(impute_type == "knn"){
-        imp_obj <- recipes::step_impute_knn(
-            recipe      = rec_obj,
-            !!! terms,
-            #impute_with = impute_with,
-            neighbors   = neighbors
-        )
-    } else if(impute_type == "linear"){
-        imp_obj <- recipes::step_impute_linear(
-            recipe      = rec_obj,
-            !!! terms,
-            #impute_with = impute_with
-        )
-    } else if(impute_type == "lower"){
-        imp_obj <- recipes::step_impute_lower(
-            recipe = rec_obj,
-            !!! terms
-        )
-    } else if(impute_type == "mean"){
-        imp_obj <- recipes::step_impute_mean(
-            recipe = rec_obj,
-            !!! terms,
-            trim   = mean_trim
-        )
-    } else if(impute_type == "median"){
-        imp_obj <- recipes::step_impute_median(
-            recipe = rec_obj,
-            !!! terms
-        )
-    } else if(impute_type == "mode"){
-        imp_obj <- recipes::step_impute_mode(
-            recipe = rec_obj,
-            !!! terms
-        )
-    } else if(impute_type == "roll"){
-        imp_obj <- recipes::step_impute_roll(
-            recipe    = rec_obj,
-            !!! terms,
-            statistic = roll_stat,
-            window    = roll_window
-        )
-    }
-
-    # * Recipe List ---
-    output <- list(
-        rec_base       = rec_obj,
-        impute_rec_obj = imp_obj
+  # * if statement to run the desired type of imputation
+  if (impute_type == "bagged") {
+    imp_obj <- recipes::step_impute_bag(
+      recipe      = rec_obj,
+      !!!terms,
+      # impute_with = impute_with,
+      trees       = trees,
+      seed_val    = seed_value
     )
+  } else if (impute_type == "knn") {
+    imp_obj <- recipes::step_impute_knn(
+      recipe      = rec_obj,
+      !!!terms,
+      # impute_with = impute_with,
+      neighbors   = neighbors
+    )
+  } else if (impute_type == "linear") {
+    imp_obj <- recipes::step_impute_linear(
+      recipe      = rec_obj,
+      !!!terms,
+      # impute_with = impute_with
+    )
+  } else if (impute_type == "lower") {
+    imp_obj <- recipes::step_impute_lower(
+      recipe = rec_obj,
+      !!!terms
+    )
+  } else if (impute_type == "mean") {
+    imp_obj <- recipes::step_impute_mean(
+      recipe = rec_obj,
+      !!!terms,
+      trim   = mean_trim
+    )
+  } else if (impute_type == "median") {
+    imp_obj <- recipes::step_impute_median(
+      recipe = rec_obj,
+      !!!terms
+    )
+  } else if (impute_type == "mode") {
+    imp_obj <- recipes::step_impute_mode(
+      recipe = rec_obj,
+      !!!terms
+    )
+  } else if (impute_type == "roll") {
+    imp_obj <- recipes::step_impute_roll(
+      recipe    = rec_obj,
+      !!!terms,
+      statistic = roll_stat,
+      window    = roll_window
+    )
+  }
 
-    # * Return ----
-    return(output)
+  # * Recipe List ---
+  output <- list(
+    rec_base       = rec_obj,
+    impute_rec_obj = imp_obj
+  )
+
+  # * Return ----
+  return(output)
 }

@@ -68,9 +68,9 @@ object with a lot of useful and easy to use tidy style information.
 \dontrun{
 h2o.init()
 output <- hai_kmeans_automl(
-    .data = iris,
-    .predictors = c("Sepal.Width","Sepal.Length","Petal.Width","Petal.Length"),
-    .standardize = FALSE
+  .data = iris,
+  .predictors = c("Sepal.Width", "Sepal.Length", "Petal.Width", "Petal.Length"),
+  .standardize = FALSE
 )
 h2o.shutdown()
 }

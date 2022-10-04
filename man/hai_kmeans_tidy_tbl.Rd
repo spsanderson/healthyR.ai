@@ -32,41 +32,41 @@ library(healthyR.data)
 library(dplyr)
 library(broom)
 
-data_tbl <- healthyR_data\%>\%
-   filter(ip_op_flag == "I") \%>\%
-   filter(payer_grouping != "Medicare B") \%>\%
-   filter(payer_grouping != "?") \%>\%
-   select(service_line, payer_grouping) \%>\%
-   mutate(record = 1) \%>\%
-   as_tibble()
+data_tbl <- healthyR_data \%>\%
+  filter(ip_op_flag == "I") \%>\%
+  filter(payer_grouping != "Medicare B") \%>\%
+  filter(payer_grouping != "?") \%>\%
+  select(service_line, payer_grouping) \%>\%
+  mutate(record = 1) \%>\%
+  as_tibble()
 
 uit_tbl <- hai_kmeans_user_item_tbl(
-   .data           = data_tbl
-   , .row_input    = service_line
-   , .col_input    =  payer_grouping
-   , .record_input = record
+  .data = data_tbl,
+  .row_input = service_line,
+  .col_input = payer_grouping,
+  .record_input = record
 )
 
-km_obj  <- hai_kmeans_obj(uit_tbl)
+km_obj <- hai_kmeans_obj(uit_tbl)
 
 hai_kmeans_tidy_tbl(
-   .kmeans_obj  = km_obj
-   , .data      = uit_tbl
-   , .tidy_type = "augment"
- )
+  .kmeans_obj = km_obj,
+  .data = uit_tbl,
+  .tidy_type = "augment"
+)
 
 hai_kmeans_tidy_tbl(
-   .kmeans_obj  = km_obj
-   , .data      = uit_tbl
-   , .tidy_type = "glance"
- )
+  .kmeans_obj = km_obj,
+  .data = uit_tbl,
+  .tidy_type = "glance"
+)
 
 hai_kmeans_tidy_tbl(
-   .kmeans_obj  = km_obj
-   , .data      = uit_tbl
-   , .tidy_type = "tidy"
- ) \%>\%
-   glimpse()
+  .kmeans_obj = km_obj,
+  .data = uit_tbl,
+  .tidy_type = "tidy"
+) \%>\%
+  glimpse()
 
 }
 \seealso{

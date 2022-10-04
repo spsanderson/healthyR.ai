@@ -40,14 +40,13 @@
 #' @export
 #'
 
-hai_svm_poly_data_prepper <- function(.data, .recipe_formula){
+hai_svm_poly_data_prepper <- function(.data, .recipe_formula) {
 
-    # Recipe ---
-    rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
-        recipes::step_zv(recipes::all_predictors()) %>%
-        recipes::step_normalize(recipes::all_numeric_predictors())
+  # Recipe ---
+  rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
+    recipes::step_zv(recipes::all_predictors()) %>%
+    recipes::step_normalize(recipes::all_numeric_predictors())
 
-    # Return ----
-    return(rec_obj)
-
+  # Return ----
+  return(rec_obj)
 }

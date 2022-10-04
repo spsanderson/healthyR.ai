@@ -49,14 +49,14 @@
 #' suppressPackageStartupMessages(library(dplyr))
 #' suppressPackageStartupMessages(library(recipes))
 #'
-#' len_out    = 10
-#' by_unit    = "month"
-#' start_date = as.Date("2021-01-01")
+#' len_out <- 10
+#' by_unit <- "month"
+#' start_date <- as.Date("2021-01-01")
 #'
 #' data_tbl <- tibble(
 #'   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-#'   a    = rnorm(len_out),
-#'   b    = runif(len_out)
+#'   a = rnorm(len_out),
+#'   b = runif(len_out)
 #' )
 #'
 #' # Create a recipe object
@@ -79,110 +79,105 @@
 #' @importFrom recipes prep bake rand_id
 
 step_hai_winsorized_move <- function(recipe,
-                                ...,
-                                role       = "predictor",
-                                trained    = FALSE,
-                                columns    = NULL,
-                                multiple   = 3,
-                                skip       = FALSE,
-                                id         = rand_id("hai_winsorized_move")
-){
+                                     ...,
+                                     role = "predictor",
+                                     trained = FALSE,
+                                     columns = NULL,
+                                     multiple = 3,
+                                     skip = FALSE,
+                                     id = rand_id("hai_winsorized_move")) {
+  terms <- recipes::ellipse_check(...)
 
-    terms <- recipes::ellipse_check(...)
-
-    recipes::add_step(
-        recipe,
-        step_hai_winsorized_move_new(
-            terms      = terms,
-            role       = role,
-            trained    = trained,
-            columns    = columns,
-            multiple   = multiple,
-            skip       = skip,
-            id         = id
-        )
+  recipes::add_step(
+    recipe,
+    step_hai_winsorized_move_new(
+      terms      = terms,
+      role       = role,
+      trained    = trained,
+      columns    = columns,
+      multiple   = multiple,
+      skip       = skip,
+      id         = id
     )
+  )
 }
 
 step_hai_winsorized_move_new <-
-    function(terms, role, trained, columns, multiple, skip, id){
-
-        recipes::step(
-            subclass   = "hai_winsorized_move",
-            terms      = terms,
-            role       = role,
-            trained    = trained,
-            columns    = columns,
-            multiple   = multiple,
-            skip       = skip,
-            id         = id
-        )
-
-    }
+  function(terms, role, trained, columns, multiple, skip, id) {
+    recipes::step(
+      subclass   = "hai_winsorized_move",
+      terms      = terms,
+      role       = role,
+      trained    = trained,
+      columns    = columns,
+      multiple   = multiple,
+      skip       = skip,
+      id         = id
+    )
+  }
 
 #' @export
 prep.step_hai_winsorized_move <- function(x, training, info = NULL, ...) {
+  col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
-    col_names <- recipes::recipes_eval_select(x$terms, training, info)
+  value_data <- info[info$variable %in% col_names, ]
 
-    value_data <- info[info$variable %in% col_names, ]
-
-    if(any(value_data$type != "numeric")){
-        rlang::abort(
-            paste0("All variables for `step_hai_winsorized_move` must be `numeric`",
-                   "`integer` `double` classes.")
-        )
-    }
-
-    step_hai_winsorized_move_new(
-        terms      = x$terms,
-        role       = x$role,
-        trained    = TRUE,
-        columns    = col_names,
-        multiple   = x$multiple,
-        skip       = x$skip,
-        id         = x$id
+  if (any(value_data$type != "numeric")) {
+    rlang::abort(
+      paste0(
+        "All variables for `step_hai_winsorized_move` must be `numeric`",
+        "`integer` `double` classes."
+      )
     )
+  }
 
+  step_hai_winsorized_move_new(
+    terms      = x$terms,
+    role       = x$role,
+    trained    = TRUE,
+    columns    = col_names,
+    multiple   = x$multiple,
+    skip       = x$skip,
+    id         = x$id
+  )
 }
 
 #' @export
-bake.step_hai_winsorized_move <- function(object, new_data, ...){
-
-    make_call <- function(col, multiple){
-        rlang::call2(
-            "hai_winsorized_move_vec",
-            .x            = rlang::sym(col)
-            , .multiple   = multiple
-            , .ns         = "healthyR.ai"
-        )
-    }
-
-    grid <- expand.grid(
-        col                = object$columns
-        , multiple         = object$multiple
-        , stringsAsFactors = FALSE
+bake.step_hai_winsorized_move <- function(object, new_data, ...) {
+  make_call <- function(col, multiple) {
+    rlang::call2(
+      "hai_winsorized_move_vec",
+      .x = rlang::sym(col),
+      .multiple = multiple,
+      .ns = "healthyR.ai"
     )
+  }
 
-    calls <- purrr::pmap(.l = list(grid$col, grid$multiple), make_call)
+  grid <- expand.grid(
+    col = object$columns,
+    multiple = object$multiple,
+    stringsAsFactors = FALSE
+  )
 
-    # Column Names
-    newname <- paste0("winsorized_move_", grid$col)
-    calls   <- recipes::check_name(calls, new_data, object, newname, TRUE)
+  calls <- purrr::pmap(.l = list(grid$col, grid$multiple), make_call)
 
-    tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
+  # Column Names
+  newname <- paste0("winsorized_move_", grid$col)
+  calls <- recipes::check_name(calls, new_data, object, newname, TRUE)
 
+  tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
 }
 
 #' @export
 print.step_hai_winsorized_move <-
-    function(x, width = max(20, options()$width - 35), ...) {
-        title <- "Winsorized Scaling/Move Transformation on "
-        recipes::print_step(
-            x$columns, x$terms, x$trained, width = width, title = title
-        )
-        invisible(x)
-    }
+  function(x, width = max(20, options()$width - 35), ...) {
+    title <- "Winsorized Scaling/Move Transformation on "
+    recipes::print_step(
+      x$columns, x$terms, x$trained,
+      width = width, title = title
+    )
+    invisible(x)
+  }
 
 #' Requited Packages
 #' @rdname required_pkgs.healthyR.ai
@@ -192,5 +187,5 @@ print.step_hai_winsorized_move <-
 # @noRd
 #' @export
 required_pkgs.step_hai_winsorized_move <- function(x, ...) {
-    c("healthyR.ai")
+  c("healthyR.ai")
 }

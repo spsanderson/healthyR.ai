@@ -17,16 +17,15 @@
 #' @export
 #'
 
-hai_default_regression_metric_set <- function(){
-
-    yardstick::metric_set(
-        yardstick::mae,
-        yardstick::mape,
-        yardstick::mase,
-        yardstick::smape,
-        yardstick::rmse,
-        yardstick::rsq
-    )
+hai_default_regression_metric_set <- function() {
+  yardstick::metric_set(
+    yardstick::mae,
+    yardstick::mape,
+    yardstick::mase,
+    yardstick::smape,
+    yardstick::rmse,
+    yardstick::rsq
+  )
 }
 
 #' Metric Set
@@ -48,19 +47,18 @@ hai_default_regression_metric_set <- function(){
 #' @export
 #'
 
-hai_default_classification_metric_set <- function(){
-
-    yardstick::metric_set(
-        yardstick::sensitivity,
-        yardstick::specificity,
-        yardstick::recall,
-        yardstick::precision,
-        yardstick::mcc,
-        yardstick::accuracy,
-        yardstick::f_meas,
-        yardstick::kap,
-        yardstick::ppv,
-        yardstick::npv,
-        yardstick::bal_accuracy
-    )
+hai_default_classification_metric_set <- function() {
+  yardstick::metric_set(
+    yardstick::sensitivity,
+    yardstick::specificity,
+    yardstick::recall,
+    yardstick::precision,
+    yardstick::mcc,
+    yardstick::accuracy,
+    yardstick::f_meas,
+    yardstick::kap,
+    yardstick::ppv,
+    yardstick::npv,
+    yardstick::bal_accuracy
+  )
 }

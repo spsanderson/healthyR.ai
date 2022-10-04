@@ -26,19 +26,19 @@
 #' library(broom)
 #'
 #' data_tbl <- healthyR_data %>%
-#'     filter(ip_op_flag == "I") %>%
-#'     filter(payer_grouping != "Medicare B") %>%
-#'     filter(payer_grouping != "?") %>%
-#'     select(service_line, payer_grouping) %>%
-#'     mutate(record = 1) %>%
-#'     as_tibble()
+#'   filter(ip_op_flag == "I") %>%
+#'   filter(payer_grouping != "Medicare B") %>%
+#'   filter(payer_grouping != "?") %>%
+#'   select(service_line, payer_grouping) %>%
+#'   mutate(record = 1) %>%
+#'   as_tibble()
 #'
 #' uit_tbl <- hai_kmeans_user_item_tbl(
-#'    .data           = data_tbl
-#'    , .row_input    = service_line
-#'    , .col_input    =  payer_grouping
-#'    , .record_input = record
-#'  )
+#'   .data = data_tbl,
+#'   .row_input = service_line,
+#'   .col_input = payer_grouping,
+#'   .record_input = record
+#' )
 #'
 #' kmm_tbl <- hai_kmeans_mapped_tbl(uit_tbl)
 #'
@@ -49,61 +49,64 @@
 #' @export
 #'
 
-hai_umap_list <- function(.data
-                      , .kmeans_map_tbl
-                      , .k_cluster = 5) {
-    # * Tidyeval ----
-    k_cluster_var_expr <- .k_cluster
+hai_umap_list <- function(.data,
+                          .kmeans_map_tbl,
+                          .k_cluster = 5) {
+  # * Tidyeval ----
+  k_cluster_var_expr <- .k_cluster
 
-    # * Checks ----
-    if (!is.data.frame(.data)) {
-        stop(call. = FALSE,
-             "(.data) is not a data.frame/tibble. Please supply.")
-    }
+  # * Checks ----
+  if (!is.data.frame(.data)) {
+    stop(
+      call. = FALSE,
+      "(.data) is not a data.frame/tibble. Please supply."
+    )
+  }
 
-    if (!is.data.frame(.kmeans_map_tbl)) {
-        stop(call. = FALSE,
-             "(.kmeans_map_tbl) is not a data.frame/tibble. Please supply.")
-    }
+  if (!is.data.frame(.kmeans_map_tbl)) {
+    stop(
+      call. = FALSE,
+      "(.kmeans_map_tbl) is not a data.frame/tibble. Please supply."
+    )
+  }
 
-    # * Data ----
-    data           <- tibble::as_tibble(.data)
-    kmeans_map_tbl <- tibble::as_tibble(.kmeans_map_tbl)
+  # * Data ----
+  data <- tibble::as_tibble(.data)
+  kmeans_map_tbl <- tibble::as_tibble(.kmeans_map_tbl)
 
-    # * Manipulation ----
-    umap_obj <- data %>%
-        dplyr::select(-1) %>%
-        uwot::umap()
+  # * Manipulation ----
+  umap_obj <- data %>%
+    dplyr::select(-1) %>%
+    uwot::umap()
 
-    umap_results_tbl <- umap_obj %>%
-        tibble::as_tibble() %>%
-        purrr::set_names("x", "y") %>%
-        dplyr::bind_cols(data %>% dplyr::select(1))
+  umap_results_tbl <- umap_obj %>%
+    tibble::as_tibble() %>%
+    purrr::set_names("x", "y") %>%
+    dplyr::bind_cols(data %>% dplyr::select(1))
 
-    kmeans_obj <- kmeans_map_tbl %>%
-        dplyr::pull(k_means) %>%
-        purrr::pluck(k_cluster_var_expr)
+  kmeans_obj <- kmeans_map_tbl %>%
+    dplyr::pull(k_means) %>%
+    purrr::pluck(k_cluster_var_expr)
 
-    kmeans_cluster_tbl <- kmeans_obj %>%
-        broom::augment(data) %>%
-        dplyr::select(1, .cluster)
+  kmeans_cluster_tbl <- kmeans_obj %>%
+    broom::augment(data) %>%
+    dplyr::select(1, .cluster)
 
-    umap_kmeans_cluster_results_tbl <- umap_results_tbl %>%
-        dplyr::left_join(kmeans_cluster_tbl)
+  umap_kmeans_cluster_results_tbl <- umap_results_tbl %>%
+    dplyr::left_join(kmeans_cluster_tbl)
 
-    # * Data List ----
-    list_names <-
-        df_list <- list(
-            umap_obj                        = umap_obj,
-            umap_results_tbl                = umap_results_tbl,
-            kmeans_obj                      = kmeans_obj,
-            kmeans_cluster_tbl              = kmeans_cluster_tbl,
-            umap_kmeans_cluster_results_tbl = umap_kmeans_cluster_results_tbl
-        )
+  # * Data List ----
+  list_names <-
+    df_list <- list(
+      umap_obj                        = umap_obj,
+      umap_results_tbl                = umap_results_tbl,
+      kmeans_obj                      = kmeans_obj,
+      kmeans_cluster_tbl              = kmeans_cluster_tbl,
+      umap_kmeans_cluster_results_tbl = umap_kmeans_cluster_results_tbl
+    )
 
-    # * Return ----
-    return(df_list)
-
+  # * Return ----
+  return(df_list)
 }
 
 #' @rdname hai_umap_list

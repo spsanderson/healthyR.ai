@@ -74,21 +74,21 @@ suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(recipes))
 
 date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
-val_seq  <- rep(c(rnorm(9), NA), times = 10)
-df_tbl   <- tibble(
-    date_col = date_seq,
-    value    = val_seq
+val_seq <- rep(c(rnorm(9), NA), times = 10)
+df_tbl <- tibble(
+  date_col = date_seq,
+  value    = val_seq
 )
 
-rec_obj <- recipe(value ~., df_tbl)
+rec_obj <- recipe(value ~ ., df_tbl)
 
 healthyR.ai:::hai_data_impute(
-    .recipe_object = rec_obj,
-    value,
-    .type_of_imputation = "roll",
-.roll_statistic = median
+  .recipe_object = rec_obj,
+  value,
+  .type_of_imputation = "roll",
+  .roll_statistic = median
 )$impute_rec_obj \%>\%
-    get_juiced_data()
+  get_juiced_data()
 
 }
 \seealso{

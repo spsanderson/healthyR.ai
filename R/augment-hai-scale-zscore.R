@@ -39,41 +39,39 @@
 #' @export
 #
 
-hai_scale_zscore_augment <- function(.data, .value, .names = "auto"){
+hai_scale_zscore_augment <- function(.data, .value, .names = "auto") {
+  column_expr <- rlang::enquo(.value)
 
-    column_expr <- rlang::enquo(.value)
+  if (rlang::quo_is_missing(column_expr)) {
+    stop(call. = FALSE, "The .value argument must be supplied.")
+  }
 
-    if(rlang::quo_is_missing(column_expr)){
-        stop(call. = FALSE, "The .value argument must be supplied.")
-    }
+  col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
 
-    col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
-
-    make_call <- function(col){
-        rlang::call2(
-            "hai_scale_zscore_vec",
-            .x = rlang::sym(col)
-            , .ns = "healthyR.ai"
-        )
-    }
-
-    grid <- expand.grid(
-        col = col_nms
-        , stringsAsFactors = FALSE
+  make_call <- function(col) {
+    rlang::call2(
+      "hai_scale_zscore_vec",
+      .x = rlang::sym(col),
+      .ns = "healthyR.ai"
     )
+  }
 
-    calls <- purrr::pmap(.l = list(grid$col), make_call)
+  grid <- expand.grid(
+    col = col_nms,
+    stringsAsFactors = FALSE
+  )
 
-    if(any(.names == "auto")){
-        newname <- paste0("hai_scale_zscore_", grid$col)
-    } else {
-        newname <- as.list(.names)
-    }
+  calls <- purrr::pmap(.l = list(grid$col), make_call)
 
-    calls <- purrr::set_names(calls, newname)
+  if (any(.names == "auto")) {
+    newname <- paste0("hai_scale_zscore_", grid$col)
+  } else {
+    newname <- as.list(.names)
+  }
 
-    ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
+  calls <- purrr::set_names(calls, newname)
 
-    return(ret)
+  ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
 
+  return(ret)
 }
