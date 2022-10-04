@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">healthyR.ai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.9.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,37 +109,37 @@
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="va">healthyR_data</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">visit_end_date_time</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://business-science.github.io/timetk/reference/summarise_by_time.html" class="external-link">summarise_by_time</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        .date_var <span class="op">=</span> <span class="va">visit_end_date_time</span>,</span></span>
-<span class="r-in"><span>        .by       <span class="op">=</span> <span class="st">"month"</span>,</span></span>
-<span class="r-in"><span>        value     <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html" class="external-link">set_names</a></span><span class="op">(</span><span class="st">"date_col"</span>,<span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://business-science.github.io/timetk/reference/filter_by_time.html" class="external-link">filter_by_time</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        .date_var <span class="op">=</span> <span class="va">date_col</span>,</span></span>
-<span class="r-in"><span>        .start_date <span class="op">=</span> <span class="st">"2013"</span>,</span></span>
-<span class="r-in"><span>        .end_date <span class="op">=</span> <span class="st">"2020"</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">visit_end_date_time</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://business-science.github.io/timetk/reference/summarise_by_time.html" class="external-link">summarise_by_time</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    .date_var <span class="op">=</span> <span class="va">visit_end_date_time</span>,</span></span>
+<span class="r-in"><span>    .by       <span class="op">=</span> <span class="st">"month"</span>,</span></span>
+<span class="r-in"><span>    value     <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html" class="external-link">set_names</a></span><span class="op">(</span><span class="st">"date_col"</span>, <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://business-science.github.io/timetk/reference/filter_by_time.html" class="external-link">filter_by_time</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    .date_var <span class="op">=</span> <span class="va">date_col</span>,</span></span>
+<span class="r-in"><span>    .start_date <span class="op">=</span> <span class="st">"2013"</span>,</span></span>
+<span class="r-in"><span>    .end_date <span class="op">=</span> <span class="st">"2020"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">splits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">initial_split</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_tbl</span>, prop <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span><span class="va">.</span>, <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">.</span>, <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">get_juiced_data</span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 76 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    date_col            value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2016-10-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2019-01-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>631</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2018-07-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2020-11-01 <span style="color: #949494;">00:00:00</span>   313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2018-05-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>677</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2014-04-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>805</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2019-12-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>381</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2018-04-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>616</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2018-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>514</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2015-05-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>544</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2019-03-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2018-10-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>645</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2016-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>474</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2015-07-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>751</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2016-09-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>511</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2018-01-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>756</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2013-03-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2018-03-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>618</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2020-02-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>363</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2019-09-01 <span style="color: #949494;">00:00:00</span>  <span style="text-decoration: underline;">1</span>364</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 66 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
