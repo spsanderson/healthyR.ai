@@ -33,14 +33,14 @@
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
 #'
-#' len_out    = 10
-#' by_unit    = "month"
-#' start_date = as.Date("2021-01-01")
+#' len_out <- 10
+#' by_unit <- "month"
+#' start_date <- as.Date("2021-01-01")
 #'
 #' data_tbl <- tibble(
 #'   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-#'   a    = rnorm(len_out),
-#'   b    = runif(len_out)
+#'   a = rnorm(len_out),
+#'   b = runif(len_out)
 #' )
 #'
 #' hai_hyperbolic_augment(data_tbl, b, .scale_type = "sin")
@@ -52,45 +52,42 @@
 #' @export
 #
 
-hai_hyperbolic_augment <- function(.data
-                                   , .value
-                                   , .names = "auto"
-                                   , .scale_type = c("sin","cos","tan","sincos")
-){
+hai_hyperbolic_augment <- function(.data,
+                                   .value,
+                                   .names = "auto",
+                                   .scale_type = c("sin", "cos", "tan", "sincos")) {
+  column_expr <- rlang::enquo(.value)
 
-    column_expr <- rlang::enquo(.value)
+  if (rlang::quo_is_missing(column_expr)) stop(call. = FALSE, "hyperbolic_augment(.value) is missing.")
 
-    if(rlang::quo_is_missing(column_expr)) stop(call. = FALSE, "hyperbolic_augment(.value) is missing.")
+  col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
 
-    col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
-
-    make_call <- function(col, scale_type){
-        rlang::call2(
-            "hai_hyperbolic_vec",
-            .x            = rlang::sym(col)
-            , .scale_type = scale_type
-            , .ns         = "healthyR.ai"
-        )
-    }
-
-    grid <- expand.grid(
-        col                = col_nms
-        , scale_type       = .scale_type
-        , stringsAsFactors = FALSE
+  make_call <- function(col, scale_type) {
+    rlang::call2(
+      "hai_hyperbolic_vec",
+      .x = rlang::sym(col),
+      .scale_type = scale_type,
+      .ns = "healthyR.ai"
     )
+  }
 
-    calls <- purrr::pmap(.l = list(grid$col, grid$scale_type), make_call)
+  grid <- expand.grid(
+    col = col_nms,
+    scale_type = .scale_type,
+    stringsAsFactors = FALSE
+  )
 
-    if(any(.names == "auto")) {
-        newname <- paste0("hyperbolic_", grid$col, "_", grid$scale_type)
-    } else {
-        newname <- as.list(.names)
-    }
+  calls <- purrr::pmap(.l = list(grid$col, grid$scale_type), make_call)
 
-    calls <- purrr::set_names(calls, newname)
+  if (any(.names == "auto")) {
+    newname <- paste0("hyperbolic_", grid$col, "_", grid$scale_type)
+  } else {
+    newname <- as.list(.names)
+  }
 
-    ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
+  calls <- purrr::set_names(calls, newname)
 
-    return(ret)
+  ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
 
+  return(ret)
 }

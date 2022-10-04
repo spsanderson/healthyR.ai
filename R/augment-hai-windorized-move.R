@@ -24,14 +24,14 @@
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
 #'
-#' len_out    = 24
-#' by_unit    = "month"
-#' start_date = as.Date("2021-01-01")
+#' len_out <- 24
+#' by_unit <- "month"
+#' start_date <- as.Date("2021-01-01")
 #'
 #' data_tbl <- tibble(
 #'   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-#'   a    = rnorm(len_out),
-#'   b    = runif(len_out)
+#'   a = rnorm(len_out),
+#'   b = runif(len_out)
 #' )
 #'
 #' hai_winsorized_move_augment(data_tbl, a, .multiple = 3)
@@ -42,41 +42,39 @@
 #' @export
 #'
 
-hai_winsorized_move_augment <- function(.data, .value, .multiple, .names = "auto"){
+hai_winsorized_move_augment <- function(.data, .value, .multiple, .names = "auto") {
+  column_expr <- rlang::enquo(.value)
 
-    column_expr <- rlang::enquo(.value)
+  if (rlang::quo_is_missing(column_expr)) stop(call. = FALSE, "winsorized_augment(.value) is missing.")
 
-    if(rlang::quo_is_missing(column_expr)) stop(call. = FALSE, "winsorized_augment(.value) is missing.")
+  col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
 
-    col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
-
-    make_call <- function(col, multiple){
-        rlang::call2(
-            "hai_winsorized_move_vec",
-            .x            = rlang::sym(col)
-            , .multiple   = multiple
-            , .ns         = "healthyR.ai"
-        )
-    }
-
-    grid <- expand.grid(
-        col                = col_nms
-        , multiple         = .multiple
-        , stringsAsFactors = FALSE
+  make_call <- function(col, multiple) {
+    rlang::call2(
+      "hai_winsorized_move_vec",
+      .x = rlang::sym(col),
+      .multiple = multiple,
+      .ns = "healthyR.ai"
     )
+  }
 
-    calls <- purrr::pmap(.l = list(grid$col, grid$multiple), make_call)
+  grid <- expand.grid(
+    col = col_nms,
+    multiple = .multiple,
+    stringsAsFactors = FALSE
+  )
 
-    if(any(.names == "auto")) {
-        newname <- paste0("winsor_scale_", grid$col)
-    } else {
-        newname <- as.list(.names)
-    }
+  calls <- purrr::pmap(.l = list(grid$col, grid$multiple), make_call)
 
-    calls <- purrr::set_names(calls, newname)
+  if (any(.names == "auto")) {
+    newname <- paste0("winsor_scale_", grid$col)
+  } else {
+    newname <- as.list(.names)
+  }
 
-    ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
+  calls <- purrr::set_names(calls, newname)
 
-    return(ret)
+  ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
 
+  return(ret)
 }

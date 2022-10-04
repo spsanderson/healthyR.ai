@@ -68,8 +68,9 @@ used for this purpose.
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(recipes))
 
-data_tbl <- data.frame(a = mtcars$mpg
-  , b = AirPassengers \%>\% as.vector() \%>\% head(32)
+data_tbl <- data.frame(
+  a = mtcars$mpg,
+  b = AirPassengers \%>\% as.vector() \%>\% head(32)
 )
 
 # Create a recipe object
@@ -85,7 +86,9 @@ prep(rec_obj)
 # Bake the recipe object - Adds the Time Series Signature
 bake(prep(rec_obj), data_tbl)
 
-rec_obj \%>\% prep() \%>\% juice()
+rec_obj \%>\%
+  prep() \%>\%
+  juice()
 
 }
 \seealso{

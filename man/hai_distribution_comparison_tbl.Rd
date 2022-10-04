@@ -72,7 +72,7 @@ equal to \code{sqrt((skew)^2)}
 x_vec <- hai_scale_zero_one_vec(mtcars$mpg)
 df <- hai_distribution_comparison_tbl(
   .x = x_vec,
-  .distributions = c("beta","gamma")
+  .distributions = c("beta", "gamma")
 )
 df
 

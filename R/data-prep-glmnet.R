@@ -32,27 +32,26 @@
 #' @export
 #'
 
-hai_glmnet_data_prepper <- function(.data, .recipe_formula){
+hai_glmnet_data_prepper <- function(.data, .recipe_formula) {
 
-    # Recipe ---
-    rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
-        ## For modeling, it is preferred to encode qualitative data as factors
-        ## (instead of character).
-        recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.character)) %>%
-        recipes::step_novel(recipes::all_nominal_predictors()) %>%
-        ## This model requires the predictors to be numeric. The most common
-        ## method to convert qualitative predictors to numeric is to create
-        ## binary indicator variables (aka dummy variables) from these
-        ## predictors.
-        recipes::step_dummy(recipes::all_nominal_predictors()) %>%
-        ## Regularization methods sum up functions of the model slope
-        ## coefficients. Because of this, the predictor variables should be on
-        ## the same scale. Before centering and scaling the numeric predictors,
-        ## any predictors with a single unique value are filtered out.
-        recipes::step_zv(recipes::all_predictors()) %>%
-        recipes::step_normalize(recipes::all_numeric_predictors())
+  # Recipe ---
+  rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
+    ## For modeling, it is preferred to encode qualitative data as factors
+    ## (instead of character).
+    recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.character)) %>%
+    recipes::step_novel(recipes::all_nominal_predictors()) %>%
+    ## This model requires the predictors to be numeric. The most common
+    ## method to convert qualitative predictors to numeric is to create
+    ## binary indicator variables (aka dummy variables) from these
+    ## predictors.
+    recipes::step_dummy(recipes::all_nominal_predictors()) %>%
+    ## Regularization methods sum up functions of the model slope
+    ## coefficients. Because of this, the predictor variables should be on
+    ## the same scale. Before centering and scaling the numeric predictors,
+    ## any predictors with a single unique value are filtered out.
+    recipes::step_zv(recipes::all_predictors()) %>%
+    recipes::step_normalize(recipes::all_numeric_predictors())
 
-    # Return ----
-    return(rec_obj)
-
+  # Return ----
+  return(rec_obj)
 }

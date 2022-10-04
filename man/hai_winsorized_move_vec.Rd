@@ -26,14 +26,14 @@ vector. The intent of winsorization is to limit the effect of extreme values.
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 
-len_out    = 25
-by_unit    = "month"
-start_date = as.Date("2021-01-01")
+len_out <- 25
+by_unit <- "month"
+start_date <- as.Date("2021-01-01")
 
 data_tbl <- tibble(
   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-  a    = rnorm(len_out),
-  b    = runif(len_out)
+  a = rnorm(len_out),
+  b = runif(len_out)
 )
 
 vec_1 <- hai_winsorized_move_vec(data_tbl$a, .multiple = 1)

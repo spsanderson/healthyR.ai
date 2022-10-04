@@ -34,18 +34,18 @@
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
 #'
-#' len_out    = 24
-#' by_unit    = "month"
-#' start_date = as.Date("2021-01-01")
+#' len_out <- 24
+#' by_unit <- "month"
+#' start_date <- as.Date("2021-01-01")
 #'
 #' data_tbl <- tibble(
 #'   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-#'   a    = rnorm(len_out),
-#'   b    = runif(len_out)
+#'   a = rnorm(len_out),
+#'   b = runif(len_out)
 #' )
 #'
-#' hai_fourier_discrete_augment(data_tbl, b, .period = 2*12, .order = 1, .scale_type = "sin")
-#' hai_fourier_discrete_augment(data_tbl, b, .period = 2*12, .order = 1, .scale_type = "cos")
+#' hai_fourier_discrete_augment(data_tbl, b, .period = 2 * 12, .order = 1, .scale_type = "sin")
+#' hai_fourier_discrete_augment(data_tbl, b, .period = 2 * 12, .order = 1, .scale_type = "cos")
 #'
 #' @return
 #' A augmented tibble
@@ -53,52 +53,49 @@
 #' @export
 #
 
-hai_fourier_discrete_augment <- function(.data
-                                , .value
-                                , .period
-                                , .order
-                                , .names = "auto"
-                                , .scale_type = c("sin","cos","sincos")
-){
-
-    column_expr <- rlang::enquo(.value)
+hai_fourier_discrete_augment <- function(.data,
+                                         .value,
+                                         .period,
+                                         .order,
+                                         .names = "auto",
+                                         .scale_type = c("sin", "cos", "sincos")) {
+  column_expr <- rlang::enquo(.value)
 
 
-    if(rlang::quo_is_missing(column_expr)) stop(call. = FALSE, "fourier_discrete_augment(.value) is missing.")
+  if (rlang::quo_is_missing(column_expr)) stop(call. = FALSE, "fourier_discrete_augment(.value) is missing.")
 
-    col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
+  col_nms <- names(tidyselect::eval_select(rlang::enquo(.value), .data))
 
-    make_call <- function(col, period, order, scale_type){
-        rlang::call2(
-            "hai_fourier_discrete_vec",
-            .x            = rlang::sym(col)
-            , .period     = period
-            , .order      = order
-            , .scale_type = scale_type
-            , .ns         = "healthyR.ai"
-        )
-    }
-
-    grid <- expand.grid(
-        col                = col_nms
-        , period           = .period
-        , order            = .order
-        , scale_type       = .scale_type
-        , stringsAsFactors = FALSE
+  make_call <- function(col, period, order, scale_type) {
+    rlang::call2(
+      "hai_fourier_discrete_vec",
+      .x = rlang::sym(col),
+      .period = period,
+      .order = order,
+      .scale_type = scale_type,
+      .ns = "healthyR.ai"
     )
+  }
 
-    calls <- purrr::pmap(.l = list(grid$col, grid$period, grid$order, grid$scale_type), make_call)
+  grid <- expand.grid(
+    col = col_nms,
+    period = .period,
+    order = .order,
+    scale_type = .scale_type,
+    stringsAsFactors = FALSE
+  )
 
-    if(any(.names == "auto")) {
-        newname <- paste0("fourier_discrete_", grid$col, "_", grid$scale_type)
-    } else {
-        newname <- as.list(.names)
-    }
+  calls <- purrr::pmap(.l = list(grid$col, grid$period, grid$order, grid$scale_type), make_call)
 
-    calls <- purrr::set_names(calls, newname)
+  if (any(.names == "auto")) {
+    newname <- paste0("fourier_discrete_", grid$col, "_", grid$scale_type)
+  } else {
+    newname <- as.list(.names)
+  }
 
-    ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
+  calls <- purrr::set_names(calls, newname)
 
-    return(ret)
+  ret <- tibble::as_tibble(dplyr::mutate(.data, !!!calls))
 
+  return(ret)
 }

@@ -34,14 +34,14 @@
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
 #'
-#' len_out    = 24
-#' by_unit    = "month"
-#' start_date = as.Date("2021-01-01")
+#' len_out <- 24
+#' by_unit <- "month"
+#' start_date <- as.Date("2021-01-01")
 #'
 #' data_tbl <- tibble(
 #'   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-#'   a    = rnorm(len_out),
-#'   b    = runif(len_out)
+#'   a = rnorm(len_out),
+#'   b = runif(len_out)
 #' )
 #'
 #' vec_1 <- hai_fourier_discrete_vec(data_tbl$a, .period = 12, .order = 1, .scale_type = "sin")
@@ -59,35 +59,33 @@
 #' @export
 #'
 
-hai_fourier_discrete_vec <- function(.x, .period, .order, .scale_type = c("sin","cos","sincos")){
+hai_fourier_discrete_vec <- function(.x, .period, .order, .scale_type = c("sin", "cos", "sincos")) {
+  if (inherits(x = .x, "Date")) {
+    x_term <- as.numeric(.x) %>% as.integer()
+  } else if (inherits(x = .x, "POSIXct")) {
+    x_term <- as.numeric(.x) %>% as.integer()
+  } else {
+    x_term <- .x
+  }
 
-    if(inherits(x = .x, "Date")){
-        x_term <- as.numeric(.x) %>% as.integer()
-    } else if(inherits(x = .x, "POSIXct")) {
-        x_term <- as.numeric(.x) %>% as.integer()
-    } else {
-        x_term <- .x
-    }
+  x_term <- x_term
+  cycle <- .period # T = cycle e.g. T = 0.02 sec/cycle 1 cycle per 0.02 sec
+  # So 1 cycle/0.02 sec = 50 cycles/sec or 50hz
+  o <- .order
+  h <- o / cycle
+  scale <- base::tolower(.scale_type[1])
 
-    x_term <- x_term
-    cycle <- .period # T = cycle e.g. T = 0.02 sec/cycle 1 cycle per 0.02 sec
-                     # So 1 cycle/0.02 sec = 50 cycles/sec or 50hz
-    o      <- .order
-    h      <- o / cycle
-    scale  <- base::tolower(.scale_type[1])
+  if (scale == "sin") {
+    ret <- ifelse(base::sin(2 * pi * h * x_term) <= 0, 0, 1)
+  } else if (scale == "cos") {
+    ret <- ifelse(base::cos(2 * pi * h * x_term) <= 0, 0, 1)
+  } else {
+    ret <- ifelse(
+      (base::sin(2 * pi * h * x_term) * base::cos(2 * pi * h * x_term)) <= 0,
+      0,
+      1
+    )
+  }
 
-    if(scale == "sin"){
-        ret <- ifelse(base::sin(2 * pi * h * x_term) <= 0, 0, 1)
-    } else if(scale == "cos") {
-        ret <- ifelse(base::cos(2 * pi * h * x_term) <= 0, 0, 1)
-    } else {
-        ret <- ifelse(
-            (base::sin(2 * pi * h * x_term) * base::cos(2 * pi * h * x_term)) <= 0,
-            0,
-            1
-        )
-    }
-
-    return(ret)
-
+  return(ret)
 }

@@ -26,9 +26,9 @@
 #' h2o.init()
 #'
 #' output <- hai_kmeans_automl(
-#'     .data = iris,
-#'     .predictors = c("Sepal.Width","Sepal.Length","Petal.Width","Petal.Length"),
-#'     .standardize = FALSE
+#'   .data = iris,
+#'   .predictors = c("Sepal.Width", "Sepal.Length", "Petal.Width", "Petal.Length"),
+#'   .standardize = FALSE
 #' )
 #'
 #' pred <- hai_kmeans_automl_predict(output)
@@ -41,38 +41,36 @@
 #' @export
 #'
 
-hai_kmeans_automl_predict <- function(.input){
+hai_kmeans_automl_predict <- function(.input) {
+  input <- .input
 
-    input <- .input
+  if (!inherits(x = input, what = "list")) {
+    stop(call. = FALSE, "(.input) should be a list object from the hai_kmeans_automl function.")
+  }
 
-    if (!inherits(x = input, what = "list")){
-        stop(call. = FALSE, "(.input) should be a list object from the hai_kmeans_automl function.")
-    }
+  # Get validation data from input ----
+  kmeans_obj <- input$auto_kmeans_obj
 
-    # Get validation data from input ----
-    kmeans_obj <- input$auto_kmeans_obj
+  newdata <- input$data$splits$validate_tbl
+  newdata <- h2o::as.h2o(newdata)
 
-    newdata <- input$data$splits$validate_tbl
-    newdata <- h2o::as.h2o(newdata)
+  # Make prediction ----
+  prediction <- h2o::h2o.predict(kmeans_obj, newdata = newdata)
+  pred_tbl <- tibble::as_tibble(prediction) %>%
+    purrr::set_names("predicted_cluster")
 
-    # Make prediction ----
-    prediction <- h2o::h2o.predict(kmeans_obj, newdata = newdata)
-    pred_tbl   <- tibble::as_tibble(prediction) %>%
-        purrr::set_names("predicted_cluster")
+  valid_tbl <- newdata %>% tibble::as_tibble()
 
-    valid_tbl <- newdata %>% tibble::as_tibble()
+  final_pred_tbl <- cbind(valid_tbl, pred_tbl) %>%
+    dplyr::mutate(predicted_cluster = forcats::as_factor(predicted_cluster))
 
-    final_pred_tbl <- cbind(valid_tbl, pred_tbl) %>%
-        dplyr::mutate(predicted_cluster = forcats::as_factor(predicted_cluster))
+  # Return ----
+  output <- list(
+    prediction     = prediction,
+    prediction_tbl = pred_tbl,
+    valid_tbl      = valid_tbl,
+    pred_full_tbl  = final_pred_tbl
+  )
 
-    # Return ----
-    output <- list(
-        prediction     = prediction,
-        prediction_tbl = pred_tbl,
-        valid_tbl      = valid_tbl,
-        pred_full_tbl  = final_pred_tbl
-    )
-
-    return(output)
-
+  return(output)
 }

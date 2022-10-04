@@ -51,14 +51,14 @@
 #' suppressPackageStartupMessages(library(dplyr))
 #' suppressPackageStartupMessages(library(recipes))
 #'
-#' len_out    = 10
-#' by_unit    = "month"
-#' start_date = as.Date("2021-01-01")
+#' len_out <- 10
+#' by_unit <- "month"
+#' start_date <- as.Date("2021-01-01")
 #'
 #' data_tbl <- tibble(
 #'   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-#'   a    = rnorm(len_out),
-#'   b    = runif(len_out)
+#'   a = rnorm(len_out),
+#'   b = runif(len_out)
 #' )
 #'
 #' # Create a recipe object
@@ -83,125 +83,121 @@
 #' @importFrom recipes prep bake rand_id
 
 step_hai_fourier <- function(recipe,
-                                ...,
-                                role       = "predictor",
-                                trained    = FALSE,
-                                columns    = NULL,
-                                scale_type = c("sin","cos","sincos"),
-                                period     = 1,
-                                order      = 1,
-                                skip       = FALSE,
-                                id         = rand_id("hai_fourier")
-){
+                             ...,
+                             role = "predictor",
+                             trained = FALSE,
+                             columns = NULL,
+                             scale_type = c("sin", "cos", "sincos"),
+                             period = 1,
+                             order = 1,
+                             skip = FALSE,
+                             id = rand_id("hai_fourier")) {
+  terms <- recipes::ellipse_check(...)
+  funcs <- c("sin", "cos", "sincos")
+  if (!(scale_type %in% funcs)) {
+    rlang::abort("`func` should be either `sin`, `cos`, or `sincos`")
+  }
 
-    terms <- recipes::ellipse_check(...)
-    funcs <- c("sin", "cos", "sincos")
-    if (!(scale_type %in% funcs))
-        rlang::abort("`func` should be either `sin`, `cos`, or `sincos`")
-
-    recipes::add_step(
-        recipe,
-        step_hai_fourier_new(
-            terms      = terms,
-            role       = role,
-            trained    = trained,
-            columns    = columns,
-            scale_type = scale_type,
-            period     = period,
-            order      = order,
-            skip       = skip,
-            id         = id
-        )
+  recipes::add_step(
+    recipe,
+    step_hai_fourier_new(
+      terms      = terms,
+      role       = role,
+      trained    = trained,
+      columns    = columns,
+      scale_type = scale_type,
+      period     = period,
+      order      = order,
+      skip       = skip,
+      id         = id
     )
+  )
 }
 
 step_hai_fourier_new <-
-    function(terms, role, trained, columns, scale_type, period, order, skip, id){
-
-        recipes::step(
-            subclass   = "hai_fourier",
-            terms      = terms,
-            role       = role,
-            trained    = trained,
-            columns    = columns,
-            scale_type = scale_type,
-            period     = period,
-            order      = order,
-            skip       = skip,
-            id         = id
-        )
-
-    }
+  function(terms, role, trained, columns, scale_type, period, order, skip, id) {
+    recipes::step(
+      subclass   = "hai_fourier",
+      terms      = terms,
+      role       = role,
+      trained    = trained,
+      columns    = columns,
+      scale_type = scale_type,
+      period     = period,
+      order      = order,
+      skip       = skip,
+      id         = id
+    )
+  }
 
 #' @export
 prep.step_hai_fourier <- function(x, training, info = NULL, ...) {
+  col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
-    col_names <- recipes::recipes_eval_select(x$terms, training, info)
+  value_data <- info[info$variable %in% col_names, ]
 
-    value_data <- info[info$variable %in% col_names, ]
-
-    if(any(value_data$type != "numeric")){
-        rlang::abort(
-            paste0("All variables for `step_hai_fourier` must be `numeric`",
-                   "`integer` `double` classes.")
-        )
-    }
-
-    step_hai_fourier_new(
-        terms      = x$terms,
-        role       = x$role,
-        trained    = TRUE,
-        columns    = col_names,
-        scale_type = x$scale_type,
-        period     = x$period,
-        order      = x$order,
-        skip       = x$skip,
-        id         = x$id
+  if (any(value_data$type != "numeric")) {
+    rlang::abort(
+      paste0(
+        "All variables for `step_hai_fourier` must be `numeric`",
+        "`integer` `double` classes."
+      )
     )
+  }
 
+  step_hai_fourier_new(
+    terms      = x$terms,
+    role       = x$role,
+    trained    = TRUE,
+    columns    = col_names,
+    scale_type = x$scale_type,
+    period     = x$period,
+    order      = x$order,
+    skip       = x$skip,
+    id         = x$id
+  )
 }
 
 #' @export
-bake.step_hai_fourier <- function(object, new_data, ...){
-
-    make_call <- function(col, period, order, scale_type){
-        rlang::call2(
-            "hai_fourier_vec",
-            .x            = rlang::sym(col)
-            , .period     = period
-            , .order      = order
-            , .scale_type = scale_type
-            , .ns         = "healthyR.ai"
-        )
-    }
-
-    grid <- expand.grid(
-        col                = object$columns
-        , scale_type       = object$scale_type
-        , period           = object$period
-        , order            = object$order
-        , stringsAsFactors = FALSE
+bake.step_hai_fourier <- function(object, new_data, ...) {
+  make_call <- function(col, period, order, scale_type) {
+    rlang::call2(
+      "hai_fourier_vec",
+      .x = rlang::sym(col),
+      .period = period,
+      .order = order,
+      .scale_type = scale_type,
+      .ns = "healthyR.ai"
     )
+  }
 
-    calls <- purrr::pmap(.l = list(grid$col, grid$period, grid$order, grid$scale_type), make_call)
+  grid <- expand.grid(
+    col = object$columns,
+    scale_type = object$scale_type,
+    period = object$period,
+    order = object$order,
+    stringsAsFactors = FALSE
+  )
 
-    # Column Names
-    newname <- paste0("fourier_", grid$col, "_", grid$scale_type)
-    calls   <- recipes::check_name(calls, new_data, object, newname, TRUE)
+  calls <- purrr::pmap(.l = list(grid$col, grid$period, grid$order, grid$scale_type), make_call)
 
-    tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
+  # Column Names
+  newname <- paste0("fourier_", grid$col, "_", grid$scale_type)
+  calls <- recipes::check_name(calls, new_data, object, newname, TRUE)
 
+  tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
 }
 
 #' @export
 print.step_hai_fourier <-
-    function(x, width = max(20, options()$width - 35), ...) {
-        title <- "Fourier Transformation on "
-        recipes::print_step(
-            x$columns, x$terms, x$trained, width = width, title = title
-        )
-        invisible(x)
-    }
+  function(x, width = max(20, options()$width - 35), ...) {
+    title <- "Fourier Transformation on "
+    recipes::print_step(
+      x$columns, x$terms, x$trained,
+      width = width, title = title
+    )
+    invisible(x)
+  }
 
 #' Requited Packages
 #' @rdname required_pkgs.healthyR.ai
@@ -211,5 +207,5 @@ print.step_hai_fourier <-
 # @noRd
 #' @export
 required_pkgs.step_hai_fourier <- function(x, ...) {
-    c("healthyR.ai")
+  c("healthyR.ai")
 }

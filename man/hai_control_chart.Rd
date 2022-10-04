@@ -63,11 +63,14 @@ control charts are becoming increasingly popular.
 }
 \examples{
 data_tbl <- tibble::tibble(
-    day = sample(c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
-                 100, TRUE),
-    person = sample(c("Tom", "Jane", "Alex"), 100, TRUE),
-    count = rbinom(100, 20, ifelse(day == "Friday", .5, .2)),
-    date = Sys.Date() - sample.int(100))
+  day = sample(
+    c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
+    100, TRUE
+  ),
+  person = sample(c("Tom", "Jane", "Alex"), 100, TRUE),
+  count = rbinom(100, 20, ifelse(day == "Friday", .5, .2)),
+  date = Sys.Date() - sample.int(100)
+)
 
 hai_control_chart(.data = data_tbl, .value_col = count, .x_col = date)
 
@@ -79,7 +82,7 @@ my_chart <- hai_control_chart(data_tbl, count, date)
 my_chart +
   ylab("Number of Adverse Events") +
   scale_x_date(name = "Week of ... ", date_breaks = "week") +
-  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))
+  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust = 1))
 
 }
 \author{

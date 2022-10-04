@@ -49,8 +49,9 @@
 #' suppressPackageStartupMessages(library(dplyr))
 #' suppressPackageStartupMessages(library(recipes))
 #'
-#' data_tbl <- data.frame(a = mtcars$mpg
-#'   , b = AirPassengers %>% as.vector() %>% head(32)
+#' data_tbl <- data.frame(
+#'   a = mtcars$mpg,
+#'   b = AirPassengers %>% as.vector() %>% head(32)
 #' )
 #'
 #' # Create a recipe object
@@ -66,108 +67,105 @@
 #' # Bake the recipe object - Adds the Time Series Signature
 #' bake(prep(rec_obj), data_tbl)
 #'
-#' rec_obj %>% prep() %>% juice()
+#' rec_obj %>%
+#'   prep() %>%
+#'   juice()
 #'
 #' @export
 #'
 #' @importFrom recipes prep bake rand_id
 
 step_hai_scale_zscore <- function(recipe,
-                                    ...,
-                                    role = "predictor",
-                                    trained = FALSE,
-                                    columns = NULL,
-                                    skip = FALSE,
-                                    id = rand_id("hai_scale_zscore")
-){
+                                  ...,
+                                  role = "predictor",
+                                  trained = FALSE,
+                                  columns = NULL,
+                                  skip = FALSE,
+                                  id = rand_id("hai_scale_zscore")) {
+  terms <- recipes::ellipse_check(...)
 
-    terms <- recipes::ellipse_check(...)
-
-    recipes::add_step(
-        recipe,
-        step_hai_scale_zscore_new(
-            terms = terms,
-            role = role,
-            trained = trained,
-            columns = columns,
-            skip = skip,
-            id = id
-        )
-    )
-}
-
-step_hai_scale_zscore_new <- function(terms, role, trained, columns, skip, id){
-
-    recipes::step(
-        subclass = "hai_scale_zscore",
-        terms = terms,
-        role = role,
-        trained = trained,
-        columns = columns,
-        skip = skip,
-        id = id
-    )
-}
-
-#' @export
-prep.step_hai_scale_zscore <- function(x, training, info = NULL, ...){
-
-    col_names <- recipes::recipes_eval_select(x$terms, training, info)
-
-    value_data <- info[info$variable %in% col_names, ]
-
-    if(any(value_data$type != "numeric")){
-        rlang::abort(
-            paste0("All variables for `step_hai_scale_zscore` must be `numeric`",
-                   "`integer`,`double` classes.")
-        )
-    }
-
+  recipes::add_step(
+    recipe,
     step_hai_scale_zscore_new(
-        terms   = x$terms,
-        role    = x$role,
-        trained = TRUE,
-        columns = col_names,
-        skip    = x$skip,
-        id      = x$id
+      terms = terms,
+      role = role,
+      trained = trained,
+      columns = columns,
+      skip = skip,
+      id = id
     )
+  )
+}
 
+step_hai_scale_zscore_new <- function(terms, role, trained, columns, skip, id) {
+  recipes::step(
+    subclass = "hai_scale_zscore",
+    terms = terms,
+    role = role,
+    trained = trained,
+    columns = columns,
+    skip = skip,
+    id = id
+  )
 }
 
 #' @export
-bake.step_hai_scale_zscore <- function(object, new_data, ...){
+prep.step_hai_scale_zscore <- function(x, training, info = NULL, ...) {
+  col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
-    make_call <- function(col){
-        rlang::call2(
-            "hai_scale_zscore_vec",
-            .x = rlang::sym(col),
-            .ns = "healthyR.ai"
-        )
-    }
+  value_data <- info[info$variable %in% col_names, ]
 
-    grid <- expand.grid(
-        col = object$columns
-        , stringsAsFactors = FALSE
+  if (any(value_data$type != "numeric")) {
+    rlang::abort(
+      paste0(
+        "All variables for `step_hai_scale_zscore` must be `numeric`",
+        "`integer`,`double` classes."
+      )
     )
+  }
 
-    calls <- purrr::pmap(.l = list(grid$col), make_call)
-
-    # Columns Names
-    newname <- paste0("hai_scale_zscore_", grid$col)
-    calls <- recipes::check_name(calls, new_data, object, newname, TRUE)
-
-    tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
-
+  step_hai_scale_zscore_new(
+    terms   = x$terms,
+    role    = x$role,
+    trained = TRUE,
+    columns = col_names,
+    skip    = x$skip,
+    id      = x$id
+  )
 }
 
 #' @export
-print.step_hai_scale_zscore <- function(x, width = max(20, options()$width - 35), ...){
-    title <- "Zero-One Scale Transformation on "
-    recipes::print_step(
-        x$columns, x$terms, x$trained, width = width, title = title
+bake.step_hai_scale_zscore <- function(object, new_data, ...) {
+  make_call <- function(col) {
+    rlang::call2(
+      "hai_scale_zscore_vec",
+      .x = rlang::sym(col),
+      .ns = "healthyR.ai"
     )
-    invisible(x)
+  }
 
+  grid <- expand.grid(
+    col = object$columns,
+    stringsAsFactors = FALSE
+  )
+
+  calls <- purrr::pmap(.l = list(grid$col), make_call)
+
+  # Columns Names
+  newname <- paste0("hai_scale_zscore_", grid$col)
+  calls <- recipes::check_name(calls, new_data, object, newname, TRUE)
+
+  tibble::as_tibble(dplyr::mutate(new_data, !!!calls))
+}
+
+#' @export
+print.step_hai_scale_zscore <- function(x, width = max(20, options()$width - 35), ...) {
+  title <- "Zero-One Scale Transformation on "
+  recipes::print_step(
+    x$columns, x$terms, x$trained,
+    width = width, title = title
+  )
+  invisible(x)
 }
 
 #' Required Packages
@@ -178,5 +176,5 @@ print.step_hai_scale_zscore <- function(x, width = max(20, options()$width - 35)
 # @noRd
 #' @export
 required_pkgs.step_hai_scale_zscore <- function(x, ...) {
-    c("healthyR.ai")
+  c("healthyR.ai")
 }

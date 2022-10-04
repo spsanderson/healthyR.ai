@@ -59,7 +59,7 @@
 #' x_vec <- hai_scale_zero_one_vec(mtcars$mpg)
 #' df <- hai_distribution_comparison_tbl(
 #'   .x = x_vec,
-#'   .distributions = c("beta","gamma")
+#'   .distributions = c("beta", "gamma")
 #' )
 #' df
 #'
@@ -69,144 +69,145 @@
 #' @export
 #'
 
-hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma","beta"),
-                                            .normalize = TRUE){
+hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma", "beta"),
+                                            .normalize = TRUE) {
 
-    # Tidyeval ----
-    x_term  <- .x
-    dl      <- as.vector(tolower(.distributions))
+  # Tidyeval ----
+  x_term <- .x
+  dl <- as.vector(tolower(.distributions))
 
-    if(.normalize){
-        x_term <- healthyR.ai::hai_scale_zero_one_vec(x_term)
-    }
+  if (.normalize) {
+    x_term <- healthyR.ai::hai_scale_zero_one_vec(x_term)
+  }
 
-    # Parameters ----
-    hskew   <- healthyR.ai::hai_skewness_vec(x_term)
-    hkurt   <- healthyR.ai::hai_kurtosis_vec(x_term)
-    mu      <- mean(x_term, na.rm = TRUE)
-    std     <- stats::sd(x_term, na.rm = TRUE)
-    minimum <- min(x_term, na.rm = TRUE)
-    maximum <- max(x_term, na.rm = TRUE)
-    med     <- stats::median(x_term, na.rm = TRUE)
-    n       <- length(x_term)
-    mu_log  <- mean(abs(log1p(x_term)))
-    sd_log  <- sd(abs(log1p(x_term)))
+  # Parameters ----
+  hskew <- healthyR.ai::hai_skewness_vec(x_term)
+  hkurt <- healthyR.ai::hai_kurtosis_vec(x_term)
+  mu <- mean(x_term, na.rm = TRUE)
+  std <- stats::sd(x_term, na.rm = TRUE)
+  minimum <- min(x_term, na.rm = TRUE)
+  maximum <- max(x_term, na.rm = TRUE)
+  med <- stats::median(x_term, na.rm = TRUE)
+  n <- length(x_term)
+  mu_log <- mean(abs(log1p(x_term)))
+  sd_log <- sd(abs(log1p(x_term)))
 
-    # Distribution Table and associate stats function
-    dist_df <- tibble::tibble(
-        distribution = dl,
-        stats_func = dplyr::case_when(
-            distribution == "normal" ~ "rnorm",
-            distribution == "uniform" ~ "runif",
-            distribution == "exponential" ~ "rexp",
-            distribution == "logisitic" ~ "rlogis",
-            distribution == "beta" ~ "rbeta",
-            distribution == "lognormal" ~ "rlnorm",
-            distribution == "gamma" ~ "rgamma",
-            distribution == "weibull" ~ "rweibull",
-            distribution == "chisquare" ~ "rchisq",
-            distribution == "cauchy" ~ "rcauchy",
-            distribution == "hypergeometric" ~ "rhyper",
-            distribution == "f" ~ "rf",
-            distribution == "poisson" ~ "rpois"
-        )
+  # Distribution Table and associate stats function
+  dist_df <- tibble::tibble(
+    distribution = dl,
+    stats_func = dplyr::case_when(
+      distribution == "normal" ~ "rnorm",
+      distribution == "uniform" ~ "runif",
+      distribution == "exponential" ~ "rexp",
+      distribution == "logisitic" ~ "rlogis",
+      distribution == "beta" ~ "rbeta",
+      distribution == "lognormal" ~ "rlnorm",
+      distribution == "gamma" ~ "rgamma",
+      distribution == "weibull" ~ "rweibull",
+      distribution == "chisquare" ~ "rchisq",
+      distribution == "cauchy" ~ "rcauchy",
+      distribution == "hypergeometric" ~ "rhyper",
+      distribution == "f" ~ "rf",
+      distribution == "poisson" ~ "rpois"
     )
+  )
 
-    # Was a distribution chosen unsupported?
-    supported_distributions <- c("normal","uniform","exponential","logistic","beta",
-                                 "lognormal","gamma","weibull","chisquare","cauchy",
-                                 "hypergeometric","f","poisson")
+  # Was a distribution chosen unsupported?
+  supported_distributions <- c(
+    "normal", "uniform", "exponential", "logistic", "beta",
+    "lognormal", "gamma", "weibull", "chisquare", "cauchy",
+    "hypergeometric", "f", "poisson"
+  )
 
-    dist_unsupported <- dist_df %>%
-        dplyr::mutate(dist_supported = distribution %in% supported_distributions) %>%
-        dplyr::filter(dist_supported == FALSE)
+  dist_unsupported <- dist_df %>%
+    dplyr::mutate(dist_supported = distribution %in% supported_distributions) %>%
+    dplyr::filter(dist_supported == FALSE)
 
-    # Checks ----
-    if(!is.numeric(x_term)){
-        stop(call. = FALSE, ".x must be a numeric vector.")
-    }
+  # Checks ----
+  if (!is.numeric(x_term)) {
+    stop(call. = FALSE, ".x must be a numeric vector.")
+  }
 
-    if(exists("dist_unsupported") & nrow(dist_unsupported) > 1){
-        print(dist_unsupported)
-        rlang::abort("You entered a distribution that is unsupported")
-    }
+  if (exists("dist_unsupported") & nrow(dist_unsupported) > 1) {
+    print(dist_unsupported)
+    rlang::abort("You entered a distribution that is unsupported")
+  }
 
-    # Will it fail? ----
-    if(("beta" %in% dl) & (hskew < 0)){
-        rlang::warn(
-            "The rbeta function does not support a negative skew.
+  # Will it fail? ----
+  if (("beta" %in% dl) & (hskew < 0)) {
+    rlang::warn(
+      "The rbeta function does not support a negative skew.
     To get around this, the skew is set equal to the kurtosis and the kurtosis is set
     equal to sqrt((skew)^2). NOTE: This may not necissarly be what you need."
-        )
-    } else if(("gamma" %in% dl) & (hskew < 0)){
-        rlang::warn(
-            "The rgamma function does not support a negative skew.
+    )
+  } else if (("gamma" %in% dl) & (hskew < 0)) {
+    rlang::warn(
+      "The rgamma function does not support a negative skew.
     To get around this, the skew is set equal to the kurtosis and the kurtosis is set
     equal to sqrt((skew)^2). NOTE: This may not necissarly be what you need."
-        )
-    } else if(("weibull" %in% dl) & (hskew < 0)){
-        rlang::abort("The rweibull function does not support a negative skew.")
-    } else if(("chisquare" %in% dl) & (hskew < 0)){
-        rlang::abort("The rchisq function does not support a negative skew.")
-    } else if(("f" %in% dl) & (hskew < 0)){
-        rlang::abort("The rf function does not support a negative skew.")
-    } else if(("poisson" %in% dl) & (hskew < 0)){
-        rlang::abort("The rpois function does not support a negative skew.")
-    }
-
-    # Make distributions ----
-    dist_tbl <- dist_df %>%
-        dplyr::mutate(
-            dist_data = dplyr::case_when(
-                stats_func == "rgamma" ~ list(
-                    stats::rgamma(
-                        n = n,
-                        shape = ifelse(hskew < 0, abs(hskew), hskew)
-                        , rate = ifelse(hskew < 0, sqrt((hskew^2)), hkurt)
-                    )
-                ),
-                stats_func == "rbeta" ~ list(
-                    stats::rbeta(
-                        n = n,
-                        shape1 = ifelse(hskew < 0, hkurt, hskew),
-                        shape2 = ifelse(hskew < 0, sqrt((hskew^2)), hkurt)
-                        , ncp = med
-                    )
-                ),
-                stats_func == "rnorm" ~ list(stats::rnorm(n = n, mean = mu, sd = std)),
-                stats_func == "runif" ~ list(stats::runif(n = n, min = minimum, max = maximum)),
-                stats_func == "rexp" ~ list(stats::rexp(n = n, rate = hkurt)),
-                stats_func == "rlogis" ~ list(stats::rlogis(n = n, location = hskew, scale = hkurt)),
-                stats_func == "rlnorm" ~ list(stats::rlnorm(n = n, meanlog = mu_log, sdlog = sd_log)),
-                stats_func == "rweibull" ~ list(stats::rweibull(n = n, shape = hskew, scale = hkurt)),
-                stats_func == "rchisq" ~ list(stats::rchisq(n = n, df = hskew)),
-                stats_func == "rcauchy" ~ list(stats::rcauchy(n = n, location = hskew, scale = hkurt)),
-                stats_func == "rhyper" ~ list(stats::rhyper(nn = n, m = n, n = n, k = n)),
-                stats_func == "rf" ~ list(stats::rf(n = n, df1 = hskew, df2 = hskew)),
-                stats_func == "rpois" ~ list(stats::rpois(n = n, lambda = hskew))
-            )
-        ) %>%
-        dplyr::group_by(distribution) %>%
-        dplyr::mutate(density_data = list(density(unlist(dist_data)))) %>%
-        dplyr::ungroup() %>%
-        dplyr::select(-stats_func)
-
-    # Add empirical data and density to tibble
-    emp_dens_tbl <- tibble::tibble(
-        distribution = "empirical",
-        dist_data = list(x_term),
-        density_data = list(density(x_term))
     )
+  } else if (("weibull" %in% dl) & (hskew < 0)) {
+    rlang::abort("The rweibull function does not support a negative skew.")
+  } else if (("chisquare" %in% dl) & (hskew < 0)) {
+    rlang::abort("The rchisq function does not support a negative skew.")
+  } else if (("f" %in% dl) & (hskew < 0)) {
+    rlang::abort("The rf function does not support a negative skew.")
+  } else if (("poisson" %in% dl) & (hskew < 0)) {
+    rlang::abort("The rpois function does not support a negative skew.")
+  }
 
-    dist_final_tbl <- rbind(dist_tbl, emp_dens_tbl)
+  # Make distributions ----
+  dist_tbl <- dist_df %>%
+    dplyr::mutate(
+      dist_data = dplyr::case_when(
+        stats_func == "rgamma" ~ list(
+          stats::rgamma(
+            n = n,
+            shape = ifelse(hskew < 0, abs(hskew), hskew),
+            rate = ifelse(hskew < 0, sqrt((hskew^2)), hkurt)
+          )
+        ),
+        stats_func == "rbeta" ~ list(
+          stats::rbeta(
+            n = n,
+            shape1 = ifelse(hskew < 0, hkurt, hskew),
+            shape2 = ifelse(hskew < 0, sqrt((hskew^2)), hkurt),
+            ncp = med
+          )
+        ),
+        stats_func == "rnorm" ~ list(stats::rnorm(n = n, mean = mu, sd = std)),
+        stats_func == "runif" ~ list(stats::runif(n = n, min = minimum, max = maximum)),
+        stats_func == "rexp" ~ list(stats::rexp(n = n, rate = hkurt)),
+        stats_func == "rlogis" ~ list(stats::rlogis(n = n, location = hskew, scale = hkurt)),
+        stats_func == "rlnorm" ~ list(stats::rlnorm(n = n, meanlog = mu_log, sdlog = sd_log)),
+        stats_func == "rweibull" ~ list(stats::rweibull(n = n, shape = hskew, scale = hkurt)),
+        stats_func == "rchisq" ~ list(stats::rchisq(n = n, df = hskew)),
+        stats_func == "rcauchy" ~ list(stats::rcauchy(n = n, location = hskew, scale = hkurt)),
+        stats_func == "rhyper" ~ list(stats::rhyper(nn = n, m = n, n = n, k = n)),
+        stats_func == "rf" ~ list(stats::rf(n = n, df1 = hskew, df2 = hskew)),
+        stats_func == "rpois" ~ list(stats::rpois(n = n, lambda = hskew))
+      )
+    ) %>%
+    dplyr::group_by(distribution) %>%
+    dplyr::mutate(density_data = list(density(unlist(dist_data)))) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(-stats_func)
 
-    # Add attributes ----
-    attr(dist_final_tbl, ".x") <- .x
-    attr(dist_final_tbl, ".distributions") <- .distributions
-    attr(dist_final_tbl, ".normalize") <- .normalize
-    attr(dist_final_tbl, "tibble_type") <- "hai_dist_compare_tbl"
+  # Add empirical data and density to tibble
+  emp_dens_tbl <- tibble::tibble(
+    distribution = "empirical",
+    dist_data = list(x_term),
+    density_data = list(density(x_term))
+  )
 
-    # Return ----
-    return(dist_final_tbl)
+  dist_final_tbl <- rbind(dist_tbl, emp_dens_tbl)
 
+  # Add attributes ----
+  attr(dist_final_tbl, ".x") <- .x
+  attr(dist_final_tbl, ".distributions") <- .distributions
+  attr(dist_final_tbl, ".normalize") <- .normalize
+  attr(dist_final_tbl, "tibble_type") <- "hai_dist_compare_tbl"
+
+  # Return ----
+  return(dist_final_tbl)
 }

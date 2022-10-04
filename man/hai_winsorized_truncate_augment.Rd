@@ -31,14 +31,14 @@ a quantile. The intent of winsorization is to limit the effect of extreme values
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 
-len_out    = 24
-by_unit    = "month"
-start_date = as.Date("2021-01-01")
+len_out <- 24
+by_unit <- "month"
+start_date <- as.Date("2021-01-01")
 
 data_tbl <- tibble(
   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-  a    = rnorm(len_out),
-  b    = runif(len_out)
+  a = rnorm(len_out),
+  b = runif(len_out)
 )
 
 hai_winsorized_truncate_augment(data_tbl, a, .fraction = 0.05)

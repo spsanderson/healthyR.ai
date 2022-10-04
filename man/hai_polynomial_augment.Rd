@@ -54,9 +54,9 @@ The default is 'nt_'
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 data_tbl <- data.frame(
-  A = c(0,2,4),
-  B = c(1,3,5),
-  C = c(2,4,6)
+  A = c(0, 2, 4),
+  B = c(1, 3, 5),
+  C = c(2, 4, 6)
 )
 
 hai_polynomial_augment(.data = data_tbl, .pred_col = A, .degree = 2, .new_col_prefix = "n")

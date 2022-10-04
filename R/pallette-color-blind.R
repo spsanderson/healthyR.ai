@@ -18,10 +18,12 @@
 #' A vector of 8 Hex RGB definitions.
 #'
 #' @export
-color_blind <- function(){
-    c("#000000", "#E69F00", "#56B4E9",
-      "#009E73", "#F0E442", "#0072B2",
-      "#D55E00", "#CC79A7")
+color_blind <- function() {
+  c(
+    "#000000", "#E69F00", "#56B4E9",
+    "#009E73", "#F0E442", "#0072B2",
+    "#D55E00", "#CC79A7"
+  )
 }
 
 #' Provide Colorblind Compliant Colors
@@ -45,12 +47,11 @@ color_blind <- function(){
 #'
 #' @export
 hai_scale_fill_colorblind <- function(..., theme = "hai") {
+  pal <- switch(theme,
+    "hai" = unname(color_blind()) %>% rep(100)
+  )
 
-    pal <- switch(theme,
-                  "hai" = unname(color_blind()) %>% rep(100)
-    )
-
-    ggplot2::scale_fill_manual(values = pal)
+  ggplot2::scale_fill_manual(values = pal)
 }
 
 #' Provide Colorblind Compliant Colors
@@ -73,11 +74,10 @@ hai_scale_fill_colorblind <- function(..., theme = "hai") {
 #' A `gggplot` layer
 #'
 #' @export
-hai_scale_color_colorblind = function(..., theme = "hai") {
+hai_scale_color_colorblind <- function(..., theme = "hai") {
+  pal <- switch(theme,
+    "hai" = unname(color_blind()) %>% rep(100)
+  )
 
-    pal <- switch(theme,
-                  "hai" = unname(color_blind()) %>% rep(100)
-    )
-
-    ggplot2::scale_color_manual(values = pal)
+  ggplot2::scale_color_manual(values = pal)
 }

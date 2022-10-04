@@ -35,13 +35,12 @@
 #' @export
 #'
 
-hai_c50_data_prepper <- function(.data, .recipe_formula){
+hai_c50_data_prepper <- function(.data, .recipe_formula) {
 
-    # Recipe ---
-    rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
-        recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.character))
+  # Recipe ---
+  rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
+    recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.character))
 
-    # Return ----
-    return(rec_obj)
-
+  # Return ----
+  return(rec_obj)
 }

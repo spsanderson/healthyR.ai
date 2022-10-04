@@ -24,14 +24,14 @@
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
 #'
-#' len_out    = 25
-#' by_unit    = "month"
-#' start_date = as.Date("2021-01-01")
+#' len_out <- 25
+#' by_unit <- "month"
+#' start_date <- as.Date("2021-01-01")
 #'
 #' data_tbl <- tibble(
 #'   date_col = seq.Date(from = start_date, length.out = len_out, by = by_unit),
-#'   a    = rnorm(len_out),
-#'   b    = runif(len_out)
+#'   a = rnorm(len_out),
+#'   b = runif(len_out)
 #' )
 #'
 #' vec_1 <- hai_winsorized_truncate_vec(data_tbl$a, .fraction = 0.05)
@@ -46,20 +46,18 @@
 #' @export
 #'
 
-hai_winsorized_truncate_vec <- function(.x, .fraction = 0.05){
+hai_winsorized_truncate_vec <- function(.x, .fraction = 0.05) {
 
-    # Tidyeval ----
-    x_term <- .x
+  # Tidyeval ----
+  x_term <- .x
 
-    if(length(.fraction) != 1 || .fraction < 0 || .fraction > 0.5){
-        stop(call. = FALSE, ".fraction is a bad value.")
-    }
+  if (length(.fraction) != 1 || .fraction < 0 || .fraction > 0.5) {
+    stop(call. = FALSE, ".fraction is a bad value.")
+  }
 
-    lim <- stats::quantile(x_term, probs = c(.fraction, (1 - .fraction)))
-    x_term[x_term < lim[1]] <- lim[1]
-    x_term[x_term > lim[2]] <- lim[2]
+  lim <- stats::quantile(x_term, probs = c(.fraction, (1 - .fraction)))
+  x_term[x_term < lim[1]] <- lim[1]
+  x_term[x_term > lim[2]] <- lim[2]
 
-    return(x_term)
-
+  return(x_term)
 }
-

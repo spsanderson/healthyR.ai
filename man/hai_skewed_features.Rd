@@ -31,7 +31,7 @@ considered for whatever reason in the skewness calculation.
 }
 \examples{
 hai_skewed_features(mtcars)
-hai_skewed_features(mtcars, .drop_keys = c("mpg","hp"))
+hai_skewed_features(mtcars, .drop_keys = c("mpg", "hp"))
 hai_skewed_features(mtcars, .drop_keys = "hp")
 
 }

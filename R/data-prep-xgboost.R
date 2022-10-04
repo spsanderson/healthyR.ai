@@ -40,16 +40,15 @@
 #' @export
 #'
 
-hai_xgboost_data_prepper <- function(.data, .recipe_formula){
+hai_xgboost_data_prepper <- function(.data, .recipe_formula) {
 
-    # Recipe ---
-    rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
-        recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.character)) %>%
-        recipes::step_novel(recipes::all_nominal_predictors()) %>%
-        recipes::step_dummy(recipes::all_nominal_predictors()) %>%
-        recipes::step_zv(recipes::all_predictors())
+  # Recipe ---
+  rec_obj <- recipes::recipe(.recipe_formula, data = .data) %>%
+    recipes::step_string2factor(tidyselect::vars_select_helpers$where(is.character)) %>%
+    recipes::step_novel(recipes::all_nominal_predictors()) %>%
+    recipes::step_dummy(recipes::all_nominal_predictors()) %>%
+    recipes::step_zv(recipes::all_predictors())
 
-    # Return ----
-    return(rec_obj)
-
+  # Return ----
+  return(rec_obj)
 }

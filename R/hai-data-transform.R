@@ -88,116 +88,115 @@
 #' suppressPackageStartupMessages(library(recipes))
 #'
 #' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
-#' val_seq  <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
-#' df_tbl   <- tibble(
-#'     date_col = date_seq,
-#'     value    = val_seq
+#' val_seq <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
+#' df_tbl <- tibble(
+#'   date_col = date_seq,
+#'   value    = val_seq
 #' )
 #'
-#' rec_obj <- recipe(value ~., df_tbl)
+#' rec_obj <- recipe(value ~ ., df_tbl)
 #'
 #' healthyR.ai:::hai_data_transform(
-#'     .recipe_object = rec_obj,
-#'     value,
-#'     .type_of_scale = "log"
+#'   .recipe_object = rec_obj,
+#'   value,
+#'   .type_of_scale = "log"
 #' )$scale_rec_obj %>%
-#'     get_juiced_data()
+#'   get_juiced_data()
 #'
 #' @return
 #' A list object
 #'
 
-hai_data_transform <-  function(.recipe_object = NULL, ..., .type_of_scale = "log"
-                                , .bc_limits = c(-5,5), .bc_num_unique = 5
-                                , .bs_deg_free = NULL, .bs_degree = 3
-                                , .log_base = exp(1), .log_offset = 0
-                                , .logit_offset = 0, .ns_deg_free = 2
-                                , .rel_shift = 0, .rel_reverse = FALSE, .rel_smooth = FALSE
-                                , .yj_limits = c(-5,5), .yj_num_unique = 5){
+hai_data_transform <- function(.recipe_object = NULL, ..., .type_of_scale = "log",
+                               .bc_limits = c(-5, 5), .bc_num_unique = 5,
+                               .bs_deg_free = NULL, .bs_degree = 3,
+                               .log_base = exp(1), .log_offset = 0,
+                               .logit_offset = 0, .ns_deg_free = 2,
+                               .rel_shift = 0, .rel_reverse = FALSE, .rel_smooth = FALSE,
+                               .yj_limits = c(-5, 5), .yj_num_unique = 5) {
 
-    # Make sure a recipe was passed
-    if(is.null(.recipe_object)){
-        rlang::abort("`.recipe_object` must be passed, please add.")
-    } else {
-        rec_obj <- .recipe_object
-    }
+  # Make sure a recipe was passed
+  if (is.null(.recipe_object)) {
+    rlang::abort("`.recipe_object` must be passed, please add.")
+  } else {
+    rec_obj <- .recipe_object
+  }
 
-    # * Parameters ----
-    terms        <- rlang::enquos(...)
-    scale_type   <- as.character(.type_of_scale)
+  # * Parameters ----
+  terms <- rlang::enquos(...)
+  scale_type <- as.character(.type_of_scale)
 
-    # * Checks ----
-    if(!tolower(scale_type) %in% c(
-        "boxcox","bs","log","logit","ns","relu","sqrt","yeojohnson"
-    )
-    ){
-        stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
+  # * Checks ----
+  if (!tolower(scale_type) %in% c(
+    "boxcox", "bs", "log", "logit", "ns", "relu", "sqrt", "yeojohnson"
+  )
+  ) {
+    stop(call. = FALSE, "(.type_of_scale) is not implemented. Please choose
              from 'boxcox','bs','log','logit','ns','relu','sqrt','yeojohnson'")
-    }
+  }
 
-    # If Statement to get the recipe desired ----
-    if(scale_type == "boxcox"){
-        scale_obj <- recipes::step_BoxCox(
-            recipe     = rec_obj,
-            limits     = .bc_limits,
-            num_unique = .bc_num_unique,
-            !!! terms
-        )
-    } else if(scale_type == "bs"){
-        scale_obj <- recipes::step_bs(
-            recipe   = rec_obj,
-            deg_free = .bs_deg_free,
-            degree   = .bs_degree,
-            !!! terms
-        )
-    } else if(scale_type == "log"){
-        scale_obj <- recipes::step_log(
-            recipe  = rec_obj,
-            base    = .log_base,
-            offset  = .log_offset,
-            !!! terms
-        )
-    } else if(scale_type == "logit"){
-        scale_obj <- recipes::step_logit(
-            recipe = rec_obj,
-            offset = .logit_offset,
-            !!! terms
-        )
-    } else if(scale_type == "ns"){
-        scale_obj <- recipes::step_ns(
-            recipe   = rec_obj,
-            deg_free = .ns_deg_free,
-            !!! terms
-        )
-    } else if(scale_type == "relu"){
-        scale_obj <- recipes::step_relu(
-            recipe  = rec_obj,
-            shift   = .rel_shift,
-            reverse = .rel_reverse,
-            smooth  = .rel_smooth,
-            !!! terms
-        )
-    } else if(scale_type == "sqrt"){
-        scale_obj <- recipes::step_sqrt(
-            recipe = rec_obj,
-            !!! terms
-        )
-    } else if(scale_type == "yeojohnson"){
-        scale_obj <- recipes::step_YeoJohnson(
-            recipe     = rec_obj,
-            limits     = .yj_limits,
-            num_unique = .yj_num_unique,
-            !!! terms
-        )
-    }
-
-    # * Recipe List ---
-    output <- list(
-        rec_base      = rec_obj,
-        scale_rec_obj = scale_obj
+  # If Statement to get the recipe desired ----
+  if (scale_type == "boxcox") {
+    scale_obj <- recipes::step_BoxCox(
+      recipe     = rec_obj,
+      limits     = .bc_limits,
+      num_unique = .bc_num_unique,
+      !!!terms
     )
+  } else if (scale_type == "bs") {
+    scale_obj <- recipes::step_bs(
+      recipe   = rec_obj,
+      deg_free = .bs_deg_free,
+      degree   = .bs_degree,
+      !!!terms
+    )
+  } else if (scale_type == "log") {
+    scale_obj <- recipes::step_log(
+      recipe  = rec_obj,
+      base    = .log_base,
+      offset  = .log_offset,
+      !!!terms
+    )
+  } else if (scale_type == "logit") {
+    scale_obj <- recipes::step_logit(
+      recipe = rec_obj,
+      offset = .logit_offset,
+      !!!terms
+    )
+  } else if (scale_type == "ns") {
+    scale_obj <- recipes::step_ns(
+      recipe   = rec_obj,
+      deg_free = .ns_deg_free,
+      !!!terms
+    )
+  } else if (scale_type == "relu") {
+    scale_obj <- recipes::step_relu(
+      recipe  = rec_obj,
+      shift   = .rel_shift,
+      reverse = .rel_reverse,
+      smooth  = .rel_smooth,
+      !!!terms
+    )
+  } else if (scale_type == "sqrt") {
+    scale_obj <- recipes::step_sqrt(
+      recipe = rec_obj,
+      !!!terms
+    )
+  } else if (scale_type == "yeojohnson") {
+    scale_obj <- recipes::step_YeoJohnson(
+      recipe     = rec_obj,
+      limits     = .yj_limits,
+      num_unique = .yj_num_unique,
+      !!!terms
+    )
+  }
 
-    # * Return ----
-    return(output)
+  # * Recipe List ---
+  output <- list(
+    rec_base      = rec_obj,
+    scale_rec_obj = scale_obj
+  )
 
+  # * Return ----
+  return(output)
 }

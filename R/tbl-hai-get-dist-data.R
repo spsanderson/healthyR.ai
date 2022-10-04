@@ -32,57 +32,56 @@
 #' @export
 #'
 
-hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE){
+hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE) {
 
-    # Tidyeval ----
-    unnest_bool     <- as.logical(.unnest)
-    group_data_bool <- as.logical(.group_data)
+  # Tidyeval ----
+  unnest_bool <- as.logical(.unnest)
+  group_data_bool <- as.logical(.group_data)
 
-    # Get Data ----
-    data_tbl <- .data
+  # Get Data ----
+  data_tbl <- .data
 
-    if(!attributes(data_tbl)$tibble_type == "hai_dist_compare_tbl"){
-        rlang::abort("Attribute of 'hai_dist_compare_tbl' is missing.
+  if (!attributes(data_tbl)$tibble_type == "hai_dist_compare_tbl") {
+    rlang::abort("Attribute of 'hai_dist_compare_tbl' is missing.
                  Did you use the 'hai_distribution_comparison_tlb()' function?")
-    }
+  }
 
-    # Names ----
-    col_nms <- names(data_tbl)
+  # Names ----
+  col_nms <- names(data_tbl)
 
-    # Checks ----
-    if((!"dist_data" %in% col_nms) | (!"density_data" %in% col_nms)){
-        rlang::abort("Missing columns of 'dist_data' and or 'density_data'. Did you use
+  # Checks ----
+  if ((!"dist_data" %in% col_nms) | (!"density_data" %in% col_nms)) {
+    rlang::abort("Missing columns of 'dist_data' and or 'density_data'. Did you use
          the `hai_distribution_comparison_tbl()` function?")
-    }
+  }
 
-    if((!is.logical(unnest_bool)) | (!is.logical(group_data_bool))){
-        rlang::abort("Both .unnest and .group_data must be a logical/boolean value.")
-    }
+  if ((!is.logical(unnest_bool)) | (!is.logical(group_data_bool))) {
+    rlang::abort("Both .unnest and .group_data must be a logical/boolean value.")
+  }
 
-    # Get tibble ----
-    data_tbl <- tibble::as_tibble(.data)
+  # Get tibble ----
+  data_tbl <- tibble::as_tibble(.data)
 
+  data_tbl <- data_tbl %>%
+    dplyr::select(-density_data)
+
+  if (unnest_bool) {
     data_tbl <- data_tbl %>%
-        dplyr::select(-density_data)
+      tidyr::unnest(dist_data) %>%
+      dplyr::ungroup()
+  }
 
-    if(unnest_bool){
-        data_tbl <- data_tbl %>%
-            tidyr::unnest(dist_data) %>%
-            dplyr::ungroup()
-    }
+  if (group_data_bool) {
+    data_tbl <- data_tbl %>%
+      dplyr::group_by(distribution)
+  }
 
-    if(group_data_bool){
-        data_tbl <- data_tbl %>%
-            dplyr::group_by(distribution)
-    }
+  # Add attributes ----
+  attr(data_tbl, ".data") <- .data
+  attr(data_tbl, ".unnest") <- .unnest
+  attr(data_tbl, ".group_data") <- .group_data
+  attr(data_tbl, "tibble_type") <- "hai_dist_data_tbl"
 
-    # Add attributes ----
-    attr(data_tbl, ".data") <- .data
-    attr(data_tbl, ".unnest") <- .unnest
-    attr(data_tbl, ".group_data") <- .group_data
-    attr(data_tbl, "tibble_type") <- "hai_dist_data_tbl"
-
-    # Return ----
-    return(data_tbl)
-
+  # Return ----
+  return(data_tbl)
 }

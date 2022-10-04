@@ -35,84 +35,83 @@ hai_histogram_facet_plot <- function(.data, .bins = 10, .scale_data = FALSE, .nc
                                      .fill = "steelblue", .color = "white",
                                      .scale = "free", .interactive = FALSE) {
 
-    # Tidyeval ----
-    bins <- as.numeric(.bins)
-    n_col <- as.numeric(.ncol)
-    fctreorder <- as.logical(.fct_reorder)
-    fctrev <- as.logical(.fct_rev)
-    scle <- as.logical(.scale_data)
-    fill <- .fill
-    color <- .color
-    scale <- .scale
+  # Tidyeval ----
+  bins <- as.numeric(.bins)
+  n_col <- as.numeric(.ncol)
+  fctreorder <- as.logical(.fct_reorder)
+  fctrev <- as.logical(.fct_rev)
+  scle <- as.logical(.scale_data)
+  fill <- .fill
+  color <- .color
+  scale <- .scale
 
-    # Checks ----
-    if(!is.data.frame(.data)){
-        rlang::abort(".data must be a data.frame/tibble.")
-    }
+  # Checks ----
+  if (!is.data.frame(.data)) {
+    rlang::abort(".data must be a data.frame/tibble.")
+  }
 
-    if(!is.numeric(bins) | !is.numeric(n_col) | bins <= 0 | n_col <= 0){
-        rlang::abort(".bins and .ncol must be class numeric, and greater than 0.")
-    }
+  if (!is.numeric(bins) | !is.numeric(n_col) | bins <= 0 | n_col <= 0) {
+    rlang::abort(".bins and .ncol must be class numeric, and greater than 0.")
+  }
 
-    # Data ----
-    data <- dplyr::as_tibble(.data)
+  # Data ----
+  data <- dplyr::as_tibble(.data)
 
-    if (scle){
-        data <- data %>%
-            dplyr::mutate(
-                dplyr::across(
-                    .cols = tidyselect::vars_select_helpers$where(is.numeric),
-                    .fns  = healthyR.ai::hai_scale_zero_one_vec
-                )
-            )
-    }
+  if (scle) {
+    data <- data %>%
+      dplyr::mutate(
+        dplyr::across(
+          .cols = tidyselect::vars_select_helpers$where(is.numeric),
+          .fns  = healthyR.ai::hai_scale_zero_one_vec
+        )
+      )
+  }
 
-    data_factored <- data %>%
-        dplyr::mutate(
-            dplyr::across(
-                .cols = tidyselect::vars_select_helpers$where(is.character),
-                .fns = as.factor
-            )
-        ) %>%
-        dplyr::mutate(
-            dplyr::across(
-                .cols = tidyselect::vars_select_helpers$where(is.factor),
-                .fns = as.numeric
-            )
-        ) %>%
-        tidyr::gather(key = key, value = value, factor_key = TRUE)
+  data_factored <- data %>%
+    dplyr::mutate(
+      dplyr::across(
+        .cols = tidyselect::vars_select_helpers$where(is.character),
+        .fns = as.factor
+      )
+    ) %>%
+    dplyr::mutate(
+      dplyr::across(
+        .cols = tidyselect::vars_select_helpers$where(is.factor),
+        .fns = as.numeric
+      )
+    ) %>%
+    tidyr::gather(key = key, value = value, factor_key = TRUE)
 
-    if (fctreorder) {
-        data_factored <- data_factored %>%
-            dplyr::mutate(key = as.character(key) %>% as.factor())
-    }
+  if (fctreorder) {
+    data_factored <- data_factored %>%
+      dplyr::mutate(key = as.character(key) %>% as.factor())
+  }
 
-    if (fctrev){
-        data_factored <- data_factored %>%
-            dplyr::mutate(key = fct_rev(key))
-    }
+  if (fctrev) {
+    data_factored <- data_factored %>%
+      dplyr::mutate(key = fct_rev(key))
+  }
 
-    # Plot----
-    g <- data_factored %>%
-        ggplot2::ggplot(ggplot2::aes(x = value, group = key)) +
-        ggplot2::geom_histogram(bins = bins, fill = fill, color = color) +
-        ggplot2::facet_wrap(~ key, ncol = n_col, scale = scale) +
-        ggplot2::theme_minimal()
+  # Plot----
+  g <- data_factored %>%
+    ggplot2::ggplot(ggplot2::aes(x = value, group = key)) +
+    ggplot2::geom_histogram(bins = bins, fill = fill, color = color) +
+    ggplot2::facet_wrap(~key, ncol = n_col, scale = scale) +
+    ggplot2::theme_minimal()
 
-    if(.interactive){
-        g <- plotly::ggplotly(g)
-    }
+  if (.interactive) {
+    g <- plotly::ggplotly(g)
+  }
 
-    # Return ----
-    output <- list(
-        data = list(
-            input_data    = data,
-            data_factored = data_factored
-        ),
-        plot = g
-    )
+  # Return ----
+  output <- list(
+    data = list(
+      input_data    = data,
+      data_factored = data_factored
+    ),
+    plot = g
+  )
 
-    print(g)
-    return(invisible(output))
-
+  print(g)
+  return(invisible(output))
 }

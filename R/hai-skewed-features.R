@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' hai_skewed_features(mtcars)
-#' hai_skewed_features(mtcars, .drop_keys = c("mpg","hp"))
+#' hai_skewed_features(mtcars, .drop_keys = c("mpg", "hp"))
 #' hai_skewed_features(mtcars, .drop_keys = "hp")
 #'
 #' @return
@@ -28,51 +28,50 @@
 #' @export
 #'
 
-hai_skewed_features <- function(.data, .threshold = 0.6, .drop_keys = NULL){
+hai_skewed_features <- function(.data, .threshold = 0.6, .drop_keys = NULL) {
 
-    # Tidyeval ----
-    threshold <- as.numeric(.threshold)
-    drop_keys <- .drop_keys
+  # Tidyeval ----
+  threshold <- as.numeric(.threshold)
+  drop_keys <- .drop_keys
 
-    # Checks ----
-    if (!is.numeric(threshold)){
-        rlang::abort(
-            message = "The '.threshold' parameter must be numeric.",
-            use_cli_format = TRUE
-        )
-    }
+  # Checks ----
+  if (!is.numeric(threshold)) {
+    rlang::abort(
+      message = "The '.threshold' parameter must be numeric.",
+      use_cli_format = TRUE
+    )
+  }
 
-    if (!is.data.frame(.data)){
-        rlang::abort(
-            message = "The '.data' parameter must be a data.frame/tibble.",
-            use_cli_format = TRUE
-        )
-    }
+  if (!is.data.frame(.data)) {
+    rlang::abort(
+      message = "The '.data' parameter must be a data.frame/tibble.",
+      use_cli_format = TRUE
+    )
+  }
 
-    if (!is.null(drop_keys) & !is.character(drop_keys)){
-        rlang::abort(
-            message = "If provided, the '.drop_keys' parameter must be a 'character'. Using
+  if (!is.null(drop_keys) & !is.character(drop_keys)) {
+    rlang::abort(
+      message = "If provided, the '.drop_keys' parameter must be a 'character'. Using
       something like '.drop_keys = c('key_1','key_2',...).",
-            use_cli_format = TRUE
-        )
-    }
+      use_cli_format = TRUE
+    )
+  }
 
-    # Data ----
-    data_tbl <- tibble::as_tibble(.data)
+  # Data ----
+  data_tbl <- tibble::as_tibble(.data)
 
-    # Transforms
-    skewed_feature_names <- data_tbl %>%
-        dplyr::select(tidyselect::vars_select_helpers$where(is.numeric)) %>%
-        purrr::map_df(hai_skewness_vec) %>%
-        tidyr::pivot_longer(cols = dplyr::everything()) %>%
-        dplyr::filter(!name %in% drop_keys) %>%
-        dplyr::mutate(name = as.factor(name)) %>%
-        dplyr::rename(key = name) %>%
-        dplyr::filter(value >= threshold) %>%
-        dplyr::pull(key) %>%
-        as.character()
+  # Transforms
+  skewed_feature_names <- data_tbl %>%
+    dplyr::select(tidyselect::vars_select_helpers$where(is.numeric)) %>%
+    purrr::map_df(hai_skewness_vec) %>%
+    tidyr::pivot_longer(cols = dplyr::everything()) %>%
+    dplyr::filter(!name %in% drop_keys) %>%
+    dplyr::mutate(name = as.factor(name)) %>%
+    dplyr::rename(key = name) %>%
+    dplyr::filter(value >= threshold) %>%
+    dplyr::pull(key) %>%
+    as.character()
 
-    # Return ----
-    return(skewed_feature_names)
-
+  # Return ----
+  return(skewed_feature_names)
 }

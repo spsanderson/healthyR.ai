@@ -31,57 +31,56 @@
 #' suppressPackageStartupMessages(library(recipes))
 #'
 #' date_seq <- seq.Date(from = as.Date("2013-01-01"), length.out = 100, by = "month")
-#' val_seq  <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
-#' df_tbl   <- tibble(
-#'     date_col = date_seq,
-#'     value    = val_seq
+#' val_seq <- rep(rnorm(10, mean = 6, sd = 2), times = 10)
+#' df_tbl <- tibble(
+#'   date_col = date_seq,
+#'   value    = val_seq
 #' )
 #'
-#' rec_obj <- recipe(value ~., df_tbl)
+#' rec_obj <- recipe(value ~ ., df_tbl)
 #'
 #' healthyR.ai:::hai_data_poly(
-#'     .recipe_object = rec_obj,
-#'     value
+#'   .recipe_object = rec_obj,
+#'   value
 #' )$scale_rec_obj %>%
-#'     get_juiced_data()
+#'   get_juiced_data()
 #'
 #' @return
 #' A list object
 #'
 
-hai_data_poly <-  function(.recipe_object = NULL, ...,
-                           .p_degree = 2){
+hai_data_poly <- function(.recipe_object = NULL, ...,
+                          .p_degree = 2) {
 
-    # Make sure a recipe was passed
-    if(is.null(.recipe_object)){
-        rlang::abort("`.recipe_object` must be passed, please add.")
-    } else {
-        rec_obj <- .recipe_object
-    }
+  # Make sure a recipe was passed
+  if (is.null(.recipe_object)) {
+    rlang::abort("`.recipe_object` must be passed, please add.")
+  } else {
+    rec_obj <- .recipe_object
+  }
 
-    # * Parameters ----
-    terms  <- rlang::enquos(...)
-    degree <- as.double(.p_degree)
+  # * Parameters ----
+  terms <- rlang::enquos(...)
+  degree <- as.double(.p_degree)
 
-    # * Checks ----
-    if(!is.double(degree)){
-        stop(call. = FALSE, "(.p_degree) must be an integer.")
-    }
+  # * Checks ----
+  if (!is.double(degree)) {
+    stop(call. = FALSE, "(.p_degree) must be an integer.")
+  }
 
-    # If Statement to get the recipe desired ----
-    scale_obj <- recipes::step_poly(
-            recipe  = rec_obj,
-            degree  = degree,
-            !!! terms
-        )
+  # If Statement to get the recipe desired ----
+  scale_obj <- recipes::step_poly(
+    recipe  = rec_obj,
+    degree  = degree,
+    !!!terms
+  )
 
-    # * Recipe List ---
-    output <- list(
-        rec_base      = rec_obj,
-        scale_rec_obj = scale_obj
-    )
+  # * Recipe List ---
+  output <- list(
+    rec_base      = rec_obj,
+    scale_rec_obj = scale_obj
+  )
 
-    # * Return ----
-    return(output)
-
+  # * Return ----
+  return(output)
 }

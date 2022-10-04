@@ -25,19 +25,19 @@
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data%>%
-#'    filter(ip_op_flag == "I") %>%
-#'    filter(payer_grouping != "Medicare B") %>%
-#'    filter(payer_grouping != "?") %>%
-#'    select(service_line, payer_grouping) %>%
-#'    mutate(record = 1) %>%
-#'    as_tibble()
+#' data_tbl <- healthyR_data %>%
+#'   filter(ip_op_flag == "I") %>%
+#'   filter(payer_grouping != "Medicare B") %>%
+#'   filter(payer_grouping != "?") %>%
+#'   select(service_line, payer_grouping) %>%
+#'   mutate(record = 1) %>%
+#'   as_tibble()
 #'
 #' hai_kmeans_user_item_tbl(
-#'    .data           = data_tbl
-#'    , .row_input    = service_line
-#'    , .col_input    =  payer_grouping
-#'    , .record_input = record
+#'   .data = data_tbl,
+#'   .row_input = service_line,
+#'   .col_input = payer_grouping,
+#'   .record_input = record
 #' )
 #'
 #' @return
@@ -46,59 +46,58 @@
 #' @export
 #'
 
-hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_input){
+hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_input) {
 
-    # * Tidyeval ----
-    row_input_var_expr <- rlang::enquo(.row_input)
-    col_input_var_expr <- rlang::enquo(.col_input)
-    rec_input_var_expr <- rlang::enquo(.record_input)
+  # * Tidyeval ----
+  row_input_var_expr <- rlang::enquo(.row_input)
+  col_input_var_expr <- rlang::enquo(.col_input)
+  rec_input_var_expr <- rlang::enquo(.record_input)
 
-    # * Checks ----
-    if(!is.data.frame(.data)){
-        stop(call. = FALSE, "(.data) is not a data.frame/tibble. Please supply.")
-    }
+  # * Checks ----
+  if (!is.data.frame(.data)) {
+    stop(call. = FALSE, "(.data) is not a data.frame/tibble. Please supply.")
+  }
 
-    if(rlang::quo_is_missing(row_input_var_expr)){
-        stop(call. = FALSE, "You must supply a user/row input.")
-    }
+  if (rlang::quo_is_missing(row_input_var_expr)) {
+    stop(call. = FALSE, "You must supply a user/row input.")
+  }
 
-    if(rlang::quo_is_missing(col_input_var_expr)){
-        stop(call. = FALSE, "You must supply an item/column input")
-    }
+  if (rlang::quo_is_missing(col_input_var_expr)) {
+    stop(call. = FALSE, "You must supply an item/column input")
+  }
 
-    if(rlang::quo_is_missing(rec_input_var_expr)){
-        stop(call. = FALSE, "You must supply a record column that can be summed up
+  if (rlang::quo_is_missing(rec_input_var_expr)) {
+    stop(call. = FALSE, "You must supply a record column that can be summed up
              for the aggregation and normalization process.")
-    }
+  }
 
-    # * Data ----
-    data_tbl <- tibble::as_tibble(.data)
+  # * Data ----
+  data_tbl <- tibble::as_tibble(.data)
 
-    # * Manipulate ----
-    data_summarized_tbl <- data_tbl %>%
-        dplyr::group_by({{ row_input_var_expr }}, {{ col_input_var_expr }}) %>%
-        dplyr::summarise(total_records = sum({{ rec_input_var_expr }}, na.rm = TRUE)) %>%
-        dplyr::ungroup() %>%
-        # Normalize proportions
-        dplyr::group_by({{ row_input_var_expr }}) %>%
-        dplyr::mutate(prop_of_total = total_records / sum(total_records)) %>%
-        dplyr::ungroup()
+  # * Manipulate ----
+  data_summarized_tbl <- data_tbl %>%
+    dplyr::group_by({{ row_input_var_expr }}, {{ col_input_var_expr }}) %>%
+    dplyr::summarise(total_records = sum({{ rec_input_var_expr }}, na.rm = TRUE)) %>%
+    dplyr::ungroup() %>%
+    # Normalize proportions
+    dplyr::group_by({{ row_input_var_expr }}) %>%
+    dplyr::mutate(prop_of_total = total_records / sum(total_records)) %>%
+    dplyr::ungroup()
 
-    # User/Item format
-    user_item_tbl <- data_summarized_tbl %>%
-        dplyr::select({{ row_input_var_expr }}, {{ col_input_var_expr }}, prop_of_total) %>%
-        dplyr::mutate(prop_of_total = base::ifelse(
-            base::is.na(prop_of_total), 0, prop_of_total
-        )) %>%
-        tidyr::pivot_wider(
-            names_from    = {{ col_input_var_expr }}
-            , values_from = prop_of_total
-            , values_fill = list(prop_of_total = 0)
-        )
+  # User/Item format
+  user_item_tbl <- data_summarized_tbl %>%
+    dplyr::select({{ row_input_var_expr }}, {{ col_input_var_expr }}, prop_of_total) %>%
+    dplyr::mutate(prop_of_total = base::ifelse(
+      base::is.na(prop_of_total), 0, prop_of_total
+    )) %>%
+    tidyr::pivot_wider(
+      names_from = {{ col_input_var_expr }},
+      values_from = prop_of_total,
+      values_fill = list(prop_of_total = 0)
+    )
 
-    # * Return ----
-    return(user_item_tbl)
-
+  # * Return ----
+  return(user_item_tbl)
 }
 
 #' @rdname hai_kmeans_user_item_tbl
@@ -125,21 +124,21 @@ kmeans_user_item_tbl <- hai_kmeans_user_item_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data%>%
-#'    filter(ip_op_flag == "I") %>%
-#'    filter(payer_grouping != "Medicare B") %>%
-#'    filter(payer_grouping != "?") %>%
-#'    select(service_line, payer_grouping) %>%
-#'    mutate(record = 1) %>%
-#'    as_tibble()
+#' data_tbl <- healthyR_data %>%
+#'   filter(ip_op_flag == "I") %>%
+#'   filter(payer_grouping != "Medicare B") %>%
+#'   filter(payer_grouping != "?") %>%
+#'   select(service_line, payer_grouping) %>%
+#'   mutate(record = 1) %>%
+#'   as_tibble()
 #'
 #' hai_kmeans_user_item_tbl(
-#'    .data           = data_tbl
-#'    , .row_input    = service_line
-#'    , .col_input    =  payer_grouping
-#'    , .record_input = record
-#'  ) %>%
-#'  hai_kmeans_obj()
+#'   .data = data_tbl,
+#'   .row_input = service_line,
+#'   .col_input = payer_grouping,
+#'   .record_input = record
+#' ) %>%
+#'   hai_kmeans_obj()
 #'
 #' @return
 #' A stats k-means object
@@ -147,34 +146,35 @@ kmeans_user_item_tbl <- hai_kmeans_user_item_tbl
 #' @export
 #'
 
-hai_kmeans_obj <- function(.data, .centers = 5){
+hai_kmeans_obj <- function(.data, .centers = 5) {
 
-    # * Tidyeval ----
-    centers_var_expr <- .centers
+  # * Tidyeval ----
+  centers_var_expr <- .centers
 
-    # * Checks ----
-    if(!is.data.frame(.data)){
-        stop(call. = FALSE("(.data) is missing. Please supply."))
-    }
+  # * Checks ----
+  if (!is.data.frame(.data)) {
+    stop(call. = FALSE("(.data) is missing. Please supply."))
+  }
 
-    # Default to 5
-    if(is.null(centers_var_expr)){centers_var_expr = 5}
+  # Default to 5
+  if (is.null(centers_var_expr)) {
+    centers_var_expr <- 5
+  }
 
-    # * Data ----
-    data <- tibble::as_tibble(.data)
+  # * Data ----
+  data <- tibble::as_tibble(.data)
 
-    # * k-means ----
-    kmeans_tbl <- data %>%
-        dplyr::select(-1)
+  # * k-means ----
+  kmeans_tbl <- data %>%
+    dplyr::select(-1)
 
-    kmeans_obj <- kmeans_tbl %>%
-        stats::kmeans(
-            centers = centers_var_expr
-            , nstart = 100
-        )
+  kmeans_obj <- kmeans_tbl %>%
+    stats::kmeans(
+      centers = centers_var_expr,
+      nstart = 100
+    )
 
-    return(kmeans_obj)
-
+  return(kmeans_obj)
 }
 
 #' @rdname hai_kmeans_obj
@@ -204,41 +204,41 @@ kmeans_obj <- hai_kmeans_obj
 #' library(dplyr)
 #' library(broom)
 #'
-#' data_tbl <- healthyR_data%>%
-#'    filter(ip_op_flag == "I") %>%
-#'    filter(payer_grouping != "Medicare B") %>%
-#'    filter(payer_grouping != "?") %>%
-#'    select(service_line, payer_grouping) %>%
-#'    mutate(record = 1) %>%
-#'    as_tibble()
+#' data_tbl <- healthyR_data %>%
+#'   filter(ip_op_flag == "I") %>%
+#'   filter(payer_grouping != "Medicare B") %>%
+#'   filter(payer_grouping != "?") %>%
+#'   select(service_line, payer_grouping) %>%
+#'   mutate(record = 1) %>%
+#'   as_tibble()
 #'
 #' uit_tbl <- hai_kmeans_user_item_tbl(
-#'    .data           = data_tbl
-#'    , .row_input    = service_line
-#'    , .col_input    =  payer_grouping
-#'    , .record_input = record
+#'   .data = data_tbl,
+#'   .row_input = service_line,
+#'   .col_input = payer_grouping,
+#'   .record_input = record
 #' )
 #'
-#' km_obj  <- hai_kmeans_obj(uit_tbl)
+#' km_obj <- hai_kmeans_obj(uit_tbl)
 #'
 #' hai_kmeans_tidy_tbl(
-#'    .kmeans_obj  = km_obj
-#'    , .data      = uit_tbl
-#'    , .tidy_type = "augment"
-#'  )
+#'   .kmeans_obj = km_obj,
+#'   .data = uit_tbl,
+#'   .tidy_type = "augment"
+#' )
 #'
 #' hai_kmeans_tidy_tbl(
-#'    .kmeans_obj  = km_obj
-#'    , .data      = uit_tbl
-#'    , .tidy_type = "glance"
-#'  )
+#'   .kmeans_obj = km_obj,
+#'   .data = uit_tbl,
+#'   .tidy_type = "glance"
+#' )
 #'
 #' hai_kmeans_tidy_tbl(
-#'    .kmeans_obj  = km_obj
-#'    , .data      = uit_tbl
-#'    , .tidy_type = "tidy"
-#'  ) %>%
-#'    glimpse()
+#'   .kmeans_obj = km_obj,
+#'   .data = uit_tbl,
+#'   .tidy_type = "tidy"
+#' ) %>%
+#'   glimpse()
 #'
 #' @return
 #' A tibble
@@ -248,42 +248,43 @@ kmeans_obj <- hai_kmeans_obj
 
 hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
 
-    # * Tidyeval ----
-    kmeans_obj   <- .kmeans_obj
-    tidy_type    <- .tidy_type
+  # * Tidyeval ----
+  kmeans_obj <- .kmeans_obj
+  tidy_type <- .tidy_type
 
-    # * Checks ----
-    if(!is.data.frame(.data)){
-        stop(call. = FALSE, "(.user_item_data) is not a data.frame/tibble, please supply original user item tibble.")
-    }
+  # * Checks ----
+  if (!is.data.frame(.data)) {
+    stop(call. = FALSE, "(.user_item_data) is not a data.frame/tibble, please supply original user item tibble.")
+  }
 
-    if (!inherits(x = kmeans_obj, what = "kmeans")) {
-        stop(call. = FALSE, "(.kmeans_obj) is not of class 'kmeans'")
-    }
+  if (!inherits(x = kmeans_obj, what = "kmeans")) {
+    stop(call. = FALSE, "(.kmeans_obj) is not of class 'kmeans'")
+  }
 
-    if (!tidy_type %in% c("tidy", "augment", "glance")) {
-        stop(call. = FALSE,
-             "(.tidy_type) must be either tidy, glance, or augment")
-    }
+  if (!tidy_type %in% c("tidy", "augment", "glance")) {
+    stop(
+      call. = FALSE,
+      "(.tidy_type) must be either tidy, glance, or augment"
+    )
+  }
 
-    # * Manipulate ----
-    uit_tbl <- tibble::as_tibble(.data)
-    row_col <- colnames(uit_tbl[1])
+  # * Manipulate ----
+  uit_tbl <- tibble::as_tibble(.data)
+  row_col <- colnames(uit_tbl[1])
 
-    if (tidy_type == "tidy") {
-        km_tbl <- kmeans_obj %>% broom::tidy()
-    } else if (tidy_type == "glance") {
-        km_tbl <- kmeans_obj %>% broom::glance()
-    } else if (tidy_type == "augment") {
-        km_tbl <- kmeans_obj %>%
-            broom::augment(uit_tbl) %>%
-            dplyr::select(row_col, .cluster) %>%
-            dplyr::rename("cluster" = .cluster)
-    }
+  if (tidy_type == "tidy") {
+    km_tbl <- kmeans_obj %>% broom::tidy()
+  } else if (tidy_type == "glance") {
+    km_tbl <- kmeans_obj %>% broom::glance()
+  } else if (tidy_type == "augment") {
+    km_tbl <- kmeans_obj %>%
+      broom::augment(uit_tbl) %>%
+      dplyr::select(row_col, .cluster) %>%
+      dplyr::rename("cluster" = .cluster)
+  }
 
-    # * Return ----
-    return(km_tbl)
-
+  # * Return ----
+  return(km_tbl)
 }
 
 #' @rdname hai_kmeans_tidy_tbl
@@ -314,20 +315,20 @@ kmeans_tidy_tbl <- hai_kmeans_tidy_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data%>%
-#'    filter(ip_op_flag == "I") %>%
-#'    filter(payer_grouping != "Medicare B") %>%
-#'    filter(payer_grouping != "?") %>%
-#'    select(service_line, payer_grouping) %>%
-#'    mutate(record = 1) %>%
-#'    as_tibble()
+#' data_tbl <- healthyR_data %>%
+#'   filter(ip_op_flag == "I") %>%
+#'   filter(payer_grouping != "Medicare B") %>%
+#'   filter(payer_grouping != "?") %>%
+#'   select(service_line, payer_grouping) %>%
+#'   mutate(record = 1) %>%
+#'   as_tibble()
 #'
-#' ui_tbl <-  hai_kmeans_user_item_tbl(
-#'    .data           = data_tbl
-#'    , .row_input    = service_line
-#'    , .col_input    =  payer_grouping
-#'    , .record_input = record
-#'  )
+#' ui_tbl <- hai_kmeans_user_item_tbl(
+#'   .data = data_tbl,
+#'   .row_input = service_line,
+#'   .col_input = payer_grouping,
+#'   .record_input = record
+#' )
 #'
 #' hai_kmeans_mapped_tbl(ui_tbl)
 #'
@@ -337,38 +338,36 @@ kmeans_tidy_tbl <- hai_kmeans_tidy_tbl
 #' @export
 #'
 
-hai_kmeans_mapped_tbl <- function(.data, .centers = 15){
+hai_kmeans_mapped_tbl <- function(.data, .centers = 15) {
 
-    # * Tidyeval ----
-    centers_var_expr <- .centers
+  # * Tidyeval ----
+  centers_var_expr <- .centers
 
-    # * Checks ----
-    if(!is.data.frame(.data)){
-        stop(call. = FALSE, "(.data) is not a data.frame/tibble. Please supply.")
-    }
+  # * Checks ----
+  if (!is.data.frame(.data)) {
+    stop(call. = FALSE, "(.data) is not a data.frame/tibble. Please supply.")
+  }
 
-    input_data <- tibble::as_tibble(.data)
+  input_data <- tibble::as_tibble(.data)
 
-    km_mapper <- function(centers = 3){
-        input_data %>%
-            dplyr::select(-1) %>%
-            stats::kmeans(
-                centers = centers
-                , nstart = 100
-            )
-    }
+  km_mapper <- function(centers = 3) {
+    input_data %>%
+      dplyr::select(-1) %>%
+      stats::kmeans(
+        centers = centers,
+        nstart = 100
+      )
+  }
 
-    # * Manipulate ----
-    data_tbl <- tibble::tibble(centers = 1:centers_var_expr) %>%
-        dplyr::mutate(k_means = centers %>%
-                          purrr::map(km_mapper)
-        ) %>%
-        dplyr::mutate(glance = k_means %>%
-                          purrr::map(broom::glance))
+  # * Manipulate ----
+  data_tbl <- tibble::tibble(centers = 1:centers_var_expr) %>%
+    dplyr::mutate(k_means = centers %>%
+      purrr::map(km_mapper)) %>%
+    dplyr::mutate(glance = k_means %>%
+      purrr::map(broom::glance))
 
-    # * Return ----
-    return(data_tbl)
-
+  # * Return ----
+  return(data_tbl)
 }
 
 #' @rdname hai_kmeans_mapped_tbl
@@ -395,20 +394,20 @@ kmeans_mapped_tbl <- hai_kmeans_mapped_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data%>%
-#'    filter(ip_op_flag == "I") %>%
-#'    filter(payer_grouping != "Medicare B") %>%
-#'    filter(payer_grouping != "?") %>%
-#'    select(service_line, payer_grouping) %>%
-#'    mutate(record = 1) %>%
-#'    as_tibble()
+#' data_tbl <- healthyR_data %>%
+#'   filter(ip_op_flag == "I") %>%
+#'   filter(payer_grouping != "Medicare B") %>%
+#'   filter(payer_grouping != "?") %>%
+#'   select(service_line, payer_grouping) %>%
+#'   mutate(record = 1) %>%
+#'   as_tibble()
 #'
-#' ui_tbl <-  hai_kmeans_user_item_tbl(
-#'    .data           = data_tbl
-#'    , .row_input    = service_line
-#'    , .col_input    =  payer_grouping
-#'    , .record_input = record
-#'  )
+#' ui_tbl <- hai_kmeans_user_item_tbl(
+#'   .data = data_tbl,
+#'   .row_input = service_line,
+#'   .col_input = payer_grouping,
+#'   .record_input = record
+#' )
 #'
 #' kmm_tbl <- hai_kmeans_mapped_tbl(ui_tbl)
 #'
@@ -422,21 +421,20 @@ kmeans_mapped_tbl <- hai_kmeans_mapped_tbl
 
 hai_kmeans_scree_data_tbl <- function(.data) {
 
-    # * Checks ----
-    if(!is.data.frame(.data)){
-        stop(call. = FALSE, "(.data) is not a data.frame/tibble. Please supply.")
-    }
+  # * Checks ----
+  if (!is.data.frame(.data)) {
+    stop(call. = FALSE, "(.data) is not a data.frame/tibble. Please supply.")
+  }
 
-    # * Manipulate ----
-    data_tbl <- tibble::as_tibble(.data)
+  # * Manipulate ----
+  data_tbl <- tibble::as_tibble(.data)
 
-    data_tbl <- data_tbl %>%
-        tidyr::unnest(glance) %>%
-        dplyr::select(centers, tot.withinss)
+  data_tbl <- data_tbl %>%
+    tidyr::unnest(glance) %>%
+    dplyr::select(centers, tot.withinss)
 
-    # * Return ----
-    return(data_tbl)
-
+  # * Return ----
+  return(data_tbl)
 }
 
 #' @rdname hai_kmeans_scree_data_tbl
@@ -462,20 +460,20 @@ kmeans_scree_data_tbl <- hai_kmeans_scree_data_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data%>%
-#'    filter(ip_op_flag == "I") %>%
-#'    filter(payer_grouping != "Medicare B") %>%
-#'    filter(payer_grouping != "?") %>%
-#'    select(service_line, payer_grouping) %>%
-#'    mutate(record = 1) %>%
-#'    as_tibble()
+#' data_tbl <- healthyR_data %>%
+#'   filter(ip_op_flag == "I") %>%
+#'   filter(payer_grouping != "Medicare B") %>%
+#'   filter(payer_grouping != "?") %>%
+#'   select(service_line, payer_grouping) %>%
+#'   mutate(record = 1) %>%
+#'   as_tibble()
 #'
-#' ui_tbl <-  hai_kmeans_user_item_tbl(
-#'    .data           = data_tbl
-#'    , .row_input    = service_line
-#'    , .col_input    =  payer_grouping
-#'    , .record_input = record
-#'  )
+#' ui_tbl <- hai_kmeans_user_item_tbl(
+#'   .data = data_tbl,
+#'   .row_input = service_line,
+#'   .col_input = payer_grouping,
+#'   .record_input = record
+#' )
 #'
 #' kmm_tbl <- hai_kmeans_mapped_tbl(ui_tbl)
 #'
@@ -487,47 +485,47 @@ kmeans_scree_data_tbl <- hai_kmeans_scree_data_tbl
 #' @export
 #'
 
-hai_kmeans_scree_plt <- function(.data){
+hai_kmeans_scree_plt <- function(.data) {
 
-    # * Checks ----
-    if(!is.data.frame(.data)){
-        stop(call. = FALSE,"(.data) is not a data.frame/tibble. Please supply.")
-    }
+  # * Checks ----
+  if (!is.data.frame(.data)) {
+    stop(call. = FALSE, "(.data) is not a data.frame/tibble. Please supply.")
+  }
 
-    # * Manipulate ----
-    data_tbl <- tibble::as_tibble(.data)
+  # * Manipulate ----
+  data_tbl <- tibble::as_tibble(.data)
 
-    data_tbl <- data_tbl %>%
-        tidyr::unnest(glance) %>%
-        dplyr::select(centers, tot.withinss)
+  data_tbl <- data_tbl %>%
+    tidyr::unnest(glance) %>%
+    dplyr::select(centers, tot.withinss)
 
-    # * Plot
-    p <- data_tbl %>%
-        ggplot2::ggplot(
-            mapping = ggplot2::aes(
-                x   = centers
-                , y = tot.withinss
-            )
-        ) +
-        ggplot2::geom_point() +
-        ggplot2::geom_line() +
-        # Kaiser Line
-        ggplot2::geom_hline(yintercept = 1, color = "red", linetype = "dashed") +
-        ggrepel::geom_label_repel(
-            mapping = ggplot2::aes(
-                label = centers
-            )) +
-        ggplot2::theme_minimal() +
-        ggplot2::labs(
-            title      = "Scree Plot"
-            , subtitle = "Measures the distance each of the users are from the closest k-means cluster"
-            , y        = "Total Within Sum of Squares"
-            , x        = "Centers"
-        )
+  # * Plot
+  p <- data_tbl %>%
+    ggplot2::ggplot(
+      mapping = ggplot2::aes(
+        x = centers,
+        y = tot.withinss
+      )
+    ) +
+    ggplot2::geom_point() +
+    ggplot2::geom_line() +
+    # Kaiser Line
+    ggplot2::geom_hline(yintercept = 1, color = "red", linetype = "dashed") +
+    ggrepel::geom_label_repel(
+      mapping = ggplot2::aes(
+        label = centers
+      )
+    ) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(
+      title = "Scree Plot",
+      subtitle = "Measures the distance each of the users are from the closest k-means cluster",
+      y = "Total Within Sum of Squares",
+      x = "Centers"
+    )
 
-    # * Return ----
-    return(p)
-
+  # * Return ----
+  return(p)
 }
 
 #' @rdname hai_kmeans_scree_plt

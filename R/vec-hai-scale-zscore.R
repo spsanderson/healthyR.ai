@@ -40,24 +40,23 @@
 #' @export
 #'
 
-hai_scale_zscore_vec <- function(.x){
+hai_scale_zscore_vec <- function(.x) {
 
-    # Tidyeval ----
-    x_term <- .x
+  # Tidyeval ----
+  x_term <- .x
 
-    # Checks ----
-    if (!is.numeric(x_term)){
-        rlang::abort(
-            message = "'.x' must be a numeric vector",
-            use_cli_format = TRUE
-        )
-    }
+  # Checks ----
+  if (!is.numeric(x_term)) {
+    rlang::abort(
+      message = "'.x' must be a numeric vector",
+      use_cli_format = TRUE
+    )
+  }
 
-    mu <- mean(x_term, na.rm = TRUE)
-    s  <- sd(x_term, na.rm = TRUE)
-    zscore_scaled <- ((x_term - mu) / s)
+  mu <- mean(x_term, na.rm = TRUE)
+  s <- sd(x_term, na.rm = TRUE)
+  zscore_scaled <- ((x_term - mu) / s)
 
-    # Return ----
-    return(zscore_scaled)
-
+  # Return ----
+  return(zscore_scaled)
 }
