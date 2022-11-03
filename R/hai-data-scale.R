@@ -7,8 +7,7 @@
 #'
 #' @description
 #' Takes in a recipe and will scale values using a selected recipe. To call the
-#' recipe use a quoted argument like "scale" or "normalize". This function
-#' is not exported but may be called via the ::: method.
+#' recipe use a quoted argument like "scale" or "normalize".
 #'
 #' @details
 #' This function will get your data ready for processing with many types of ml/ai
@@ -75,7 +74,7 @@
 #'
 #' rec_obj <- recipe(value ~ ., df_tbl)
 #'
-#' healthyR.ai:::hai_data_scale(
+#' hai_data_scale(
 #'   .recipe_object = rec_obj,
 #'   value,
 #'   .type_of_scale = "center"
@@ -84,6 +83,8 @@
 #'
 #' @return
 #' A list object
+#'
+#' @export
 #'
 
 hai_data_scale <- function(.recipe_object = NULL, ...,

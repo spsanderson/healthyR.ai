@@ -87,8 +87,7 @@ A list object
 \description{
 Takes in a recipe and will perform the desired transformation on the selected
 varialbe(s) using a selected recipe. To call the desired transformation
-recipe use a quoted argument like "boxcos", "bs" etc. This function
-is not exported but may be called via the ::: method.
+recipe use a quoted argument like "boxcos", "bs" etc.
 }
 \details{
 This function will get your data ready for processing with many types of ml/ai
@@ -113,7 +112,7 @@ df_tbl <- tibble(
 
 rec_obj <- recipe(value ~ ., df_tbl)
 
-healthyR.ai:::hai_data_transform(
+hai_data_transform(
   .recipe_object = rec_obj,
   value,
   .type_of_scale = "log"

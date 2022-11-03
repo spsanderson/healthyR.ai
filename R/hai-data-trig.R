@@ -7,8 +7,7 @@
 #'
 #' @description
 #' Takes in a recipe and will scale values using a selected recipe. To call the
-#' recipe use a quoted argument like "sinh", "cosh" or "tanh". This function
-#' is not exported but may be called via the ::: method.
+#' recipe use a quoted argument like "sinh", "cosh" or "tanh".
 #'
 #' @details
 #' This function will get your data ready for processing with many types of ml/ai
@@ -44,7 +43,7 @@
 #'
 #' rec_obj <- recipe(value ~ ., df_tbl)
 #'
-#' healthyR.ai:::hai_data_trig(
+#' hai_data_trig(
 #'   .recipe_object = rec_obj,
 #'   value,
 #'   .type_of_scale = "sinh"
@@ -53,6 +52,8 @@
 #'
 #' @return
 #' A list object
+#'
+#' @export
 #'
 
 hai_data_trig <- function(.recipe_object = NULL, ...,
