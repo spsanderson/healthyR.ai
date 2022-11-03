@@ -139,71 +139,75 @@ the scree plot.</p></dd>
 <span class="r-in"><span><span class="va">kmm_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_kmeans_mapped_tbl.html">hai_kmeans_mapped_tbl</a></span><span class="op">(</span><span class="va">uit_tbl</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">umap_list</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">uit_tbl</span>, <span class="va">kmm_tbl</span>, <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> Using compatibility `.name_repair`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `x` argument of `as_tibble.matrix()` must have unique column names if</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> `.name_repair` is omitted as of tibble 2.0.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Using compatibility `.name_repair`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">healthyR.ai</span> package.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Please report the issue at</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   <span style="color: #0000BB; font-style: italic;">&lt;</span><a href="https://github.com/spsanderson/healthyR.ai/issues" class="external-link"><span style="color: #0000BB; font-style: italic;">https://github.com/spsanderson/healthyR.ai/issues</span></a><span style="color: #0000BB; font-style: italic;">&gt;</span>.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "service_line"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $umap_obj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -2.1698837 -0.01378184</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] -1.9781548  0.91361160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  1.7737368 -1.10723906</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.4723009 -0.54474669</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  1.4925507  0.04266424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  2.0566624 -0.94905692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] -0.9314520  0.01275510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.9709494  0.88402385</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  1.4907654 -0.59575110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,]  0.9707850  0.26546449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11,] -1.5257001  0.75684232</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12,]  1.2606529 -0.65575056</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13,] -1.8350082  0.18931741</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] -1.0857166  0.54169817</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15,]  0.1206807 -0.13172846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16,] -0.4051784  0.73150510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17,]  1.8430504 -0.15649157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] -1.3726370 -0.22510844</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19,] -0.6601988  0.34070463</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20,]  1.0690769 -0.17369013</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21,]  0.5521463 -0.02921420</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22,] -2.1893172  0.50073118</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23,]  2.0217880 -0.59675913</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              [,1]        [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,] -1.56411717 -1.15362168</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] -1.84365735 -0.79237343</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  1.99910345  0.02714490</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.39891448  0.29548024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  1.23802032  0.03048657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  2.02366509  0.30402421</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] -0.64788879 -0.54802037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -1.18299852 -0.25699450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  1.63638081  0.91670703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,]  0.53667017  1.21207284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11,] -1.76246879 -0.48552228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12,]  0.99180796  0.28651427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13,] -1.74593768 -1.50892783</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] -1.44303320  0.13996695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15,] -0.02691469  0.67152976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16,] -0.91815869  0.41780805</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17,]  1.46938648  0.52402114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] -0.81787566 -1.03640295</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19,] -0.78320275 -0.01035501</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20,]  0.72523078  0.68772458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21,]  0.98665395  0.96249532</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22,] -1.31513641 -1.41527797</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23,]  2.04555621  0.73152017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"scaled:center")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  2.875485 -8.843054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1867794 3.8074346</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $umap_results_tbl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         x       y service_line                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> -<span style="color: #BB0000;">2.17</span>  -<span style="color: #BB0000;">0.013</span><span style="color: #BB0000; text-decoration: underline;">8</span> Alcohol Abuse                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> -<span style="color: #BB0000;">1.98</span>   0.914  Bariatric Surgery For Obesity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  1.77  -<span style="color: #BB0000;">1.11</span>   CHF                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  0.472 -<span style="color: #BB0000;">0.545</span>  COPD                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  1.49   0.042<span style="text-decoration: underline;">7</span> CVA                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  2.06  -<span style="color: #BB0000;">0.949</span>  Carotid Endarterectomy       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> -<span style="color: #BB0000;">0.931</span>  0.012<span style="text-decoration: underline;">8</span> Cellulitis                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> -<span style="color: #BB0000;">0.971</span>  0.884  Chest Pain                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  1.49  -<span style="color: #BB0000;">0.596</span>  GI Hemorrhage                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  0.971  0.265  Joint Replacement            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> -<span style="color: #BB0000;">1.56</span>  -<span style="color: #BB0000;">1.15</span>   Alcohol Abuse                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> -<span style="color: #BB0000;">1.84</span>  -<span style="color: #BB0000;">0.792</span>  Bariatric Surgery For Obesity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  2.00   0.027<span style="text-decoration: underline;">1</span> CHF                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  0.399  0.295  COPD                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  1.24   0.030<span style="text-decoration: underline;">5</span> CVA                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  2.02   0.304  Carotid Endarterectomy       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> -<span style="color: #BB0000;">0.648</span> -<span style="color: #BB0000;">0.548</span>  Cellulitis                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> -<span style="color: #BB0000;">1.18</span>  -<span style="color: #BB0000;">0.257</span>  Chest Pain                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  1.64   0.917  GI Hemorrhage                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  0.537  1.21   Joint Replacement            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 13 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $kmeans_obj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K-means clustering with 3 clusters of sizes 6, 5, 12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K-means clustering with 3 clusters of sizes 12, 6, 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Cluster means:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Blue Cross Commercial Compensation Exchange Plans        HMO   Medicaid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.1170278 0.03141187 0.0101665392    0.013865190 0.09822472 0.08557952</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.1495475 0.03679700 0.0003066332    0.020729565 0.16252855 0.13072521</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.0783745 0.02182129 0.0043244347    0.006202137 0.04493860 0.03684344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.0783745 0.02182129 0.0043244347    0.006202137 0.04493860 0.03684344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.1170278 0.03141187 0.0101665392    0.013865190 0.09822472 0.08557952</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.1495475 0.03679700 0.0003066332    0.020729565 0.16252855 0.13072521</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Medicaid HMO Medicare A Medicare HMO    No Fault    Self Pay</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.14652195  0.3535395   0.10524131 0.007067791 0.031353724</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.31446157  0.1318675   0.03192357 0.001364577 0.019748398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.08001653  0.5625037   0.15152338 0.003475542 0.009976485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.08001653  0.5625037   0.15152338 0.003475542 0.009976485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.14652195  0.3535395   0.10524131 0.007067791 0.031353724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.31446157  0.1318675   0.03192357 0.001364577 0.019748398</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering vector:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 2 2 3 3 3 3 1 1 3 3 2 3 2 1 3 1 3 1 1 3 3 2 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3 3 1 1 1 1 2 2 1 1 3 1 3 2 1 2 1 2 2 1 1 3 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Within cluster sum of squares by cluster:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.08456928 0.19152559 0.09625399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.09625399 0.08456928 0.19152559</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  (between_SS / total_SS =  73.6 %)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Available components:</span>
@@ -215,32 +219,32 @@ the scree plot.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    service_line                  .cluster</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Alcohol Abuse                 2       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Bariatric Surgery For Obesity 2       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CHF                           3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> COPD                          3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> CVA                           3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Carotid Endarterectomy        3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Cellulitis                    1       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chest Pain                    1       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> GI Hemorrhage                 3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Joint Replacement             3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Alcohol Abuse                 3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Bariatric Surgery For Obesity 3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CHF                           1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> COPD                          1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> CVA                           1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Carotid Endarterectomy        1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Cellulitis                    2       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chest Pain                    2       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> GI Hemorrhage                 1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Joint Replacement             1       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 13 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $umap_kmeans_cluster_results_tbl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         x       y service_line                  .cluster</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> -<span style="color: #BB0000;">2.17</span>  -<span style="color: #BB0000;">0.013</span><span style="color: #BB0000; text-decoration: underline;">8</span> Alcohol Abuse                 2       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> -<span style="color: #BB0000;">1.98</span>   0.914  Bariatric Surgery For Obesity 2       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  1.77  -<span style="color: #BB0000;">1.11</span>   CHF                           3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  0.472 -<span style="color: #BB0000;">0.545</span>  COPD                          3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  1.49   0.042<span style="text-decoration: underline;">7</span> CVA                           3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  2.06  -<span style="color: #BB0000;">0.949</span>  Carotid Endarterectomy        3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> -<span style="color: #BB0000;">0.931</span>  0.012<span style="text-decoration: underline;">8</span> Cellulitis                    1       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> -<span style="color: #BB0000;">0.971</span>  0.884  Chest Pain                    1       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  1.49  -<span style="color: #BB0000;">0.596</span>  GI Hemorrhage                 3       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  0.971  0.265  Joint Replacement             3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> -<span style="color: #BB0000;">1.56</span>  -<span style="color: #BB0000;">1.15</span>   Alcohol Abuse                 3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> -<span style="color: #BB0000;">1.84</span>  -<span style="color: #BB0000;">0.792</span>  Bariatric Surgery For Obesity 3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  2.00   0.027<span style="text-decoration: underline;">1</span> CHF                           1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  0.399  0.295  COPD                          1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  1.24   0.030<span style="text-decoration: underline;">5</span> CVA                           1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  2.02   0.304  Carotid Endarterectomy        1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> -<span style="color: #BB0000;">0.648</span> -<span style="color: #BB0000;">0.548</span>  Cellulitis                    2       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> -<span style="color: #BB0000;">1.18</span>  -<span style="color: #BB0000;">0.257</span>  Chest Pain                    2       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  1.64   0.917  GI Hemorrhage                 1       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  0.537  1.21   Joint Replacement             1       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 13 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>

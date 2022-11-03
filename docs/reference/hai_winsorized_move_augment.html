@@ -137,18 +137,18 @@ vector. The intent of winsorization is to limit the effect of extreme values.</p
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">hai_winsorized_move_augment</span><span class="op">(</span><span class="va">data_tbl</span>, <span class="va">a</span>, .multiple <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col         a     b winsor_scale_a</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01  0.426  0.197         0.426 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01  0.641  0.287         0.641 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 -<span style="color: #BB0000;">0.085</span><span style="color: #BB0000; text-decoration: underline;">9</span> 0.639        -<span style="color: #BB0000;">0.085</span><span style="color: #BB0000; text-decoration: underline;">9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01  0.147  0.243         0.147 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01 -<span style="color: #BB0000;">0.172</span>  0.311        -<span style="color: #BB0000;">0.172</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01 -<span style="color: #BB0000;">1.14</span>   0.591        -<span style="color: #BB0000;">1.14</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 -<span style="color: #BB0000;">0.096</span><span style="color: #BB0000; text-decoration: underline;">3</span> 0.991        -<span style="color: #BB0000;">0.096</span><span style="color: #BB0000; text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 -<span style="color: #BB0000;">0.350</span>  0.338        -<span style="color: #BB0000;">0.350</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01 -<span style="color: #BB0000;">1.27</span>   0.677        -<span style="color: #BB0000;">1.27</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 -<span style="color: #BB0000;">0.094</span><span style="color: #BB0000; text-decoration: underline;">7</span> 0.496        -<span style="color: #BB0000;">0.094</span><span style="color: #BB0000; text-decoration: underline;">7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    date_col         a      b winsor_scale_a</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2021-01-01 -<span style="color: #BB0000;">1.52</span>   0.059<span style="text-decoration: underline;">7</span>        -<span style="color: #BB0000;">1.52</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2021-02-01  0.021<span style="text-decoration: underline;">9</span> 0.534          0.021<span style="text-decoration: underline;">9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2021-03-01 -<span style="color: #BB0000;">0.126</span>  0.093<span style="text-decoration: underline;">8</span>        -<span style="color: #BB0000;">0.126</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2021-04-01 -<span style="color: #BB0000;">1.08</span>   0.996         -<span style="color: #BB0000;">1.08</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021-05-01  0.251  0.298          0.251 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021-06-01  0.649  0.654          0.649 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021-07-01 -<span style="color: #BB0000;">0.088</span><span style="color: #BB0000; text-decoration: underline;">4</span> 0.191         -<span style="color: #BB0000;">0.088</span><span style="color: #BB0000; text-decoration: underline;">4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2021-08-01 -<span style="color: #BB0000;">1.85</span>   0.422         -<span style="color: #BB0000;">1.85</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2021-09-01  0.616  0.342          0.616 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2021-10-01 -<span style="color: #BB0000;">0.707</span>  0.741         -<span style="color: #BB0000;">0.707</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 14 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
