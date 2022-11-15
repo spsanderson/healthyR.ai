@@ -67,7 +67,8 @@ data_tbl <- healthyR_data \%>\%
     .date_var = date_col,
     .start_date = "2013",
     .end_date = "2020"
-  )
+  ) \%>\%
+  mutate(date_col = as.Date(date_col))
 
 splits <- initial_split(data = data_tbl, prop = 0.8)
 

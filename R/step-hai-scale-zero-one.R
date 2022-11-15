@@ -108,17 +108,18 @@ step_hai_scale_zero_one_new <- function(terms, role, trained, columns, skip, id)
 #' @export
 prep.step_hai_scale_zero_one <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
+  recipes::check_type(training[, col_names])
 
-  value_data <- info[info$variable %in% col_names, ]
-
-  if (any(value_data$type != "numeric")) {
-    rlang::abort(
-      paste0(
-        "All variables for `step_hai_scale_zero_one` must be `numeric`",
-        "`integer`,`double` classes."
-      )
-    )
-  }
+  # value_data <- info[info$variable %in% col_names, ]
+  #
+  # if (any(value_data$type != "numeric")) {
+  #   rlang::abort(
+  #     paste0(
+  #       "All variables for `step_hai_scale_zero_one` must be `numeric`",
+  #       "`integer`,`double` classes."
+  #     )
+  #   )
+  # }
 
   step_hai_scale_zero_one_new(
     terms   = x$terms,

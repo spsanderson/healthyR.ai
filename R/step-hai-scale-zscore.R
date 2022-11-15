@@ -112,17 +112,18 @@ step_hai_scale_zscore_new <- function(terms, role, trained, columns, skip, id) {
 #' @export
 prep.step_hai_scale_zscore <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
+  recipes::check_type(training[, col_names])
 
-  value_data <- info[info$variable %in% col_names, ]
-
-  if (any(value_data$type != "numeric")) {
-    rlang::abort(
-      paste0(
-        "All variables for `step_hai_scale_zscore` must be `numeric`",
-        "`integer`,`double` classes."
-      )
-    )
-  }
+  # value_data <- info[info$variable %in% col_names, ]
+  #
+  # if (any(value_data$type != "numeric")) {
+  #   rlang::abort(
+  #     paste0(
+  #       "All variables for `step_hai_scale_zscore` must be `numeric`",
+  #       "`integer`,`double` classes."
+  #     )
+  #   )
+  # }
 
   step_hai_scale_zscore_new(
     terms   = x$terms,
