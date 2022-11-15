@@ -134,16 +134,17 @@ step_hai_fourier_new <-
 prep.step_hai_fourier <- function(x, training, info = NULL, ...) {
   col_names <- recipes::recipes_eval_select(x$terms, training, info)
 
-  value_data <- info[info$variable %in% col_names, ]
+  #value_data <- info[info$variable %in% col_names, ]
+  recipes::check_type(training[, col_names])
 
-  if (any(value_data$type != "numeric")) {
-    rlang::abort(
-      paste0(
-        "All variables for `step_hai_fourier` must be `numeric`",
-        "`integer` `double` classes."
-      )
-    )
-  }
+  # if (any(value_data$type != "numeric")) {
+  #   rlang::abort(
+  #     paste0(
+  #       "All variables for `step_hai_fourier` must be `numeric`",
+  #       "`integer` `double` classes."
+  #     )
+  #   )
+  # }
 
   step_hai_fourier_new(
     terms      = x$terms,

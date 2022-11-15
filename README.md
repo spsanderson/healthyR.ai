@@ -49,6 +49,7 @@ library(healthyR.ai)
 #> 
 #> Thank you for using healthyR.ai
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.2.2
 
 data_tbl <- tibble::tibble(
         day = sample(c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
