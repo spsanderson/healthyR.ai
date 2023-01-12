@@ -111,7 +111,7 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
     stop(call. = FALSE, "(.initialization_mode) invalid choice made.")
   }
 
-  if (!inherits(x = categorical_encode, what = "charachter")) {
+  if (!inherits(x = categorical_encode, what = "character")) {
     stop(call. = FALSE, "(.categorical_encoding) must be a character.")
   }
 
