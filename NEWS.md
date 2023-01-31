@@ -1,5 +1,15 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+None
+
+## New Features
+None
+
+## Minor Fixes and Improvements
+1. Fix #319 - Fix the `.name_repair` error stemming from the `hai_umap_list()` 
+`hai_umap_list()` / `umap_list()` function. (@VladPerervenko)
+
 # healthyR.ai 0.0.11
 
 ## Breaking Changes

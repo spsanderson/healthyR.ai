@@ -80,7 +80,7 @@ hai_umap_list <- function(.data,
     uwot::umap()
 
   umap_results_tbl <- umap_obj %>%
-    tibble::as_tibble() %>%
+    tibble::as_tibble(.name_repair = "unique") %>%
     purrr::set_names("x", "y") %>%
     dplyr::bind_cols(data %>% dplyr::select(1))
 
