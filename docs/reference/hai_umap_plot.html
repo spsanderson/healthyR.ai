@@ -139,7 +139,10 @@ function output.</p>
 <span class="r-in"><span><span class="va">kmm_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_kmeans_mapped_tbl.html">hai_kmeans_mapped_tbl</a></span><span class="op">(</span><span class="va">uit_tbl</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ump_lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="hai_umap_list.html">hai_umap_list</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">uit_tbl</span>, <span class="va">kmm_tbl</span>, <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "service_line"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> New names:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> `` -&gt; `...1`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> `` -&gt; `...2`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(service_line)`</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">hai_umap_plot</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">ump_lst</span>, .point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="hai_umap_plot-1.png" alt="" width="700" height="433"></span>
