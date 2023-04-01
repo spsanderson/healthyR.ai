@@ -1,5 +1,8 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+1. Fix #326 - Require R >= 3.3
+
 # healthyR.ai 0.0.12
 
 ## Breaking Changes
