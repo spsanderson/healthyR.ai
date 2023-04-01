@@ -3,6 +3,12 @@
 ## Breaking Changes
 1. Fix #326 - Require R >= 3.3
 
+## New Features
+None
+
+## Minor Fixes and Improvements
+None
+
 # healthyR.ai 0.0.12
 
 ## Breaking Changes

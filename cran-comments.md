@@ -6,6 +6,6 @@
 
 0 errors | 0 warnings | 1 note
 
-Update package to 0.0.12
-* Fixes errors with `hai_umap_list()` that caused an error with `.name_repair`
-in `tibble`
+Update package to 0.0.13
+* Updates to R version R >= 3.3 and should fix issue with timetk being back on
+CRAN
