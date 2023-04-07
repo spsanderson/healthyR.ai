@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">healthyR.ai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.11.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.13.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,18 +129,17 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Regression</span></span></span>
 <span class="r-in"><span><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">diamonds</span>, .recipe_formula <span class="op">=</span> <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       role #variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    outcome          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  predictor          9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Operations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Zero variance filter on recipes::all_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Centering and scaling for recipes::all_numeric_predictors()</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Recipe</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Inputs </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of variables by role</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> outcome:   1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> predictor: 9</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Operations </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Zero variance filter on: <span style="color: #0000BB;">recipes::all_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Centering and scaling for: <span style="color: #0000BB;">recipes::all_numeric_predictors()</span></span>
 <span class="r-in"><span><span class="va">reg_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">diamonds</span>, <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">reg_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53,940 × 10</span></span>
@@ -156,22 +155,21 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> -<span style="color: #BB0000;">1.13</span> Very Good H     SI1      0.105 -<span style="color: #BB0000;">1.10</span>  -<span style="color: #BB0000;">1.48</span> -<span style="color: #BB0000;">1.42</span> -<span style="color: #BB0000;">1.43</span>   337</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> -<span style="color: #BB0000;">1.22</span> Fair      E     VS2      2.34   1.59  -<span style="color: #BB0000;">1.66</span> -<span style="color: #BB0000;">1.71</span> -<span style="color: #BB0000;">1.49</span>   337</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> -<span style="color: #BB0000;">1.20</span> Very Good H     VS1     -<span style="color: #BB0000;">1.64</span>   1.59  -<span style="color: #BB0000;">1.54</span> -<span style="color: #BB0000;">1.47</span> -<span style="color: #BB0000;">1.63</span>   338</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 53,930 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 53,930 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Classification</span></span></span>
 <span class="r-in"><span><span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       role #variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    outcome          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  predictor          4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Operations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Zero variance filter on recipes::all_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Centering and scaling for recipes::all_numeric_predictors()</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Recipe</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Inputs </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of variables by role</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> outcome:   1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> predictor: 4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Operations </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Zero variance filter on: <span style="color: #0000BB;">recipes::all_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Centering and scaling for: <span style="color: #0000BB;">recipes::all_numeric_predictors()</span></span>
 <span class="r-in"><span><span class="va">cla_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_svm_rbf_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">cla_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 5</span></span>
@@ -187,7 +185,7 @@ use in the SVM_RBF algorithm. The SVM_RBF algorithm is for regression only.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Crew  Female Child -<span style="color: #BB0000;">0.506</span> No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1st   Male   Adult  0.362 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2nd   Male   Adult  0.627 No      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 22 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 22 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

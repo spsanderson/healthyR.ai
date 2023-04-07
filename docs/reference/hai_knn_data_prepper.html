@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">healthyR.ai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.11.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.13.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -128,20 +128,19 @@ algorithm. It expects data to be presented in a certain fashion.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">hai_knn_data_prepper</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">Titanic</span>, .recipe_formula <span class="op">=</span> <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       role #variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    outcome          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  predictor          4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Operations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Novel factor level assignment for recipes::all_nominal_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dummy variables from recipes::all_nominal_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Zero variance filter on recipes::all_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Centering and scaling for recipes::all_numeric()</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Recipe</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Inputs </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of variables by role</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> outcome:   1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> predictor: 4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Operations </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Novel factor level assignment for: <span style="color: #0000BB;">recipes::all_nominal_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Dummy variables from: <span style="color: #0000BB;">recipes::all_nominal_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Zero variance filter on: <span style="color: #0000BB;">recipes::all_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Centering and scaling for: <span style="color: #0000BB;">recipes::all_numeric()</span></span>
 <span class="r-in"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_knn_data_prepper</span><span class="op">(</span><span class="va">iris</span>, <span class="va">Species</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 150 × 5</span></span>
@@ -157,7 +156,7 @@ algorithm. It expects data to be presented in a certain fashion.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       -<span style="color: #BB0000;">1.02</span>       0.786         -<span style="color: #BB0000;">1.28</span>       -<span style="color: #BB0000;">1.31</span> setosa </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>       -<span style="color: #BB0000;">1.74</span>      -<span style="color: #BB0000;">0.361</span>         -<span style="color: #BB0000;">1.34</span>       -<span style="color: #BB0000;">1.31</span> setosa </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>       -<span style="color: #BB0000;">1.14</span>       0.097<span style="text-decoration: underline;">9</span>        -<span style="color: #BB0000;">1.28</span>       -<span style="color: #BB0000;">1.44</span> setosa </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 140 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 140 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
