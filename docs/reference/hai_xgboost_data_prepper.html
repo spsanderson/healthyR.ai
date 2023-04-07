@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">healthyR.ai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.11.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.13.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,20 +127,19 @@ use in the XGBoost algorithm.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Regression</span></span></span>
 <span class="r-in"><span><span class="fu">hai_xgboost_data_prepper</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">diamonds</span>, .recipe_formula <span class="op">=</span> <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       role #variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    outcome          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  predictor          9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Operations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Factor variables from tidyselect::vars_select_helpers$where(is.charac...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Novel factor level assignment for recipes::all_nominal_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dummy variables from recipes::all_nominal_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Zero variance filter on recipes::all_predictors()</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Recipe</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Inputs </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of variables by role</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> outcome:   1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> predictor: 9</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Operations </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Factor variables from: <span style="color: #0000BB;">tidyselect::vars_select_helpers$where(is.character)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Novel factor level assignment for: <span style="color: #0000BB;">recipes::all_nominal_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Dummy variables from: <span style="color: #0000BB;">recipes::all_nominal_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Zero variance filter on: <span style="color: #0000BB;">recipes::all_predictors()</span></span>
 <span class="r-in"><span><span class="va">reg_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_xgboost_data_prepper</span><span class="op">(</span><span class="va">diamonds</span>, <span class="va">price</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">reg_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53,940 × 27</span></span>
@@ -156,27 +155,27 @@ use in the XGBoost algorithm.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  0.26  61.9    55  4.07  4.11  2.53   337 -<span style="color: #BB0000;">0.120</span> -<span style="color: #BB0000;">0.436</span>  0.298  0.378 -<span style="color: #BB0000;">0.630</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  0.22  65.1    61  3.87  3.78  2.49   337 -<span style="color: #BB0000;">0.598</span>  0.546 -<span style="color: #BB0000;">0.373</span>  0.189 -<span style="color: #BB0000;">0.063</span><span style="color: #BB0000; text-decoration: underline;">0</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  0.23  59.4    61  4     4.05  2.39   338 -<span style="color: #BB0000;">0.120</span> -<span style="color: #BB0000;">0.436</span>  0.298  0.378 -<span style="color: #BB0000;">0.630</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 53,930 more rows, and 15 more variables: color_1 &lt;dbl&gt;, color_2 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   color_3 &lt;dbl&gt;, color_4 &lt;dbl&gt;, color_5 &lt;dbl&gt;, color_6 &lt;dbl&gt;, color_7 &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 53,930 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: color_1 &lt;dbl&gt;, color_2 &lt;dbl&gt;, color_3 &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   color_4 &lt;dbl&gt;, color_5 &lt;dbl&gt;, color_6 &lt;dbl&gt;, color_7 &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   clarity_1 &lt;dbl&gt;, clarity_2 &lt;dbl&gt;, clarity_3 &lt;dbl&gt;, clarity_4 &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   clarity_5 &lt;dbl&gt;, clarity_6 &lt;dbl&gt;, clarity_7 &lt;dbl&gt;, clarity_8 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Classification</span></span></span>
 <span class="r-in"><span><span class="fu">hai_xgboost_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Recipe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Inputs:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       role #variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    outcome          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  predictor          4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Operations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Factor variables from tidyselect::vars_select_helpers$where(is.charac...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Novel factor level assignment for recipes::all_nominal_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dummy variables from recipes::all_nominal_predictors()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Zero variance filter on recipes::all_predictors()</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Recipe</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Inputs </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of variables by role</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> outcome:   1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> predictor: 4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Operations </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Factor variables from: <span style="color: #0000BB;">tidyselect::vars_select_helpers$where(is.character)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Novel factor level assignment for: <span style="color: #0000BB;">recipes::all_nominal_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Dummy variables from: <span style="color: #0000BB;">recipes::all_nominal_predictors()</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Zero variance filter on: <span style="color: #0000BB;">recipes::all_predictors()</span></span>
 <span class="r-in"><span><span class="va">cla_obj</span> <span class="op">&lt;-</span> <span class="fu">hai_xgboost_data_prepper</span><span class="op">(</span><span class="va">Titanic</span>, <span class="va">Survived</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">cla_obj</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 7</span></span>
@@ -192,7 +191,7 @@ use in the XGBoost algorithm.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     0 No                0          0          1        0         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   118 No                0          0          0        1         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   154 No                1          0          0        1         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 22 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 22 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
