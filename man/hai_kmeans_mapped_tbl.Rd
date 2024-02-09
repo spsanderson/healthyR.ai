@@ -53,8 +53,8 @@ hai_kmeans_mapped_tbl(ui_tbl)
 \url{https://en.wikipedia.org/wiki/Scree_plot}
 
 Other Kmeans: 
-\code{\link{hai_kmeans_automl_predict}()},
 \code{\link{hai_kmeans_automl}()},
+\code{\link{hai_kmeans_automl_predict}()},
 \code{\link{hai_kmeans_obj}()},
 \code{\link{hai_kmeans_scree_data_tbl}()},
 \code{\link{hai_kmeans_scree_plt}()},
