@@ -1,5 +1,15 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+None
+
+## New Features
+None
+
+## Minor Fixes and Improvements
+1. Fix #337 - Fix typo in `hai_earth_data_prepper()` that caused it to not fully
+process.
+
 # healthyR.ai 0.0.13
 
 ## Breaking Changes
