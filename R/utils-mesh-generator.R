@@ -3,6 +3,8 @@
 #' This function generates a mesh of nodes and edges based on the provided side
 #' length and number of segments.
 #'
+#' @family Data Generation
+#'
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description This function creates a square mesh by sampling nodes uniformly

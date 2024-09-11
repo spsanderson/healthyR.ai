@@ -1,6 +1,6 @@
 #' Get the Juiced Data
 #'
-#' @family Data Wrangling
+#' @family Data Generation
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
