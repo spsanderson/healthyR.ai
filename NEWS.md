@@ -1,4 +1,4 @@
-# healthyR.ai (development version)
+# healthyR.ai 0.1.0
 
 ## Breaking Changes
 None
