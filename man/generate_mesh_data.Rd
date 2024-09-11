@@ -51,6 +51,11 @@ generate_mesh_data(1, 1)
 generate_mesh_data(1, 2)
 
 }
+\seealso{
+Other Data Generation: 
+\code{\link{get_juiced_data}()}
+}
 \author{
 Steven P. Sanderson II, MPH
 }
+\concept{Data Generation}

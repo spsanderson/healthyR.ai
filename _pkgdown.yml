@@ -48,9 +48,9 @@ reference:
      desc: Functions for dimension reduction
      contents:
      -  "pca_your_recipe"
-  -  title: Data Wrangling
+  -  title: Data
      contents:
-     -  "get_juiced_data"
+     -  has_concept("Data Generation")
   -  title: Data Preprocessors
      contents:
      -  has_concept("Preprocessor")

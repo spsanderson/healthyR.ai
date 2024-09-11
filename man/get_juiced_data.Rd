@@ -49,10 +49,10 @@ get_juiced_data(rec_obj)
 
 }
 \seealso{
-Other Data Wrangling: 
-\code{\link{pca_your_recipe}()}
+Other Data Generation: 
+\code{\link{generate_mesh_data}()}
 }
 \author{
 Steven P. Sanderson II, MPH
 }
-\concept{Data Wrangling}
+\concept{Data Generation}

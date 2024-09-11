@@ -85,9 +85,6 @@ output_list$pca_top_n_loadings_plt
 \seealso{
 \url{https://recipes.tidymodels.org/reference/step_pca.html}
 
-Other Data Wrangling: 
-\code{\link{get_juiced_data}()}
-
 Other Data Recipes: 
 \code{\link{hai_data_impute}()},
 \code{\link{hai_data_poly}()},
