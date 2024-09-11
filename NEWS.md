@@ -4,7 +4,7 @@
 None
 
 ## New Features
-None
+1. Fix #340 - Add mesh generator function.
 
 ## Minor Fixes and Improvements
 1. Fix #337 - Fix typo in `hai_earth_data_prepper()` that caused it to not fully
