@@ -30,6 +30,8 @@
 #' get_juiced_data(reg_obj)
 #'
 #' # Classification
+#' Titanic <- as_tibble(Titanic)
+#' 
 #' hai_svm_poly_data_prepper(Titanic, Survived ~ .)
 #' cla_obj <- hai_svm_poly_data_prepper(Titanic, Survived ~ .)
 #' get_juiced_data(cla_obj)

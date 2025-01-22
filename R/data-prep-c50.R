@@ -24,7 +24,10 @@
 #'
 #' @examples
 #' library(ggplot2)
+#' library(tibble)
 #'
+#' Titanic <- as_tibble(Titanic)
+#' 
 #' hai_c50_data_prepper(.data = Titanic, .recipe_formula = Survived ~ .)
 #' rec_obj <- hai_c50_data_prepper(Titanic, Survived ~ .)
 #' get_juiced_data(rec_obj)
