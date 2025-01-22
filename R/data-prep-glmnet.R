@@ -21,6 +21,7 @@
 #'
 #' @examples
 #' library(ggplot2)
+#' library(tibble)
 #'
 #' Titanic <- as_tibble(Titanic)
 #' 

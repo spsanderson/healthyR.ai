@@ -24,6 +24,7 @@
 #'
 #' @examples
 #' library(ggplot2)
+#' library(tibble)
 #'
 #' # Regression
 #' hai_earth_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
