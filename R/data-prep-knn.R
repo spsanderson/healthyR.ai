@@ -22,6 +22,9 @@
 #'
 #' @examples
 #' library(ggplot2)
+#' library(tibble)
+#' 
+#' Titanic <- as_tibble(Titanic)
 #'
 #' hai_knn_data_prepper(.data = Titanic, .recipe_formula = Survived ~ .)
 #' rec_obj <- hai_knn_data_prepper(iris, Species ~ .)
