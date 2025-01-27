@@ -30,6 +30,7 @@ This function will output a recipe specification.
 }
 \examples{
 library(ggplot2)
+library(tibble)
 
 # Regression
 hai_earth_data_prepper(.data = diamonds, .recipe_formula = price ~ .)
@@ -37,6 +38,8 @@ reg_obj <- hai_earth_data_prepper(diamonds, price ~ .)
 get_juiced_data(reg_obj)
 
 # Classification
+Titanic <- as_tibble(Titanic)
+
 hai_earth_data_prepper(Titanic, Survived ~ .)
 cla_obj <- hai_earth_data_prepper(Titanic, Survived ~ .)
 get_juiced_data(cla_obj)
