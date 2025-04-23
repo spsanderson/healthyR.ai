@@ -41,7 +41,7 @@
 #'
 #' @references Gelman, A. (2007) "Scaling regression inputs by
 #'  dividing by two standard deviations." Unpublished. Source:
-#'  \url{http://www.stat.columbia.edu/~gelman/research/unpublished/standardizing.pdf}.
+#'  \url{https://sites.stat.columbia.edu/gelman/research/unpublished/standardizing.pdf}.
 #'
 #' @param .recipe_object The data that you want to process
 #' @param ... One or more selector functions to choose variables to be imputed.
