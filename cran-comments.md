@@ -6,4 +6,4 @@
 
 0 errors | 0 warnings | 0 note
 
-Update Package to prevent archive
+Update package to prevent CRAN archiving
