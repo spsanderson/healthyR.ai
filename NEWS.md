@@ -3,7 +3,7 @@
 ## Breaking Changes
 None
 
-## Nwe Features
+## New Features
 None
 
 ## Minor Fixes and Improvements
