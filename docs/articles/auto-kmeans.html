@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Auto K-Means with healthyR.ai">
 </head>
 <body>
@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">healthyR.ai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
                         <h4 data-toc-skip class="author">Steven P.
 Sanderson II, MPH</h4>
             
-            <h4 data-toc-skip class="date">2024-09-11</h4>
+            <h4 data-toc-skip class="date">2025-05-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/spsanderson/healthyR.ai/blob/HEAD/vignettes/auto-kmeans.Rmd" class="external-link"><code>vignettes/auto-kmeans.Rmd</code></a></small>
       <div class="d-none name"><code>auto-kmeans.Rmd</code></div>
@@ -97,14 +97,14 @@ with the <code>healthyR.ai</code> function
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_tbl</span> <span class="op">&lt;-</span> <span class="va">iris</span></span>
 <span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df_tbl</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df_tbl</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 150</span></span>
 <span><span class="co">#&gt; Columns: 5</span></span>
-<span><span class="co">#&gt; $ Sepal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…</span></span>
-<span><span class="co">#&gt; $ Sepal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…</span></span>
-<span><span class="co">#&gt; $ Petal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…</span></span>
-<span><span class="co">#&gt; $ Petal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…</span></span>
-<span><span class="co">#&gt; $ Species      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ Sepal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.1<span style="color: #949494;">, </span>4.9<span style="color: #949494;">, </span>4.7<span style="color: #949494;">, </span>4.6<span style="color: #949494;">, </span>5.0<span style="color: #949494;">, </span>5.4<span style="color: #949494;">, </span>4.6<span style="color: #949494;">, </span>5.0<span style="color: #949494;">, </span>4.4<span style="color: #949494;">, </span>4.9<span style="color: #949494;">, </span>5.4<span style="color: #949494;">, </span>4.…</span></span>
+<span><span class="co">#&gt; $ Sepal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.5<span style="color: #949494;">, </span>3.0<span style="color: #949494;">, </span>3.2<span style="color: #949494;">, </span>3.1<span style="color: #949494;">, </span>3.6<span style="color: #949494;">, </span>3.9<span style="color: #949494;">, </span>3.4<span style="color: #949494;">, </span>3.4<span style="color: #949494;">, </span>2.9<span style="color: #949494;">, </span>3.1<span style="color: #949494;">, </span>3.7<span style="color: #949494;">, </span>3.…</span></span>
+<span><span class="co">#&gt; $ Petal.Length <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.4<span style="color: #949494;">, </span>1.4<span style="color: #949494;">, </span>1.3<span style="color: #949494;">, </span>1.5<span style="color: #949494;">, </span>1.4<span style="color: #949494;">, </span>1.7<span style="color: #949494;">, </span>1.4<span style="color: #949494;">, </span>1.5<span style="color: #949494;">, </span>1.4<span style="color: #949494;">, </span>1.5<span style="color: #949494;">, </span>1.5<span style="color: #949494;">, </span>1.…</span></span>
+<span><span class="co">#&gt; $ Petal.Width  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.2<span style="color: #949494;">, </span>0.2<span style="color: #949494;">, </span>0.2<span style="color: #949494;">, </span>0.2<span style="color: #949494;">, </span>0.2<span style="color: #949494;">, </span>0.4<span style="color: #949494;">, </span>0.3<span style="color: #949494;">, </span>0.2<span style="color: #949494;">, </span>0.2<span style="color: #949494;">, </span>0.1<span style="color: #949494;">, </span>0.2<span style="color: #949494;">, </span>0.…</span></span>
+<span><span class="co">#&gt; $ Species      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> setosa<span style="color: #949494;">, </span>setosa<span style="color: #949494;">, </span>setosa<span style="color: #949494;">, </span>setosa<span style="color: #949494;">, </span>setosa<span style="color: #949494;">, </span>setosa<span style="color: #949494;">, </span>setosa<span style="color: #949494;">, </span>s…</span></span></code></pre></div>
 <p>From here we can see that the data is already prepared and ready to
 go. There is a factor column that denotes the species or the
 <code>row</code> data and the columns are already numeric. Now the rest
@@ -191,7 +191,7 @@ from minimizing the within sum of squares errors.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
