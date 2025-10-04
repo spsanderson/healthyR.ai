@@ -1,5 +1,16 @@
 # healthyR.ai (development version)
 
+## Breaking Changes
+1. Fix #355 - Ensure that all `hai_data_*` functions that return a new recipe
+object all have the same name. The new name for the updated recipe object is:
+`new_rec_obj`.
+
+## New Features
+None
+
+## Minor Fixes and Improvements
+None
+
 # healthyR.ai 0.1.1
 
 ## Breaking Changes
