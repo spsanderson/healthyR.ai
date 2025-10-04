@@ -86,7 +86,7 @@ hai_data_impute(
   value,
   .type_of_imputation = "roll",
   .roll_statistic = median
-)$impute_rec_obj \%>\%
+)$new_rec_obj \%>\%
   get_juiced_data()
 
 }
@@ -147,24 +147,8 @@ Other Data Recipes:
 \code{\link{hai_data_transform}()},
 \code{\link{hai_data_trig}()},
 \code{\link{pca_your_recipe}()}
-
-Other Preprocessor: 
-\code{\link{hai_c50_data_prepper}()},
-\code{\link{hai_cubist_data_prepper}()},
-\code{\link{hai_data_poly}()},
-\code{\link{hai_data_scale}()},
-\code{\link{hai_data_transform}()},
-\code{\link{hai_data_trig}()},
-\code{\link{hai_earth_data_prepper}()},
-\code{\link{hai_glmnet_data_prepper}()},
-\code{\link{hai_knn_data_prepper}()},
-\code{\link{hai_ranger_data_prepper}()},
-\code{\link{hai_svm_poly_data_prepper}()},
-\code{\link{hai_svm_rbf_data_prepper}()},
-\code{\link{hai_xgboost_data_prepper}()}
 }
 \author{
 Steven P. Sanderson II, MPH
 }
 \concept{Data Recipes}
-\concept{Preprocessor}

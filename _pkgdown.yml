@@ -54,6 +54,9 @@ reference:
   -  title: Data Preprocessors
      contents:
      -  has_concept("Preprocessor")
+  -  title: Data Transformer Recipes
+     contents:
+     -  has_concept("Data Recipes")
   -  title: Recipe Steps
      desc: Functions to add recipe steps
      contents:
