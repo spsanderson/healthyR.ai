@@ -1,7 +1,6 @@
 #' Data Preprocessor - Polynomial Function
 #'
 #' @family Data Recipes
-#' @family Preprocessor
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -41,7 +40,7 @@
 #' hai_data_poly(
 #'   .recipe_object = rec_obj,
 #'   value
-#' )$scale_rec_obj %>%
+#' )$new_rec_obj %>%
 #'   get_juiced_data()
 #'
 #' @return
@@ -77,9 +76,10 @@ hai_data_poly <- function(.recipe_object = NULL, ...,
   )
 
   # * Recipe List ---
+
   output <- list(
     rec_base      = rec_obj,
-    scale_rec_obj = scale_obj
+    new_rec_obj   = scale_obj
   )
 
   # * Return ----

@@ -1,7 +1,6 @@
 #' Data Preprocessor - Trigonometric Functions
 #'
 #' @family Data Recipes
-#' @family Preprocessor
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -47,7 +46,7 @@
 #'   .recipe_object = rec_obj,
 #'   value,
 #'   .type_of_scale = "sinh"
-#' )$scale_rec_obj %>%
+#' )$new_rec_obj %>%
 #'   get_juiced_data()
 #'
 #' @return
@@ -105,9 +104,10 @@ hai_data_trig <- function(.recipe_object = NULL, ...,
   }
 
   # * Recipe List ---
+
   output <- list(
     rec_base      = rec_obj,
-    scale_rec_obj = scale_obj
+    new_rec_obj   = scale_obj
   )
 
   # * Return ----
