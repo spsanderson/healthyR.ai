@@ -1,7 +1,6 @@
 #' Data Preprocessor - Imputation
 #'
 #' @family Data Recipes
-#' @family Preprocessor
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -103,7 +102,7 @@
 #'   value,
 #'   .type_of_imputation = "roll",
 #'   .roll_statistic = median
-#' )$impute_rec_obj %>%
+#' )$new_rec_obj %>%
 #'   get_juiced_data()
 #'
 #' @return
@@ -224,9 +223,10 @@ hai_data_impute <- function(.recipe_object = NULL, ...,
   }
 
   # * Recipe List ---
+
   output <- list(
-    rec_base       = rec_obj,
-    impute_rec_obj = imp_obj
+    rec_base      = rec_obj,
+    new_rec_obj   = imp_obj
   )
 
   # * Return ----

@@ -1,7 +1,6 @@
 #' Data Preprocessor - Transformation Functions
 #'
 #' @family Data Recipes
-#' @family Preprocessor
 #'
 #' @author Steven P. Sanderson II, MPH
 #'
@@ -99,7 +98,7 @@
 #'   .recipe_object = rec_obj,
 #'   value,
 #'   .type_of_scale = "log"
-#' )$scale_rec_obj %>%
+#' )$new_rec_obj %>%
 #'   get_juiced_data()
 #'
 #' @return
@@ -193,9 +192,10 @@ hai_data_transform <- function(.recipe_object = NULL, ..., .type_of_scale = "log
   }
 
   # * Recipe List ---
+
   output <- list(
     rec_base      = rec_obj,
-    scale_rec_obj = scale_obj
+    new_rec_obj   = scale_obj
   )
 
   # * Return ----
