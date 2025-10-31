@@ -208,10 +208,6 @@ We welcome contributions! If you'd like to contribute to `healthyR.ai`:
 4.  Push to the branch (`git push origin feature/amazing-feature`)
 5.  Open a Pull Request
 
-Please read our [contributing
-guidelines](https://github.com/spsanderson/healthyR.ai/blob/master/.github/CONTRIBUTING.md)
-for more details.
-
 ## 🐛 Issues & Feature Requests
 
 Found a bug or have a feature request? Please file an issue at:
