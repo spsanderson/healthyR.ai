@@ -70,50 +70,251 @@
 </div>
 <!-- badges: start -->
 
-<p>The goal of healthyR.ai is to create a verb framework that allows for easy exploration, transformation and modeling of data.</p>
+<blockquote>
+<p><strong>The Machine Learning and AI Modeling Companion to healthyR</strong></p>
+</blockquote>
+<p>To view the full wiki, click here: <a href="https://github.com/spsanderson/healthyR.ai/blob/master/wiki/Home.md" class="external-link">Full healthyR.ai Wiki</a></p>
+<p><code>healthyR.ai</code> is a comprehensive R package designed to streamline machine learning and AI workflows for healthcare data analysis. It provides an intuitive, consistent verb-based framework that simplifies data exploration, transformation, and modeling—taking the guesswork out of healthcare analytics.</p>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="sparkles-key-features">✨ Key Features<a class="anchor" aria-label="anchor" href="#sparkles-key-features"></a>
 </h2>
-<p>You can install the released version of healthyR.ai from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"healthyR.ai"</span><span class="op">)</span></span></code></pre></div>
-<p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"spsanderson/healthyR.ai"</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="robot-automl-functions">🤖 AutoML Functions<a class="anchor" aria-label="anchor" href="#robot-automl-functions"></a>
+</h3>
+<p>Automated machine learning with hyperparameter tuning for multiple algorithms: - <strong>Tree-based models</strong>: C5.0, Cubist, Random Forest (Ranger), XGBoost - <strong>Support Vector Machines</strong>: Polynomial and RBF kernels - <strong>Linear models</strong>: GLMnet (elastic net regression) - <strong>Instance-based</strong>: K-Nearest Neighbors (KNN) - <strong>MARS</strong>: Multivariate Adaptive Regression Splines (Earth)</p>
+</div>
+<div class="section level3">
+<h3 id="bar_chart-clustering--dimensionality-reduction">📊 Clustering &amp; Dimensionality Reduction<a class="anchor" aria-label="anchor" href="#bar_chart-clustering--dimensionality-reduction"></a>
+</h3>
+<ul>
+<li>
+<strong>K-Means AutoML</strong>: Automatic optimal cluster detection with scree plots and elbow methods</li>
+<li>
+<strong>UMAP</strong>: Uniform Manifold Approximation and Projection for visualization</li>
+<li>
+<strong>PCA</strong>: Principal Component Analysis with loadings plots</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="wrench-data-preprocessing--transformation">🔧 Data Preprocessing &amp; Transformation<a class="anchor" aria-label="anchor" href="#wrench-data-preprocessing--transformation"></a>
+</h3>
+<ul>
+<li>
+<strong>Scaling functions</strong>: Zero-one normalization, z-score standardization</li>
+<li>
+<strong>Statistical transformations</strong>: Fourier, hyperbolic, polynomial transformations</li>
+<li>
+<strong>Robust methods</strong>: Winsorization (truncate and move)</li>
+<li>
+<strong>Custom recipe steps</strong>: Seamless integration with <code>tidymodels</code>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="chart_with_upwards_trend-visualization--analysis">📈 Visualization &amp; Analysis<a class="anchor" aria-label="anchor" href="#chart_with_upwards_trend-visualization--analysis"></a>
+</h3>
+<ul>
+<li>
+<strong>Control charts</strong>: Statistical process control for healthcare metrics</li>
+<li>
+<strong>Distribution analysis</strong>: Density plots, histograms, Q-Q plots</li>
+<li>
+<strong>Statistical measures</strong>: Skewness, kurtosis, range statistics</li>
+<li>
+<strong>Color-blind friendly palettes</strong>: Accessible visualizations</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="package-installation">📦 Installation<a class="anchor" aria-label="anchor" href="#package-installation"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>Install the released version from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"healthyR.ai"</span><span class="op">)</span></span></code></pre></div>
+<p>Or get the development version from <a href="https://github.com/spsanderson/healthyR.ai" class="external-link">GitHub</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"spsanderson/healthyR.ai"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="rocket-quick-start">🚀 Quick Start<a class="anchor" aria-label="anchor" href="#rocket-quick-start"></a>
+</h2>
+<div class="section level3">
+<h3 id="control-charts-for-healthcare-monitoring">Control Charts for Healthcare Monitoring<a class="anchor" aria-label="anchor" href="#control-charts-for-healthcare-monitoring"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.spsanderson.com/healthyR.ai/">healthyR.ai</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; == Welcome to healthyR.ai ===========================================================================</span></span>
-<span><span class="co">#&gt; If you find this package useful, please leave a star: </span></span>
-<span><span class="co">#&gt;    https://github.com/spsanderson/healthyR.ai'</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; If you encounter a bug or want to request an enhancement please file an issue at:</span></span>
-<span><span class="co">#&gt;    https://github.com/spsanderson/healthyR.ai/issues</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Thank you for using healthyR.ai</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Create sample adverse events data</span></span>
 <span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>        day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span><span class="op">)</span>,</span>
-<span>                     <span class="fl">100</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>        person <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Tom"</span>, <span class="st">"Jane"</span>, <span class="st">"Alex"</span><span class="op">)</span>, <span class="fl">100</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>        count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">day</span> <span class="op">==</span> <span class="st">"Friday"</span>, <span class="fl">.5</span>, <span class="fl">.2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>        date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
+<span>  day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span><span class="op">)</span>, <span class="fl">100</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  person <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Tom"</span>, <span class="st">"Jane"</span>, <span class="st">"Alex"</span><span class="op">)</span>, <span class="fl">100</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">day</span> <span class="op">==</span> <span class="st">"Friday"</span>, <span class="fl">.5</span>, <span class="fl">.2</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Generate control chart</span></span>
 <span><span class="va">my_chart</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hai_control_chart.html">hai_control_chart</a></span><span class="op">(</span><span class="va">data_tbl</span>, <span class="va">count</span>, <span class="va">date</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<p><img src="reference/figures/README-example_control_chart-1.png" width="100%"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_chart</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Number of Adverse Events"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html" class="external-link">scale_x_date</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Week of ... "</span>, date_breaks <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">90</span>, vjust <span class="op">=</span> <span class="fl">0.5</span>, hjust<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-example-2.png" width="100%"></p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Number of Adverse Events"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html" class="external-link">scale_x_date</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Week of..."</span>, date_breaks <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">90</span>, vjust <span class="op">=</span> <span class="fl">0.5</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-example_control_chart-2.png" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="automl-with-k-nearest-neighbors">AutoML with K-Nearest Neighbors<a class="anchor" aria-label="anchor" href="#automl-with-k-nearest-neighbors"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.spsanderson.com/healthyR.ai/">healthyR.ai</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Prepare your data</span></span>
+<span><span class="va">data_split</span> <span class="op">&lt;-</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">initial_split</a></span><span class="op">(</span><span class="va">mtcars</span>, prop <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="va">train_data</span> <span class="op">&lt;-</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span></span>
+<span><span class="va">test_data</span> <span class="op">&lt;-</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">testing</a></span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a recipe</span></span>
+<span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu">recipes</span><span class="fu">::</span><span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">train_data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Run AutoML KNN</span></span>
+<span><span class="va">knn_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hai_auto_knn.html">hai_auto_knn</a></span><span class="op">(</span></span>
+<span>  .data <span class="op">=</span> <span class="va">train_data</span>,</span>
+<span>  .rec_obj <span class="op">=</span> <span class="va">rec_obj</span>,</span>
+<span>  .best_metric <span class="op">=</span> <span class="st">"rmse"</span>,</span>
+<span>  .model_type <span class="op">=</span> <span class="st">"regression"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Access the best model</span></span>
+<span><span class="va">best_model</span> <span class="op">&lt;-</span> <span class="va">knn_results</span><span class="op">$</span><span class="va">model_info</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">model_spec</span> <span class="op">==</span> <span class="va">knn_results</span><span class="op">$</span><span class="va">best_model_spec</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="k-means-clustering-with-automl">K-Means Clustering with AutoML<a class="anchor" aria-label="anchor" href="#k-means-clustering-with-automl"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.spsanderson.com/healthyR.ai/">healthyR.ai</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Prepare data</span></span>
+<span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="fu">healthyR.data</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/healthyR.data/man/healthyR_data.html" class="external-link">healthyR_data</a></span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">length_of_stay</span>, <span class="va">age</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">length_of_stay</span> <span class="op">&lt;</span> <span class="fl">20</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Auto K-Means - finds optimal clusters</span></span>
+<span><span class="va">kmeans_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hai_kmeans_automl.html">hai_kmeans_automl</a></span><span class="op">(</span></span>
+<span>  .data <span class="op">=</span> <span class="va">data_tbl</span>,</span>
+<span>  .max_clusters <span class="op">=</span> <span class="fl">15</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Visualize the scree plot</span></span>
+<span><span class="fu"><a href="reference/hai_kmeans_scree_plt.html">hai_kmeans_scree_plot</a></span><span class="op">(</span><span class="va">kmeans_obj</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Get user-item tibble for analysis</span></span>
+<span><span class="fu"><a href="reference/hai_kmeans_user_item_tbl.html">hai_kmeans_user_item_tbl</a></span><span class="op">(</span><span class="va">kmeans_obj</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="data-preprocessing-with-custom-steps">Data Preprocessing with Custom Steps<a class="anchor" aria-label="anchor" href="#data-preprocessing-with-custom-steps"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.spsanderson.com/healthyR.ai/">healthyR.ai</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes" class="external-link">recipes</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a recipe with custom preprocessing steps</span></span>
+<span><span class="va">rec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/step_hai_scale_zscore.html">step_hai_scale_zscore</a></span><span class="op">(</span><span class="fu"><a href="https://recipes.tidymodels.org/reference/has_role.html" class="external-link">all_numeric_predictors</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/step_hai_fourier.html">step_hai_fourier</a></span><span class="op">(</span><span class="va">disp</span>, period <span class="op">=</span> <span class="fl">365</span>, order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/step_hai_hyperbolic.html">step_hai_hyperbolic</a></span><span class="op">(</span><span class="va">hp</span>, <span class="va">wt</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Prep and bake</span></span>
+<span><span class="va">prepped_rec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/prep.html" class="external-link">prep</a></span><span class="op">(</span><span class="va">rec</span><span class="op">)</span></span>
+<span><span class="va">transformed_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/bake.html" class="external-link">bake</a></span><span class="op">(</span><span class="va">prepped_rec</span>, new_data <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="books-documentation">📚 Documentation<a class="anchor" aria-label="anchor" href="#books-documentation"></a>
+</h2>
+<ul>
+<li>
+<strong>Website</strong>: <a href="https://www.spsanderson.com/healthyR.ai/" class="uri">https://www.spsanderson.com/healthyR.ai/</a>
+</li>
+<li>
+<strong>Function Reference</strong>: Browse all available functions and their documentation</li>
+<li>
+<strong>Vignettes</strong>: In-depth tutorials and use cases
+<ul>
+<li><a href="https://www.spsanderson.com/healthyR.ai/articles/getting-started.html">Getting Started with healthyR.ai</a></li>
+<li><a href="https://www.spsanderson.com/healthyR.ai/articles/auto-kmeans.html">Auto K-Means Clustering</a></li>
+<li><a href="https://www.spsanderson.com/healthyR.ai/articles/kmeans-umap.html">K-Means and UMAP</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="dart-use-cases">🎯 Use Cases<a class="anchor" aria-label="anchor" href="#dart-use-cases"></a>
+</h2>
+<p><code>healthyR.ai</code> is designed for healthcare data analysts and data scientists who need to:</p>
+<ul>
+<li>
+<strong>Predict length of stay</strong> for hospital patients</li>
+<li>
+<strong>Forecast readmission rates</strong> with multiple algorithms</li>
+<li>
+<strong>Monitor quality metrics</strong> using control charts</li>
+<li>
+<strong>Identify patient cohorts</strong> through clustering</li>
+<li>
+<strong>Preprocess and transform</strong> healthcare data for modeling</li>
+<li>
+<strong>Automate hyperparameter tuning</strong> across multiple model types</li>
+<li>
+<strong>Visualize distributions</strong> and identify outliers</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="handshake-contributing">🤝 Contributing<a class="anchor" aria-label="anchor" href="#handshake-contributing"></a>
+</h2>
+<p>We welcome contributions! If you’d like to contribute to <code>healthyR.ai</code>:</p>
+<ol style="list-style-type: decimal">
+<li>Fork the repository</li>
+<li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+<li>Commit your changes (<code>git commit -m 'Add amazing feature'</code>)</li>
+<li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+</div>
+<div class="section level2">
+<h2 id="bug-issues--feature-requests">🐛 Issues &amp; Feature Requests<a class="anchor" aria-label="anchor" href="#bug-issues--feature-requests"></a>
+</h2>
+<p>Found a bug or have a feature request? Please file an issue at: <a href="https://github.com/spsanderson/healthyR.ai/issues" class="external-link uri">https://github.com/spsanderson/healthyR.ai/issues</a></p>
+<p>If you find this package useful, please leave a star on <a href="https://github.com/spsanderson/healthyR.ai" class="external-link">GitHub</a>! ⭐</p>
+</div>
+<div class="section level2">
+<h2 id="open_book-citation">📖 Citation<a class="anchor" aria-label="anchor" href="#open_book-citation"></a>
+</h2>
+<p>If you use <code>healthyR.ai</code> in your research, please cite it:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"healthyR.ai"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="man_technologist-author">👨‍💻 Author<a class="anchor" aria-label="anchor" href="#man_technologist-author"></a>
+</h2>
+<p><strong>Steven P. Sanderson II, MPH</strong> - Website: <a href="https://www.spsanderson.com/" class="external-link uri">https://www.spsanderson.com/</a> - GitHub: <a href="https://github.com/spsanderson" class="external-link">@spsanderson</a> - ORCID: <a href="https://orcid.org/0009-0006-7661-8247" class="external-link">0009-0006-7661-8247</a></p>
+</div>
+<div class="section level2">
+<h2 id="page_facing_up-license">📄 License<a class="anchor" aria-label="anchor" href="#page_facing_up-license"></a>
+</h2>
+<p>MIT © Steven P. Sanderson II, MPH</p>
+</div>
+<div class="section level2">
+<h2 id="pray-acknowledgments">🙏 Acknowledgments<a class="anchor" aria-label="anchor" href="#pray-acknowledgments"></a>
+</h2>
+<p><code>healthyR.ai</code> builds upon the excellent work of the <a href="https://www.tidymodels.org/" class="external-link"><code>tidymodels</code></a> ecosystem and integrates seamlessly with: - <code>recipes</code> for data preprocessing - <code>parsnip</code> for unified model interfaces - <code>tune</code> for hyperparameter optimization - <code>workflows</code> for streamlined modeling pipelines - <code>yardstick</code> for model evaluation</p>
+<p>Special thanks to all contributors and the R community for their support!</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -152,7 +353,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://kentcdodds.github.io/makeapullrequest.com/" class="external-link"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a></li>
+<li><a href="http://kentcdodds.github.io/makeapullrequest.com/" class="external-link"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a></li>
 </ul>
 </div>
 
