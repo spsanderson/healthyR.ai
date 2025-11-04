@@ -27,6 +27,8 @@ knitr::opts_chunk$set(
 
 > **The Machine Learning and AI Modeling Companion to healthyR**
 
+To view the full wiki, click here: [Full healthyR.ai Wiki](https://github.com/spsanderson/healthyR.ai/blob/master/wiki/Home.md)
+
 `healthyR.ai` is a comprehensive R package designed to streamline machine learning and AI workflows for healthcare data analysis. It provides an intuitive, consistent verb-based framework that simplifies data exploration, transformation, and modeling—taking the guesswork out of healthcare analytics.
 
 ## ✨ Key Features

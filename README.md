@@ -11,10 +11,13 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![PRs
-Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://kentcdodds.github.io/makeapullrequest.com/)
+Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://kentcdodds.github.io/makeapullrequest.com/)
 <!-- badges: end -->
 
 > **The Machine Learning and AI Modeling Companion to healthyR**
+
+To view the full wiki, click here: [Full healthyR.ai
+Wiki](https://github.com/spsanderson/healthyR.ai/blob/master/wiki/Home.md)
 
 `healthyR.ai` is a comprehensive R package designed to streamline
 machine learning and AI workflows for healthcare data analysis. It
@@ -27,13 +30,11 @@ of healthcare analytics.
 ### 🤖 AutoML Functions
 
 Automated machine learning with hyperparameter tuning for multiple
-algorithms:
-
-- **Tree-based models**: C5.0, Cubist, Random Forest (Ranger), XGBoost
-- **Support Vector Machines**: Polynomial and RBF kernels
-- **Linear models**: GLMnet (elastic net regression)
-- **Instance-based**: K-Nearest Neighbors (KNN)
-- **MARS**: Multivariate Adaptive Regression Splines (Earth)
+algorithms: - **Tree-based models**: C5.0, Cubist, Random Forest
+(Ranger), XGBoost - **Support Vector Machines**: Polynomial and RBF
+kernels - **Linear models**: GLMnet (elastic net regression) -
+**Instance-based**: K-Nearest Neighbors (KNN) - **MARS**: Multivariate
+Adaptive Regression Splines (Earth)
 
 ### 📊 Clustering & Dimensionality Reduction
 
@@ -92,13 +93,18 @@ data_tbl <- tibble::tibble(
 
 # Generate control chart
 my_chart <- hai_control_chart(data_tbl, count, date)
+```
+
+<img src="man/figures/README-example_control_chart-1.png" width="100%" />
+
+``` r
 my_chart +
   ylab("Number of Adverse Events") +
   scale_x_date(name = "Week of...", date_breaks = "week") +
   theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust = 1))
 ```
 
-<img src="man/figures/README-example_control_chart-1.png" width="100%" />
+<img src="man/figures/README-example_control_chart-2.png" width="100%" />
 
 ### AutoML with K-Nearest Neighbors
 
@@ -172,8 +178,7 @@ transformed_data <- bake(prepped_rec, new_data = NULL)
 
 ## 📚 Documentation
 
-- **Website**:
-  [https://www.spsanderson.com/healthyR.ai/](https://www.spsanderson.com/healthyR.ai/)
+- **Website**: <https://www.spsanderson.com/healthyR.ai/>
 - **Function Reference**: Browse all available functions and their
   documentation
 - **Vignettes**: In-depth tutorials and use cases
@@ -199,11 +204,10 @@ scientists who need to:
 
 ## 🤝 Contributing
 
-We welcome contributions! If you'd like to contribute to `healthyR.ai`:
+We welcome contributions! If you’d like to contribute to `healthyR.ai`:
 
 1.  Fork the repository
-2.  Create a feature branch
-    (`git checkout -b feature/amazing-feature`)
+2.  Create a feature branch (`git checkout -b feature/amazing-feature`)
 3.  Commit your changes (`git commit -m 'Add amazing feature'`)
 4.  Push to the branch (`git push origin feature/amazing-feature`)
 5.  Open a Pull Request
@@ -239,13 +243,10 @@ MIT © Steven P. Sanderson II, MPH
 
 `healthyR.ai` builds upon the excellent work of the
 [`tidymodels`](https://www.tidymodels.org/) ecosystem and integrates
-seamlessly with:
-
-- `recipes` for data preprocessing
-- `parsnip` for unified model interfaces
-- `tune` for hyperparameter optimization
-- `workflows` for streamlined modeling pipelines
-- `yardstick` for model evaluation
+seamlessly with: - `recipes` for data preprocessing - `parsnip` for
+unified model interfaces - `tune` for hyperparameter optimization -
+`workflows` for streamlined modeling pipelines - `yardstick` for model
+evaluation
 
 Special thanks to all contributors and the R community for their
 support!
