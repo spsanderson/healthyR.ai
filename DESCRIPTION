@@ -54,7 +54,8 @@ Suggests:
     uwot,
     stringr,
     parallel,
-    parallelly
+    parallelly,
+    doParallel
 VignetteBuilder: knitr
 Depends: 
     R (>= 3.3)
