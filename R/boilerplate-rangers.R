@@ -164,7 +164,7 @@ hai_auto_ranger <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     }
 
     # Tune the workflow
-    # Start parallel backed
+    # Start parallel backend
     cl <- parallelly::makeClusterPSOCK(workers = num_cores)
 
     tuned_results <- wflw %>%
