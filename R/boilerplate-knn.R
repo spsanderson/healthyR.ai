@@ -30,8 +30,6 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(dplyr)
-#'
 #' data <- iris
 #'
 #' rec_obj <- hai_knn_data_prepper(data, Species ~ .)
@@ -164,8 +162,8 @@ hai_auto_knn <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
     }
 
     # Tune the workflow
-    # Start parallel backed
-    modeltime::parallel_start(num_cores)
+    # Start parallel backend
+    cl <- parallelly::makeClusterPSOCK(workers = num_cores)
 
     tuned_results <- wflw %>%
       tune::tune_grid(
@@ -174,7 +172,7 @@ hai_auto_knn <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NULL,
         metrics   = ms
       )
 
-    modeltime::parallel_stop()
+    parallel::stopCluster(cl)
 
     # Get the best result set by a specified metric
     best_result_set <- tuned_results %>%

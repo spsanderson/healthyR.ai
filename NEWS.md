@@ -4,6 +4,10 @@
 1. Fix #355 - Ensure that all `hai_data_*` functions that return a new recipe
 object all have the same name. The new name for the updated recipe object is:
 `new_rec_obj`.
+2. Remove `modeltime` dependency - The package now uses `parallelly::makeClusterPSOCK()` 
+and `parallel::stopCluster()` instead of `modeltime::parallel_start()` and 
+`modeltime::parallel_stop()`. Added `parallel` and `parallelly` as suggested 
+packages.
 
 ## New Features
 None
