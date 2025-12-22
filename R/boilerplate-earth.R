@@ -165,7 +165,7 @@ hai_auto_earth <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NUL
 
     # Tune the workflow
     # Start parallel backed
-    modeltime::parallel_start(num_cores)
+    cl <- parallelly::makeClusterPSOCK(workers = num_cores)
 
     tuned_results <- wflw %>%
       tune::tune_grid(
@@ -174,7 +174,7 @@ hai_auto_earth <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NUL
         metrics   = ms
       )
 
-    modeltime::parallel_stop()
+    parallel::stopCluster(cl)
 
     # Get the best result set by a specified metric
     best_result_set <- tuned_results %>%
