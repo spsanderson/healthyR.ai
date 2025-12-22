@@ -117,9 +117,9 @@ hai_auto_cubist <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
   }
 
   # Model Specification ----
-  model_spec <- model_spec %>%
-    parsnip::set_mode(mode = model_type) %>%
-    parsnip::set_engine(engine = "Cubist")
+  #model_spec <- model_spec %>%
+  #  parsnip::set_mode(mode = model_type) %>%
+  #  parsnip::set_engine(engine = "Cubist")
 
   # Workflow ----
   wflw <- workflows::workflow() %>%
