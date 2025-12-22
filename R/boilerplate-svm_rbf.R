@@ -162,7 +162,7 @@ hai_auto_svm_rbf <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = N
     }
 
     # Tune the workflow
-    # Start parallel backed
+    # Start parallel backend
     cl <- parallelly::makeClusterPSOCK(workers = num_cores)
 
     tuned_results <- wflw %>%
