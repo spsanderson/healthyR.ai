@@ -38,8 +38,7 @@ Imports:
     dials,
     parsnip,
     tune,
-    workflows,
-    modeltime
+    workflows
 Suggests: 
     rmarkdown,
     knitr,
@@ -53,7 +52,10 @@ Suggests:
     kknn,
     hardhat,
     uwot,
-    stringr
+    stringr,
+    parallel,
+    parallelly,
+    doParallel
 VignetteBuilder: knitr
 Depends: 
     R (>= 3.3)

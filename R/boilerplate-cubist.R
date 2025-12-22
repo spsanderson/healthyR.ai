@@ -145,8 +145,8 @@ hai_auto_cubist <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     }
 
     # Tune the workflow
-    # Start parallel backed
-    modeltime::parallel_start(num_cores)
+    # Start parallel backend
+    cl <- parallelly::makeClusterPSOCK(workers = num_cores)
 
     tuned_results <- wflw %>%
       tune::tune_grid(
@@ -155,7 +155,7 @@ hai_auto_cubist <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
         metrics   = ms
       )
 
-    modeltime::parallel_stop()
+    parallel::stopCluster(cl)
 
     # Get the best result set by a specified metric
     best_result_set <- tuned_results %>%
