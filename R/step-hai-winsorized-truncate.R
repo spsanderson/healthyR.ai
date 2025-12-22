@@ -60,7 +60,7 @@
 #' )
 #'
 #' # Create a recipe object
-#' rec_obj <- recipe(b ~ ., data = data_tbl) %>%
+#' rec_obj <- recipe(b ~ ., data = data_tbl) |>
 #'   step_hai_winsorized_truncate(a, fraction = 0.05)
 #'
 #' # View the recipe object
@@ -72,7 +72,7 @@
 #' # Bake the recipe object - Adds the Time Series Signature
 #' bake(prep(rec_obj), data_tbl)
 #'
-#' rec_obj %>% get_juiced_data()
+#' rec_obj |> get_juiced_data()
 #'
 #' @export
 #'

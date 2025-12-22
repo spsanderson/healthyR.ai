@@ -25,12 +25,12 @@
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' hai_kmeans_user_item_tbl(
@@ -75,21 +75,21 @@ hai_kmeans_user_item_tbl <- function(.data, .row_input, .col_input, .record_inpu
   data_tbl <- tibble::as_tibble(.data)
 
   # * Manipulate ----
-  data_summarized_tbl <- data_tbl %>%
-    dplyr::group_by({{ row_input_var_expr }}, {{ col_input_var_expr }}) %>%
-    dplyr::summarise(total_records = sum({{ rec_input_var_expr }}, na.rm = TRUE)) %>%
-    dplyr::ungroup() %>%
+  data_summarized_tbl <- data_tbl |>
+    dplyr::group_by({{ row_input_var_expr }}, {{ col_input_var_expr }}) |>
+    dplyr::summarise(total_records = sum({{ rec_input_var_expr }}, na.rm = TRUE)) |>
+    dplyr::ungroup() |>
     # Normalize proportions
-    dplyr::group_by({{ row_input_var_expr }}) %>%
-    dplyr::mutate(prop_of_total = total_records / sum(total_records)) %>%
+    dplyr::group_by({{ row_input_var_expr }}) |>
+    dplyr::mutate(prop_of_total = total_records / sum(total_records)) |>
     dplyr::ungroup()
 
   # User/Item format
-  user_item_tbl <- data_summarized_tbl %>%
-    dplyr::select({{ row_input_var_expr }}, {{ col_input_var_expr }}, prop_of_total) %>%
+  user_item_tbl <- data_summarized_tbl |>
+    dplyr::select({{ row_input_var_expr }}, {{ col_input_var_expr }}, prop_of_total) |>
     dplyr::mutate(prop_of_total = base::ifelse(
       base::is.na(prop_of_total), 0, prop_of_total
-    )) %>%
+    )) |>
     tidyr::pivot_wider(
       names_from = {{ col_input_var_expr }},
       values_from = prop_of_total,
@@ -124,12 +124,12 @@ kmeans_user_item_tbl <- hai_kmeans_user_item_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' hai_kmeans_user_item_tbl(
@@ -137,7 +137,7 @@ kmeans_user_item_tbl <- hai_kmeans_user_item_tbl
 #'   .row_input = service_line,
 #'   .col_input = payer_grouping,
 #'   .record_input = record
-#' ) %>%
+#' ) |>
 #'   hai_kmeans_obj()
 #'
 #' @return
@@ -165,10 +165,10 @@ hai_kmeans_obj <- function(.data, .centers = 5) {
   data <- tibble::as_tibble(.data)
 
   # * k-means ----
-  kmeans_tbl <- data %>%
+  kmeans_tbl <- data |>
     dplyr::select(-1)
 
-  kmeans_obj <- kmeans_tbl %>%
+  kmeans_obj <- kmeans_tbl |>
     stats::kmeans(
       centers = centers_var_expr,
       nstart = 100
@@ -204,12 +204,12 @@ kmeans_obj <- hai_kmeans_obj
 #' library(dplyr)
 #' library(broom)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' uit_tbl <- hai_kmeans_user_item_tbl(
@@ -237,7 +237,7 @@ kmeans_obj <- hai_kmeans_obj
 #'   .kmeans_obj = km_obj,
 #'   .data = uit_tbl,
 #'   .tidy_type = "tidy"
-#' ) %>%
+#' ) |>
 #'   glimpse()
 #'
 #' @return
@@ -273,13 +273,13 @@ hai_kmeans_tidy_tbl <- function(.kmeans_obj, .data, .tidy_type = "tidy") {
   row_col <- colnames(uit_tbl[1])
 
   if (tidy_type == "tidy") {
-    km_tbl <- kmeans_obj %>% broom::tidy()
+    km_tbl <- kmeans_obj |> broom::tidy()
   } else if (tidy_type == "glance") {
-    km_tbl <- kmeans_obj %>% broom::glance()
+    km_tbl <- kmeans_obj |> broom::glance()
   } else if (tidy_type == "augment") {
-    km_tbl <- kmeans_obj %>%
-      broom::augment(uit_tbl) %>%
-      dplyr::select(row_col, .cluster) %>%
+    km_tbl <- kmeans_obj |>
+      broom::augment(uit_tbl) |>
+      dplyr::select(row_col, .cluster) |>
       dplyr::rename("cluster" = .cluster)
   }
 
@@ -315,12 +315,12 @@ kmeans_tidy_tbl <- hai_kmeans_tidy_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' ui_tbl <- hai_kmeans_user_item_tbl(
@@ -351,8 +351,8 @@ hai_kmeans_mapped_tbl <- function(.data, .centers = 15) {
   input_data <- tibble::as_tibble(.data)
 
   km_mapper <- function(centers = 3) {
-    input_data %>%
-      dplyr::select(-1) %>%
+    input_data |>
+      dplyr::select(-1) |>
       stats::kmeans(
         centers = centers,
         nstart = 100
@@ -360,10 +360,10 @@ hai_kmeans_mapped_tbl <- function(.data, .centers = 15) {
   }
 
   # * Manipulate ----
-  data_tbl <- tibble::tibble(centers = 1:centers_var_expr) %>%
-    dplyr::mutate(k_means = centers %>%
-      purrr::map(km_mapper)) %>%
-    dplyr::mutate(glance = k_means %>%
+  data_tbl <- tibble::tibble(centers = 1:centers_var_expr) |>
+    dplyr::mutate(k_means = centers |>
+      purrr::map(km_mapper)) |>
+    dplyr::mutate(glance = k_means |>
       purrr::map(broom::glance))
 
   # * Return ----
@@ -394,12 +394,12 @@ kmeans_mapped_tbl <- hai_kmeans_mapped_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' ui_tbl <- hai_kmeans_user_item_tbl(
@@ -429,8 +429,8 @@ hai_kmeans_scree_data_tbl <- function(.data) {
   # * Manipulate ----
   data_tbl <- tibble::as_tibble(.data)
 
-  data_tbl <- data_tbl %>%
-    tidyr::unnest(glance) %>%
+  data_tbl <- data_tbl |>
+    tidyr::unnest(glance) |>
     dplyr::select(centers, tot.withinss)
 
   # * Return ----
@@ -460,12 +460,12 @@ kmeans_scree_data_tbl <- hai_kmeans_scree_data_tbl
 #' library(healthyR.data)
 #' library(dplyr)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' ui_tbl <- hai_kmeans_user_item_tbl(
@@ -495,12 +495,12 @@ hai_kmeans_scree_plt <- function(.data) {
   # * Manipulate ----
   data_tbl <- tibble::as_tibble(.data)
 
-  data_tbl <- data_tbl %>%
-    tidyr::unnest(glance) %>%
+  data_tbl <- data_tbl |>
+    tidyr::unnest(glance) |>
     dplyr::select(centers, tot.withinss)
 
   # * Plot
-  p <- data_tbl %>%
+  p <- data_tbl |>
     ggplot2::ggplot(
       mapping = ggplot2::aes(
         x = centers,

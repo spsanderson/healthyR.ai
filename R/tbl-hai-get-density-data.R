@@ -21,7 +21,7 @@
 #' @examples
 #' library(dplyr)
 #'
-#' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
+#' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) |>
 #'   hai_distribution_comparison_tbl()
 #' hai_get_density_data_tbl(df)
 #'
@@ -55,28 +55,28 @@ hai_get_density_data_tbl <- function(.data, .unnest = TRUE, .group_data = TRUE) 
   }
 
   # Get data and lists ----
-  l <- tibble::as_tibble(data_tbl) %>% dplyr::select(-dist_data)
+  l <- tibble::as_tibble(data_tbl) |> dplyr::select(-dist_data)
   dist_nms <- dplyr::pull(l, distribution)
-  l <- l %>% dplyr::pull(density_data)
+  l <- l |> dplyr::pull(density_data)
   names(l) <- dist_nms
 
   tidy_l <- purrr::map(.x = l, .f = broom::tidy)
-  tidy_nested_tbl <- tibble::as_tibble(dist_nms) %>%
+  tidy_nested_tbl <- tibble::as_tibble(dist_nms) |>
     dplyr::mutate(
       density_obj = purrr::pluck(tidy_l)
-    ) %>%
+    ) |>
     dplyr::rename(distribution = value)
 
   # Logic Params
   if (unnest_bool) {
-    data_tbl <- tidy_nested_tbl %>%
-      tidyr::unnest(cols = density_obj) %>%
+    data_tbl <- tidy_nested_tbl |>
+      tidyr::unnest(cols = density_obj) |>
       dplyr::ungroup()
   }
 
   if (group_data_bool) {
-    data_tbl <- tidy_nested_tbl %>%
-      tidyr::unnest(cols = density_obj) %>%
+    data_tbl <- tidy_nested_tbl |>
+      tidyr::unnest(cols = density_obj) |>
       dplyr::group_by(distribution)
   }
 

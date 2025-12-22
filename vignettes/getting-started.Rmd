@@ -56,19 +56,19 @@ Now that we have out libraries we can go ahead and get our data set ready.
 ## Data Set
 
 ```{r data_set}
-data_tbl <- healthyR_data %>%
-    select(visit_end_date_time) %>%
+data_tbl <- healthyR_data |>
+    select(visit_end_date_time) |>
     summarise_by_time(
         .date_var = visit_end_date_time,
         .by       = "month",
         value     = n()
-    ) %>%
-    set_names("date_col","value") %>%
+    ) |>
+    set_names("date_col","value") |>
     filter_by_time(
         .date_var = date_col,
         .start_date = "2013",
         .end_date = "2020"
-    ) %>%
+    ) |>
     mutate(date_col = as.Date(date_col))
 
 head(data_tbl)
@@ -92,13 +92,13 @@ head(training(splits))
 ## Initial Recipe
 
 ```{r initial_rec_obj}
-rec_obj <- recipe(value ~ ., training(splits)) %>%
-    step_timeseries_signature(date_col) %>%
+rec_obj <- recipe(value ~ ., training(splits)) |>
+    step_timeseries_signature(date_col) |>
     step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
 
 rec_obj
 
-get_juiced_data(rec_obj) %>% glimpse()
+get_juiced_data(rec_obj) |> glimpse()
 ```
 
 Now that we have out initial recipe we can use the `pca_your_recipe()` function.
@@ -164,21 +164,21 @@ pca_list$pca_estimates
 ## Jucied and Baked Data
 
 ```{r juice_bake}
-pca_list$pca_juiced_estimates %>% glimpse()
+pca_list$pca_juiced_estimates |> glimpse()
 
-pca_list$pca_baked_data %>% glimpse()
+pca_list$pca_baked_data |> glimpse()
 ```
 
 ## Roatation Data
 
 ```{r rotation_df}
-pca_list$pca_rotation_df %>% glimpse()
+pca_list$pca_rotation_df |> glimpse()
 ```
 
 ## Variance and Scree Plot
 
 ```{r var_df}
-pca_list$pca_variance_df %>% glimpse()
+pca_list$pca_variance_df |> glimpse()
 ```
 
 ```{r scree_plt, fig.width=8, fig.height=8}

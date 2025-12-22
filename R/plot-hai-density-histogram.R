@@ -23,7 +23,7 @@
 #' @examples
 #' library(dplyr)
 #'
-#' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
+#' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) |>
 #'   hai_distribution_comparison_tbl()
 #'
 #' dist_data_tbl <- hai_get_dist_data_tbl(df)
@@ -74,8 +74,8 @@ hai_density_hist_plot <- function(.data, .dist_name_col = distribution,
   }
 
   # Data setup ----
-  data_tbl <- tibble::as_tibble(.data) %>%
-    dplyr::ungroup() %>%
+  data_tbl <- tibble::as_tibble(.data) |>
+    dplyr::ungroup() |>
     dplyr::select(
       {{ dist_name_var }},
       {{ value_col_var }}

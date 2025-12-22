@@ -20,7 +20,6 @@ RoxygenNote: 7.3.3
 URL: https://www.spsanderson.com/healthyR.ai/, https://github.com/spsanderson/healthyR.ai
 BugReports: https://github.com/spsanderson/healthyR.ai/issues
 Imports: 
-    magrittr,
     rlang (>= 0.1.2),
     yardstick (>= 0.0.8),
     utils,
@@ -58,4 +57,4 @@ Suggests:
     doParallel
 VignetteBuilder: knitr
 Depends: 
-    R (>= 3.3)
+    R (>= 4.1.0)

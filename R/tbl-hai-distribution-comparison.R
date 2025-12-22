@@ -119,8 +119,8 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma", "bet
     "hypergeometric", "f", "poisson"
   )
 
-  dist_unsupported <- dist_df %>%
-    dplyr::mutate(dist_supported = distribution %in% supported_distributions) %>%
+  dist_unsupported <- dist_df |>
+    dplyr::mutate(dist_supported = distribution %in% supported_distributions) |>
     dplyr::filter(dist_supported == FALSE)
 
   # Checks ----
@@ -157,7 +157,7 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma", "bet
   }
 
   # Make distributions ----
-  dist_tbl <- dist_df %>%
+  dist_tbl <- dist_df |>
     dplyr::mutate(
       dist_data = dplyr::case_when(
         stats_func == "rgamma" ~ list(
@@ -187,10 +187,10 @@ hai_distribution_comparison_tbl <- function(.x, .distributions = c("gamma", "bet
         stats_func == "rf" ~ list(stats::rf(n = n, df1 = hskew, df2 = hskew)),
         stats_func == "rpois" ~ list(stats::rpois(n = n, lambda = hskew))
       )
-    ) %>%
-    dplyr::group_by(distribution) %>%
-    dplyr::mutate(density_data = list(density(unlist(dist_data)))) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    dplyr::group_by(distribution) |>
+    dplyr::mutate(density_data = list(density(unlist(dist_data)))) |>
+    dplyr::ungroup() |>
     dplyr::select(-stats_func)
 
   # Add empirical data and density to tibble

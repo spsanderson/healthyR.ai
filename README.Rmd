@@ -121,8 +121,8 @@ knn_results <- hai_auto_knn(
 )
 
 # Access the best model
-best_model <- knn_results$model_info %>%
-  dplyr::filter(model_spec == knn_results$best_model_spec) %>%
+best_model <- knn_results$model_info |>
+  dplyr::filter(model_spec == knn_results$best_model_spec) |>
   dplyr::pull(model)
 ```
 
@@ -133,8 +133,8 @@ library(healthyR.ai)
 library(dplyr)
 
 # Prepare data
-data_tbl <- healthyR.data::healthyR_data %>%
-  dplyr::select(length_of_stay, age) %>%
+data_tbl <- healthyR.data::healthyR_data |>
+  dplyr::select(length_of_stay, age) |>
   dplyr::filter(length_of_stay < 20)
 
 # Auto K-Means - finds optimal clusters
@@ -157,9 +157,9 @@ library(healthyR.ai)
 library(recipes)
 
 # Create a recipe with custom preprocessing steps
-rec <- recipe(mpg ~ ., data = mtcars) %>%
-  step_hai_scale_zscore(all_numeric_predictors()) %>%
-  step_hai_fourier(disp, period = 365, order = 1) %>%
+rec <- recipe(mpg ~ ., data = mtcars) |>
+  step_hai_scale_zscore(all_numeric_predictors()) |>
+  step_hai_fourier(disp, period = 365, order = 1) |>
   step_hai_hyperbolic(hp, wt)
 
 # Prep and bake
