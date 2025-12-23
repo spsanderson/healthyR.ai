@@ -103,7 +103,7 @@ hai_control_chart <- function(.data,
   data_tbl <- tibble::as_tibble(.data)
 
   # Calculate central tendency and upper and lower limits
-  bounds_data <- tibble::as_tibble(.data) %>%
+  bounds_data <- tibble::as_tibble(.data) |>
     dplyr::pull({{ value_var_expr }})
 
   mid <- .center_line(bounds_data)
@@ -112,7 +112,7 @@ hai_control_chart <- function(.data,
   lower <- mid - sd
 
   # Add bounding data as a column to data.frame
-  data_tbl <- data_tbl %>%
+  data_tbl <- data_tbl |>
     dplyr::mutate(
       outside = dplyr::case_when(
         {{ value_var_expr }} > upper ~ "out",
@@ -122,7 +122,7 @@ hai_control_chart <- function(.data,
     )
 
   # Make plot
-  chart <- data_tbl %>%
+  chart <- data_tbl |>
     ggplot2::ggplot(
       ggplot2::aes(
         x = {{ x_var_expr }},

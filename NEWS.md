@@ -8,6 +8,8 @@ object all have the same name. The new name for the updated recipe object is:
 and `parallel::stopCluster()` instead of `modeltime::parallel_start()` and 
 `modeltime::parallel_stop()`. Added `parallel` and `parallelly` as suggested 
 packages.
+3. Fix #376 - Deprecate magrittr `%>%` in favor of native R pipe `|>`. This 
+requires R >= 4.1.0. The `magrittr` package has been removed from Imports.
 
 ## New Features
 None

@@ -51,7 +51,7 @@
 #' data_tbl <- data.frame(a = rnorm(200, 3, 1), b = rnorm(200, 2, 2))
 #'
 #' # Create a recipe object
-#' rec_obj <- recipe(a ~ ., data = data_tbl) %>%
+#' rec_obj <- recipe(a ~ ., data = data_tbl) |>
 #'   step_hai_scale_zero_one(b)
 #'
 #' # View the recipe object
@@ -63,8 +63,8 @@
 #' # Bake the recipe object - Adds the Time Series Signature
 #' bake(prep(rec_obj), data_tbl)
 #'
-#' rec_obj %>%
-#'   prep() %>%
+#' rec_obj |>
+#'   prep() |>
 #'   juice()
 #'
 #' @export
