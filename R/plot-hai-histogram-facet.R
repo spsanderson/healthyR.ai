@@ -58,7 +58,7 @@ hai_histogram_facet_plot <- function(.data, .bins = 10, .scale_data = FALSE, .nc
   data <- dplyr::as_tibble(.data)
 
   if (scle) {
-    data <- data %>%
+    data <- data |>
       dplyr::mutate(
         dplyr::across(
           .cols = tidyselect::vars_select_helpers$where(is.numeric),
@@ -67,33 +67,33 @@ hai_histogram_facet_plot <- function(.data, .bins = 10, .scale_data = FALSE, .nc
       )
   }
 
-  data_factored <- data %>%
+  data_factored <- data |>
     dplyr::mutate(
       dplyr::across(
         .cols = tidyselect::vars_select_helpers$where(is.character),
         .fns = as.factor
       )
-    ) %>%
+    ) |>
     dplyr::mutate(
       dplyr::across(
         .cols = tidyselect::vars_select_helpers$where(is.factor),
         .fns = as.numeric
       )
-    ) %>%
+    ) |>
     tidyr::gather(key = key, value = value, factor_key = TRUE)
 
   if (fctreorder) {
-    data_factored <- data_factored %>%
-      dplyr::mutate(key = as.character(key) %>% as.factor())
+    data_factored <- data_factored |>
+      dplyr::mutate(key = as.character(key) |> as.factor())
   }
 
   if (fctrev) {
-    data_factored <- data_factored %>%
+    data_factored <- data_factored |>
       dplyr::mutate(key = fct_rev(key))
   }
 
   # Plot----
-  g <- data_factored %>%
+  g <- data_factored |>
     ggplot2::ggplot(ggplot2::aes(x = value, group = key)) +
     ggplot2::geom_histogram(bins = bins, fill = fill, color = color) +
     ggplot2::facet_wrap(~key, ncol = n_col, scale = scale) +

@@ -155,15 +155,15 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
   training_tbl <- tibble::as_tibble(training_frame)
   validate_tbl <- tibble::as_tibble(validate_frame)
 
-  scree_data_tbl <- auto_kmeans_obj@model[["scoring_history"]] %>%
-    tibble::as_tibble() %>%
-    dplyr::filter(iterations > 0) %>%
-    dplyr::select(number_of_clusters, within_cluster_sum_of_squares) %>%
-    dplyr::group_by(number_of_clusters) %>%
-    dplyr::summarize(wss = mean(within_cluster_sum_of_squares, na.rm = TRUE)) %>%
+  scree_data_tbl <- auto_kmeans_obj@model[["scoring_history"]] |>
+    tibble::as_tibble() |>
+    dplyr::filter(iterations > 0) |>
+    dplyr::select(number_of_clusters, within_cluster_sum_of_squares) |>
+    dplyr::group_by(number_of_clusters) |>
+    dplyr::summarize(wss = mean(within_cluster_sum_of_squares, na.rm = TRUE)) |>
     purrr::set_names("centers", "wss")
 
-  scree_plt <- scree_data_tbl %>%
+  scree_plt <- scree_data_tbl |>
     ggplot2::ggplot(ggplot2::aes(x = centers, y = wss)) +
     ggplot2::geom_point(size = 3) +
     ggplot2::geom_line() +
@@ -184,20 +184,20 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
         validate_tbl = validate_tbl
       ),
       metrics = list(
-        training_metrics = auto_kmeans_obj@model[["training_metrics"]]@metrics$centroid_stats %>%
+        training_metrics = auto_kmeans_obj@model[["training_metrics"]]@metrics$centroid_stats |>
           tibble::as_tibble(),
-        validation_metrics = auto_kmeans_obj@model[["validation_metrics"]]@metrics$centroid_stats %>%
+        validation_metrics = auto_kmeans_obj@model[["validation_metrics"]]@metrics$centroid_stats |>
           tibble::as_tibble(),
-        cv_metric_summary = auto_kmeans_obj@model[["cross_validation_metrics_summary"]] %>%
-          as.data.frame() %>%
+        cv_metric_summary = auto_kmeans_obj@model[["cross_validation_metrics_summary"]] |>
+          as.data.frame() |>
           tibble::as_tibble(rownames = "metric_name")
       ),
       original_data = data_tbl,
       scree_data_tbl = scree_data_tbl,
-      scoring_history_tbl = auto_kmeans_obj@model[["scoring_history"]] %>%
+      scoring_history_tbl = auto_kmeans_obj@model[["scoring_history"]] |>
         tibble::as_tibble(),
-      model_summary_tbl = auto_kmeans_obj@model[["model_summary"]] %>%
-        tibble::as_tibble() %>%
+      model_summary_tbl = auto_kmeans_obj@model[["model_summary"]] |>
+        tibble::as_tibble() |>
         tidyr::pivot_longer(cols = dplyr::everything())
     ),
     auto_kmeans_obj = auto_kmeans_obj,

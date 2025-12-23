@@ -56,8 +56,6 @@ This uses the \code{parsnip::nearest_neighbor()} with the \code{engine} set to \
 }
 \examples{
 \dontrun{
-library(dplyr)
-
 data <- iris
 
 rec_obj <- hai_knn_data_prepper(data, Species ~ .)

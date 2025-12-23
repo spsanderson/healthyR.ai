@@ -61,8 +61,8 @@ hai_polynomial_augment <- function(.data, .formula = NULL, .pred_col = NULL,
 
   # Manipulate ----
   # Ensure that the 'y' column is the first column of the data.frame/tibble
-  data_tbl <- .data %>%
-    tibble::as_tibble() %>%
+  data_tbl <- .data |>
+    tibble::as_tibble() |>
     dplyr::select({{ pred_col_var_expr }}, dplyr::everything())
 
   # Checks ----
@@ -102,14 +102,14 @@ hai_polynomial_augment <- function(.data, .formula = NULL, .pred_col = NULL,
 
   # Augment ----
   mm <- stats::model.matrix(f, data = data_tbl)
-  mm_df <- mm %>%
-    base::as.data.frame() %>%
+  mm_df <- mm |>
+    base::as.data.frame() |>
     janitor::clean_names()
 
   new_mm_col_names <- paste0(ncp, names(mm_df))
   colnames(mm_df) <- new_mm_col_names
 
-  data_tbl <- cbind(data_tbl, mm_df) %>% tibble::as_tibble()
+  data_tbl <- cbind(data_tbl, mm_df) |> tibble::as_tibble()
 
   # Return ----
   message("The formula used is: ", deparse(f))

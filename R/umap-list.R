@@ -25,12 +25,12 @@
 #' library(dplyr)
 #' library(broom)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' uit_tbl <- hai_kmeans_user_item_tbl(
@@ -75,24 +75,24 @@ hai_umap_list <- function(.data,
   kmeans_map_tbl <- tibble::as_tibble(.kmeans_map_tbl)
 
   # * Manipulation ----
-  umap_obj <- data %>%
-    dplyr::select(-1) %>%
+  umap_obj <- data |>
+    dplyr::select(-1) |>
     uwot::umap()
 
-  umap_results_tbl <- umap_obj %>%
-    tibble::as_tibble(.name_repair = "unique") %>%
-    purrr::set_names("x", "y") %>%
-    dplyr::bind_cols(data %>% dplyr::select(1))
+  umap_results_tbl <- umap_obj |>
+    tibble::as_tibble(.name_repair = "unique") |>
+    purrr::set_names("x", "y") |>
+    dplyr::bind_cols(data |> dplyr::select(1))
 
-  kmeans_obj <- kmeans_map_tbl %>%
-    dplyr::pull(k_means) %>%
+  kmeans_obj <- kmeans_map_tbl |>
+    dplyr::pull(k_means) |>
     purrr::pluck(k_cluster_var_expr)
 
-  kmeans_cluster_tbl <- kmeans_obj %>%
-    broom::augment(data) %>%
+  kmeans_cluster_tbl <- kmeans_obj |>
+    broom::augment(data) |>
     dplyr::select(1, .cluster)
 
-  umap_kmeans_cluster_results_tbl <- umap_results_tbl %>%
+  umap_kmeans_cluster_results_tbl <- umap_results_tbl |>
     dplyr::left_join(kmeans_cluster_tbl)
 
   # * Data List ----

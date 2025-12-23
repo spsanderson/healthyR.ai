@@ -61,15 +61,15 @@ hai_skewed_features <- function(.data, .threshold = 0.6, .drop_keys = NULL) {
   data_tbl <- tibble::as_tibble(.data)
 
   # Transforms
-  skewed_feature_names <- data_tbl %>%
-    dplyr::select(tidyselect::vars_select_helpers$where(is.numeric)) %>%
-    purrr::map_df(hai_skewness_vec) %>%
-    tidyr::pivot_longer(cols = dplyr::everything()) %>%
-    dplyr::filter(!name %in% drop_keys) %>%
-    dplyr::mutate(name = as.factor(name)) %>%
-    dplyr::rename(key = name) %>%
-    dplyr::filter(value >= threshold) %>%
-    dplyr::pull(key) %>%
+  skewed_feature_names <- data_tbl |>
+    dplyr::select(tidyselect::vars_select_helpers$where(is.numeric)) |>
+    purrr::map_df(hai_skewness_vec) |>
+    tidyr::pivot_longer(cols = dplyr::everything()) |>
+    dplyr::filter(!name %in% drop_keys) |>
+    dplyr::mutate(name = as.factor(name)) |>
+    dplyr::rename(key = name) |>
+    dplyr::filter(value >= threshold) |>
+    dplyr::pull(key) |>
     as.character()
 
   # Return ----
