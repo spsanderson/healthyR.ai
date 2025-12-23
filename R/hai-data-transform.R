@@ -98,7 +98,7 @@
 #'   .recipe_object = rec_obj,
 #'   value,
 #'   .type_of_scale = "log"
-#' )$new_rec_obj %>%
+#' )$new_rec_obj |>
 #'   get_juiced_data()
 #'
 #' @return

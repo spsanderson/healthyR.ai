@@ -25,12 +25,12 @@
 #' library(broom)
 #' library(ggplot2)
 #'
-#' data_tbl <- healthyR_data %>%
-#'   filter(ip_op_flag == "I") %>%
-#'   filter(payer_grouping != "Medicare B") %>%
-#'   filter(payer_grouping != "?") %>%
-#'   select(service_line, payer_grouping) %>%
-#'   mutate(record = 1) %>%
+#' data_tbl <- healthyR_data |>
+#'   filter(ip_op_flag == "I") |>
+#'   filter(payer_grouping != "Medicare B") |>
+#'   filter(payer_grouping != "?") |>
+#'   select(service_line, payer_grouping) |>
+#'   mutate(record = 1) |>
 #'   as_tibble()
 #'
 #' uit_tbl <- hai_kmeans_user_item_tbl(
@@ -63,7 +63,7 @@ hai_umap_plot <- function(.data, .point_size = 2, .label = TRUE) {
   ump_tbl <- ump_lst$umap_kmeans_cluster_results_tbl
   optimal_k <- max(ump_lst$kmeans_obj$cluster)
 
-  umap_plt <- ump_tbl %>%
+  umap_plt <- ump_tbl |>
     ggplot2::ggplot(
       mapping = ggplot2::aes(
         x = x,

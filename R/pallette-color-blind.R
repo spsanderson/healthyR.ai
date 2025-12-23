@@ -48,7 +48,7 @@ color_blind <- function() {
 #' @export
 hai_scale_fill_colorblind <- function(..., theme = "hai") {
   pal <- switch(theme,
-    "hai" = unname(color_blind()) %>% rep(100)
+    "hai" = unname(color_blind()) |> rep(100)
   )
 
   ggplot2::scale_fill_manual(values = pal)
@@ -76,7 +76,7 @@ hai_scale_fill_colorblind <- function(..., theme = "hai") {
 #' @export
 hai_scale_color_colorblind <- function(..., theme = "hai") {
   pal <- switch(theme,
-    "hai" = unname(color_blind()) %>% rep(100)
+    "hai" = unname(color_blind()) |> rep(100)
   )
 
   ggplot2::scale_color_manual(values = pal)

@@ -48,25 +48,25 @@
 #' suppressPackageStartupMessages(library(ggplot2))
 #' suppressPackageStartupMessages(library(plotly))
 #'
-#' data_tbl <- healthyR_data %>%
-#'   select(visit_end_date_time) %>%
+#' data_tbl <- healthyR_data |>
+#'   select(visit_end_date_time) |>
 #'   summarise_by_time(
 #'     .date_var = visit_end_date_time,
 #'     .by       = "month",
 #'     value     = n()
-#'   ) %>%
-#'   set_names("date_col", "value") %>%
+#'   ) |>
+#'   set_names("date_col", "value") |>
 #'   filter_by_time(
 #'     .date_var = date_col,
 #'     .start_date = "2013",
 #'     .end_date = "2020"
-#'   ) %>%
+#'   ) |>
 #'   mutate(date_col = as.Date(date_col))
 #'
 #' splits <- initial_split(data = data_tbl, prop = 0.8)
 #'
-#' rec_obj <- recipe(value ~ ., training(splits)) %>%
-#'   step_timeseries_signature(date_col) %>%
+#' rec_obj <- recipe(value ~ ., training(splits)) |>
+#'   step_timeseries_signature(date_col) |>
 #'   step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
 #'
 #' output_list <- pca_your_recipe(rec_obj, .data = data_tbl)
@@ -105,10 +105,10 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75, .top_n = 5
   data_tbl <- .data
 
   # * Recipe steps ----
-  pca_transform <- rec_obj %>%
-    recipes::step_center(recipes::all_numeric()) %>%
-    recipes::step_scale(recipes::all_numeric()) %>%
-    recipes::step_nzv(recipes::all_numeric()) %>%
+  pca_transform <- rec_obj |>
+    recipes::step_center(recipes::all_numeric()) |>
+    recipes::step_scale(recipes::all_numeric()) |>
+    recipes::step_nzv(recipes::all_numeric()) |>
     recipes::step_pca(
       recipes::all_numeric_predictors(),
       threshold = threshold_var,
@@ -125,7 +125,7 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75, .top_n = 5
   variable_variance <- recipes::tidy(pca_estimates, type = "variance", number = pca_step_number)
   pca_baked_data <- recipes::bake(pca_estimates, data_tbl)
   pca_sdev <- pca_estimates$steps[[pca_step_number]]$res$sdev
-  pca_rotation_df <- pca_estimates$steps[[pca_step_number]]$res$rotation %>%
+  pca_rotation_df <- pca_estimates$steps[[pca_step_number]]$res$rotation |>
     dplyr::as_tibble()
 
   # * Scree Plot
@@ -134,17 +134,17 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75, .top_n = 5
     PC = paste0("PC", 1:length(pca_sdev)),
     var_explained = percent_variation,
     stringsAsFactors = FALSE
-  ) %>%
-    dplyr::as_tibble() %>%
-    dplyr::mutate(var_pct_txt = round(var_explained, 4) %>%
-      scales::percent(accuracy = 0.01)) %>%
-    dplyr::mutate(cum_var_pct = cumsum(var_explained) / sum(var_explained)) %>%
-    dplyr::mutate(cum_var_pct_txt = cum_var_pct %>%
-      scales::percent(accuracy = 0.01)) %>%
-    dplyr::mutate(ou_threshold = ifelse(cum_var_pct <= threshold_var, "Under", "Over") %>%
+  ) |>
+    dplyr::as_tibble() |>
+    dplyr::mutate(var_pct_txt = round(var_explained, 4) |>
+      scales::percent(accuracy = 0.01)) |>
+    dplyr::mutate(cum_var_pct = cumsum(var_explained) / sum(var_explained)) |>
+    dplyr::mutate(cum_var_pct_txt = cum_var_pct |>
+      scales::percent(accuracy = 0.01)) |>
+    dplyr::mutate(ou_threshold = ifelse(cum_var_pct <= threshold_var, "Under", "Over") |>
       forcats::as_factor())
-  var_plt <- var_df %>%
-    dplyr::mutate(PC = forcats::fct_inorder(PC)) %>%
+  var_plt <- var_df |>
+    dplyr::mutate(PC = forcats::fct_inorder(PC)) |>
     ggplot2::ggplot(
       ggplot2::aes(
         x = PC,
@@ -174,8 +174,8 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75, .top_n = 5
   var_load_plt_tbl$pos_neg <- ifelse(var_load_plt_tbl$value > 0, "Positive", "Negative")
   pca_range <- max(abs(var_load_plt_tbl$value))
   pca_range <- c(-pca_range, pca_range)
-  loadings_plt <- var_load_plt_tbl %>%
-    dplyr::mutate(component = component) %>%
+  loadings_plt <- var_load_plt_tbl |>
+    dplyr::mutate(component = component) |>
     ggplot2::ggplot(ggplot2::aes(value, terms, fill = pos_neg)) +
     ggplot2::geom_col(show.legend = FALSE) +
     ggplot2::facet_wrap(~component) +
@@ -189,22 +189,22 @@ pca_your_recipe <- function(.recipe_object, .data, .threshold = 0.75, .top_n = 5
       )
     )
 
-  var_load_top_n_plt_tbl <- variable_loadings %>%
-    dplyr::mutate(component = forcats::fct_inorder(component)) %>%
+  var_load_top_n_plt_tbl <- variable_loadings |>
+    dplyr::mutate(component = forcats::fct_inorder(component)) |>
     dplyr::mutate(
       `Positive?` = value > 0,
       abs_value = abs(value)
-    ) %>%
-    dplyr::group_by(component) %>%
-    dplyr::slice_max(abs_value, n = n) %>%
-    dplyr::ungroup() %>%
-    dplyr::arrange(component, abs_value) %>%
+    ) |>
+    dplyr::group_by(component) |>
+    dplyr::slice_max(abs_value, n = n) |>
+    dplyr::ungroup() |>
+    dplyr::arrange(component, abs_value) |>
     dplyr::mutate(order = dplyr::row_number())
 
   # Tactics based on
   # https://drsimonj.svbtle.com/ordering-categories-within-ggplot2-facets
   # https://github.com/tidymodels/learntidymodels/blob/main/R/plot_top_loadings.R
-  var_load_top_n_plt <- var_load_top_n_plt_tbl %>%
+  var_load_top_n_plt <- var_load_top_n_plt_tbl |>
     ggplot2::ggplot(ggplot2::aes(x = order, y = abs_value, fill = `Positive?`)) +
     ggplot2::geom_col() +
     ggplot2::coord_flip() +

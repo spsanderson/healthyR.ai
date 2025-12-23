@@ -56,12 +56,12 @@ hai_kmeans_automl_predict <- function(.input) {
 
   # Make prediction ----
   prediction <- h2o::h2o.predict(kmeans_obj, newdata = newdata)
-  pred_tbl <- tibble::as_tibble(prediction) %>%
+  pred_tbl <- tibble::as_tibble(prediction) |>
     purrr::set_names("predicted_cluster")
 
-  valid_tbl <- newdata %>% tibble::as_tibble()
+  valid_tbl <- newdata |> tibble::as_tibble()
 
-  final_pred_tbl <- cbind(valid_tbl, pred_tbl) %>%
+  final_pred_tbl <- cbind(valid_tbl, pred_tbl) |>
     dplyr::mutate(predicted_cluster = forcats::as_factor(predicted_cluster))
 
   # Return ----

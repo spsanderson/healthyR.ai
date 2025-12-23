@@ -22,7 +22,7 @@
 #' @examples
 #' library(dplyr)
 #'
-#' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
+#' df <- hai_scale_zero_one_vec(.x = mtcars$mpg) |>
 #'   hai_distribution_comparison_tbl()
 #' hai_get_dist_data_tbl(df)
 #'
@@ -62,17 +62,17 @@ hai_get_dist_data_tbl <- function(.data, .unnest = TRUE, .group_data = FALSE) {
   # Get tibble ----
   data_tbl <- tibble::as_tibble(.data)
 
-  data_tbl <- data_tbl %>%
+  data_tbl <- data_tbl |>
     dplyr::select(-density_data)
 
   if (unnest_bool) {
-    data_tbl <- data_tbl %>%
-      tidyr::unnest(dist_data) %>%
+    data_tbl <- data_tbl |>
+      tidyr::unnest(dist_data) |>
       dplyr::ungroup()
   }
 
   if (group_data_bool) {
-    data_tbl <- data_tbl %>%
+    data_tbl <- data_tbl |>
       dplyr::group_by(distribution)
   }
 

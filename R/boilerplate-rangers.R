@@ -136,13 +136,13 @@ hai_auto_ranger <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
   }
 
   # Model Specification ----
-  model_spec <- model_spec %>%
-    parsnip::set_mode(mode = model_type) %>%
+  model_spec <- model_spec |>
+    parsnip::set_mode(mode = model_type) |>
     parsnip::set_engine(engine = "ranger")
 
   # Workflow ----
-  wflw <- workflows::workflow() %>%
-    workflows::add_recipe(rec_obj) %>%
+  wflw <- workflows::workflow() |>
+    workflows::add_recipe(rec_obj) |>
     workflows::add_model(model_spec)
 
   # Tuning Grid ---
@@ -167,7 +167,7 @@ hai_auto_ranger <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     # Start parallel backend
     cl <- parallelly::makeClusterPSOCK(workers = num_cores)
 
-    tuned_results <- wflw %>%
+    tuned_results <- wflw |>
       tune::tune_grid(
         resamples = cv_obj,
         grid      = tuning_grid_spec,
@@ -177,25 +177,25 @@ hai_auto_ranger <- function(.data, .rec_obj, .splits_obj = NULL, .rsamp_obj = NU
     parallel::stopCluster(cl)
 
     # Get the best result set by a specified metric
-    best_result_set <- tuned_results %>%
+    best_result_set <- tuned_results |>
       tune::show_best(metric = best_metric, n = 1)
 
     # Plot results
-    tune_results_plt <- tuned_results %>%
+    tune_results_plt <- tuned_results |>
       tune::autoplot() +
       ggplot2::theme_minimal() +
       ggplot2::geom_smooth(se = FALSE) +
       ggplot2::theme(legend.position = "bottom")
 
     # Make final workflow
-    wflw_fit <- wflw %>%
+    wflw_fit <- wflw |>
       tune::finalize_workflow(
-        tuned_results %>%
+        tuned_results |>
           tune::show_best(metric = best_metric, n = 1)
-      ) %>%
+      ) |>
       parsnip::fit(rsample::training(splits))
   } else {
-    wflw_fit <- wflw %>%
+    wflw_fit <- wflw |>
       parsnip::fit(rsample::training(splits))
   }
 

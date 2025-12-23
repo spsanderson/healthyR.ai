@@ -9,7 +9,7 @@
 #'
 #' @details
 #' Instead of typing out something like:
-#'   \code{recipe_object %>% prep() %>% juice() %>% glimpse()}
+#'   \code{recipe_object |> prep() |> juice() |> glimpse()}
 #'
 #' @param .recipe_object The recipe object you want to pass.
 #'
@@ -21,14 +21,14 @@
 #' suppressPackageStartupMessages(library(rsample))
 #' suppressPackageStartupMessages(library(recipes))
 #'
-#' data_tbl <- healthyR_data %>%
-#'   select(visit_end_date_time) %>%
+#' data_tbl <- healthyR_data |>
+#'   select(visit_end_date_time) |>
 #'   summarise_by_time(
 #'     .date_var = visit_end_date_time,
 #'     .by       = "month",
 #'     value     = n()
-#'   ) %>%
-#'   set_names("date_col", "value") %>%
+#'   ) |>
+#'   set_names("date_col", "value") |>
 #'   filter_by_time(
 #'     .date_var = date_col,
 #'     .start_date = "2013",
@@ -59,8 +59,8 @@ get_juiced_data <- function(.recipe_object) {
   }
 
   # * Juice it!
-  j_data <- rec_obj %>%
-    recipes::prep() %>%
+  j_data <- rec_obj |>
+    recipes::prep() |>
     recipes::juice()
 
   # * Return ----
