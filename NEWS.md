@@ -10,6 +10,7 @@ and `parallel::stopCluster()` instead of `modeltime::parallel_start()` and
 packages.
 3. Fix #376 - Deprecate magrittr `%>%` in favor of native R pipe `|>`. This 
 requires R >= 4.1.0. The `magrittr` package has been removed from Imports.
+4. Fix #379 - Deprecate `hai_kmeans_automl()` and `hai_kmeans_automl_predict()` - remove h2o dependency
 
 ## New Features
 None

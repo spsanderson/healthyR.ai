@@ -32,7 +32,6 @@ Imports:
     forcats,
     recipes (>= 1.0.0),
     purrr,
-    h2o,
     stats,
     dials,
     parsnip,
@@ -54,7 +53,8 @@ Suggests:
     stringr,
     parallel,
     parallelly,
-    doParallel
+    doParallel,
+    h2o
 VignetteBuilder: knitr
 Depends: 
     R (>= 4.1.0)
