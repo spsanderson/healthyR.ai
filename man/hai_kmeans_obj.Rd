@@ -28,12 +28,12 @@ Uses the \code{\link[stats:kmeans]{stats::kmeans()}} function and creates a wrap
 library(healthyR.data)
 library(dplyr)
 
-data_tbl <- healthyR_data \%>\%
-  filter(ip_op_flag == "I") \%>\%
-  filter(payer_grouping != "Medicare B") \%>\%
-  filter(payer_grouping != "?") \%>\%
-  select(service_line, payer_grouping) \%>\%
-  mutate(record = 1) \%>\%
+data_tbl <- healthyR_data |>
+  filter(ip_op_flag == "I") |>
+  filter(payer_grouping != "Medicare B") |>
+  filter(payer_grouping != "?") |>
+  select(service_line, payer_grouping) |>
+  mutate(record = 1) |>
   as_tibble()
 
 hai_kmeans_user_item_tbl(
@@ -41,7 +41,7 @@ hai_kmeans_user_item_tbl(
   .row_input = service_line,
   .col_input = payer_grouping,
   .record_input = record
-) \%>\%
+) |>
   hai_kmeans_obj()
 
 }

@@ -71,7 +71,7 @@ hai_data_scale(
   .recipe_object = rec_obj,
   value,
   .type_of_scale = "center"
-)$new_rec_obj \%>\%
+)$new_rec_obj |>
   get_juiced_data()
 
 }

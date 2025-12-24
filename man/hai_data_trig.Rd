@@ -61,7 +61,7 @@ hai_data_trig(
   .recipe_object = rec_obj,
   value,
   .type_of_scale = "sinh"
-)$new_rec_obj \%>\%
+)$new_rec_obj |>
   get_juiced_data()
 
 }

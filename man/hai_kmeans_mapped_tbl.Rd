@@ -31,12 +31,12 @@ and map the \code{\link[=hai_kmeans_obj]{hai_kmeans_obj()}} function down the li
 library(healthyR.data)
 library(dplyr)
 
-data_tbl <- healthyR_data \%>\%
-  filter(ip_op_flag == "I") \%>\%
-  filter(payer_grouping != "Medicare B") \%>\%
-  filter(payer_grouping != "?") \%>\%
-  select(service_line, payer_grouping) \%>\%
-  mutate(record = 1) \%>\%
+data_tbl <- healthyR_data |>
+  filter(ip_op_flag == "I") |>
+  filter(payer_grouping != "Medicare B") |>
+  filter(payer_grouping != "?") |>
+  select(service_line, payer_grouping) |>
+  mutate(record = 1) |>
   as_tibble()
 
 ui_tbl <- hai_kmeans_user_item_tbl(
