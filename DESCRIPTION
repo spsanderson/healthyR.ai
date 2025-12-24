@@ -32,7 +32,6 @@ Imports:
     forcats,
     recipes (>= 1.0.0),
     purrr,
-    h2o,
     stats,
     dials,
     parsnip,

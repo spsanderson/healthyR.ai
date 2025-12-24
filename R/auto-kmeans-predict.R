@@ -5,6 +5,10 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
+#' **DEPRECATED**: This function is deprecated and will be removed in a future version.
+#' The h2o dependency is being removed from healthyR.ai. Please use alternative 
+#' clustering methods available in the package.
+#' 
 #' This is a wrapper around the [h2o::h2o.predict()] function that will return a list
 #' object with a lot of useful and easy to use tidy style information.
 #'
@@ -42,6 +46,15 @@
 #'
 
 hai_kmeans_automl_predict <- function(.input) {
+  # Deprecation warning ----
+  .Deprecated(
+    msg = paste(
+      "hai_kmeans_automl_predict() is deprecated and will be removed in a future version.",
+      "The h2o dependency is being removed from healthyR.ai.",
+      "Please use alternative clustering methods available in the package."
+    )
+  )
+
   input <- .input
 
   if (!inherits(x = input, what = "list")) {

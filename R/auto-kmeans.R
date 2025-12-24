@@ -5,6 +5,10 @@
 #' @author Steven P. Sanderson II, MPH
 #'
 #' @description
+#' **DEPRECATED**: This function is deprecated and will be removed in a future version.
+#' The h2o dependency is being removed from healthyR.ai. Please use alternative 
+#' clustering methods available in the package.
+#' 
 #' This is a wrapper around the [h2o::h2o.kmeans()] function that will return a list
 #' object with a lot of useful and easy to use tidy style information.
 #'
@@ -56,6 +60,15 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
                               .predictors, .categorical_encoding = "auto",
                               .initialization_mode = "Furthest",
                               .max_iterations = 100) {
+
+  # Deprecation warning ----
+  .Deprecated(
+    msg = paste(
+      "hai_kmeans_automl() is deprecated and will be removed in a future version.",
+      "The h2o dependency is being removed from healthyR.ai.",
+      "Please use alternative clustering methods available in the package."
+    )
+  )
 
   # * Tidyeval ----
   split_ratio <- as.numeric(.split_ratio)
