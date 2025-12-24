@@ -63,11 +63,8 @@ hai_kmeans_automl <- function(.data, .split_ratio = 0.80, .seed = 1234,
 
   # Deprecation warning ----
   .Deprecated(
-    msg = paste(
-      "hai_kmeans_automl() is deprecated and will be removed in a future version.",
-      "The h2o dependency is being removed from healthyR.ai.",
-      "Please use alternative clustering methods available in the package."
-    )
+    new = NULL,
+    msg = "hai_kmeans_automl() is deprecated and will be removed in a future version. The h2o dependency is being removed from healthyR.ai. Please use alternative clustering methods available in the package."
   )
 
   # * Tidyeval ----
