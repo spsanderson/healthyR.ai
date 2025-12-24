@@ -31,7 +31,7 @@ function. It returns a tibble of the \code{tidy} density data.
 \examples{
 library(dplyr)
 
-df <- hai_scale_zero_one_vec(.x = mtcars$mpg) \%>\%
+df <- hai_scale_zero_one_vec(.x = mtcars$mpg) |>
   hai_distribution_comparison_tbl()
 hai_get_density_data_tbl(df)
 

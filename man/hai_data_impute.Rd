@@ -86,7 +86,7 @@ hai_data_impute(
   value,
   .type_of_imputation = "roll",
   .roll_statistic = median
-)$new_rec_obj \%>\%
+)$new_rec_obj |>
   get_juiced_data()
 
 }

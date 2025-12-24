@@ -13,6 +13,10 @@ hai_kmeans_automl_predict(.input)
 A list object
 }
 \description{
+\strong{DEPRECATED}: This function is deprecated and will be removed in a future version.
+The h2o dependency is being removed from healthyR.ai. Please use alternative
+clustering methods available in the package.
+
 This is a wrapper around the \code{\link[h2o:h2o.predict]{h2o::h2o.predict()}} function that will return a list
 object with a lot of useful and easy to use tidy style information.
 }
