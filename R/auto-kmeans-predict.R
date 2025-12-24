@@ -47,12 +47,14 @@
 
 hai_kmeans_automl_predict <- function(.input) {
   # Deprecation warning ----
+  deprecation_msg <- paste(
+    "hai_kmeans_automl_predict() is deprecated and will be removed in a future version.",
+    "The h2o dependency is being removed from healthyR.ai.",
+    "Please use alternative clustering methods available in the package."
+  )
   .Deprecated(
-    msg = paste(
-      "hai_kmeans_automl_predict() is deprecated and will be removed in a future version.",
-      "The h2o dependency is being removed from healthyR.ai.",
-      "Please use alternative clustering methods available in the package."
-    )
+    new = NULL,
+    msg = deprecation_msg
   )
 
   input <- .input
