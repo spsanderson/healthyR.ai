@@ -53,7 +53,8 @@ Suggests:
     stringr,
     parallel,
     parallelly,
-    doParallel
+    doParallel,
+    h2o
 VignetteBuilder: knitr
 Depends: 
     R (>= 4.1.0)
