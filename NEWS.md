@@ -1,4 +1,4 @@
-# healthyR.ai (development version)
+# healthyR.ai 0.1.2
 
 ## Breaking Changes
 1. Fix #355 - Ensure that all `hai_data_*` functions that return a new recipe
