@@ -54,12 +54,12 @@ Steven P. Sanderson II, MPH
 library(healthyR.data)
 library(dplyr)
 
-data_tbl <- healthyR_data %>%
-  filter(ip_op_flag == "I") %>%
-  filter(payer_grouping != "Medicare B") %>%
-  filter(payer_grouping != "?") %>%
-  select(service_line, payer_grouping) %>%
-  mutate(record = 1) %>%
+data_tbl <- healthyR_data |>
+  filter(ip_op_flag == "I") |>
+  filter(payer_grouping != "Medicare B") |>
+  filter(payer_grouping != "?") |>
+  select(service_line, payer_grouping) |>
+  mutate(record = 1) |>
   as_tibble()
 
 hai_kmeans_user_item_tbl(
@@ -67,29 +67,29 @@ hai_kmeans_user_item_tbl(
   .row_input = service_line,
   .col_input = payer_grouping,
   .record_input = record
-) %>%
+) |>
   hai_kmeans_obj()
-#> K-means clustering with 5 clusters of sizes 2, 1, 12, 5, 3
+#> K-means clustering with 5 clusters of sizes 1, 3, 12, 2, 5
 #> 
 #> Cluster means:
 #>   Blue Cross Commercial Compensation Exchange Plans        HMO   Medicaid
-#> 1 0.27188303 0.05712358 0.0003293808    0.039065198 0.18065096 0.04246134
-#> 2 0.00000000 0.00000000 0.0000000000    0.000000000 0.27272727 0.18181818
+#> 1 0.00000000 0.00000000 0.0000000000    0.000000000 0.27272727 0.18181818
+#> 2 0.07912806 0.02702478 0.0002914681    0.009301354 0.07723873 0.21428392
 #> 3 0.07837450 0.02182129 0.0043244347    0.006202137 0.04493860 0.03684344
-#> 4 0.13375082 0.03542694 0.0121998471    0.016160901 0.10724914 0.05150211
-#> 5 0.07912806 0.02702478 0.0002914681    0.009301354 0.07723873 0.21428392
+#> 4 0.27188303 0.05712358 0.0003293808    0.039065198 0.18065096 0.04246134
+#> 5 0.13375082 0.03542694 0.0121998471    0.016160901 0.10724914 0.05150211
 #>   Medicaid HMO Medicare A Medicare HMO    No Fault    Self Pay
-#> 1   0.24760799 0.10958146   0.03584494 0.000000000 0.015452115
-#> 2   0.45454545 0.09090909   0.00000000 0.000000000 0.000000000
+#> 1   0.45454545 0.09090909   0.00000000 0.000000000 0.000000000
+#> 2   0.28209782 0.23654904   0.04362913 0.002672067 0.027783628
 #> 3   0.08001653 0.56250366   0.15152338 0.003475542 0.009976485
-#> 4   0.13107693 0.35217108   0.11769769 0.008242686 0.034521844
-#> 5   0.28209782 0.23654904   0.04362913 0.002672067 0.027783628
+#> 4   0.24760799 0.10958146   0.03584494 0.000000000 0.015452115
+#> 5   0.13107693 0.35217108   0.11769769 0.008242686 0.034521844
 #> 
 #> Clustering vector:
-#>  [1] 5 1 3 3 3 3 4 4 3 3 1 3 5 4 3 4 3 5 4 3 3 2 3
+#>  [1] 2 4 3 3 3 3 5 5 3 3 4 3 2 5 3 5 3 2 5 3 3 1 3
 #> 
 #> Within cluster sum of squares by cluster:
-#> [1] 0.03549821 0.00000000 0.09625399 0.02592247 0.04450884
+#> [1] 0.00000000 0.04450884 0.09625399 0.03549821 0.02592247
 #>  (between_SS / total_SS =  85.6 %)
 #> 
 #> Available components:

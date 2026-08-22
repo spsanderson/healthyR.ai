@@ -54,12 +54,12 @@ Steven P. Sanderson II, MPH
 library(healthyR.data)
 library(dplyr)
 
-data_tbl <- healthyR_data %>%
-  filter(ip_op_flag == "I") %>%
-  filter(payer_grouping != "Medicare B") %>%
-  filter(payer_grouping != "?") %>%
-  select(service_line, payer_grouping) %>%
-  mutate(record = 1) %>%
+data_tbl <- healthyR_data |>
+  filter(ip_op_flag == "I") |>
+  filter(payer_grouping != "Medicare B") |>
+  filter(payer_grouping != "?") |>
+  select(service_line, payer_grouping) |>
+  mutate(record = 1) |>
   as_tibble()
 
 ui_tbl <- hai_kmeans_user_item_tbl(
@@ -88,6 +88,6 @@ hai_kmeans_scree_data_tbl(kmm_tbl)
 #> 11      11       0.0460
 #> 12      12       0.0363
 #> 13      13       0.0293
-#> 14      14       0.0202
+#> 14      14       0.0231
 #> 15      15       0.0160
 ```

@@ -56,21 +56,21 @@ Steven P. Sanderson II, MPH
 ``` r
 library(dplyr)
 
-df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
+df <- hai_scale_zero_one_vec(.x = mtcars$mpg) |>
   hai_distribution_comparison_tbl()
 hai_get_dist_data_tbl(df)
 #> # A tibble: 96 × 2
 #>    distribution dist_data
 #>    <chr>            <dbl>
-#>  1 gamma         0.211   
-#>  2 gamma         0.0252  
-#>  3 gamma         0.554   
-#>  4 gamma         0.0646  
-#>  5 gamma         0.0890  
-#>  6 gamma         0.260   
-#>  7 gamma         0.425   
-#>  8 gamma         0.000101
-#>  9 gamma         0.0466  
-#> 10 gamma         0.269   
+#>  1 gamma         0.0469  
+#>  2 gamma         0.00187 
+#>  3 gamma         0.211   
+#>  4 gamma         0.0252  
+#>  5 gamma         0.554   
+#>  6 gamma         0.0646  
+#>  7 gamma         0.0890  
+#>  8 gamma         0.260   
+#>  9 gamma         0.425   
+#> 10 gamma         0.000101
 #> # ℹ 86 more rows
 ```

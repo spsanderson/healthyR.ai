@@ -125,9 +125,9 @@ data_tbl <- tibble(
 )
 
 # Create a recipe object
-rec_obj <- recipe(a ~ ., data = data_tbl) %>%
-  step_hai_fourier_discrete(b, scale_type = "sin") %>%
-  step_hai_fourier_discrete(b, scale_type = "cos") %>%
+rec_obj <- recipe(a ~ ., data = data_tbl) |>
+  step_hai_fourier_discrete(b, scale_type = "sin") |>
+  step_hai_fourier_discrete(b, scale_type = "cos") |>
   step_hai_fourier_discrete(b, scale_type = "sincos")
 
 # View the recipe object
@@ -166,33 +166,33 @@ prep(rec_obj)
 # Bake the recipe object - Adds the Time Series Signature
 bake(prep(rec_obj), data_tbl)
 #> # A tibble: 10 × 6
-#>    date_col        b      a fourier_discrete_b_sin fourier_discrete_b_cos
-#>    <date>      <dbl>  <dbl>                  <dbl>                  <dbl>
-#>  1 2021-01-01 0.455   1.16                       1                      0
-#>  2 2021-02-01 0.541   0.273                      0                      0
-#>  3 2021-03-01 0.341   0.617                      1                      0
-#>  4 2021-04-01 0.437   1.39                       1                      0
-#>  5 2021-05-01 0.891  -0.483                      0                      1
-#>  6 2021-06-01 0.491  -0.105                      1                      0
-#>  7 2021-07-01 0.835  -0.887                      0                      1
-#>  8 2021-08-01 0.123  -1.75                       1                      1
-#>  9 2021-09-01 0.580  -0.178                      0                      0
-#> 10 2021-10-01 0.0655  0.881                      1                      1
+#>    date_col        b       a fourier_discrete_b_sin fourier_discrete_b_cos
+#>    <date>      <dbl>   <dbl>                  <dbl>                  <dbl>
+#>  1 2021-01-01 0.537  -0.151                       0                      0
+#>  2 2021-02-01 0.880  -1.12                        0                      1
+#>  3 2021-03-01 0.375  -1.30                        1                      0
+#>  4 2021-04-01 0.434   0.993                       1                      0
+#>  5 2021-05-01 0.807   1.67                        0                      1
+#>  6 2021-06-01 0.636  -0.592                       0                      0
+#>  7 2021-07-01 0.0687  0.157                       1                      1
+#>  8 2021-08-01 0.145   0.414                       1                      1
+#>  9 2021-09-01 0.295   0.336                       1                      0
+#> 10 2021-10-01 0.0414 -0.0894                      1                      1
 #> # ℹ 1 more variable: fourier_discrete_b_sincos <dbl>
 
-rec_obj %>% get_juiced_data()
+rec_obj |> get_juiced_data()
 #> # A tibble: 10 × 6
-#>    date_col        b      a fourier_discrete_b_sin fourier_discrete_b_cos
-#>    <date>      <dbl>  <dbl>                  <dbl>                  <dbl>
-#>  1 2021-01-01 0.455   1.16                       1                      0
-#>  2 2021-02-01 0.541   0.273                      0                      0
-#>  3 2021-03-01 0.341   0.617                      1                      0
-#>  4 2021-04-01 0.437   1.39                       1                      0
-#>  5 2021-05-01 0.891  -0.483                      0                      1
-#>  6 2021-06-01 0.491  -0.105                      1                      0
-#>  7 2021-07-01 0.835  -0.887                      0                      1
-#>  8 2021-08-01 0.123  -1.75                       1                      1
-#>  9 2021-09-01 0.580  -0.178                      0                      0
-#> 10 2021-10-01 0.0655  0.881                      1                      1
+#>    date_col        b       a fourier_discrete_b_sin fourier_discrete_b_cos
+#>    <date>      <dbl>   <dbl>                  <dbl>                  <dbl>
+#>  1 2021-01-01 0.537  -0.151                       0                      0
+#>  2 2021-02-01 0.880  -1.12                        0                      1
+#>  3 2021-03-01 0.375  -1.30                        1                      0
+#>  4 2021-04-01 0.434   0.993                       1                      0
+#>  5 2021-05-01 0.807   1.67                        0                      1
+#>  6 2021-06-01 0.636  -0.592                       0                      0
+#>  7 2021-07-01 0.0687  0.157                       1                      1
+#>  8 2021-08-01 0.145   0.414                       1                      1
+#>  9 2021-09-01 0.295   0.336                       1                      0
+#> 10 2021-10-01 0.0414 -0.0894                      1                      1
 #> # ℹ 1 more variable: fourier_discrete_b_sincos <dbl>
 ```

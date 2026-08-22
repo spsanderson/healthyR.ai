@@ -107,11 +107,11 @@ suppressPackageStartupMessages(library(recipes))
 
 data_tbl <- data.frame(
   a = mtcars$mpg,
-  b = AirPassengers %>% as.vector() %>% head(32)
+  b = AirPassengers |> as.vector() |> head(32)
 )
 
 # Create a recipe object
-rec_obj <- recipe(a ~ ., data = data_tbl) %>%
+rec_obj <- recipe(a ~ ., data = data_tbl) |>
   step_hai_scale_zscore(b)
 
 # View the recipe object
@@ -160,8 +160,8 @@ bake(prep(rec_obj), data_tbl)
 #> 10   119  19.2             -0.964
 #> # ℹ 22 more rows
 
-rec_obj %>%
-  prep() %>%
+rec_obj |>
+  prep() |>
   juice()
 #> # A tibble: 32 × 3
 #>        b     a hai_scale_zscore_b

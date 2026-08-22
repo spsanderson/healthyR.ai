@@ -79,6 +79,7 @@ Steven P. Sanderson II, MPH
 ## Examples
 
 ``` r
+
 hai_histogram_facet_plot(.data = iris)
 
 hai_histogram_facet_plot(.data = iris, .scale_data = TRUE)

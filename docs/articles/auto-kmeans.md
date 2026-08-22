@@ -1,6 +1,7 @@
 # Auto K-Means with healthyR.ai
 
 ``` r
+
 library(healthyR.ai)
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(ggplot2))
@@ -19,6 +20,7 @@ function
 First lets take a look at the data itself.
 
 ``` r
+
 df_tbl <- iris
 
 glimpse(df_tbl)
@@ -43,6 +45,7 @@ presented.
 ## Use the function
 
 ``` r
+
 column_names <- names(iris)
 target_col <- "Species"
 predictor_cols <- setdiff(column_names, target_col)
@@ -52,6 +55,7 @@ Now we have our column inputs for the function, so we can go ahead and
 run it.
 
 ``` r
+
 h2o.init()
 
 output <- hai_kmeans_automl(
@@ -85,6 +89,7 @@ access these very simply. You will find that all of the outputs have
 been labeled in a very simple to understand manner.
 
 ``` r
+
 output$data
 ```
 
@@ -93,6 +98,7 @@ output$data
 Now for the auto-ml object itself.
 
 ``` r
+
 output$auto_kmeans_obj
 ```
 
@@ -101,6 +107,7 @@ output$auto_kmeans_obj
 We also have in the output the best model that is saved off.
 
 ``` r
+
 output$model_id
 ```
 
@@ -111,5 +118,6 @@ understand how many clusters are in the data resulting from minimizing
 the within sum of squares errors.
 
 ``` r
+
 print(output$scree_plt)
 ```

@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with healthyR.ai">
 </head>
@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">healthyR.ai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,7 @@
                         <h4 data-toc-skip class="author">Steven P.
 Sanderson II, MPH</h4>
             
-            <h4 data-toc-skip class="date">2025-11-06</h4>
+            <h4 data-toc-skip class="date">2026-08-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/spsanderson/healthyR.ai/blob/HEAD/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
       <div class="d-none name"><code>getting-started.Rmd</code></div>
@@ -123,19 +123,19 @@ ready.</p>
 <h3 id="data-set">Data Set<a class="anchor" aria-label="anchor" href="#data-set"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="va">healthyR_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">visit_end_date_time</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">data_tbl</span> <span class="op">&lt;-</span> <span class="va">healthyR_data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">visit_end_date_time</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://business-science.github.io/timetk/reference/summarise_by_time.html" class="external-link">summarise_by_time</a></span><span class="op">(</span></span>
 <span>        .date_var <span class="op">=</span> <span class="va">visit_end_date_time</span>,</span>
 <span>        .by       <span class="op">=</span> <span class="st">"month"</span>,</span>
 <span>        value     <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html" class="external-link">set_names</a></span><span class="op">(</span><span class="st">"date_col"</span>,<span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html" class="external-link">set_names</a></span><span class="op">(</span><span class="st">"date_col"</span>,<span class="st">"value"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://business-science.github.io/timetk/reference/filter_by_time.html" class="external-link">filter_by_time</a></span><span class="op">(</span></span>
 <span>        .date_var <span class="op">=</span> <span class="va">date_col</span>,</span>
 <span>        .start_date <span class="op">=</span> <span class="st">"2013"</span>,</span>
 <span>        .end_date <span class="op">=</span> <span class="st">"2020"</span></span>
-<span>    <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>date_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date_col</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_tbl</span><span class="op">)</span></span>
@@ -178,8 +178,8 @@ facilitate the use of the function and this example, we will create a
 <h3 id="initial-recipe">Initial Recipe<a class="anchor" aria-label="anchor" href="#initial-recipe"></a>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">.</span>, <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://business-science.github.io/timetk/reference/step_timeseries_signature.html" class="external-link">step_timeseries_signature</a></span><span class="op">(</span><span class="va">date_col</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">rec_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html" class="external-link">recipe</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">.</span>, <span class="fu"><a href="https://rsample.tidymodels.org/reference/initial_split.html" class="external-link">training</a></span><span class="op">(</span><span class="va">splits</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://business-science.github.io/timetk/reference/step_timeseries_signature.html" class="external-link">step_timeseries_signature</a></span><span class="op">(</span><span class="va">date_col</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://recipes.tidymodels.org/reference/step_rm.html" class="external-link">step_rm</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="st">"(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rec_obj</span></span>
@@ -195,7 +195,7 @@ facilitate the use of the function and this example, we will create a
 <span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Timeseries signature features from: <span style="color: #0000BB;">date_col</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Variables removed: <span style="color: #0000BB;">matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)")</span></span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_juiced_data.html">get_juiced_data</a></span><span class="op">(</span><span class="va">rec_obj</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 76</span></span>
 <span><span class="co">#&gt; Columns: 20</span></span>
 <span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2016-09-01<span style="color: #949494;">, </span>2014-11-01<span style="color: #949494;">, </span>2019-04-01<span style="color: #949494;">, </span>2018-03-01<span style="color: #949494;">, </span>20…</span></span>
@@ -346,7 +346,7 @@ work.</p>
 <h3 id="jucied-and-baked-data">Jucied and Baked Data<a class="anchor" aria-label="anchor" href="#jucied-and-baked-data"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_juiced_estimates</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_juiced_estimates</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 76</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2016-09-01<span style="color: #949494;">, </span>2014-11-01<span style="color: #949494;">, </span>2019-04-01<span style="color: #949494;">, </span>2018-03-01<span style="color: #949494;">, </span>20…</span></span>
@@ -359,7 +359,7 @@ work.</p>
 <span><span class="co">#&gt; $ PC4                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.46581408<span style="color: #949494;">, </span>0.36440016<span style="color: #949494;">, </span>0.68336979<span style="color: #949494;">, </span>-1.67051967<span style="color: #949494;">, </span>0.…</span></span>
 <span><span class="co">#&gt; $ PC5                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -1.40830390<span style="color: #949494;">, </span>1.41911122<span style="color: #949494;">, </span>-0.25966135<span style="color: #949494;">, </span>-0.38892734<span style="color: #949494;">, </span>…</span></span>
 <span></span>
-<span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_baked_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_baked_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 95</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date_col           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2013-01-01<span style="color: #949494;">, </span>2013-02-01<span style="color: #949494;">, </span>2013-03-01<span style="color: #949494;">, </span>2013-04-01<span style="color: #949494;">, </span>20…</span></span>
@@ -376,7 +376,7 @@ work.</p>
 <h3 id="roatation-data">Roatation Data<a class="anchor" aria-label="anchor" href="#roatation-data"></a>
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_rotation_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_rotation_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 13</span></span>
 <span><span class="co">#&gt; Columns: 13</span></span>
 <span><span class="co">#&gt; $ PC1  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.016701003<span style="color: #949494;">, </span>-0.037335907<span style="color: #949494;">, </span>0.381058895<span style="color: #949494;">, </span>0.429752968<span style="color: #949494;">, </span>0.434187301<span style="color: #949494;">,</span>…</span></span>
@@ -397,7 +397,7 @@ work.</p>
 <h3 id="variance-and-scree-plot">Variance and Scree Plot<a class="anchor" aria-label="anchor" href="#variance-and-scree-plot"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 13</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ PC              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "PC1"<span style="color: #949494;">, </span>"PC2"<span style="color: #949494;">, </span>"PC3"<span style="color: #949494;">, </span>"PC4"<span style="color: #949494;">, </span>"PC5"<span style="color: #949494;">, </span>"PC6"<span style="color: #949494;">, </span>"PC7"<span style="color: #949494;">, </span>"PC8"…</span></span>
@@ -408,18 +408,18 @@ work.</p>
 <span><span class="co">#&gt; $ ou_threshold    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Under<span style="color: #949494;">, </span>Under<span style="color: #949494;">, </span>Under<span style="color: #949494;">, </span>Under<span style="color: #949494;">, </span>Over<span style="color: #949494;">, </span>Over<span style="color: #949494;">, </span>Over<span style="color: #949494;">, </span>Over<span style="color: #949494;">, </span>Ov…</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_variance_scree_plt</span></span></code></pre></div>
-<p><img src="getting-started_files/figure-html/scree_plt-1.png" class="r-plt" width="768"></p>
+<p><img src="getting-started_files/figure-html/scree_plt-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="variable-loading-plots">Variable Loading Plots<a class="anchor" aria-label="anchor" href="#variable-loading-plots"></a>
 </h3>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_loadings_plt</span></span></code></pre></div>
-<p><img src="getting-started_files/figure-html/loading_plots-1.png" class="r-plt" width="700"></p>
+<p><img src="getting-started_files/figure-html/loading_plots-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">pca_list</span><span class="op">$</span><span class="va">pca_top_n_loadings_plt</span></span></code></pre></div>
-<p><img src="getting-started_files/figure-html/loading_plots-2.png" class="r-plt" width="700"></p>
+<p><img src="getting-started_files/figure-html/loading_plots-2.png" class="r-plt" alt="" width="700"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -433,7 +433,7 @@ work.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

@@ -2,12 +2,36 @@
 
 ## healthyR.ai (development version)
 
+## healthyR.ai 0.1.2
+
+CRAN release: 2026-08-21
+
 ### Breaking Changes
 
 1.  Fix [\#355](https://github.com/spsanderson/healthyR.ai/issues/355) -
     Ensure that all `hai_data_*` functions that return a new recipe
     object all have the same name. The new name for the updated recipe
     object is: `new_rec_obj`.
+2.  Remove `modeltime` dependency - The package now uses
+    [`parallelly::makeClusterPSOCK()`](https://parallelly.futureverse.org/reference/makeClusterPSOCK.html)
+    and
+    [`parallel::stopCluster()`](https://rdrr.io/r/parallel/makeCluster.html)
+    instead of
+    [`modeltime::parallel_start()`](https://business-science.github.io/modeltime/reference/parallel_start.html)
+    and
+    [`modeltime::parallel_stop()`](https://business-science.github.io/modeltime/reference/parallel_start.html).
+    Added `parallel` and `parallelly` as suggested packages.
+3.  Fix [\#376](https://github.com/spsanderson/healthyR.ai/issues/376) -
+    Deprecate magrittr `%>%` in favor of native R pipe `|>`. This
+    requires R \>= 4.1.0. The `magrittr` package has been removed from
+    Imports.
+4.  Fix [\#379](https://github.com/spsanderson/healthyR.ai/issues/379) -
+    Deprecate
+    [`hai_kmeans_automl()`](https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_automl.md)
+    and
+    [`hai_kmeans_automl_predict()`](https://www.spsanderson.com/healthyR.ai/reference/hai_kmeans_automl_predict.md)
+
+- remove h2o dependency
 
 ### New Features
 

@@ -5,6 +5,7 @@
 First things first, lets load in the library:
 
 ``` r
+
 library(healthyR.ai)
 ```
 
@@ -28,20 +29,21 @@ the data to getting the fina `UMAP` plot.
 ## Generate some data
 
 ``` r
+
 library(healthyR.data)
 library(dplyr)
 library(broom)
 library(ggplot2)
 
-data_tbl <- healthyR_data %>%
-    filter(ip_op_flag == "I") %>%
-    filter(payer_grouping != "Medicare B") %>%
-    filter(payer_grouping != "?") %>%
-    select(service_line, payer_grouping) %>%
-    mutate(record = 1) %>%
+data_tbl <- healthyR_data |>
+    filter(ip_op_flag == "I") |>
+    filter(payer_grouping != "Medicare B") |>
+    filter(payer_grouping != "?") |>
+    select(service_line, payer_grouping) |>
+    mutate(record = 1) |>
     as_tibble()
 
-data_tbl %>%
+data_tbl |>
   glimpse()
 #> Rows: 116,823
 #> Columns: 3
@@ -64,6 +66,7 @@ Lets now create the user item table.
 ## User Item Tibble
 
 ``` r
+
 uit_tbl <- hai_kmeans_user_item_tbl(data_tbl, service_line, payer_grouping, record)
 uit_tbl
 #> # A tibble: 23 × 12
@@ -100,6 +103,7 @@ where the default is set to 15.
 ## K-Means Mapped Tibble
 
 ``` r
+
 kmm_tbl <- hai_kmeans_mapped_tbl(uit_tbl)
 kmm_tbl
 #> # A tibble: 15 × 3
@@ -129,7 +133,8 @@ tibble returned by the
 function.
 
 ``` r
-kmm_tbl %>%
+
+kmm_tbl |>
   tidyr::unnest(glance)
 #> # A tibble: 15 × 6
 #>    centers k_means  totss tot.withinss betweenss  iter
@@ -159,6 +164,7 @@ and the `y-axis` as the `tot.withinss`.
 ## Scree Plot and Data
 
 ``` r
+
 hai_kmeans_scree_plt(.data = kmm_tbl)
 ```
 
@@ -168,6 +174,7 @@ If we want to see the scree plot data that creates the plot then we can
 use another function `hai_kmeans_scree_data_tbl`.
 
 ``` r
+
 hai_kmeans_scree_data_tbl(kmm_tbl)
 #> # A tibble: 15 × 2
 #>    centers tot.withinss
@@ -199,6 +206,7 @@ at a great many things associated with the data.
 Now lets go ahead and create our UMAP list object.
 
 ``` r
+
 ump_lst <- hai_umap_list(.data = uit_tbl, kmm_tbl, 3)
 ```
 
@@ -216,6 +224,7 @@ thing we will do is use the `hai_kmeans_tidy_tbl` function to inspect
 things.
 
 ``` r
+
 km_obj <- ump_lst$kmeans_obj
 hai_kmeans_tidy_tbl(.kmeans_obj = km_obj, .data = uit_tbl, .tidy_type = "glance")
 #> # A tibble: 1 × 4
@@ -255,6 +264,7 @@ Now that we have all of the above data we can visualize our clusters
 that are colored by their cluster number.
 
 ``` r
+
 hai_umap_plot(.data = ump_lst, .point_size = 3, TRUE)
 ```
 

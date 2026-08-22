@@ -5,6 +5,7 @@ or want to make a feature request, please visit
 <https://github.com/spsanderson/healthyR.ai/issues>
 
 ``` r
+
 library(healthyR.ai)
 #> 
 #> == Welcome to healthyR.ai ===========================================================================
@@ -33,6 +34,7 @@ To start this walk through we will first load in a few libraries.
 ## Libraries
 
 ``` r
+
 library(timetk)
 library(dplyr)
 library(purrr)
@@ -51,19 +53,20 @@ ready.
 ### Data Set
 
 ``` r
-data_tbl <- healthyR_data %>%
-    select(visit_end_date_time) %>%
+
+data_tbl <- healthyR_data |>
+    select(visit_end_date_time) |>
     summarise_by_time(
         .date_var = visit_end_date_time,
         .by       = "month",
         value     = n()
-    ) %>%
-    set_names("date_col","value") %>%
+    ) |>
+    set_names("date_col","value") |>
     filter_by_time(
         .date_var = date_col,
         .start_date = "2013",
         .end_date = "2020"
-    ) %>%
+    ) |>
     mutate(date_col = as.Date(date_col))
 
 head(data_tbl)
@@ -86,6 +89,7 @@ facilitate the use of the function and this example, we will create a
 ### Splits
 
 ``` r
+
 splits <- initial_split(data = data_tbl, prop = 0.8)
 
 splits
@@ -107,8 +111,9 @@ head(training(splits))
 ### Initial Recipe
 
 ``` r
-rec_obj <- recipe(value ~ ., training(splits)) %>%
-    step_timeseries_signature(date_col) %>%
+
+rec_obj <- recipe(value ~ ., training(splits)) |>
+    step_timeseries_signature(date_col) |>
     step_rm(matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)"))
 
 rec_obj
@@ -124,7 +129,7 @@ rec_obj
 #> • Timeseries signature features from: date_col
 #> • Variables removed: matches("(iso$)|(xts$)|(hour)|(min)|(sec)|(am.pm)")
 
-get_juiced_data(rec_obj) %>% glimpse()
+get_juiced_data(rec_obj) |> glimpse()
 #> Rows: 76
 #> Columns: 20
 #> $ date_col           <date> 2016-09-01, 2014-11-01, 2019-04-01, 2018-03-01, 20…
@@ -154,6 +159,7 @@ Now that we have out initial recipe we can use the
 function.
 
 ``` r
+
 pca_list <- pca_your_recipe(
   .recipe_object = rec_obj,
   .data          = data_tbl,
@@ -193,6 +199,7 @@ recipe object itself that you will use further down the line of your
 work.
 
 ``` r
+
 pca_rec_obj <- pca_list$pca_transform
 
 pca_rec_obj
@@ -216,6 +223,7 @@ pca_rec_obj
 ### Variable Loadings
 
 ``` r
+
 pca_list$variable_loadings
 #> # A tibble: 169 × 4
 #>    terms                 value component id       
@@ -236,6 +244,7 @@ pca_list$variable_loadings
 ### Variable Variance
 
 ``` r
+
 pca_list$variable_variance
 #> # A tibble: 52 × 4
 #>    terms       value component id       
@@ -256,6 +265,7 @@ pca_list$variable_variance
 ### PCA Estimates
 
 ``` r
+
 pca_list$pca_estimates
 #> 
 #> ── Recipe ──────────────────────────────────────────────────────────────────────
@@ -280,7 +290,8 @@ pca_list$pca_estimates
 ### Jucied and Baked Data
 
 ``` r
-pca_list$pca_juiced_estimates %>% glimpse()
+
+pca_list$pca_juiced_estimates |> glimpse()
 #> Rows: 76
 #> Columns: 9
 #> $ date_col           <date> 2016-09-01, 2014-11-01, 2019-04-01, 2018-03-01, 20…
@@ -293,7 +304,7 @@ pca_list$pca_juiced_estimates %>% glimpse()
 #> $ PC4                <dbl> 1.46581408, 0.36440016, 0.68336979, -1.67051967, 0.…
 #> $ PC5                <dbl> -1.40830390, 1.41911122, -0.25966135, -0.38892734, …
 
-pca_list$pca_baked_data %>% glimpse()
+pca_list$pca_baked_data |> glimpse()
 #> Rows: 95
 #> Columns: 9
 #> $ date_col           <date> 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 20…
@@ -310,7 +321,8 @@ pca_list$pca_baked_data %>% glimpse()
 ### Roatation Data
 
 ``` r
-pca_list$pca_rotation_df %>% glimpse()
+
+pca_list$pca_rotation_df |> glimpse()
 #> Rows: 13
 #> Columns: 13
 #> $ PC1  <dbl> 0.016701003, -0.037335907, 0.381058895, 0.429752968, 0.434187301,…
@@ -331,7 +343,8 @@ pca_list$pca_rotation_df %>% glimpse()
 ### Variance and Scree Plot
 
 ``` r
-pca_list$pca_variance_df %>% glimpse()
+
+pca_list$pca_variance_df |> glimpse()
 #> Rows: 13
 #> Columns: 6
 #> $ PC              <chr> "PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8"…
@@ -343,6 +356,7 @@ pca_list$pca_variance_df %>% glimpse()
 ```
 
 ``` r
+
 pca_list$pca_variance_scree_plt
 ```
 
@@ -351,12 +365,14 @@ pca_list$pca_variance_scree_plt
 ### Variable Loading Plots
 
 ``` r
+
 pca_list$pca_loadings_plt
 ```
 
 ![](getting-started_files/figure-html/loading_plots-1.png)
 
 ``` r
+
 
 pca_list$pca_top_n_loadings_plt
 ```

@@ -104,8 +104,6 @@ Steven P. Sanderson II, MPH
 
 ``` r
 if (FALSE) { # \dontrun{
-library(dplyr)
-
 data <- iris
 
 rec_obj <- hai_knn_data_prepper(data, Species ~ .)

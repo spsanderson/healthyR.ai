@@ -1,5 +1,9 @@
 # Automatic K-Means H2O
 
+**DEPRECATED**: This function is deprecated and will be removed in a
+future version. The h2o dependency is being removed from healthyR.ai.
+Please use alternative clustering methods available in the package.
+
 This is a wrapper around the
 [`h2o::h2o.predict()`](https://rdrr.io/pkg/h2o/man/h2o.predict.html)
 function that will return a list object with a lot of useful and easy to
