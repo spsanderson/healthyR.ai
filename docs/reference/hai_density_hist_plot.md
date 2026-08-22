@@ -65,7 +65,7 @@ Steven P. Sanderson II, MPH
 ``` r
 library(dplyr)
 
-df <- hai_scale_zero_one_vec(.x = mtcars$mpg) %>%
+df <- hai_scale_zero_one_vec(.x = mtcars$mpg) |>
   hai_distribution_comparison_tbl()
 
 dist_data_tbl <- hai_get_dist_data_tbl(df)

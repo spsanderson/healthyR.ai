@@ -50,6 +50,7 @@ Adaptive Regression Splines (Earth)
 Install the released version from [CRAN](https://CRAN.R-project.org):
 
 ``` r
+
 install.packages("healthyR.ai")
 ```
 
@@ -57,6 +58,7 @@ Or get the development version from
 [GitHub](https://github.com/spsanderson/healthyR.ai):
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("spsanderson/healthyR.ai")
 ```
@@ -66,6 +68,7 @@ devtools::install_github("spsanderson/healthyR.ai")
 ### Control Charts for Healthcare Monitoring
 
 ``` r
+
 library(healthyR.ai)
 library(ggplot2)
 
@@ -84,6 +87,7 @@ my_chart <- hai_control_chart(data_tbl, count, date)
 ![](reference/figures/README-example_control_chart-1.png)
 
 ``` r
+
 my_chart +
   ylab("Number of Adverse Events") +
   scale_x_date(name = "Week of...", date_breaks = "week") +
@@ -95,6 +99,7 @@ my_chart +
 ### AutoML with K-Nearest Neighbors
 
 ``` r
+
 library(healthyR.ai)
 library(recipes)
 library(dplyr)
@@ -116,20 +121,21 @@ knn_results <- hai_auto_knn(
 )
 
 # Access the best model
-best_model <- knn_results$model_info %>%
-  dplyr::filter(model_spec == knn_results$best_model_spec) %>%
+best_model <- knn_results$model_info |>
+  dplyr::filter(model_spec == knn_results$best_model_spec) |>
   dplyr::pull(model)
 ```
 
 ### K-Means Clustering with AutoML
 
 ``` r
+
 library(healthyR.ai)
 library(dplyr)
 
 # Prepare data
-data_tbl <- healthyR.data::healthyR_data %>%
-  dplyr::select(length_of_stay, age) %>%
+data_tbl <- healthyR.data::healthyR_data |>
+  dplyr::select(length_of_stay, age) |>
   dplyr::filter(length_of_stay < 20)
 
 # Auto K-Means - finds optimal clusters
@@ -148,13 +154,14 @@ hai_kmeans_user_item_tbl(kmeans_obj)
 ### Data Preprocessing with Custom Steps
 
 ``` r
+
 library(healthyR.ai)
 library(recipes)
 
 # Create a recipe with custom preprocessing steps
-rec <- recipe(mpg ~ ., data = mtcars) %>%
-  step_hai_scale_zscore(all_numeric_predictors()) %>%
-  step_hai_fourier(disp, period = 365, order = 1) %>%
+rec <- recipe(mpg ~ ., data = mtcars) |>
+  step_hai_scale_zscore(all_numeric_predictors()) |>
+  step_hai_fourier(disp, period = 365, order = 1) |>
   step_hai_hyperbolic(hp, wt)
 
 # Prep and bake
@@ -211,6 +218,7 @@ If you find this package useful, please leave a star on
 If you use `healthyR.ai` in your research, please cite it:
 
 ``` r
+
 citation("healthyR.ai")
 ```
 

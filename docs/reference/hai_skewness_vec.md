@@ -49,5 +49,5 @@ Steven P. Sanderson II, MPH
 
 ``` r
 hai_skewness_vec(rnorm(100, 3, 2))
-#> [1] -0.1668339
+#> [1] -0.2140443
 ```

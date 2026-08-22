@@ -1,5 +1,7 @@
 # healthyR.ai (development version)
 
+# healthyR.ai 0.1.2
+
 ## Breaking Changes
 1. Fix #355 - Ensure that all `hai_data_*` functions that return a new recipe
 object all have the same name. The new name for the updated recipe object is:
@@ -10,7 +12,8 @@ and `parallel::stopCluster()` instead of `modeltime::parallel_start()` and
 packages.
 3. Fix #376 - Deprecate magrittr `%>%` in favor of native R pipe `|>`. This 
 requires R >= 4.1.0. The `magrittr` package has been removed from Imports.
-4. Fix #379 - Deprecate `hai_kmeans_automl()` and `hai_kmeans_automl_predict()` - remove h2o dependency
+4. Fix #379 - Deprecate `hai_kmeans_automl()` and `hai_kmeans_automl_predict()` 
+- remove h2o dependency
 
 ## New Features
 None

@@ -63,12 +63,12 @@ library(healthyR.data)
 library(dplyr)
 library(broom)
 
-data_tbl <- healthyR_data %>%
-  filter(ip_op_flag == "I") %>%
-  filter(payer_grouping != "Medicare B") %>%
-  filter(payer_grouping != "?") %>%
-  select(service_line, payer_grouping) %>%
-  mutate(record = 1) %>%
+data_tbl <- healthyR_data |>
+  filter(ip_op_flag == "I") |>
+  filter(payer_grouping != "Medicare B") |>
+  filter(payer_grouping != "?") |>
+  select(service_line, payer_grouping) |>
+  mutate(record = 1) |>
   as_tibble()
 
 uit_tbl <- hai_kmeans_user_item_tbl(
@@ -86,67 +86,67 @@ umap_list(.data = uit_tbl, kmm_tbl, 3)
 #> • `` -> `...2`
 #> Joining with `by = join_by(service_line)`
 #> $umap_obj
-#>             [,1]       [,2]
-#>  [1,] -1.1981357  2.0046529
-#>  [2,] -1.1084554  1.4954147
-#>  [3,]  1.1993915 -2.0136724
-#>  [4,]  0.6678632 -0.2270990
-#>  [5,]  1.1996123 -0.8039470
-#>  [6,]  0.7658432 -1.9398838
-#>  [7,] -0.1887519  1.0237469
-#>  [8,] -0.5976817  0.9337668
-#>  [9,]  0.4483375 -1.8110748
-#> [10,] -0.1902566 -0.8540483
-#> [11,] -0.8490075  1.2578320
-#> [12,]  1.2085169 -1.3726707
-#> [13,] -0.9003626  1.7225141
-#> [14,] -0.9173445  0.6489176
-#> [15,]  0.1387130 -0.2898183
-#> [16,] -0.1390712  0.5165686
-#> [17,]  0.8088696 -1.0972915
-#> [18,] -0.3292845  1.6555008
-#> [19,] -0.4978821  0.4275813
-#> [20,]  0.2071733 -1.1744819
-#> [21,]  0.3182040 -0.6837402
-#> [22,] -0.7576456  2.1124949
-#> [23,]  0.7113548 -1.5312629
+#>              [,1]       [,2]
+#>  [1,]  0.28528859  2.2491667
+#>  [2,] -0.13117764  2.1084384
+#>  [3,] -0.24542640 -2.2402340
+#>  [4,]  0.80739882 -0.5729858
+#>  [5,]  0.44699981 -1.3484811
+#>  [6,] -0.61160252 -2.1092884
+#>  [7,] -0.80734990  1.2504653
+#>  [8,] -0.50440572  0.8303128
+#>  [9,]  0.24279811 -1.9372908
+#> [10,] -0.17718671 -0.5774085
+#> [11,] -0.23473046  1.4898180
+#> [12,] -0.24119590 -1.2576221
+#> [13,]  0.12464406  1.7042488
+#> [14,] -0.20695231  0.9352088
+#> [15,]  0.38569762 -0.2300152
+#> [16,] -0.31607697  0.3515507
+#> [17,]  0.03603007 -1.5945875
+#> [18,]  0.69957330  2.1887216
+#> [19,]  0.13563564  0.6237887
+#> [20,]  0.50685622 -0.9394032
+#> [21,]  0.05819347 -0.9300539
+#> [22,]  0.47927787  1.7866853
+#> [23,] -0.73228906 -1.7810346
 #> attr(,"scaled:center")
-#> [1]  0.1631531 -9.4144959
+#> [1] -4.707077 -2.644019
 #> 
 #> $umap_results_tbl
 #> # A tibble: 23 × 3
 #>         x      y service_line                 
 #>     <dbl>  <dbl> <chr>                        
-#>  1 -1.20   2.00  Alcohol Abuse                
-#>  2 -1.11   1.50  Bariatric Surgery For Obesity
-#>  3  1.20  -2.01  CHF                          
-#>  4  0.668 -0.227 COPD                         
-#>  5  1.20  -0.804 CVA                          
-#>  6  0.766 -1.94  Carotid Endarterectomy       
-#>  7 -0.189  1.02  Cellulitis                   
-#>  8 -0.598  0.934 Chest Pain                   
-#>  9  0.448 -1.81  GI Hemorrhage                
-#> 10 -0.190 -0.854 Joint Replacement            
+#>  1  0.285  2.25  Alcohol Abuse                
+#>  2 -0.131  2.11  Bariatric Surgery For Obesity
+#>  3 -0.245 -2.24  CHF                          
+#>  4  0.807 -0.573 COPD                         
+#>  5  0.447 -1.35  CVA                          
+#>  6 -0.612 -2.11  Carotid Endarterectomy       
+#>  7 -0.807  1.25  Cellulitis                   
+#>  8 -0.504  0.830 Chest Pain                   
+#>  9  0.243 -1.94  GI Hemorrhage                
+#> 10 -0.177 -0.577 Joint Replacement            
 #> # ℹ 13 more rows
 #> 
 #> $kmeans_obj
-#> K-means clustering with 3 clusters of sizes 6, 5, 12
+#> K-means clustering with 3 clusters of sizes 5, 6, 12
 #> 
 #> Cluster means:
 #>   Blue Cross Commercial Compensation Exchange Plans        HMO   Medicaid
-#> 1  0.1170278 0.03141187 0.0101665392    0.013865190 0.09822472 0.08557952
-#> 2  0.1495475 0.03679700 0.0003066332    0.020729565 0.16252855 0.13072521
+#> 1  0.1495475 0.03679700 0.0003066332    0.020729565 0.16252855 0.13072521
+#> 2  0.1170278 0.03141187 0.0101665392    0.013865190 0.09822472 0.08557952
 #> 3  0.0783745 0.02182129 0.0043244347    0.006202137 0.04493860 0.03684344
 #>   Medicaid HMO Medicare A Medicare HMO    No Fault    Self Pay
-#> 1   0.14652195  0.3535395   0.10524131 0.007067791 0.031353724
-#> 2   0.31446157  0.1318675   0.03192357 0.001364577 0.019748398
+#> 1   0.31446157  0.1318675   0.03192357 0.001364577 0.019748398
+#> 2   0.14652195  0.3535395   0.10524131 0.007067791 0.031353724
 #> 3   0.08001653  0.5625037   0.15152338 0.003475542 0.009976485
 #> 
 #> Clustering vector:
-#>  [1] 2 2 3 3 3 3 1 1 3 3 2 3 2 1 3 1 3 1 1 3 3 2 3
+#>  [1] 1 1 3 3 3 3 2 2 3 3 1 3 1 2 3 2 3 2 2 3 3 1 3
 #> 
 #> Within cluster sum of squares by cluster:
-#> [1] 0.08456928 0.19152559 0.09625399
+#> [1] 0.19152559 0.08456928 0.09625399
 #>  (between_SS / total_SS =  73.6 %)
 #> 
 #> Available components:
@@ -158,14 +158,14 @@ umap_list(.data = uit_tbl, kmm_tbl, 3)
 #> # A tibble: 23 × 2
 #>    service_line                  .cluster
 #>    <chr>                         <fct>   
-#>  1 Alcohol Abuse                 2       
-#>  2 Bariatric Surgery For Obesity 2       
+#>  1 Alcohol Abuse                 1       
+#>  2 Bariatric Surgery For Obesity 1       
 #>  3 CHF                           3       
 #>  4 COPD                          3       
 #>  5 CVA                           3       
 #>  6 Carotid Endarterectomy        3       
-#>  7 Cellulitis                    1       
-#>  8 Chest Pain                    1       
+#>  7 Cellulitis                    2       
+#>  8 Chest Pain                    2       
 #>  9 GI Hemorrhage                 3       
 #> 10 Joint Replacement             3       
 #> # ℹ 13 more rows
@@ -174,16 +174,16 @@ umap_list(.data = uit_tbl, kmm_tbl, 3)
 #> # A tibble: 23 × 4
 #>         x      y service_line                  .cluster
 #>     <dbl>  <dbl> <chr>                         <fct>   
-#>  1 -1.20   2.00  Alcohol Abuse                 2       
-#>  2 -1.11   1.50  Bariatric Surgery For Obesity 2       
-#>  3  1.20  -2.01  CHF                           3       
-#>  4  0.668 -0.227 COPD                          3       
-#>  5  1.20  -0.804 CVA                           3       
-#>  6  0.766 -1.94  Carotid Endarterectomy        3       
-#>  7 -0.189  1.02  Cellulitis                    1       
-#>  8 -0.598  0.934 Chest Pain                    1       
-#>  9  0.448 -1.81  GI Hemorrhage                 3       
-#> 10 -0.190 -0.854 Joint Replacement             3       
+#>  1  0.285  2.25  Alcohol Abuse                 1       
+#>  2 -0.131  2.11  Bariatric Surgery For Obesity 1       
+#>  3 -0.245 -2.24  CHF                           3       
+#>  4  0.807 -0.573 COPD                          3       
+#>  5  0.447 -1.35  CVA                           3       
+#>  6 -0.612 -2.11  Carotid Endarterectomy        3       
+#>  7 -0.807  1.25  Cellulitis                    2       
+#>  8 -0.504  0.830 Chest Pain                    2       
+#>  9  0.243 -1.94  GI Hemorrhage                 3       
+#> 10 -0.177 -0.577 Joint Replacement             3       
 #> # ℹ 13 more rows
 #> 
 ```

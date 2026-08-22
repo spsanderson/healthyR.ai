@@ -25,7 +25,7 @@ umap_plt(.data, .point_size = 2, .label = TRUE)
 - .label:
 
   Should
-  [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
+  [`ggrepel::geom_label_repel()`](https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html)
   be used to display cluster user labels.
 
 ## Value
@@ -61,12 +61,12 @@ library(dplyr)
 library(broom)
 library(ggplot2)
 
-data_tbl <- healthyR_data %>%
-  filter(ip_op_flag == "I") %>%
-  filter(payer_grouping != "Medicare B") %>%
-  filter(payer_grouping != "?") %>%
-  select(service_line, payer_grouping) %>%
-  mutate(record = 1) %>%
+data_tbl <- healthyR_data |>
+  filter(ip_op_flag == "I") |>
+  filter(payer_grouping != "Medicare B") |>
+  filter(payer_grouping != "?") |>
+  select(service_line, payer_grouping) |>
+  mutate(record = 1) |>
   as_tibble()
 
 uit_tbl <- hai_kmeans_user_item_tbl(

@@ -49,5 +49,5 @@ Steven P. Sanderson II, MPH
 
 ``` r
 hai_kurtosis_vec(rnorm(100, 3, 2))
-#> [1] 2.720724
+#> [1] 3.171581
 ```

@@ -102,7 +102,7 @@ suppressPackageStartupMessages(library(recipes))
 data_tbl <- data.frame(a = rnorm(200, 3, 1), b = rnorm(200, 2, 2))
 
 # Create a recipe object
-rec_obj <- recipe(a ~ ., data = data_tbl) %>%
+rec_obj <- recipe(a ~ ., data = data_tbl) |>
   step_hai_scale_zero_one(b)
 
 # View the recipe object
@@ -137,35 +137,35 @@ prep(rec_obj)
 # Bake the recipe object - Adds the Time Series Signature
 bake(prep(rec_obj), data_tbl)
 #> # A tibble: 200 × 3
-#>         b     a hai_scale_zero_one_b
-#>     <dbl> <dbl>                <dbl>
-#>  1  1.41   1.15            0.320    
-#>  2  2.94   1.83            0.452    
-#>  3  1.98   1.87            0.369    
-#>  4 -2.30   1.90            0.0000403
-#>  5  0.980  3.78            0.283    
-#>  6  4.20   2.68            0.560    
-#>  7  0.352  2.12            0.229    
-#>  8  3.43   3.21            0.494    
-#>  9  3.94   3.99            0.537    
-#> 10  1.26   3.63            0.307    
+#>          b     a hai_scale_zero_one_b
+#>      <dbl> <dbl>                <dbl>
+#>  1 -0.0392  3.82                0.267
+#>  2  3.36    4.65                0.606
+#>  3  0.437   4.26                0.314
+#>  4 -0.398   4.61                0.231
+#>  5  6.57    2.16                0.929
+#>  6  1.84    3.62                0.455
+#>  7  1.17    1.41                0.387
+#>  8 -0.900   3.35                0.181
+#>  9  2.34    4.06                0.505
+#> 10  2.89    3.95                0.560
 #> # ℹ 190 more rows
 
-rec_obj %>%
-  prep() %>%
+rec_obj |>
+  prep() |>
   juice()
 #> # A tibble: 200 × 3
-#>         b     a hai_scale_zero_one_b
-#>     <dbl> <dbl>                <dbl>
-#>  1  1.41   1.15            0.320    
-#>  2  2.94   1.83            0.452    
-#>  3  1.98   1.87            0.369    
-#>  4 -2.30   1.90            0.0000403
-#>  5  0.980  3.78            0.283    
-#>  6  4.20   2.68            0.560    
-#>  7  0.352  2.12            0.229    
-#>  8  3.43   3.21            0.494    
-#>  9  3.94   3.99            0.537    
-#> 10  1.26   3.63            0.307    
+#>          b     a hai_scale_zero_one_b
+#>      <dbl> <dbl>                <dbl>
+#>  1 -0.0392  3.82                0.267
+#>  2  3.36    4.65                0.606
+#>  3  0.437   4.26                0.314
+#>  4 -0.398   4.61                0.231
+#>  5  6.57    2.16                0.929
+#>  6  1.84    3.62                0.455
+#>  7  1.17    1.41                0.387
+#>  8 -0.900   3.35                0.181
+#>  9  2.34    4.06                0.505
+#> 10  2.89    3.95                0.560
 #> # ℹ 190 more rows
 ```

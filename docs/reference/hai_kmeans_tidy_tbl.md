@@ -61,13 +61,14 @@ Steven P. Sanderson II, MPH
 library(healthyR.data)
 library(dplyr)
 library(broom)
+#> Warning: package 'broom' was built under R version 4.5.3
 
-data_tbl <- healthyR_data %>%
-  filter(ip_op_flag == "I") %>%
-  filter(payer_grouping != "Medicare B") %>%
-  filter(payer_grouping != "?") %>%
-  select(service_line, payer_grouping) %>%
-  mutate(record = 1) %>%
+data_tbl <- healthyR_data |>
+  filter(ip_op_flag == "I") |>
+  filter(payer_grouping != "Medicare B") |>
+  filter(payer_grouping != "?") |>
+  select(service_line, payer_grouping) |>
+  mutate(record = 1) |>
   as_tibble()
 
 uit_tbl <- hai_kmeans_user_item_tbl(
@@ -87,16 +88,16 @@ hai_kmeans_tidy_tbl(
 #> # A tibble: 23 × 2
 #>    service_line                  cluster
 #>    <chr>                         <fct>  
-#>  1 Alcohol Abuse                 1      
+#>  1 Alcohol Abuse                 4      
 #>  2 Bariatric Surgery For Obesity 3      
-#>  3 CHF                           5      
-#>  4 COPD                          5      
-#>  5 CVA                           5      
-#>  6 Carotid Endarterectomy        5      
-#>  7 Cellulitis                    4      
-#>  8 Chest Pain                    4      
-#>  9 GI Hemorrhage                 5      
-#> 10 Joint Replacement             5      
+#>  3 CHF                           1      
+#>  4 COPD                          1      
+#>  5 CVA                           1      
+#>  6 Carotid Endarterectomy        1      
+#>  7 Cellulitis                    2      
+#>  8 Chest Pain                    2      
+#>  9 GI Hemorrhage                 1      
+#> 10 Joint Replacement             1      
 #> # ℹ 13 more rows
 
 hai_kmeans_tidy_tbl(
@@ -113,22 +114,22 @@ hai_kmeans_tidy_tbl(
   .kmeans_obj = km_obj,
   .data = uit_tbl,
   .tidy_type = "tidy"
-) %>%
+) |>
   glimpse()
 #> Rows: 5
 #> Columns: 14
-#> $ `Blue Cross`     <dbl> 0.07912806, 0.00000000, 0.27188303, 0.13375082, 0.078…
-#> $ Commercial       <dbl> 0.02702478, 0.00000000, 0.05712358, 0.03542694, 0.021…
-#> $ Compensation     <dbl> 0.0002914681, 0.0000000000, 0.0003293808, 0.012199847…
-#> $ `Exchange Plans` <dbl> 0.009301354, 0.000000000, 0.039065198, 0.016160901, 0…
-#> $ HMO              <dbl> 0.07723873, 0.27272727, 0.18065096, 0.10724914, 0.044…
-#> $ Medicaid         <dbl> 0.21428392, 0.18181818, 0.04246134, 0.05150211, 0.036…
-#> $ `Medicaid HMO`   <dbl> 0.28209782, 0.45454545, 0.24760799, 0.13107693, 0.080…
-#> $ `Medicare A`     <dbl> 0.23654904, 0.09090909, 0.10958146, 0.35217108, 0.562…
-#> $ `Medicare HMO`   <dbl> 0.04362913, 0.00000000, 0.03584494, 0.11769769, 0.151…
-#> $ `No Fault`       <dbl> 0.002672067, 0.000000000, 0.000000000, 0.008242686, 0…
-#> $ `Self Pay`       <dbl> 0.027783628, 0.000000000, 0.015452115, 0.034521844, 0…
-#> $ size             <int> 3, 1, 2, 5, 12
-#> $ withinss         <dbl> 0.04450884, 0.00000000, 0.03549821, 0.02592247, 0.096…
+#> $ `Blue Cross`     <dbl> 0.07837450, 0.13375082, 0.27188303, 0.07912806, 0.000…
+#> $ Commercial       <dbl> 0.02182129, 0.03542694, 0.05712358, 0.02702478, 0.000…
+#> $ Compensation     <dbl> 0.0043244347, 0.0121998471, 0.0003293808, 0.000291468…
+#> $ `Exchange Plans` <dbl> 0.006202137, 0.016160901, 0.039065198, 0.009301354, 0…
+#> $ HMO              <dbl> 0.04493860, 0.10724914, 0.18065096, 0.07723873, 0.272…
+#> $ Medicaid         <dbl> 0.03684344, 0.05150211, 0.04246134, 0.21428392, 0.181…
+#> $ `Medicaid HMO`   <dbl> 0.08001653, 0.13107693, 0.24760799, 0.28209782, 0.454…
+#> $ `Medicare A`     <dbl> 0.56250366, 0.35217108, 0.10958146, 0.23654904, 0.090…
+#> $ `Medicare HMO`   <dbl> 0.15152338, 0.11769769, 0.03584494, 0.04362913, 0.000…
+#> $ `No Fault`       <dbl> 0.003475542, 0.008242686, 0.000000000, 0.002672067, 0…
+#> $ `Self Pay`       <dbl> 0.009976485, 0.034521844, 0.015452115, 0.027783628, 0…
+#> $ size             <int> 12, 5, 2, 3, 1
+#> $ withinss         <dbl> 0.09625399, 0.02592247, 0.03549821, 0.04450884, 0.000…
 #> $ cluster          <fct> 1, 2, 3, 4, 5
 ```

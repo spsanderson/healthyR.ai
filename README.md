@@ -95,7 +95,7 @@ data_tbl <- tibble::tibble(
 my_chart <- hai_control_chart(data_tbl, count, date)
 ```
 
-<img src="man/figures/README-example_control_chart-1.png" width="100%" />
+<img src="man/figures/README-example_control_chart-1.png" alt="" width="100%" />
 
 ``` r
 my_chart +
@@ -104,7 +104,7 @@ my_chart +
   theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust = 1))
 ```
 
-<img src="man/figures/README-example_control_chart-2.png" width="100%" />
+<img src="man/figures/README-example_control_chart-2.png" alt="" width="100%" />
 
 ### AutoML with K-Nearest Neighbors
 
@@ -130,8 +130,8 @@ knn_results <- hai_auto_knn(
 )
 
 # Access the best model
-best_model <- knn_results$model_info %>%
-  dplyr::filter(model_spec == knn_results$best_model_spec) %>%
+best_model <- knn_results$model_info |>
+  dplyr::filter(model_spec == knn_results$best_model_spec) |>
   dplyr::pull(model)
 ```
 
@@ -142,8 +142,8 @@ library(healthyR.ai)
 library(dplyr)
 
 # Prepare data
-data_tbl <- healthyR.data::healthyR_data %>%
-  dplyr::select(length_of_stay, age) %>%
+data_tbl <- healthyR.data::healthyR_data |>
+  dplyr::select(length_of_stay, age) |>
   dplyr::filter(length_of_stay < 20)
 
 # Auto K-Means - finds optimal clusters
@@ -166,9 +166,9 @@ library(healthyR.ai)
 library(recipes)
 
 # Create a recipe with custom preprocessing steps
-rec <- recipe(mpg ~ ., data = mtcars) %>%
-  step_hai_scale_zscore(all_numeric_predictors()) %>%
-  step_hai_fourier(disp, period = 365, order = 1) %>%
+rec <- recipe(mpg ~ ., data = mtcars) |>
+  step_hai_scale_zscore(all_numeric_predictors()) |>
+  step_hai_fourier(disp, period = 365, order = 1) |>
   step_hai_hyperbolic(hp, wt)
 
 # Prep and bake

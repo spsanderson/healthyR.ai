@@ -6,4 +6,4 @@
 
 0 errors | 0 warnings | 0 note
 
-Update package to prevent CRAN archiving
+Update package to make small changes and drop some dependencies
